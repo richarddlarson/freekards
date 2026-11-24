@@ -24,6 +24,7 @@ look, feel, behavior, build, packaging, install, runtime, or development process
 | [10-core-logic.md](10-core-logic.md) | Shared logic conventions: card ids, seats, seeded random numbers, state-machine shape. |
 | [content/](content/) | Canonical engine-neutral content data: character profiles and dialogue (D-031). |
 | [11-display-and-layout.md](11-display-and-layout.md) | Target screens, resolution scaling, layout model, touch targets, orientation. |
+| [12-hearts-table.md](12-hearts-table.md) | Screen flow, Hearts table layout, timing, interaction, dialogs. |
 | [runtimes/electron.md](runtimes/electron.md) | Electron-specific stack, versions, source tree, scripts, packaging, installers, SBOM tooling, and CI. |
 
 Every document except those in `runtimes/` is **engine-neutral** (see 05). Later documents get the

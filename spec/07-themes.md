@@ -1,6 +1,7 @@
 # 07 — Themes (core spec, engine-neutral)
 
-Status: architecture **[Confirmed]** (D-009). Details **[Proposed]**.
+Status: architecture **[Confirmed]** (D-009). Manifest **[Proposed]**, not implemented yet: the renderer
+currently uses the Classic Casino paths directly. Card faces and backs are implemented (D-027, D-035).
 
 ## Concept
 A **theme** is a self-contained bundle of visual (and optionally audio) assets plus a JSON manifest.

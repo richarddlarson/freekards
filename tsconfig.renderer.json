@@ -1,11 +1,21 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "lib": ["ES2023", "DOM", "DOM.Iterable"],
-    "types": [],
+    "lib": [
+      "ES2023",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "types": [
+      "vite/client"
+    ],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "noEmit": true
   },
-  "include": ["src/renderer/**/*.ts", "src/logic/**/*.ts", "src/shared/**/*.ts"]
+  "include": [
+    "src/renderer/**/*.ts",
+    "src/logic/**/*.ts",
+    "src/shared/**/*.ts"
+  ]
 }

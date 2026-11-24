@@ -36,7 +36,7 @@ Each character has traits that affect **what they say** and, slightly, **how the
   characters, ideally under 80.
 - Running jokes (Gus's goose, Bernie's cousin Darlene, Reginald's ancestors) are encouraged.
 
-### Triggers [Proposed]
+### Triggers [Confirmed] (implemented, D-036)
 A trigger is `<scope>.<event>.<perspective>`, or `<scope>.<event>` where perspective doesn't apply.
 **Perspective** is relative to the speaking character: `self` (it happened to the speaker),
 `human` (it happened to the human player), or `other` (it happened to another computer player).
@@ -59,11 +59,12 @@ A trigger is `<scope>.<event>.<perspective>`, or `<scope>.<event>` where perspec
 
 Later games add their own `<game>.*` triggers. A character with no lines for a trigger stays silent.
 
-### Who speaks [Proposed]
+### Who speaks [Confirmed] (implemented, D-036)
 1. When a logic event happens, collect every computer character with lines for the matching
    trigger. A character with a `self` trigger is preferred over the others.
-2. Each candidate rolls: it speaks if `random < chattiness × weight`. If several succeed, one is
-   chosen at random, favoring `self`.
+2. Candidates are grouped by weight and the groups are tried from highest to lowest. Within a group,
+   each candidate rolls and speaks if `random < chattiness × weight`. If several succeed, one is chosen
+   at random, preferring those with a `.self` trigger. If none succeed, the next lower group is tried.
 3. **Only one character speaks at a time.** After a bubble closes there is a **6 s table cooldown**
    before the next comment. Triggers with weight 1.0 skip the cooldown, but still wait for the
    current bubble to finish.

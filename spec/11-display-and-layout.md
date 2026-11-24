@@ -1,6 +1,7 @@
 # 11 — Display, Resolution, and Layout (core spec, engine-neutral)
 
-Status: targets **[Confirmed]** (D-028, D-029). Layout model **[Proposed]**.
+Status: targets **[Confirmed]** (D-028, D-029). Layout model **[Confirmed]**, implemented (D-035, D-036).
+The exact positions are in `12-hearts-table.md` §2.
 
 ## 1. Target devices
 - **Primary device:** Microsoft Surface Pro 9, the ARM model. 13" touchscreen, **2880×1920** native

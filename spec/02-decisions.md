@@ -329,3 +329,42 @@ Template:
   (`freekards`), and in-app text.
 - Why: Owner request. A future rename must not break upgrades or lose the player's saved data.
   "cardtable" is never shown to users.
+
+## D-035 — First playable Hearts table
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: Build the first playable version: main menu, Hearts setup screen, and the full Hearts
+  table (deal, pass, play, collect, score, hand results, game over, pause), with the generated
+  Classic Casino deck, placeholder portraits, toasts, and speech bubbles driven by the dialogue
+  director. No audio yet. Screens, layout numbers, timings, and interaction are in
+  `12-hearts-table.md`. Notable choices: **a single tap plays a legal card** (illegal cards are
+  dimmed and shake if tapped); **trick cards are shown upright**; dialogs sit below center so speech
+  bubbles never cover them.
+- Why: It proves every shared system except audio, so it can go in front of the main player early.
+  Single tap matches the original game and is the simplest touch gesture. Upright trick cards are
+  easiest to read.
+
+## D-036 — Engine-neutral presentation logic: layout math and dialogue director
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: Two pieces of presentation logic live in the engine-neutral logic layer (no DOM), so
+  every runtime shares them and they are unit-tested:
+  1. `layout` (`src/logic/layout/hearts-table.ts`): viewport fitting, every table position and
+     hand placement, and the timing table.
+  2. `dialogue` (`src/logic/dialogue/`): character types, the dialogue director (speaker choice,
+     cooldown, queueing, repeat avoidance, bubble duration), and the mapping from Hearts events to
+     triggers.
+  The director takes time as a number of milliseconds and uses its own seeded generator, so it is
+  deterministic. Speaker choice rolls the highest-weight candidate group first, then lower ones.
+- Why: These rules are part of how the game feels, so a port must reproduce them exactly. Keeping
+  them as pure logic makes that a copy rather than a re-design.
+
+## D-037 — Development screenshot tool
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: `scripts/capture.cjs` renders any page (including the app with a demo hash such as
+  `#hearts&seed=3&autoplay&speed=4`) in an **offscreen** Electron window at 60 fps and saves PNG
+  screenshots at one or more times. The AI assistant uses it to check art and layout visually at the
+  supported resolutions before showing work to the owner.
+- Why: Visual changes need to be seen, not assumed. Hidden (non-offscreen) windows throttle frames,
+  which stalls animations, so offscreen rendering is required.

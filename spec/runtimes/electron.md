@@ -45,9 +45,9 @@ vite.config.ts              Renderer build (root src/renderer → dist/renderer)
 vitest.config.ts            Tests: tests/**/*.test.ts, Node environment
 tsconfig.base.json          Shared strict compiler options
 tsconfig.logic.json         Logic layer only, lib ES2023, no DOM, no Node types (enforces engine neutrality)
-tsconfig.renderer.json      Renderer + logic, adds the DOM lib
+tsconfig.renderer.json      Renderer + logic, adds the DOM lib and vite/client types (import.meta.glob)
 tsconfig.electron.json      Main + preload (*.cts) → dist-electron/*.cjs (CommonJS, NodeNext)
-tsconfig.test.json          Tests + logic
+tsconfig.test.json          Tests + logic + spec/content JSON (resolveJsonModule)
 src/logic/                  ENGINE-NEUTRAL game logic (spec 05, 10). No DOM/Node/Electron imports.
   core/cards.ts             Card ids, deck, sorting
   core/rng.ts               Mulberry32 generator + Fisher–Yates shuffle
@@ -55,12 +55,25 @@ src/logic/                  ENGINE-NEUTRAL game logic (spec 05, 10). No DOM/Node
   hearts/types.ts           State, actions, events
   hearts/engine.ts          Rules engine (spec 06 §1–4)
   hearts/ai.ts              Computer player (spec 06 §5)
+  dialogue/                 Character types, dialogue director, Hearts event→trigger mapping (spec 08, D-036)
+  layout/hearts-table.ts    Viewport fitting, table positions, timing (spec 11, 12, D-036)
   index.ts                  Public entry point
 src/main/main.cts           Electron main process
 src/main/preload.cts        Preload bridge (window.freekards)
-src/renderer/               index.html, main.ts, style.css (presentation)
+src/renderer/               Presentation (DOM + CSS):
+  main.ts                   Screen flow and demo hashes (#setup, #hearts&seed=N&autoplay&speed=N)
+  stage.ts                  Stage scaled to the window (spec 11 §2), DOM helpers, tap handling
+  content.ts                Loads spec/content characters and assets/themes images via import.meta.glob
+  settings.ts               Remembered preferences in localStorage (spec 12 §5)
+  screens.ts                Main menu and Hearts setup
+  table/card-sprite.ts      One element per card, moved with the Web Animations API
+  table/hearts-table.ts     Hearts table controller and view (spec 12)
+  style.css                 Classic Casino styles, in logical px
 tests/logic/                Vitest suites + helpers (simulateGame, playState)
-scripts/check-licenses.mjs  SBOM generator + license gate
+scripts/check-licenses.mjs  SBOM generator + license gate (also scans assets/ and spec/content/)
+scripts/generate-cards.mjs  Classic Casino card-face generator → assets/themes/classic-casino/cards (D-027)
+scripts/capture.cjs         Offscreen screenshot tool (D-037)
+assets/themes/              Runtime-neutral theme assets (generated card SVGs committed)
 scripts/license-policy.mjs  Allowed licenses + runtime exceptions (mirrors spec 09 §2)
 sbom/                       assets.json, build-tools.json (hand-kept); code.cdx.json, dev.cdx.json (generated)
 build/                      electron-builder resources (icons go here)
@@ -77,7 +90,21 @@ preload), `release/` (installers), `coverage/`.
 | `npm start` | Build, then launch Electron. |
 | `npm test` | Vitest, run once. |
 | `npm run licenses` | Regenerate the SBOMs and run the license gate. |
+| `npm run cards` | Regenerate the Classic Casino card SVGs (deterministic; commit the result). |
+| `npm run capture -- <page> <out.png> [w] [h] [ms,ms…]` | Offscreen screenshots (D-037). Build first. |
 | `npm run dist` / `dist:win` / `dist:linux` | Build, check licenses, then build installers with electron-builder. |
+
+## Renderer implementation notes (D-035)
+- The stage element is sized to the logical viewport and scaled with a CSS `transform: scale()`
+  (origin top-left). All CSS px inside it are logical units.
+- Vite bundles `spec/content` and `assets/` through `import.meta.glob` (eager). Small SVGs are
+  inlined as data URIs and larger ones are emitted as files. The CSP allows `img-src 'self' data:`.
+  `server.fs.allow` includes the repo root, so the dev server can reach both folders.
+- Card motion: each card is one absolutely positioned element. A move sets the final `transform`
+  and plays a Web Animations keyframe from the old to the new transform, with `fill: backwards` so
+  staggered delays hold the start position.
+- Preferences use `localStorage` (Electron keeps it in the `cardtable` userData folder, D-034). All
+  access is wrapped in try/catch.
 
 ## Process model (D-019)
 - **[Confirmed]** The main process (`src/main/main.cts`) creates the window, enforces the single-instance
@@ -117,6 +144,9 @@ preload), `release/` (installers), `coverage/`.
   The target is Linux Mint and other Debian/Ubuntu derivatives.
 
 ## Licensing and SBOM (per core spec 09) (D-020)
+- If `sbom/dev.cdx.json` suddenly loses its package hashes, npm's hidden lockfile
+  (`node_modules/.package-lock.json`) is stale, for example after the package was renamed. Run `npm ci`,
+  then `npm run licenses` again.
 - **[Confirmed]** `npm run licenses` runs `scripts/check-licenses.mjs`, which:
   1. runs `cyclonedx-npm --spec-version 1.6 --output-reproducible --flatten-components` twice:
      `--omit dev` writes `sbom/code.cdx.json` (shipped), and the full tree writes `sbom/dev.cdx.json`;
