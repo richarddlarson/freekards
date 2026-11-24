@@ -620,6 +620,66 @@ button:disabled {
   min-width: 900px;
 }
 
+/* ------------------------------------------------------------ settings panel (spec 16) */
+
+.settings-panel {
+  width: 1400px;
+  text-align: left;
+}
+
+.settings-panel h2 {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.settings-for {
+  margin: 0 0 30px;
+  text-align: center;
+  font-size: 26px;
+  opacity: 0.8;
+}
+
+.setting-block {
+  margin-bottom: 30px;
+}
+
+.setting-block .setup-row {
+  margin-bottom: 12px;
+}
+
+.setting-block .setup-row {
+  flex-wrap: nowrap;
+}
+
+.setting-block .setup-label {
+  width: 290px;
+  flex-shrink: 0;
+}
+
+.setting-note {
+  margin-left: 320px;
+  min-height: 36px;
+  font-size: 26px;
+  opacity: 0.85;
+}
+
+.order-preview {
+  display: flex;
+  height: 112px;
+}
+
+.order-card {
+  width: 80px;
+  height: 112px;
+  margin-right: -36px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+}
+
+.settings-panel .dialog-buttons {
+  justify-content: center;
+}
+
 .sound-grid {
   display: grid;
   grid-template-columns: auto 1fr 110px;

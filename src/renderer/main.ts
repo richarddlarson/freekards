@@ -3,6 +3,7 @@
  * Demo hashes for development screenshots (scripts/capture.cjs):
  *   #setup                         the Hearts setup screen
  *   #sound[&tracks]                the main menu with the Sound panel open (and its track list)
+ *   #settings                      the main menu with the Settings panel open
  *   #welcome / #who / #stats       first-run name entry, the player picker, the stats page
  *   (add &record to a #hearts autoplay demo to record its result for the active player)
  *   #hearts&seed=7&autoplay&speed=3  a Hearts game with fixed seed, optionally self-playing
@@ -16,7 +17,7 @@ import { Stage } from './stage.js';
 import { audio } from './audio.js';
 import { HeartsTable, type HeartsGameResult } from './table/hearts-table.js';
 import { profile } from '../logic/index.js';
-import { activeProfile, allProfiles, loadProfiles, replaceProfile } from './profiles.js';
+import { activeProfile, activeSettings, allProfiles, loadProfiles, replaceProfile } from './profiles.js';
 import { showNameEntry, showProfilePage, showWhoIsPlaying } from './profile-screens.js';
 
 // Native-app feel: no browser context menu, no ctrl+wheel zoom (spec runtimes/electron.md).
@@ -102,6 +103,7 @@ function play(settings: Settings, demo: { seed?: number; autoplay?: boolean; spe
     seed,
     autoplay: demo.autoplay,
     speed: demo.speed,
+    getSettings: activeSettings,
     // A computer-played demo game never counts for the player, unless explicitly asked (screenshots).
     onGameFinished: (g) => (demo.autoplay && !demo.record ? null : recordResult(settings, g)),
     onExit: (next) => (next === 'again' ? play(settings) : menu()),
@@ -117,6 +119,11 @@ async function start(): Promise<void> {
   if (hash.has('welcome')) return welcome();
   if (hash.has('who')) return whoIsPlaying();
   if (hash.has('stats')) return statsPage();
+  if (hash.has('settings')) {
+    menu();
+    document.querySelectorAll('.menu-footer button')[1]?.dispatchEvent(new PointerEvent('pointerup', { button: 0 }));
+    return;
+  }
   if (hash.has('sound')) {
     menu();
     document.querySelector('.menu-footer button')?.dispatchEvent(new PointerEvent('pointerup', { button: 0 }));

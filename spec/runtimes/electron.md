@@ -56,22 +56,24 @@ src/logic/                  ENGINE-NEUTRAL game logic (spec 05, 10). No DOM/Node
   hearts/engine.ts          Rules engine (spec 06 §1–4)
   hearts/ai.ts              Computer player (spec 06 §5)
   dialogue/                 Character types, dialogue director, Hearts event→trigger mapping (spec 08, D-036)
-  layout/hearts-table.ts    Viewport fitting, table positions, timing (spec 11, 12, D-036)
+  layout/hearts-table.ts    Viewport fitting, table positions, timing, Card response / Game speed tables (spec 11, 12, 16)
+  settings/                 Per-player settings: types, defaults, repair (spec 16)
   index.ts                  Public entry point
 src/main/main.cts           Electron main process
 src/main/preload.cts        Preload bridge (window.freekards)
 src/renderer/               Presentation (DOM + CSS):
-  main.ts                   Screen flow and demo hashes (#setup, #hearts&seed=N&autoplay&speed=N)
-  stage.ts                  Stage scaled to the window (spec 11 §2), DOM helpers, tap handling
+  main.ts                   Screen flow and demo hashes (#setup, #settings, #hearts&seed=N&autoplay&speed=N)
+  stage.ts                  Stage scaled to the window (spec 11 §2), DOM helpers, tap handling, choice rows
   content.ts                Loads spec/content characters and assets/themes images via import.meta.glob
   settings.ts               Device-wide preferences in localStorage (sound levels, music choice)
   profiles.ts               Profile store over the preload bridge (localStorage fallback) (spec 15, D-051)
   profile-screens.ts        Welcome / Add player, Who's playing?, My stats, coin and player badges
   audio.ts                  Web Audio engine: channels, cues, playlist (spec 13)
   sound-settings.ts         Sound panel (sliders, Mute all)
+  settings-panel.ts         Per-player Settings panel (spec 16)
   screens.ts                Main menu and Hearts setup
   table/card-sprite.ts      One element per card, moved with the Web Animations API
-  table/hearts-table.ts     Hearts table controller and view (spec 12)
+  table/hearts-table.ts     Hearts table controller and view (spec 12); pointer gestures: tap, press, drag (spec 16 §3)
   style.css                 Classic Casino styles, in logical px
 tests/logic/                Vitest suites + helpers (simulateGame, playState)
 scripts/check-licenses.mjs  SBOM generator + license gate (also scans assets/ and spec/content/)
@@ -116,6 +118,12 @@ preload), `release/` (installers), `coverage/`.
 - Card motion: each card is one absolutely positioned element. A move sets the final `transform`
   and plays a Web Animations keyframe from the old to the new transform, with `fill: backwards` so
   staggered delays hold the start position.
+- Card gestures (spec 16 §3) use Pointer Events on the card layer: `pointerdown` starts a gesture
+  and calls `setPointerCapture` (inside try/catch), so `pointermove`/`pointerup` keep arriving when the
+  finger leaves the card. Window coordinates become logical units through
+  `(client − stage rect origin) / viewport scale`. A dragged card cancels its running animations and
+  sets its `transform` directly on every move. `touch-action: none` on the page removes the browser's
+  touch delay and gestures.
 - Preferences use `localStorage` (Electron keeps it in the `cardtable` userData folder, D-034). All
   access is wrapped in try/catch.
 

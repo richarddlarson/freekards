@@ -15,7 +15,8 @@ Main menu ──Play Hearts──▶ Hearts setup ──Deal!──▶ Hearts ta
 ```
 - **Main menu:** the "FreeKards" title, tagline "Classic card games with friendly faces", a large
   **Play Hearts** button, a 2-column grid of the other six games marked *coming soon* (disabled),
-  and, along the bottom, **Sound** (opens the Sound panel, spec 13) and **Quit** (closes the app).
+  and, along the bottom, **Sound** (opens the Sound panel, spec 13), **Settings** (the player's
+  Settings panel, spec 16), and **Quit** (closes the app).
 - **Hearts setup** (one panel):
   - **Rules:** Standard | Jack of Diamonds −10 (D-008).
   - **Difficulty:** Easy | Medium | Hard (D-010).
@@ -53,10 +54,10 @@ Trick cards stay upright regardless of who played them, so the player never has 
 |------|-------|
 | Deal: one card at a time, clockwise from West, each starting 30 after the previous | flight 260, easing ease-out (cubic-bezier 0.22, 1, 0.36, 1) |
 | Pause before the first deal | 400 |
-| Computer "thinking" before a play | random 550–950 |
-| Card flight to the trick | 280 |
-| Hand closes up after a play | 220 |
-| Completed trick stays visible | 900 |
+| Computer "thinking" before a play | random 550–950 (× Game speed, spec 16 §4) |
+| Card flight to the trick | 280 (the player's own card: per Card response, spec 16 §3) |
+| Hand closes up after a play | 220 (the player's own hand: per Card response) |
+| Completed trick stays visible | 900 (× Game speed) |
 | Trick collected | 420, ease-in |
 | Pass exchange flight | 520; received cards stay lifted for 1400, then settle in 220 |
 | Human idle before an `idle.human` comment | 20 000, then at most every 60 000 |
@@ -65,12 +66,15 @@ Trick cards stay upright regardless of who played them, so the player never has 
 All card images are loaded and decoded before the first deal, so flips never show a stale image.
 
 ## 4. Interaction
+- **When a tap counts** (on release or on press), drag to play, and the player's own card timings
+  all follow the player's **Card response** setting (spec 16 §3). The default, Standard, is
+  described here.
 - **Passing:** the center message says "Choose 3 cards to pass to the left/right/across". Tapping a
   card lifts or lowers it. A 4th tap on an unlifted card shakes it. **Pass ←/→/↑** is enabled only when
   exactly 3 cards are lifted. After the exchange, the 3 received cards appear lifted briefly.
 - **Playing:** on her turn, the "You" nameplate glows and cards that can't legally be played are
-  dimmed (brightness 60%). **A single tap plays a legal card.** Tapping an illegal card shakes it
-  (240 ms) and does nothing else.
+  dimmed (brightness 60%). **A single tap plays a legal card**, or the player can **drag** a legal
+  card up onto the table (spec 16 §3). Tapping an illegal card shakes it (240 ms) and does nothing else.
 - **Turn indicator:** the active computer player's portrait glows, and the active player's name is
   highlighted in the score panel.
 - **Toasts** (short center notices) for: hearts broken, Queen of Spades taken, Jack of Diamonds
@@ -83,7 +87,7 @@ All card images are loaded and decoded before the first deal, so flips never sho
   unique to each character and the first letter of their nickname (ignoring a leading "The").
 
 ## 5. Remembered preferences
-Rule set, difficulty, and the opponent choice (three ids, or Random) are saved **in the active
+The player's settings (spec 16) live in the profile too. Rule set, difficulty, and the opponent choice (three ids, or Random) are saved **in the active
 profile** (spec 15) when **Deal!** is pressed, and restored on the setup screen. Sound levels, Mute all, and the music track choice are
 saved as soon as they change (spec 13). If stored preferences are missing or unreadable, the
 defaults are used: Standard, Medium, Random.
@@ -97,8 +101,7 @@ don't cover them.
 - **Game over:** "You win!" or "<Nickname> wins!", the final standings sorted by score, the
   KardCoins award (spec 15 §3), and the buttons **Play again** (same settings, new deal) and
   **Main menu**.
-- **Pause (☰):** **Resume**, **Sound** (spec 13), **New game**, and **Main menu**. The game is paused while it's open.
+- **Pause (☰):** **Resume**, **Sound** (spec 13), **Settings** (spec 16), **New game**, and **Main menu**. The game is paused while it's open.
 
 ## 7. Not yet implemented
-Voices, portrait art, the About & Credits screen, a settings screen, statistics,
-saving a game in progress, a drag gesture for playing cards, and other themes.
+Portrait art, the About & Credits screen, saving a game in progress, and other themes.

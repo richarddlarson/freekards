@@ -3,6 +3,7 @@
  * every function returns new data and never mutates its input. Time and ids are passed in.
  */
 import type { Difficulty } from '../core/skill.js';
+import { DEFAULT_PLAYER_SETTINGS, normalizePlayerSettings, type PlayerSettings } from '../settings/player-settings.js';
 
 export const PROFILE_SCHEMA = 1;
 export const WELCOME_COINS = 500;
@@ -55,6 +56,8 @@ export interface Profile {
   ledger: CoinEntry[];
   stats: { hearts: HeartsStats };
   prefs: { hearts: HeartsPrefs };
+  /** The player's settings (spec 16). */
+  settings: PlayerSettings;
 }
 
 export interface ProfilesFile {
@@ -104,6 +107,7 @@ export function createProfile(name: string, id: string, now: string, prefs: Hear
     ledger: [],
     stats: { hearts: emptyHeartsStats() },
     prefs: { hearts: { ...prefs, opponents: prefs.opponents ? [...prefs.opponents] : null } },
+    settings: { ...DEFAULT_PLAYER_SETTINGS },
   };
   return addCoins(base, WELCOME_COINS, 'Welcome bonus', now);
 }
@@ -198,6 +202,7 @@ export function normalizeProfilesFile(raw: unknown): ProfilesFile {
       ledger: Array.isArray(p.ledger) ? p.ledger.slice(0, LEDGER_MAX) : [],
       stats: { hearts: hs },
       prefs: { hearts: hp },
+      settings: normalizePlayerSettings(p.settings),
     });
   }
   const active = profiles.some((p) => p.id === r.activeProfileId) ? (r.activeProfileId as string) : (profiles[0]?.id ?? null);

@@ -5,7 +5,8 @@ import type { Settings } from './settings.js';
 import { soundSettingsPanel } from './sound-settings.js';
 import { coinBadge, playerBadge } from './profile-screens.js';
 import type { profile } from '../logic/index.js';
-import { h, onTap, type Stage } from './stage.js';
+import { choiceRow, h, onTap, type Stage } from './stage.js';
+import { settingsPanel } from './settings-panel.js';
 
 type CharacterDef = dialogue.CharacterDef;
 
@@ -45,37 +46,19 @@ export function showMainMenu(
     overlay.append(soundSettingsPanel(() => overlay.remove()));
     screen.append(overlay);
   });
+  const settings = h('button', 'big-button quiet', 'Settings');
+  onTap(settings, () => {
+    const overlay = h('div', 'overlay centered');
+    overlay.append(settingsPanel(() => overlay.remove()));
+    screen.append(overlay);
+  });
   const quit = h('button', 'big-button quiet', 'Quit');
   onTap(quit, actions.quit);
   const footer = h('div', 'menu-footer');
-  footer.append(sound, quit);
+  footer.append(sound, settings, quit);
   list.append(footer);
   screen.append(list);
   stage.el.append(screen);
-}
-
-function choiceRow<T extends string>(
-  label: string,
-  options: readonly [T, string][],
-  value: T,
-  onChange: (v: T) => void,
-): HTMLElement {
-  const row = h('div', 'setup-row');
-  row.append(h('div', 'setup-label', label));
-  const group = h('div', 'choice-group');
-  const buttons = options.map(([v, text]) => {
-    const b = h('button', 'choice', text);
-    b.classList.toggle('selected', v === value);
-    onTap(b, () => {
-      for (const x of buttons) x.classList.remove('selected');
-      b.classList.add('selected');
-      onChange(v);
-    });
-    return b;
-  });
-  group.append(...buttons);
-  row.append(group);
-  return row;
 }
 
 export function portraitBadge(c: CharacterDef, className = 'portrait-face'): HTMLElement {

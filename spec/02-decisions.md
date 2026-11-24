@@ -555,3 +555,42 @@ Template:
 - Why: Owner's suggested name. A 2026-11-24 search found no existing product or trademark named
   KardCoins. The KARDS game (D-033) calls its currency "Diamonds", so there is no overlap. Not legal
   advice.
+
+## D-053 — A per-player Settings panel
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: Add a **Settings** panel, opened from the main menu footer and from the in-game ☰ menu.
+  Settings belong to the active profile, apply at once, and are saved immediately. Sound stays a
+  separate device-wide panel. Details in `16-settings.md`.
+- Why: Play-testing feedback (R-005): different players want different things, and more settings
+  are coming. Being able to change them mid-game lets a player fix a problem the moment they notice it.
+
+## D-054 — Card order setting: low cards on the left or on the right
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: The player's hand can show low cards on the left (default, as before) or on the right.
+  Reversal flips ranks within each suit. The ♣ ♦ ♠ ♥ suit groups stay in place because Hearts doesn't
+  rank suits. A future game that ranks suits reverses the suit order as well.
+- Why: Play-testing request (R-005). Owner's rule: reverse the suits too only "if there's an
+  inherent order to the suits". Hearts has none; the order only alternates colors (spec 10).
+
+## D-055 — Card response setting and drag to play
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: Three levels for how the player's own cards react: **Standard** (as before: tap counts
+  on release, 280 ms flight), **Quick** (a card lifts the moment it is pressed, and flights are
+  about twice as fast), and **Instant** (a card plays on press, with an 80 ms flight). Drag to play is
+  added in Standard and Quick: a legal card follows the finger and plays if released at least half a
+  card height above the hand. Default Standard. Exact values are in `16-settings.md` §3.
+- Why: Play-testing feedback (R-005) that tapping or dragging a card felt laggy. Before this, a card
+  reacted only when the finger lifted, and a drag did nothing until release, which reads as lag on
+  touch. The owner found the old behavior fine, so it stays the default and the faster ones are
+  choices.
+
+## D-056 — Game speed setting
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: **Relaxed / Normal / Fast** multiplies the computer players' thinking time and the
+  completed-trick pause by 1.5 / 1 / 0.5. Default Normal. Animations are unchanged.
+- Why: Same play-testing feedback (R-005) that the game felt "a little laggy" overall. Owner chose to
+  add it now rather than defer it.

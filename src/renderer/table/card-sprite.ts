@@ -66,6 +66,13 @@ export class CardSprite {
     await anim.finished.catch(() => undefined);
   }
 
+  /** Move instantly, with no animation (a card following the player's finger). */
+  jumpTo(to: layout.Placement): void {
+    for (const a of this.el.getAnimations()) a.cancel();
+    this.place = to;
+    this.el.style.transform = transformFor(to);
+  }
+
   /** Quick sideways shake for an illegal tap. */
   shake(): void {
     const base = transformFor(this.place);

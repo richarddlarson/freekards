@@ -47,9 +47,17 @@ export function isCard(value: string): value is Card {
 }
 
 /** Sort for display: grouped by suit (C, D, S, H), ascending rank within a suit. */
-export function sortHand(cards: readonly Card[]): Card[] {
+/**
+ * Display order of the player's hand (D-054): suits always grouped C, D, S, H (spec 10); within a
+ * suit, low cards on the left (the default) or on the right. Hearts does not rank suits, so the
+ * suit groups never move.
+ */
+export type CardOrder = 'low-left' | 'low-right';
+
+export function sortHand(cards: readonly Card[], order: CardOrder = 'low-left'): Card[] {
+  const dir = order === 'low-right' ? -1 : 1;
   return [...cards].sort((a, b) => {
     const s = SUITS.indexOf(suitOf(a)) - SUITS.indexOf(suitOf(b));
-    return s !== 0 ? s : rankOf(a) - rankOf(b);
+    return s !== 0 ? s : dir * (rankOf(a) - rankOf(b));
   });
 }

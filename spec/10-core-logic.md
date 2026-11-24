@@ -12,7 +12,8 @@ another runtime must reproduce them exactly, so that saved games, seeds, and tes
 - **Canonical deck order** (before shuffling): suits in the order C, D, S, H; within each suit 2 → A.
   Index 0 = `2C`, index 51 = `AH`.
 - **Display sort** for a hand: grouped by suit in the order C, D, S, H (so colors alternate:
-  black, red, black, red), ascending rank within each suit.
+  black, red, black, red), ascending rank within each suit. The player's **Card order** setting
+  (spec 16 §2, D-054) can make it descending within each suit; the suit groups never move.
 
 ## 2. Seats
 - 4-player games use seats 0–3 in **clockwise play order**:

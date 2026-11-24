@@ -3,12 +3,13 @@
  * engine, computer players, and dialogue director, and turns their events into animation,
  * speech bubbles, and score updates. Game state is only ever changed through engine actions.
  */
-import { dialogue, effectiveSkill, hearts, layout, sortHand, type Card, type Difficulty } from '../../logic/index.js';
+import { dialogue, effectiveSkill, hearts, layout, settings, sortHand, type Card, type Difficulty } from '../../logic/index.js';
 import { portraitColors, preloadCardImages } from '../content.js';
 import { h, onTap, type Stage } from '../stage.js';
 import { CardSprite } from './card-sprite.js';
 import { audio } from '../audio.js';
 import { soundSettingsPanel } from '../sound-settings.js';
+import { settingsPanel } from '../settings-panel.js';
 
 type Seat = hearts.Seat;
 type CharacterDef = dialogue.CharacterDef;
@@ -27,6 +28,8 @@ export interface HeartsTableOptions {
   autoplay?: boolean;
   /** Demo/testing: divide all game timings by this factor. */
   speed?: number;
+  /** The player's current settings (spec 16); read live, so changes apply mid-game. Defaults if absent. */
+  getSettings?(): settings.PlayerSettings;
   /** Called once when a game finishes (never for abandoned games). Returns the award to show, if any. */
   onGameFinished?(result: HeartsGameResult): GameAward | null;
   onExit(next: 'menu' | 'again'): void;
@@ -46,6 +49,18 @@ export interface GameAward {
 }
 
 class Cancelled extends Error {}
+
+/** One finger, pen, or mouse press on a card in the player's hand (spec 16 §2). */
+interface Gesture {
+  pointerId: number;
+  card: Card;
+  start: layout.Point;
+  /** Pointer position minus card center, so a dragged card stays under the finger where it was grabbed. */
+  grab: layout.Point;
+  dragging: boolean;
+  /** The press already acted (Instant tap, Quick pass toggle, illegal-card shake); release does nothing. */
+  handled: boolean;
+}
 
 const DIRECTION_TEXT: Record<hearts.PassDirection, string> = {
   left: 'to the left',
@@ -79,6 +94,9 @@ export class HeartsTable {
 
   private readonly sprites = new Map<Card, CardSprite>();
   private readonly lifted = new Set<Card>();
+  /** A playable card lifted on press (Card response: Quick) until it is released. */
+  private pressed: Card | null = null;
+  private gesture: Gesture | null = null;
   private mode: 'idle' | 'pass' | 'play' = 'idle';
   private legal = new Set<Card>();
   private pick: { resolve: (c: Card) => void; reject: (e: Error) => void } | null = null;
@@ -161,6 +179,20 @@ export class HeartsTable {
     return t / this.speed;
   }
 
+  private prefs(): settings.PlayerSettings {
+    return this.opts.getSettings?.() ?? settings.DEFAULT_PLAYER_SETTINGS;
+  }
+
+  /** The player's own card timings for the current Card response level. */
+  private response(): layout.ResponseTiming {
+    return layout.RESPONSE_TIMING[this.prefs().cardResponse];
+  }
+
+  /** Computer thinking and trick pause, scaled by Game speed. */
+  private paced(t: number): number {
+    return t * layout.GAME_SPEED_FACTOR[this.prefs().gameSpeed];
+  }
+
   private async sleep(t: number): Promise<void> {
     await new Promise<void>((resolve) => {
       const id = window.setTimeout(() => {
@@ -216,11 +248,10 @@ export class HeartsTable {
       if (this.mode === 'pass' && this.lifted.size === 3) this.passDone?.();
     });
     this.message.hidden = true;
-    this.cardLayer.addEventListener('pointerup', (e) => {
-      const el = (e.target as HTMLElement).closest<HTMLElement>('.card');
-      const card = el?.dataset['card'] as Card | undefined;
-      if (card) this.onCardTap(card);
-    });
+    this.cardLayer.addEventListener('pointerdown', (e) => this.onPointerDown(e));
+    this.cardLayer.addEventListener('pointermove', (e) => this.onPointerMove(e));
+    this.cardLayer.addEventListener('pointerup', (e) => this.onPointerUp(e));
+    this.cardLayer.addEventListener('pointercancel', (e) => this.onPointerCancel(e));
     this.root.append(this.youPlate, this.scorePanel, this.menuBtn, this.actionBtn, this.message, this.toast);
     this.stage.el.append(this.root);
   }
@@ -313,7 +344,7 @@ export class HeartsTable {
   // ------------------------------------------------------------------ cards
 
   private displayHand(seat: Seat): Card[] {
-    return seat === 0 ? sortHand(this.state.hands[0]) : [...this.state.hands[seat]];
+    return seat === 0 ? sortHand(this.state.hands[0], this.prefs().cardOrder) : [...this.state.hands[seat]];
   }
 
   private syncHand(seat: Seat, duration: number): Promise<unknown> {
@@ -323,7 +354,7 @@ export class HeartsTable {
         const sp = this.sprites.get(card);
         if (!sp) return undefined;
         sp.setZ(10 + i);
-        const lift = seat === 0 && this.lifted.has(card);
+        const lift = seat === 0 && (this.lifted.has(card) || this.pressed === card);
         return sp.moveTo(layout.handPlacement(this.lay, seat, i, hand.length, lift), { duration: this.ms(duration) });
       }),
     );
@@ -347,14 +378,107 @@ export class HeartsTable {
       }
       this.actionBtn.disabled = this.lifted.size !== 3;
       audio.play('card.select');
-      void this.syncHand(0, 140);
+      void this.syncHand(0, this.response().passToggle);
     } else if (this.mode === 'play' && this.pick) {
       if (this.legal.has(card)) {
         const p = this.pick;
         this.pick = null;
+        this.pressed = null;
         p.resolve(card);
       } else sp?.shake();
     }
+  }
+
+  // ------------------------------------------------------------------ touch, pen, and mouse (spec 16 §2)
+
+  /** Window coordinates → logical table units. */
+  private toLogical(e: PointerEvent): layout.Point {
+    const r = this.stage.el.getBoundingClientRect();
+    const k = this.stage.vp.scale;
+    return { x: (e.clientX - r.left) / k, y: (e.clientY - r.top) / k };
+  }
+
+  private canDrag(card: Card): boolean {
+    return this.mode === 'play' && this.pick !== null && this.legal.has(card);
+  }
+
+  private onPointerDown(e: PointerEvent): void {
+    if (this.gesture || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    const card = (e.target as HTMLElement).closest<HTMLElement>('.card')?.dataset['card'] as Card | undefined;
+    if (!card || !this.state.hands[0].includes(card)) return;
+    const sp = this.sprites.get(card);
+    if (!sp) return;
+    const r = this.response();
+    const at = this.toLogical(e);
+    const g: Gesture = { pointerId: e.pointerId, card, start: at, grab: { x: at.x - sp.place.x, y: at.y - sp.place.y }, dragging: false, handled: false };
+    this.gesture = g;
+    try {
+      this.cardLayer.setPointerCapture(e.pointerId);
+    } catch {
+      /* capture is a nicety; the gesture still works without it */
+    }
+    if (r.tapOn === 'press') {
+      g.handled = true;
+      this.onCardTap(card);
+    } else if (r.liftOnPress) {
+      if (this.mode === 'pass') {
+        g.handled = true;
+        this.onCardTap(card);
+      } else if (this.mode === 'play' && this.pick) {
+        if (this.legal.has(card)) {
+          this.pressed = card;
+          void this.syncHand(0, r.passToggle);
+        } else {
+          g.handled = true;
+          sp.shake();
+        }
+      }
+    }
+  }
+
+  private onPointerMove(e: PointerEvent): void {
+    const g = this.gesture;
+    if (!g || g.pointerId !== e.pointerId || g.handled) return;
+    const at = this.toLogical(e);
+    if (!g.dragging) {
+      if (Math.hypot(at.x - g.start.x, at.y - g.start.y) < layout.LAYOUT.dragStart || !this.canDrag(g.card)) return;
+      g.dragging = true;
+      this.sprites.get(g.card)?.setZ(300);
+    }
+    this.sprites.get(g.card)?.jumpTo({ x: at.x - g.grab.x, y: at.y - g.grab.y, rot: 0, scale: 1 });
+  }
+
+  private onPointerUp(e: PointerEvent): void {
+    const g = this.gesture;
+    if (!g || g.pointerId !== e.pointerId) return;
+    this.gesture = null;
+    if (g.handled) return;
+    if (!g.dragging) {
+      this.onCardTap(g.card);
+      return;
+    }
+    const sp = this.sprites.get(g.card);
+    const rest = layout.handPlacement(this.lay, 0, 0, 1);
+    if (sp && this.canDrag(g.card) && rest.y - sp.place.y >= layout.LAYOUT.dragPlayRise) this.onCardTap(g.card);
+    else this.settleHand();
+  }
+
+  private onPointerCancel(e: PointerEvent): void {
+    const g = this.gesture;
+    if (!g || g.pointerId !== e.pointerId) return;
+    this.gesture = null;
+    this.settleHand();
+  }
+
+  /** Put a dragged or pressed card back in its place in the hand. */
+  private settleHand(): void {
+    this.pressed = null;
+    void this.syncHand(0, this.response().resort);
+  }
+
+  /** Re-apply the player's settings mid-game (after the Settings panel closes). */
+  private applySettings(): void {
+    void this.syncHand(0, this.response().resort);
   }
 
   // ------------------------------------------------------------------ phases
@@ -442,7 +566,7 @@ export class HeartsTable {
     if (seat === 0 && !this.opts.autoplay) {
       card = await this.humanPick();
     } else {
-      await this.sleep(T.aiThinkMin + Math.random() * (T.aiThinkMax - T.aiThinkMin));
+      await this.sleep(this.paced(T.aiThinkMin + Math.random() * (T.aiThinkMax - T.aiThinkMin)));
       card = this.ais[seat]!.choosePlay(this.state, seat);
     }
     const trickIndex = this.state.trick.plays.length;
@@ -453,9 +577,11 @@ export class HeartsTable {
     sp.setFaceUp(true);
     sp.setZ(200 + trickIndex);
     const slot = this.lay.seats[seat].trickSlot;
+    const mine = seat === 0 && !this.opts.autoplay;
+    const r = this.response();
     await Promise.all([
-      sp.moveTo({ ...slot, rot: slot.rot + (Math.random() * 8 - 4) }, { duration: this.ms(T.playFlight) }),
-      this.syncHand(seat, T.resort),
+      sp.moveTo({ ...slot, rot: slot.rot + (Math.random() * 8 - 4) }, { duration: this.ms(mine ? r.playFlight : T.playFlight) }),
+      this.syncHand(seat, mine ? r.resort : T.resort),
     ]);
     this.guard();
     audio.play('card.place');
@@ -484,7 +610,7 @@ export class HeartsTable {
   }
 
   private async collectTrick(winner: Seat, cards: readonly Card[]): Promise<void> {
-    await this.sleep(T.trickPause);
+    await this.sleep(this.paced(T.trickPause));
     const target = this.lay.seats[winner].collect;
     audio.play('card.collect');
     await Promise.all(
@@ -512,6 +638,7 @@ export class HeartsTable {
       this.pick = { resolve, reject };
     }).finally(() => {
       clearTimeout(this.idleTimer);
+      this.pressed = null;
       this.mode = 'idle';
       this.refreshPlayable();
     });
@@ -629,6 +756,18 @@ export class HeartsTable {
       o.append(soundSettingsPanel(() => o.remove()));
       back?.append(o);
     });
+    const prefs = h('button', 'big-button secondary', 'Settings');
+    onTap(prefs, () => {
+      const back = this.overlay;
+      const o = h('div', 'overlay');
+      o.append(
+        settingsPanel(() => {
+          o.remove();
+          this.applySettings();
+        }),
+      );
+      back?.append(o);
+    });
     const restart = h('button', 'big-button secondary', 'New game');
     const menu = h('button', 'big-button secondary', 'Main menu');
     onTap(resume, () => {
@@ -640,7 +779,7 @@ export class HeartsTable {
     });
     onTap(restart, () => this.opts.onExit('again'));
     onTap(menu, () => this.opts.onExit('menu'));
-    col.append(resume, sound, restart, menu);
+    col.append(resume, sound, prefs, restart, menu);
     panel.append(col);
     this.showOverlay(panel);
   }

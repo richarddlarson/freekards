@@ -4,7 +4,7 @@
  * the bridge (e.g. a plain browser preview) it falls back to localStorage. All logic is in the
  * engine-neutral `profile` module.
  */
-import { profile } from '../logic/index.js';
+import { profile, settings } from '../logic/index.js';
 
 type Profile = profile.Profile;
 const DOC = 'profiles';
@@ -102,6 +102,17 @@ export function selectProfile(id: string): void {
 export function replaceProfile(p: Profile): void {
   file = { ...file, profiles: file.profiles.map((x) => (x.id === p.id ? p : x)) };
   changed();
+}
+
+/** The active player's settings (spec 16), or the defaults when nobody is signed in (demo hashes). */
+export function activeSettings(): settings.PlayerSettings {
+  return activeProfile()?.settings ?? { ...settings.DEFAULT_PLAYER_SETTINGS };
+}
+
+/** Change some of the active player's settings and save at once. Ignored when nobody is active. */
+export function updateActiveSettings(patch: Partial<settings.PlayerSettings>): void {
+  const p = activeProfile();
+  if (p) replaceProfile({ ...p, settings: { ...p.settings, ...patch } });
 }
 
 export function renameProfile(id: string, name: string): boolean {

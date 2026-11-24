@@ -28,6 +28,7 @@ look, feel, behavior, build, packaging, install, runtime, or development process
 | [13-audio.md](13-audio.md) | Audio channels, volume, sound cues, music playlist, sources. |
 | [14-roadmap.md](14-roadmap.md) | Enhancement backlog / to-do list (R-NNN items), including profiles, stats, and KardCoins. |
 | [15-profiles-and-coins.md](15-profiles-and-coins.md) | Player profiles, statistics, KardCoins, and their screens. |
+| [16-settings.md](16-settings.md) | Per-player Settings panel: card order, card response (drag to play), game speed. |
 | [runtimes/electron.md](runtimes/electron.md) | Electron-specific stack, versions, source tree, scripts, packaging, installers, SBOM tooling, and CI. |
 
 Every document except those in `runtimes/` is **engine-neutral** (see 05). Later documents get the

@@ -4,6 +4,7 @@
  * positions are card/element CENTERS, rotations in degrees clockwise.
  */
 import type { Seat } from '../hearts/types.js';
+import type { CardResponse, GameSpeed } from '../settings/player-settings.js';
 
 export const REF_W = 1920;
 export const REF_H = 1280;
@@ -74,6 +75,10 @@ export const LAYOUT = {
   scorePanelW: 330,
   scorePanelH: 240,
   menuButtonSize: 72,
+  /** A pointer must move this far (logical units) before a press becomes a drag (D-055). */
+  dragStart: 12,
+  /** A dragged card plays if released with its center at least this far above its place in the hand. */
+  dragPlayRise: 105,
 };
 
 export function tableLayout(vp: Viewport): TableLayout {
@@ -167,3 +172,26 @@ export const TIMING = {
   idleHuman: 20000,
   idleRepeat: 60000,
 };
+
+/** How the player's own cards respond to touch, per Card response level (spec 16 §2, D-055). */
+export interface ResponseTiming {
+  /** When a tap counts: on release (finger lifted) or on press (finger down). */
+  tapOn: 'release' | 'press';
+  /** Lift a playable card as soon as it is pressed (before release). */
+  liftOnPress: boolean;
+  /** The player's card flying to the trick. */
+  playFlight: number;
+  /** The player's hand closing up after a play, or settling after a cancelled drag. */
+  resort: number;
+  /** A card lifting or lowering while choosing cards to pass. */
+  passToggle: number;
+}
+
+export const RESPONSE_TIMING: Readonly<Record<CardResponse, ResponseTiming>> = {
+  standard: { tapOn: 'release', liftOnPress: false, playFlight: 280, resort: 220, passToggle: 140 },
+  quick: { tapOn: 'release', liftOnPress: true, playFlight: 140, resort: 110, passToggle: 80 },
+  instant: { tapOn: 'press', liftOnPress: false, playFlight: 80, resort: 80, passToggle: 60 },
+};
+
+/** Multiplier on the computer players' thinking time and the completed-trick pause (spec 16 §3, D-056). */
+export const GAME_SPEED_FACTOR: Readonly<Record<GameSpeed, number>> = { relaxed: 1.5, normal: 1, fast: 0.5 };

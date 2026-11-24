@@ -55,3 +55,28 @@ export function onTap(el: HTMLElement, fn: (e: PointerEvent) => void): void {
     fn(e);
   });
 }
+
+/** A labelled row of mutually exclusive choice buttons. */
+export function choiceRow<T extends string>(
+  label: string,
+  options: readonly [T, string][],
+  value: T,
+  onChange: (v: T) => void,
+): HTMLElement {
+  const row = h('div', 'setup-row');
+  row.append(h('div', 'setup-label', label));
+  const group = h('div', 'choice-group');
+  const buttons = options.map(([v, text]) => {
+    const b = h('button', 'choice', text);
+    b.classList.toggle('selected', v === value);
+    onTap(b, () => {
+      for (const x of buttons) x.classList.remove('selected');
+      b.classList.add('selected');
+      onChange(v);
+    });
+    return b;
+  });
+  group.append(...buttons);
+  row.append(group);
+  return row;
+}

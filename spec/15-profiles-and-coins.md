@@ -7,7 +7,8 @@ and spending are later parts of R-001.
 - A device can hold several **local** profiles. There are no accounts, servers, or passwords.
 - A profile has: a stable id (random UUID), a name (1–20 characters after trimming and collapsing
   spaces), a creation time, a KardCoin balance, a coin history (the 50 most recent entries), Hearts
-  statistics, and the player's Hearts preferences (rule set, difficulty, opponents).
+  statistics, the player's Hearts preferences (rule set, difficulty, opponents), and the player's
+  settings (spec 16).
 - **Launch flow:**
   - No profiles yet → **Welcome** screen: "Welcome to FreeKards!", "What's your name?", a name field,
     the note "New players start with 500 KardCoins.", and a **Let's play!** button (disabled until
@@ -64,7 +65,7 @@ Deleting the last profile returns to the Welcome screen.
 - All profiles live in **one document** named `profiles`:
   `{ schemaVersion: 1, activeProfileId, profiles: [Profile…] }`.
 - The document is saved after every change. Loading repairs damaged data: invalid profiles are
-  dropped, missing fields get defaults, negative or fractional balances are fixed, and the active id
-  falls back to the first profile.
+  dropped, missing fields get defaults (including each setting, spec 16 §1), negative or fractional balances
+  are fixed, and the active id falls back to the first profile.
 - Device-wide settings (sound levels, music choice) stay outside profiles (spec 13).
 - Where and how the document is stored is runtime-specific (see the runtime spec).
