@@ -18,7 +18,12 @@
   "voice": {
     "description": "Clear, articulate middle-aged female voice; quick and enthusiastic, slightly breathless when excited.",
     "pitch": "medium",
-    "pace": "medium-fast"
+    "pace": "medium-fast",
+    "tts": {
+      "engine": "piper",
+      "model": "en_GB-alba-medium",
+      "lengthScale": 0.95
+    }
   },
   "lines": {
     "game.start": [

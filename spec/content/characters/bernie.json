@@ -18,7 +18,13 @@
   "voice": {
     "description": "Bright, friendly middle-aged female voice; fast-talking and expressive, with a warm laugh.",
     "pitch": "medium-high",
-    "pace": "fast"
+    "pace": "fast",
+    "tts": {
+      "engine": "piper",
+      "model": "en_GB-vctk-medium",
+      "speaker": "p225",
+      "lengthScale": 0.9
+    }
   },
   "lines": {
     "game.start": [

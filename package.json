@@ -21,7 +21,8 @@
     "dist:linux": "npm run build && npm run licenses && electron-builder --linux --x64 --arm64",
     "cards": "node scripts/generate-cards.mjs",
     "capture": "electron scripts/capture.cjs",
-    "music": "node scripts/build-music.mjs"
+    "music": "node scripts/build-music.mjs",
+    "voices": "python3 scripts/build-voices.py"
   },
   "devDependencies": {
     "@cyclonedx/cyclonedx-npm": "7.0.1",

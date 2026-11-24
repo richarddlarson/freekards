@@ -18,7 +18,12 @@
   "voice": {
     "description": "Low, gravelly older male voice; slow, deadpan, with exaggerated sighs.",
     "pitch": "low",
-    "pace": "slow"
+    "pace": "slow",
+    "tts": {
+      "engine": "piper",
+      "model": "en_US-john-medium",
+      "lengthScale": 1.15
+    }
   },
   "lines": {
     "game.start": [

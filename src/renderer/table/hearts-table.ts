@@ -100,7 +100,7 @@ export class HeartsTable {
 
   async run(): Promise<void> {
     try {
-      await preloadCardImages();
+      await Promise.all([preloadCardImages(), audio.preloadVoices(this.opts.opponents.map((c) => c.id))]);
       await this.sleep(400);
       this.say(dialogue.gameStartCandidates());
       for (;;) {
@@ -131,6 +131,7 @@ export class HeartsTable {
     this.pick = null;
     for (const w of this.resumeWaiters) w();
     this.director.reset();
+    audio.stopSpeaking();
     this.unsubscribeResize();
     this.root.remove();
   }
@@ -279,12 +280,14 @@ export class HeartsTable {
     const b = this.bubbles[u.seat]!;
     b.textContent = u.line.text;
     b.classList.add('show');
+    const clipMs = audio.speak(u.characterId, u.line.id);
     clearTimeout(this.bubbleTimer);
-    this.bubbleTimer = window.setTimeout(() => this.endBubble(), dialogue.bubbleDurationMs(u.line.text));
+    this.bubbleTimer = window.setTimeout(() => this.endBubble(), dialogue.bubbleDurationMs(u.line.text, clipMs));
   }
 
   private endBubble(): void {
     clearTimeout(this.bubbleTimer);
+    audio.stopSpeaking();
     for (const b of this.bubbles) b?.classList.remove('show');
     const next = this.director.bubbleEnded(performance.now());
     if (next) this.showBubble(next);

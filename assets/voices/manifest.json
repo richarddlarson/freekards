@@ -1,0 +1,810 @@
+{
+ "bernie.game.start.1": {
+  "key": "4717a0f6c726708139c2c8e33f30acc23eb0efe04bdf7418fa00a0e318ea9442",
+  "text": "Alright, hons, cards are up! Who wants coffee?"
+ },
+ "bernie.game.start.2": {
+  "key": "7f816b7cb3839a86102e32543e5c36a2849c467ac93e014c5055d2bf8619c51d",
+  "text": "Ooh, I love a card game. My cousin Darlene once played Hearts for three days straight."
+ },
+ "bernie.game.start.3": {
+  "key": "5a3f63c17e40e985d9ac8ef9fcc6cfada91a2f3c66dd55389046d08beeaa6082",
+  "text": "Okay sugar, deal 'em out. I'm on my break."
+ },
+ "bernie.game.won.human.1": {
+  "key": "a082c5b1f80eac0adf3d7d83ab1e98d847577d86e4d69d5a9e650c3eb2e381d8",
+  "text": "Look at you, hon! Big winner! That deserves a slice of pie."
+ },
+ "bernie.game.won.human.2": {
+  "key": "9e936204bdeb8e7a8facc29c1376875c16ee8a0164762a8d84e63da69427cac6",
+  "text": "Well, aren't you something! Nicely done, sugar."
+ },
+ "bernie.game.won.other.1": {
+  "key": "d581cbce7bae2a04dd609119cb2729ea298172ade143a618fe0ccccf164f25e9",
+  "text": "Good game, hon! You earned it."
+ },
+ "bernie.game.won.self.1": {
+  "key": "84027541874f2a8c9b02f3c082a24c2bf83c2fa67eabb23279835515e94b4c8c",
+  "text": "Whoo! Pie's on me, everybody!"
+ },
+ "bernie.game.won.self.2": {
+  "key": "43f077ae38eb57a5348f61bc58408b99897adbbedcfde429adb4696ed420f8c5",
+  "text": "I won! Wait'll I tell Darlene. She's gonna be so jealous."
+ },
+ "bernie.hand.bad.human.1": {
+  "key": "a698fc6f5e6a465ba2a7df2180286801aa85784a2a64309e0c2515055a050007",
+  "text": "Aw, sugar. Happens to the best of us. Happens to Darlene a lot."
+ },
+ "bernie.hand.bad.self.1": {
+  "key": "5b003e8461c2a9fce8482d6e32a3c2c0af67605950c07e72676eebb7c439a138",
+  "text": "Oof. That hand was like a Monday double shift."
+ },
+ "bernie.hand.bad.self.2": {
+  "key": "8582c500891ca3355d642bdeb7c41aee4e0358a875aa8da2688bf7fad3039fdc",
+  "text": "Well, that went over like a cold cup of coffee."
+ },
+ "bernie.hand.good.human.1": {
+  "key": "0508514f605af7e29905459b1432802c2f4ce608ffa833dca3f0e3d54641ef57",
+  "text": "Ooh, look at you go, hon!"
+ },
+ "bernie.hand.good.self.1": {
+  "key": "5863560843331a56d19a08a4c587d7feeefa958d6256b903ed6fc6e4f247279f",
+  "text": "Ha! Order up! One winning hand!"
+ },
+ "bernie.hand.good.self.2": {
+  "key": "d54b3422f982997c390a5cfb364552cb3eba51a8aabe446169e7a529f7f58f46",
+  "text": "Now that's what I call a good shift."
+ },
+ "bernie.hearts.hearts_broken.other.1": {
+  "key": "d7f5c7413d5775a3793c82994f8c70036f988b6994618154d1c6da3c2580eaf2",
+  "text": "Ooh, here come the hearts!"
+ },
+ "bernie.hearts.hearts_broken.self.1": {
+  "key": "bc17f396aa2a06c24509f413399b294561f2e94a80b2d6ef5ecb434be692fa30",
+  "text": "Hearts are open, hons! Kitchen's hot!"
+ },
+ "bernie.hearts.hearts_broken.self.2": {
+  "key": "10e7a7922ee9230b7144c0d630c46df8499c0cbaeead3421af6bb167a36acb90",
+  "text": "Oops! Broke the hearts. Like Darlene's third husband."
+ },
+ "bernie.hearts.jack_taken.human.1": {
+  "key": "ffe5faf989310423b4274887774aac772144aabf86ce6c59edeead9d0879e0e0",
+  "text": "Nice one, sugar! Ten points off the bill!"
+ },
+ "bernie.hearts.jack_taken.self.1": {
+  "key": "185285a4c018e8d1702ad72d099a44507eb7fa164bf8ea38d515f4c68f623399",
+  "text": "The Jack! Now that's a good tip!"
+ },
+ "bernie.hearts.moon_block.self.1": {
+  "key": "a46ecad6ff08d94c7d0bfb5eb2df49c6f73e8727d19d6bab955e2bc0e0d5aa89",
+  "text": "Sorry, hon! Can't let you have the whole pie!"
+ },
+ "bernie.hearts.moon_blocked.human.1": {
+  "key": "fe096014de1d4ccd20815969a71305c79f6fb4d73bffef657c486bd32d2aade1",
+  "text": "Aw, sugar, you almost had it!"
+ },
+ "bernie.hearts.moon_blocked.self.1": {
+  "key": "b185256c753f9978111cd19c98e42c404bd7ed2cd23d2abc5de030b04416a7f0",
+  "text": "Oh, so close! That's like dropping the last plate on the tray."
+ },
+ "bernie.hearts.moon_shot.human.1": {
+  "key": "c17075bf56bc6e5b78c4058adbfd7d2beafdd20009cf2a6515245dcf3174cc21",
+  "text": "You shot the moon?! Well, I'll be! Pie for you, on the house!"
+ },
+ "bernie.hearts.moon_shot.human.2": {
+  "key": "8cf8136779d936d1282298a56eb8beec7d1156c34deec9ac5fdfc8cc8ddc5434",
+  "text": "Holy moly, hon! That's amazing!"
+ },
+ "bernie.hearts.moon_shot.other.1": {
+  "key": "47f318a1d53876778dd28872a5afcca1c4a174f9a67b8d2bc014767d7306d137",
+  "text": "Well, I'll be darned. Good for you, hon."
+ },
+ "bernie.hearts.moon_shot.self.1": {
+  "key": "1ea3dab17a0e16abd8d621a4473ad57bbc6f5758dfa16030de52741b032c29e9",
+  "text": "I shot the moon! Somebody call Darlene!"
+ },
+ "bernie.hearts.moon_shot.self.2": {
+  "key": "aacbca0e52a7cb133fa161a7d3868fcabe3ad54562ec3b471cd0aa65a072a1eb",
+  "text": "Twenty-six for everybody! Sorry, hons, kitchen's closed!"
+ },
+ "bernie.hearts.pass.received.1": {
+  "key": "d44df6134035a84d3ff3af1ddcd28e0db905c47167d3a3fcb321eebd14dbb795",
+  "text": "Thanks, hon! ...I think."
+ },
+ "bernie.hearts.pass.received.2": {
+  "key": "a6548ae97b144a57f725412c8ed0bae6ffed5ca555f19220d94eedfd00f929e0",
+  "text": "Ooh, what did you send me? Oh. Oh, sugar, no."
+ },
+ "bernie.hearts.queen_given.self.1": {
+  "key": "db7f4e276cce1d29f8e4198ab6a4f3e550c8d5b74c6f986d39cba5ffe9fb2526",
+  "text": "Here ya go, hon! Compliments of the house!"
+ },
+ "bernie.hearts.queen_given.self.2": {
+  "key": "4b801e48e63af898085cffdce95dd56bd834d7f3507aaede009ad7f7d2fa7f76",
+  "text": "Special of the day: one Queen of Spades. Enjoy!"
+ },
+ "bernie.hearts.queen_taken.human.1": {
+  "key": "bf72257bf74405a338a64ec575806b4ac69362f2c86635e1d827f45776b6217f",
+  "text": "Oh, hon. I'm so sorry. Want a muffin?"
+ },
+ "bernie.hearts.queen_taken.human.2": {
+  "key": "3e3b9e6529e77517c7621dce66e890630538d2125343539232f6d109c6a6c0eb",
+  "text": "Ooh, that's a rough one, sugar."
+ },
+ "bernie.hearts.queen_taken.other.1": {
+  "key": "938c9039e68e532b7729da53126ba2cc01e67061d1811443c41bdbb1b8b35953",
+  "text": "Oh honey, nobody wants her. Nobody!"
+ },
+ "bernie.hearts.queen_taken.self.1": {
+  "key": "29fb45e0f915ac0dd0bd4833b7145bc15ce86ecbbabba82b29877ea9c9ba9384",
+  "text": "Oh, for crying out loud. Thirteen points! That's like a whole table of bad tippers."
+ },
+ "bernie.hearts.queen_taken.self.2": {
+  "key": "2376944d6bd4a39c06d03ff458093bfe809569f43dc4a26e1eeca85de53a4a99",
+  "text": "Well, that's just my luck. Darlene would laugh so hard."
+ },
+ "bernie.idle.human.1": {
+  "key": "78cf43a05c85dbd5a76ce1173a86f4f3d921c128cd3a3db0441463a68e4ff74a",
+  "text": "Take your time, hon. Darlene once took twenty minutes to pick a card."
+ },
+ "bernie.idle.human.2": {
+  "key": "dc0b53418b827a8e853884400cc342ab8fd86968450231eeef1a1b8c31130c12",
+  "text": "No rush, sugar. Want me to top off your coffee?"
+ },
+ "dot.game.start.1": {
+  "key": "864f2434096b16715a038dbde794c15b8519000da8f4b4a3cff2e71be25d0dab",
+  "text": "Oh, how lovely! I do enjoy a friendly game."
+ },
+ "dot.game.start.2": {
+  "key": "3d61118dddb2354e394cc7f7d61375695bf3a5c18f94afd6385bc43f3e04e183",
+  "text": "Let me just put my knitting down. There. Now, let's play nicely."
+ },
+ "dot.game.start.3": {
+  "key": "b2a4b36a99a3f339978eac97f2f19eda67d17cb4b3b267d4d6ae1374b0dae551",
+  "text": "I brought lemon bars for after. Winners get two."
+ },
+ "dot.game.won.human.1": {
+  "key": "9dbda562c87c9c56d6ad3d34bef15cdc1928b2d2fd2af1c35d61654220bea86f",
+  "text": "Well done, sweetheart! You earned a lemon bar."
+ },
+ "dot.game.won.human.2": {
+  "key": "9afdc18b4ea29772760f8d8c7f7484bd1fe277479729bc43b7e41777044baf53",
+  "text": "Oh, you clever thing. I'll remember this."
+ },
+ "dot.game.won.human.3": {
+  "key": "cceb0bf8b0cfc39c24b2d67891fbe989a7ea3c807d91f142312b549361e02c25",
+  "text": "Wonderful! You've been practicing, haven't you?"
+ },
+ "dot.game.won.other.1": {
+  "key": "9c108f066881c99d24335dfeb2c1032f2c4aab4d90250391045e2c07589319bd",
+  "text": "Good for you, dear. Enjoy it."
+ },
+ "dot.game.won.self.1": {
+  "key": "123d65c24d48e203a348a0fcd2b87a6efdfe78b5534e35b74d8365acf3cc54ff",
+  "text": "Oh my goodness, did I win? How did that happen? I'm sorry, dears."
+ },
+ "dot.game.won.self.2": {
+  "key": "50b9283e5bfd10e6cf7848292a837e67000bc3549a05bf7dae7b30a36220d6bc",
+  "text": "Well, isn't that nice. Same time next week?"
+ },
+ "dot.game.won.self.3": {
+  "key": "da4c63378d6bbedcc5f9ab3bde5bdc3b9629bbea55e2a45f52c9ff7033171908",
+  "text": "Grandma's still got it, sweeties."
+ },
+ "dot.hand.bad.human.1": {
+  "key": "56ad46ac185b9ca06b56900631b803ba346e71e2fc5319c90ced14058536444a",
+  "text": "Oh, bless your heart."
+ },
+ "dot.hand.bad.human.2": {
+  "key": "7029fb9be810be53b5af046743120078ece30aa6a49eba02da66d15e8456cab0",
+  "text": "Don't you worry, sweetie. There's always next hand."
+ },
+ "dot.hand.bad.self.1": {
+  "key": "e2f95ed9f0d22630dabec930007d7f78b4c8a7558ba053854eb328fa3c8512d3",
+  "text": "Oh dear. Well, it's only a game. For now."
+ },
+ "dot.hand.bad.self.2": {
+  "key": "edec84d89b9e80a10981cb1f2a96c228422009c6b4ccceb0b6fc7f609d26e7fe",
+  "text": "Hmm. Grandma's going to have to pay closer attention."
+ },
+ "dot.hand.good.human.1": {
+  "key": "dff5e71a7b2e385605060baaf08c613e4a28e4fea59094b34e4c71b2bfbd6bf5",
+  "text": "Look at you go! Very nicely played, dear."
+ },
+ "dot.hand.good.self.1": {
+  "key": "40da5d2a88efb9077aa65f4d85a67525624115dfccd3415fdb991cc1fd4c2019",
+  "text": "Oh, look at that. Beginner's luck, I suppose. For the sixtieth year."
+ },
+ "dot.hearts.hearts_broken.other.1": {
+  "key": "4524df0f9fee3f9564e830e080a8c517bfbab63e7cf1d5b4910d9e6d86b9b436",
+  "text": "Oh my, here we go."
+ },
+ "dot.hearts.hearts_broken.self.1": {
+  "key": "b7f56ff90c02c37e34b9cc5d0f70c85b7d0d54ba44257fb5116fa44df376c0f3",
+  "text": "Oh, did I break the hearts? I'm such a klutz."
+ },
+ "dot.hearts.hearts_broken.self.2": {
+  "key": "5183a14091252a21a2fab5b4594e59a8fbb289eaadf280a23665d622bbccf2df",
+  "text": "Hearts are open, dears. Mind your fingers."
+ },
+ "dot.hearts.jack_taken.human.1": {
+  "key": "aee0ae5fb1952fa3eaa7ad07ba5cb5e00dba2a23e51e4b2b16afab5f4a212829",
+  "text": "Oh, good for you, dear!"
+ },
+ "dot.hearts.jack_taken.self.1": {
+  "key": "f11c9ec39596f03ce128b656f369c9bb002e726e15d8f7f39336cf9ca6013af6",
+  "text": "Oh, the Jack! He's always been my favorite."
+ },
+ "dot.hearts.jack_taken.self.2": {
+  "key": "960db027716dd2add326f0fa51667c87f106a057814b6265090ab48a58199636",
+  "text": "Minus ten for Grandma. Isn't that sweet?"
+ },
+ "dot.hearts.moon_block.self.1": {
+  "key": "b07df4ba4773318bc4e5f888407ad61618877bef93b3ef1393a247ca27cc74c2",
+  "text": "Sorry, dear. Grandma had to stop you. It's for your own good."
+ },
+ "dot.hearts.moon_blocked.human.1": {
+  "key": "5476fba3d495a9daf3c44ffd2747dac4ef8c9864fcb267fc905633ac37c6a0c9",
+  "text": "Oh, so close, sweetie! Next time."
+ },
+ "dot.hearts.moon_blocked.self.1": {
+  "key": "0d66f9160f7e9a76b01b75f87950c5681de70631f1fb381fe3e2f276038f07d3",
+  "text": "Oh, phooey. Grandma was so close."
+ },
+ "dot.hearts.moon_shot.human.1": {
+  "key": "e59e7c538e24408d8e86f436b8bb709423898eb450c1294724b98faa74862efe",
+  "text": "My goodness! You shot the moon! I'm so proud. And a little annoyed."
+ },
+ "dot.hearts.moon_shot.human.2": {
+  "key": "88f71c4727b53ee164d11904b4524635bd405675a152b30edfba4f6ee69a75b8",
+  "text": "Well, I never! Wonderful, dear!"
+ },
+ "dot.hearts.moon_shot.other.1": {
+  "key": "ee258c67977cf06ccc8dcc9ef6c7566a1288ee47586f71c813660ab2850fd86d",
+  "text": "Oh my. Well, isn't that impressive."
+ },
+ "dot.hearts.moon_shot.self.1": {
+  "key": "a4f57979b9df4d6cabc872aba98e2d7a9af161143a2868691800c27be4e189b4",
+  "text": "Oh! I seem to have shot the moon. Whoopsie."
+ },
+ "dot.hearts.moon_shot.self.2": {
+  "key": "2036cbe23303e704e67a4aad28721f555e22e3daee2ee06db1e7ced350445686",
+  "text": "Twenty-six for everyone else! Don't be cross with Grandma."
+ },
+ "dot.hearts.pass.received.1": {
+  "key": "e95f7543a4f2906f3bbeaa58e2c28f2b37683a181386cefd12ae4e7a4c6558c9",
+  "text": "Oh, how thoughtful of you, dear. Truly."
+ },
+ "dot.hearts.pass.received.2": {
+  "key": "e0bfe005686d905dcbb0038609b8f1e6189362f0f5c95f57373956f8d2495662",
+  "text": "What lovely cards. I'll put them to good use."
+ },
+ "dot.hearts.queen_given.self.1": {
+  "key": "d3f6da2cbf09a1b089571f180f83441d26abb23d6739c390e3410b6284e5361b",
+  "text": "Here you are, dear. A little gift from Grandma."
+ },
+ "dot.hearts.queen_given.self.2": {
+  "key": "1c925db2c79f39cab6ac38e4bba77112ffffc3394cf37c11e0121ee9554b1375",
+  "text": "Oh, I didn't have anything else. Honestly. Mostly."
+ },
+ "dot.hearts.queen_taken.human.1": {
+  "key": "d33a592289d7ed6c58d0db65a826b1e6d7eac5388065395c35d485e05f619c55",
+  "text": "Oh, I'm so sorry, sweetheart. Not really, but I'm sorry."
+ },
+ "dot.hearts.queen_taken.human.2": {
+  "key": "433e594d9a5d16e19cba549222c8d8e0382254cd547dde3aa71eadb0dcdbc77d",
+  "text": "Oops! Was that me? Silly old Dot."
+ },
+ "dot.hearts.queen_taken.other.1": {
+  "key": "bbff6abec10fd1fe6bdeffb0f61057d893d07ae7ac57fc1ae9d773350300b4f8",
+  "text": "Oh dear, oh dear. Thirteen points. Have a lemon bar."
+ },
+ "dot.hearts.queen_taken.other.2": {
+  "key": "62182881c245246a3057779d6610ac75c98ed461246eab7fe415ca4e707de248",
+  "text": "Somebody had to take her, dear."
+ },
+ "dot.hearts.queen_taken.self.1": {
+  "key": "8464abab153f5413de860b8b286e3ddb06baec98bcd3e3086232492bdb283ef4",
+  "text": "Oh, the Queen! Well, we're both old ladies, I suppose."
+ },
+ "dot.hearts.queen_taken.self.2": {
+  "key": "220ecebe14a4678d7f01e10a8b30497bd31d22eb413a6222f50036f1724312ef",
+  "text": "Hmm. I'll remember who did that, dear."
+ },
+ "dot.idle.human.1": {
+  "key": "eb89408d0b40a341120d77184343c863565d9347319084382f87c546aad0cbf7",
+  "text": "Take your time, dear. I'll just finish this row."
+ },
+ "dot.idle.human.2": {
+  "key": "3f88f10111474272c0cc4cbbb53fe6f28ccaf2f1daea8bf4de9e4faefea8c815",
+  "text": "No rush, sweetheart. I've got a scarf to finish."
+ },
+ "gus.game.start.1": {
+  "key": "d02b9482a6246d496e9beedde3798065c49f8b1d133a982ed7f8a5f70bda0d14",
+  "text": "Fine. Deal 'em. I already know they're bad."
+ },
+ "gus.game.start.2": {
+  "key": "dd9d79d3b26ff87529f075733d8a131f6b14fdf6e26b07b1f1376bd6e614499b",
+  "text": "Thirty-one years of carrying mail and this is my retirement. Cards."
+ },
+ "gus.game.start.3": {
+  "key": "93e979d048745bcc789ce298fff824058a14442a5a8cdf7acae12cfbcfea1a94",
+  "text": "Let's get this over with. My coffee's getting cold."
+ },
+ "gus.game.won.human.1": {
+  "key": "1c1d37364311da5efd8366e01b0c95d13f6ce6bbbd693e9f661751a1bec049af",
+  "text": "Beginner's luck. For the hundredth time."
+ },
+ "gus.game.won.human.2": {
+  "key": "c860775a546455dea315dba8537f3ad21cf0da5017f5aaa5298492b81d64b427",
+  "text": "Congratulations. Have a peppermint. Don't tell anyone I'm nice."
+ },
+ "gus.game.won.human.3": {
+  "key": "c00ca82d44f992117a5d99ba9d36021639728ce20d8576f6f2c9d02cb9b56ee6",
+  "text": "You won fair and square. I'm still going to complain about it."
+ },
+ "gus.game.won.other.1": {
+  "key": "6281e15bc0094ed5a2b532d622d8939223dbfac17d51dc970421b72129dfc784",
+  "text": "Of course. Of course they won."
+ },
+ "gus.game.won.other.2": {
+  "key": "59e3acdd485bd3f7b2af3c610375229a6e77f9534e7b131921b64b68e7c0571e",
+  "text": "Everybody wins but Gus. Story of my life."
+ },
+ "gus.game.won.self.1": {
+  "key": "8bc4a6a239a981447d38c43b9c7a38ca51050b9beb0ff1654a35958a33dcb129",
+  "text": "Well, what do you know. The universe owes me one less."
+ },
+ "gus.game.won.self.2": {
+  "key": "52d31865d66c1ba6518a70f7609187c42d5ebf5e38d6c63498cf8a654efd88d8",
+  "text": "I won? Somebody write that down. With a date."
+ },
+ "gus.game.won.self.3": {
+  "key": "23856ea2d2803a35ad9909d594fcbe4d7a6c68b6991b27a01d6aca81c0efd6e0",
+  "text": "Don't get used to this. I'm not."
+ },
+ "gus.hand.bad.human.1": {
+  "key": "31521f5b47f4289d9e910df4915182244bfdf6216e02187f6f5c459d435bf705",
+  "text": "Join the club. We have jackets."
+ },
+ "gus.hand.bad.human.2": {
+  "key": "f14dfadc7a370c14dbdf32fef66ee94b49e57e8fcff58381707db13ae4db9bd5",
+  "text": "Rough one. Have a peppermint."
+ },
+ "gus.hand.bad.self.1": {
+  "key": "e6e8686dbe2c62a8a16d61ff4254648bfae0d88ea485b23df9f2ce3cd2ddf173",
+  "text": "Rigged. I'm telling you, the deck's rigged."
+ },
+ "gus.hand.bad.self.2": {
+  "key": "84286bcfad27beff38aee92ec2be0c3eef66b829ef76c7de6609a59fddd5cff5",
+  "text": "I've had better hands delivering junk mail."
+ },
+ "gus.hand.bad.self.3": {
+  "key": "e59d724bbe095c08c394f40cca6895660823ec18b659f2462aa881acd8a453dd",
+  "text": "That hand was worse than the goose on Elm Street."
+ },
+ "gus.hand.good.human.1": {
+  "key": "c9620e9d1fa055085ac39f6f97432f4c4f4f264b5422c9823ec43edf57a62d4c",
+  "text": "You're making the rest of us look bad. Mostly me."
+ },
+ "gus.hand.good.human.2": {
+  "key": "3d2158c2f257abc061c47bb9d7933507e9d2b2580c25fefeb3b38c3e3533c07c",
+  "text": "Smooth. Real smooth. I hate it."
+ },
+ "gus.hand.good.self.1": {
+  "key": "799494fd898fb976452c823d1a108e0c51740521994e0159453d92d225d0f8cc",
+  "text": "Huh. That almost felt like luck."
+ },
+ "gus.hand.good.self.2": {
+  "key": "2527c4ac2312636094ae6f042359e924e928132f198e5336334624b05ccb5aaa",
+  "text": "Don't look so surprised. I'm surprised enough for all of us."
+ },
+ "gus.hearts.hearts_broken.other.1": {
+  "key": "0af55ab87ddfc2beb1f121b9194ff8c8cdabfd854374a6b5bf3699686de0ba2a",
+  "text": "And there go the hearts. Here comes the trouble."
+ },
+ "gus.hearts.hearts_broken.self.1": {
+  "key": "c01dc6d7a5096ccae843ddd861d50b97890d5d0982d0d18a2f08ae7992fddaea",
+  "text": "There. I broke 'em. Somebody had to."
+ },
+ "gus.hearts.hearts_broken.self.2": {
+  "key": "15d8a55bb290a1e9dd129b640de0bc1d112fb591e3ba1c0ce2ebd734984c10e5",
+  "text": "Hearts are open. Like my heart. Which is closed."
+ },
+ "gus.hearts.jack_taken.human.1": {
+  "key": "15edc82497087be07226811b73c6d27e319e1ac790883afed56155f4ee63bb99",
+  "text": "Hey, I wanted that one."
+ },
+ "gus.hearts.jack_taken.human.2": {
+  "key": "8c0a0b4efbcf69ae23fc9c0efe23a276be5dd289b8fb59e6d6d015b14fcbd5ae",
+  "text": "You got the Jack. Figures."
+ },
+ "gus.hearts.jack_taken.self.1": {
+  "key": "172108490f2c45120b91cbcb57f64400abc2ddceaef43222e29e4a63a72a8477",
+  "text": "The Jack! Finally, a card that likes me."
+ },
+ "gus.hearts.jack_taken.self.2": {
+  "key": "e5cdb4c22b2e14bfdf9eef3fcd9ef725a457be45f8effa6cf6c6fd7a77696269",
+  "text": "Minus ten. Don't tell anyone I smiled."
+ },
+ "gus.hearts.moon_block.self.1": {
+  "key": "326bfeef23350ee6b17ef5b949e122a00bae3c381a00b12aa22bca2af98ef88f",
+  "text": "Not on my watch. Gus delivers. Gus also blocks."
+ },
+ "gus.hearts.moon_blocked.human.1": {
+  "key": "5ea527da77798b822e77e9ba740f6d08e49ac8f2485fefaf6d5f8c0a740fb047",
+  "text": "Ooh, so close. Welcome to my whole life."
+ },
+ "gus.hearts.moon_blocked.self.1": {
+  "key": "21d85fd8923a837e97de67ad818e3518d019f123f1ea5af0677ed6da4aa553d7",
+  "text": "One card. ONE card. I was this close."
+ },
+ "gus.hearts.moon_blocked.self.2": {
+  "key": "db3060fb435e038fda9c59781c276cfe89ecd867f5dd9ce268bb2dc2992d5412",
+  "text": "Foiled again. Story of my life."
+ },
+ "gus.hearts.moon_shot.human.1": {
+  "key": "c1c7ff2fddabb1febbf855c665c1f9ca2b1e7f7277ca99697f76ab951742b640",
+  "text": "You shot the moon? I need to sit down. I am sitting down. I need to sit down more."
+ },
+ "gus.hearts.moon_shot.human.2": {
+  "key": "3f1c83cfea0deb4ce218ce3ce0ac97691aa77a39a0a6b5016eb7dfc91387ff4b",
+  "text": "Unbelievable. Truly. I'm calling the post office."
+ },
+ "gus.hearts.moon_shot.other.1": {
+  "key": "bb6737357987e63825a8745e01b2e1341dc75b35429753a6ddc79d314f489737",
+  "text": "Someone shot the moon and it wasn't me. Shocking. Not."
+ },
+ "gus.hearts.moon_shot.self.1": {
+  "key": "a9d36823b248e87bf0106ba591e6f192e3158e75a22af8d89413be70fa718a05",
+  "text": "I shot the moon. Don't make a fuss. Okay, make a small fuss."
+ },
+ "gus.hearts.moon_shot.self.2": {
+  "key": "f0e3f9f621d00bb50267050fc6a9773f414793da1750243bee72fad65ec628ff",
+  "text": "Twenty-six for everybody! Merry Christmas from Gus."
+ },
+ "gus.hearts.pass.received.1": {
+  "key": "96b3046f9ffdf3410cb4cf4dd34783a38d6e2a09f539c50144b2eeef948fb4ea",
+  "text": "Thanks for the garbage. Really."
+ },
+ "gus.hearts.pass.received.2": {
+  "key": "3040b9fa5c22fe5f5fc6d5dc5e6bd30c4e37c27bf7ca89dfff0640ebcbefbb7a",
+  "text": "You passed me these? On purpose?"
+ },
+ "gus.hearts.queen_given.self.1": {
+  "key": "a837e0c421f5a4fa27e330fa3f87ea554ae0d415d14e97d69cfdcbad927e0105",
+  "text": "Package delivered. No refunds."
+ },
+ "gus.hearts.queen_given.self.2": {
+  "key": "65394b4912a81ab2610593276152085f19cd58331c3b94ff1624a8f9fa67b528",
+  "text": "Thirty-one years of practice getting rid of things nobody wants."
+ },
+ "gus.hearts.queen_taken.human.1": {
+  "key": "44507337bf1622bfaf1dc2032eedee603da8a8d051117f2f18cc556b0e2dbadb",
+  "text": "Ooh. Return to sender, I'm afraid."
+ },
+ "gus.hearts.queen_taken.human.2": {
+  "key": "63a6744ec1237b2a5fefe0a0511098058254552f4c151ebf3434d2c47eb06180",
+  "text": "Special delivery! Signature required."
+ },
+ "gus.hearts.queen_taken.other.1": {
+  "key": "c8234055e77c2e65261212d661b1825d8dc643f32304da03e40e065d694819b9",
+  "text": "Better you than me. Much better."
+ },
+ "gus.hearts.queen_taken.other.2": {
+  "key": "50b98ef16a052eecf3e4aca011bedd26d4813ce6a29fec540a40e9f05d1dae88",
+  "text": "Ha! Finally, somebody else's turn."
+ },
+ "gus.hearts.queen_taken.self.1": {
+  "key": "5816dc3c392863d344a05ea97c76a784b9397640ac41d682772985bd2b4c481f",
+  "text": "Thirteen points. Just like my blood pressure. Times ten."
+ },
+ "gus.hearts.queen_taken.self.2": {
+  "key": "6287e95717cf1d4c4fba9d1b98281d478f5e75d53d528a9683e76ce60664dfee",
+  "text": "The Queen and I go way back. She never liked me."
+ },
+ "gus.hearts.queen_taken.self.3": {
+  "key": "7c13f8d9a3af9fd48f2ad9a89cd79371827eb6514f6409edb239e693c3e43154",
+  "text": "Oh good. More mail I didn't ask for."
+ },
+ "gus.idle.human.1": {
+  "key": "e7432581e38a607cef32ee40f60151093d92b8b48ef9d053cbb538f4e1363795",
+  "text": "Take your time. I've only got maybe twenty good years left."
+ },
+ "gus.idle.human.2": {
+  "key": "e2e1076f14cded5dc065241ab32680f61a54e8c9d687481ea781f50b62a710da",
+  "text": "I delivered mail faster than this. Uphill. In the snow."
+ },
+ "marguerite.game.start.1": {
+  "key": "9fc3824e4c6e54a085c0fa53f2b83bda57aff4b0427a75a2ffdacab98a9137c0",
+  "text": "Splendid! Four players, fifty-two cards. The possibilities are astronomical. Literally."
+ },
+ "marguerite.game.start.2": {
+  "key": "4c9488fc7c8d7121ecb966241ea34f1bdcc3378ae31c8d5cc1d2a42253ce71ca",
+  "text": "Has anyone seen my glasses? ...Oh. They're on my head. Let's begin."
+ },
+ "marguerite.game.start.3": {
+  "key": "34867dd20b24116cca3dc78e979819ef39640018891ed9855c904cad70f982aa",
+  "text": "Fun fact: there are more ways to shuffle a deck than atoms on Earth. Anyway, deal!"
+ },
+ "marguerite.game.won.human.1": {
+  "key": "4dba7b112b18f043e01c35e810d0cf26a1c8f605d57a291838fc6ea20b219633",
+  "text": "Remarkable! You'd make a fine statistician."
+ },
+ "marguerite.game.won.human.2": {
+  "key": "8963a3030728716be2ef452052c1a93df8119bfe4dbc299cf0dbdf169626c2b0",
+  "text": "Well played! I shall have to revise my model of you."
+ },
+ "marguerite.game.won.other.1": {
+  "key": "45d0d8ae9265c1052d85e2c7ce3aaa47b09be03203164d6cca9dd04b1310d874",
+  "text": "Well done. My calculations suggest I was distracted."
+ },
+ "marguerite.game.won.self.1": {
+  "key": "f1684afed2dd3cc2354b75bbb9ec53cb6eeea28f8efcb4c4146900b7ea32114c",
+  "text": "Victory! Statistically, it was bound to happen eventually."
+ },
+ "marguerite.game.won.self.2": {
+  "key": "694bc5af271d235afa55212c1849c2b5655c72ee54b10bd2984427c870f64d22",
+  "text": "Ha! The math works! I'll be mentioning this in Monday's lecture."
+ },
+ "marguerite.hand.bad.human.1": {
+  "key": "a5055829951044e87fc1ba06d73812a45f58b717c90d3a2e467e7e3c8657428f",
+  "text": "Variance, my dear. Pure variance. Don't take it personally."
+ },
+ "marguerite.hand.bad.self.1": {
+  "key": "1bcfbe4b61b2ae4d0c3c4d5bfcd7a1bacf0be59a144478ed73db724cf0a54cdd",
+  "text": "Hmm. That outcome was improbable. Yet here we are."
+ },
+ "marguerite.hand.bad.self.2": {
+  "key": "c7eba709c03cbb4a4fab2dea70d0955fc829df07e94acca92564d431fc050623",
+  "text": "I must have carried a one somewhere."
+ },
+ "marguerite.hand.good.human.1": {
+  "key": "45a51df1ce531d97d0342394f2e90e792420fca62ecdce46a9a7ecf39228f4cd",
+  "text": "Well reasoned! I'd give that an A."
+ },
+ "marguerite.hand.good.self.1": {
+  "key": "811f627ae79bf836b680ed977395df1cb9039e299c8bdfc77c2e19ce71ca918d",
+  "text": "Excellent. Exactly as the probabilities predicted. Roughly."
+ },
+ "marguerite.hand.good.self.2": {
+  "key": "16225a74df76b6ca44ace9aa72cd2b19c166773d5fe0e437e2f18ecf7abf4431",
+  "text": "Lovely. Elegant, even."
+ },
+ "marguerite.hearts.hearts_broken.other.1": {
+  "key": "35f22801abab74f118aebcbe99ad896760a2365183449f3b9007890938fff1a3",
+  "text": "Ah, and the hearts are broken. The game enters its second phase."
+ },
+ "marguerite.hearts.hearts_broken.self.1": {
+  "key": "059ff7e1ae8bf9a7572a4d6459e0819a243250f814cda9ef4ba9ba6247082c9d",
+  "text": "Hearts are broken. A necessary inflection point."
+ },
+ "marguerite.hearts.jack_taken.human.1": {
+  "key": "cad5f411cfeb3bebef2ddef8041e0c9cf2d7ac6dec5aa454067b88f176428511",
+  "text": "Well spotted! That Jack is worth a good deal."
+ },
+ "marguerite.hearts.jack_taken.self.1": {
+  "key": "c245ae5029c9b1791c470f4d8fdfae6d293ac90ae23a1a1247c7e51fa1418630",
+  "text": "The Jack of Diamonds! A negative number has never looked so lovely."
+ },
+ "marguerite.hearts.moon_block.self.1": {
+  "key": "405f87e9cf1c4d00228d5a508630ddfe5509b614ad56247454c0ab92df55bb7a",
+  "text": "I saw that coming three tricks ago. I simply forgot to mention it."
+ },
+ "marguerite.hearts.moon_blocked.human.1": {
+  "key": "c4bc8defece664256fa77da44092f89fe1db41d192fbd2716c75f47068d99e87",
+  "text": "So close! You were one card from glory."
+ },
+ "marguerite.hearts.moon_blocked.self.1": {
+  "key": "2698eb0c58a431e5e5915f31d9079447725c30ea0873e54de5f9f6bba5b9a71f",
+  "text": "Blocked by a single card. How very improbable. How very annoying."
+ },
+ "marguerite.hearts.moon_shot.human.1": {
+  "key": "a4f8d7feee4809261ab37415c061e7a7150c3c0530a03906a1c5519eb75ba6f4",
+  "text": "You shot the moon! The odds of that are... well, quite small! Bravo!"
+ },
+ "marguerite.hearts.moon_shot.human.2": {
+  "key": "7c32b12ec722fdd6fa36a145c160fd3971ab22c212541612446daf58cb3d6a57",
+  "text": "Extraordinary! I must write a paper about this."
+ },
+ "marguerite.hearts.moon_shot.other.1": {
+  "key": "80bbd4c28463079b6c69626f8a8d477726268390851abfaa3fae033bf7262a15",
+  "text": "A moon shot! How statistically delightful."
+ },
+ "marguerite.hearts.moon_shot.self.1": {
+  "key": "3bd15b01611976591cce14802208e9a963a2612cf2c8f1dc4c01499028026ec7",
+  "text": "I shot the moon! Somebody fetch my chalkboard!"
+ },
+ "marguerite.hearts.moon_shot.self.2": {
+  "key": "248c6b7d17d24690d375f2c5ca91dbe01279841300330f1fd5c1d59f9f63ae3c",
+  "text": "Twenty-six points to everyone else. The math is beautiful."
+ },
+ "marguerite.hearts.pass.received.1": {
+  "key": "376ac841e2afe643d737ed85728d0971fba908ac366d81fde1feddddb1f76cc1",
+  "text": "Interesting choices. I'm analyzing your motives."
+ },
+ "marguerite.hearts.pass.received.2": {
+  "key": "54b4aae092829ed3660aeb51ea98075778c1088ae1496d9434cbca68fd3a2120",
+  "text": "Hmm. These tell me a great deal about your hand."
+ },
+ "marguerite.hearts.queen_given.self.1": {
+  "key": "3009795e62c34deeaa5a6e7ba3e42cfecba1f37ac26f08a868e01d2b2ea89f63",
+  "text": "And the Queen finds a new home. Probability is so satisfying."
+ },
+ "marguerite.hearts.queen_given.self.2": {
+  "key": "92608f6298554488025e706ce2b1fff5cce3a11ced2aca027ad00fed8f800662",
+  "text": "As predicted. I'd show my work, but it's on my other glasses."
+ },
+ "marguerite.hearts.queen_taken.human.1": {
+  "key": "1d4cbe9e7c6270b5c3dfbb3f697ee7c8151962e4d62160bb7e6f18599d69b054",
+  "text": "Oh dear. The odds were in your favor, I promise."
+ },
+ "marguerite.hearts.queen_taken.other.1": {
+  "key": "ddec306f5d30227268a1f46749a5077c5327509e89e4e7204adc04d2c61e1b46",
+  "text": "Fascinating. I had a hunch she was hiding there."
+ },
+ "marguerite.hearts.queen_taken.self.1": {
+  "key": "1c8f99c4db04b3412667efed9fd421f9ca464e3d5bc787baaca8465e837f7cfc",
+  "text": "Ah. I estimated a twelve percent chance of that. Rounding error."
+ },
+ "marguerite.hearts.queen_taken.self.2": {
+  "key": "c4a585c0cc0ad5b7aefdc38426a048dd6592115b19e657bb7bceef077593ab73",
+  "text": "The Queen of Spades. Historically quite unlucky. Personally, also."
+ },
+ "marguerite.idle.human.1": {
+  "key": "dfe5da6416625996a09f3ce33ef475ca067f722cac568ee46e9d8774d10113a9",
+  "text": "Take your time. Did you know playing cards came to Europe in the 1370s? Anyway, no rush."
+ },
+ "marguerite.idle.human.2": {
+  "key": "52ab407d1ab0057505f3a95ec1f4ca57e05f8b125976cbe6f3444651ba405188",
+  "text": "Thinking deeply, I see. I approve."
+ },
+ "reginald.game.start.1": {
+  "key": "f6c7151df31ad53329c450de8518c42bed91f32c2ffc1b296913b258120262e2",
+  "text": "Shall we begin? Do try to keep up."
+ },
+ "reginald.game.start.2": {
+  "key": "8e0fbbb518719993d54f34de2dac5049932741e0f544a2fe692ea1c38358401b",
+  "text": "Ah, a spot of sport. Splendid. I shall be gracious in victory."
+ },
+ "reginald.game.start.3": {
+  "key": "d9a442c700faff53de588b824cb3274cdcaa0b3673cc508e88b3d85acb53540c",
+  "text": "The Fairweathers have played cards for generations. Mostly badly. But with style."
+ },
+ "reginald.game.won.human.1": {
+  "key": "d186c4c064ff169b9949655b4bc8115fdeed3004f18954ecb83a4fc635611f84",
+  "text": "Hmph. Well played. I suppose. Grudgingly."
+ },
+ "reginald.game.won.human.2": {
+  "key": "cadfe66ee204f9df64d053da2d8766a0fcc4ab3ade0b148e66fc984ece9de5c2",
+  "text": "Most irregular! I demand a rematch. Politely."
+ },
+ "reginald.game.won.other.1": {
+  "key": "382d3ce499b88b232cd6f2d025201abdda10f4511802b6a421bddbda4cea08f6",
+  "text": "Preposterous. I shall be writing a strongly worded letter."
+ },
+ "reginald.game.won.self.1": {
+  "key": "0f56752735e48e7df2fc19a67f98df45c3f36aaf2c96492dd7bd018fef345384",
+  "text": "Naturally. Breeding will out."
+ },
+ "reginald.game.won.self.2": {
+  "key": "e44f35ffa407fa42528c0cbc77c75d2ac757f16ef7c415c6721d71ac144b003e",
+  "text": "Victory! Fetch the family crest!"
+ },
+ "reginald.game.won.self.3": {
+  "key": "dc79682e54609f8038dc228941f589301b6ccb352225ac533005434490b9f5c1",
+  "text": "As expected. You may all applaud now."
+ },
+ "reginald.hand.bad.human.1": {
+  "key": "17021d6c2b87f1cfcc55a2fe1b7b8ff267ff0ae96d115bd5492e4528f6f19e16",
+  "text": "Chin up. Not everyone can be a Fairweather."
+ },
+ "reginald.hand.bad.self.1": {
+  "key": "6c04429d1ca5bd2add927c01313c8ac884e517a635af24e1d611e499c239475d",
+  "text": "This is an outrage! An absolute outrage!"
+ },
+ "reginald.hand.bad.self.2": {
+  "key": "817521a0678bdd7eb204b76e7f2e81f57aa4336cc8e68470444f41c246af0ece",
+  "text": "My ancestors are spinning in their moderately priced graves."
+ },
+ "reginald.hand.good.human.1": {
+  "key": "bb0e476210fad8bf15ebb2d9eeba20cf99102f09befed2887845a0a19f0c6f85",
+  "text": "Hmm. Beginner's luck, no doubt."
+ },
+ "reginald.hand.good.self.1": {
+  "key": "57959afc3ae264c5627d3e14596fdbedfee4d992e6bc95ddc3cd060bda059dad",
+  "text": "Marvelous. Simply marvelous. As am I."
+ },
+ "reginald.hand.good.self.2": {
+  "key": "75a4c25bb085138a05bfdc07b8c61987de3f4afe053ce83aaeb3a502462cca11",
+  "text": "Quite right. Quite right indeed."
+ },
+ "reginald.hearts.hearts_broken.other.1": {
+  "key": "738201bc838f9dadbdb320df41753eacf3110290fbcd5e6e0128902e2045e3b3",
+  "text": "Hearts broken already? How dreadfully common."
+ },
+ "reginald.hearts.hearts_broken.self.1": {
+  "key": "e4221c8b2c897ff23997fc28121df299172a54f76caf9dd2927c9463fe9ad4bf",
+  "text": "Hearts are broken. As was my uncle Percival, after the regatta."
+ },
+ "reginald.hearts.jack_taken.human.1": {
+  "key": "0e732c1f373a4fef342a85f6c3b3a0f4d6be533b1f1c3751a5acc43fa49c8f99",
+  "text": "Hmph. That Jack was clearly destined for me."
+ },
+ "reginald.hearts.jack_taken.self.1": {
+  "key": "3e6aadc6541bd02796040f4fe97bc4456fd2c0cb6e4f0c399077f707540266f7",
+  "text": "The Jack! A loyal subject, at last."
+ },
+ "reginald.hearts.moon_block.self.1": {
+  "key": "d710706f3beb11c250730886303bb2b6bd3fd037e8c5b42ecb364b0921c5ac9d",
+  "text": "Not today. The moon belongs to no commoner."
+ },
+ "reginald.hearts.moon_blocked.human.1": {
+  "key": "d9893d970ca2342f76b6264298d9615aab293df559fd6ef783cb0cac5a70b211",
+  "text": "So close. Almost aristocratic."
+ },
+ "reginald.hearts.moon_blocked.self.1": {
+  "key": "ea06e6be7404cea043a1ddf2ee644198dff91b02f8e9396a9620c7abc200d411",
+  "text": "Thwarted! By a single card! I shall never recover!"
+ },
+ "reginald.hearts.moon_shot.human.1": {
+  "key": "7e690133af38c2409919c8b5ef543d90ec008168a20527c7331d9f2b9fc9736e",
+  "text": "The moon?! You?! I need a moment. And possibly a fainting couch."
+ },
+ "reginald.hearts.moon_shot.human.2": {
+  "key": "5ed6600fb0d8da9f251328b78f119f109bba5d236a3928553b9aae38e19eda7d",
+  "text": "Well. I am... impressed. Don't tell anyone I said that."
+ },
+ "reginald.hearts.moon_shot.other.1": {
+  "key": "07508dd18d7700df7a3d5d94b48f55672905ea63789a6921504438abd86735b6",
+  "text": "Show-off. ...Quite good, though."
+ },
+ "reginald.hearts.moon_shot.self.1": {
+  "key": "4caf352b31c2ef8bd2f9a64afc3c4da897b286f491bff7af25166f9e16615d06",
+  "text": "I have shot the moon! Ring the bells! Inform the newspapers!"
+ },
+ "reginald.hearts.moon_shot.self.2": {
+  "key": "655a6981892cd547dbb6cd1969024f34ecb143f0c2d8d64f954fc05bf7066377",
+  "text": "The moon bows to Fairweather."
+ },
+ "reginald.hearts.pass.received.1": {
+  "key": "9883b534e76097914e35058f2076492634780e0362d3c07414f78ef948a07f1d",
+  "text": "What is this rubbish? Is this a joke?"
+ },
+ "reginald.hearts.pass.received.2": {
+  "key": "b2b29ea696167528c4b740d6d051e2cfe6b5bec108c699accd883fe0ade4a86e",
+  "text": "How kind. I shall have these framed. Or burned."
+ },
+ "reginald.hearts.queen_given.self.1": {
+  "key": "876cb329da268db0e3685fac9aaf18c7426e60d8072a0e605667401fe2112492",
+  "text": "Her Majesty is yours. Do treat her well."
+ },
+ "reginald.hearts.queen_given.self.2": {
+  "key": "831257e77101281ffd5f5eb1c1a1f56df6fd298b575c6ae9b184052e23a77e3e",
+  "text": "A gift from the House of Fairweather. You're welcome."
+ },
+ "reginald.hearts.queen_taken.human.1": {
+  "key": "f4843c12be29f03b78ac8af58d036b04b847dbbeda5a50fbba4b09888c1a40af",
+  "text": "Ah. A royal burden. You'll get used to it. I never have."
+ },
+ "reginald.hearts.queen_taken.other.1": {
+  "key": "bac318c6156318ac5fb0680e24f7d143bd3bca9e9b07f0398c653d21ae9ac89a",
+  "text": "Ha! Better you than the family name."
+ },
+ "reginald.hearts.queen_taken.self.1": {
+  "key": "c3e88cc045666e2bbd7a3276c20452bab9eff02cd0ebabc12512dc5c8b71ddfb",
+  "text": "The Queen?! On a Fairweather?! Most irregular!"
+ },
+ "reginald.hearts.queen_taken.self.2": {
+  "key": "841f90357c2637843f4157e8e6928a74dd0104b8ae014d319fa1d7d452bdc444",
+  "text": "I've been robbed! In broad daylight!"
+ },
+ "reginald.idle.human.1": {
+  "key": "d9786c1f33971b3f09813a6464cc2c06dbf62bd3b8861e74413786324b9c9072",
+  "text": "Whenever you're ready. Truly. No one is waiting. Except me."
+ },
+ "reginald.idle.human.2": {
+  "key": "681d921850a81b77df4675895755bd395ab2c6e8087cfa838950ceeb3e79a69e",
+  "text": "Ahem. The Fairweathers are a patient people. Until now."
+ }
+}

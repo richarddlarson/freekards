@@ -22,8 +22,10 @@ Each character has traits that affect **what they say** and, slightly, **how the
 ## Dialogue
 - Dialogue is data: one JSON file per character, mapping **dialogue triggers** (below) to lists of
   lines. Every line has a stable id of the form `<characterId>.<trigger>.<n>`.
-- Each line id maps to one pre-generated voice clip (D-005) at
-  `assets/voices/<characterId>/<lineId>.ogg`. A missing clip simply means a silent bubble.
+- Each line id maps to one pre-generated voice clip (D-005, D-048) at
+  `assets/voices/<characterId>/<lineId>.opus`. A missing clip simply means a silent bubble.
+- While a clip plays, the bubble stays up for max(2.5 s, clip + 0.6 s) and music is ducked (spec 13 §1).
+  Tapping the bubble closes it and stops the clip.
 - A comment is shown in a speech bubble next to the character's portrait, and its clip plays at the
   same time.
 
@@ -93,6 +95,7 @@ Later games add their own `<game>.*` triggers. A character with no lines for a t
 | `traits.chattiness`, `traits.risk` | 0–1 | See Personality above |
 | `traits.skillAdjust` | −0.15…+0.15 | See Difficulty model above |
 | `voice.description`, `voice.pitch`, `voice.pace` | string | Brief for choosing or tuning the text-to-speech voice |
+| `voice.tts` | object, optional | The chosen synthetic voice (D-048): `engine` (`piper`), `model` (Piper voice name), optional `speaker` (multi-speaker models), `lengthScale` (pace, >1 slower), optional `noiseScale`. With no `tts`, the character has no voice clips |
 | `lines` | object | trigger → array of `{ id, text }` |
 
 ## Roster (D-030)
@@ -109,3 +112,18 @@ More characters, including non-human kinds, will be added later with input from 
 | `reginald` | Reginald Fairweather III ("Reggie") | M | Pompous self-declared near-aristocrat, monocle, very sore loser | 0.70 | 0.40 | 0.00 |
 
 Full bios, art briefs, voice briefs, and every line are in each character's JSON file.
+
+## Voices (D-047, D-048)
+Chosen by the owner from auditions. All models qualify under D-047.
+
+| Character | Piper voice | Speaker | Pace (lengthScale) | Data license / credit |
+|-----------|-------------|---------|--------------------|-----------------------|
+| Gus | en_US-john-medium | — | 1.15 | Public domain (LibriVox) |
+| Dot | en_GB-cori-high | — | 1.10 | Public domain (LibriVox) |
+| Chad | *pending* | | | |
+| Marguerite | en_GB-alba-medium | — | 0.95 | CC BY 4.0 (University of Edinburgh) |
+| Bernie | en_GB-vctk-medium | p225 | 0.90 | CC BY 4.0 (VCTK, CSTR, University of Edinburgh) |
+| Reginald | en_GB-vctk-medium | p273 | 1.00 | CC BY 4.0 (VCTK, CSTR, University of Edinburgh) |
+
+Rejected during auditions: hifi_tts_92 for Marguerite, because it was trained on the same reader as
+Dot's cori voice, so the two would sound alike.

@@ -18,7 +18,12 @@
   "voice": {
     "description": "Warm, soft, older female voice; gentle and slow, with a sly little lilt.",
     "pitch": "high",
-    "pace": "slow"
+    "pace": "slow",
+    "tts": {
+      "engine": "piper",
+      "model": "en_GB-cori-high",
+      "lengthScale": 1.1
+    }
   },
   "lines": {
     "game.start": [

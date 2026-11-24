@@ -1,6 +1,6 @@
 # 13 — Audio: Sound Effects, Music, Volume (core spec, engine-neutral)
 
-Status: **[Confirmed]** system design (D-038) and sources (D-039). The default playlist below can be
+Status: **[Confirmed]** system design (D-038), sources (D-039), voices (D-047, D-048). The default playlist below can be
 changed at any time by editing `spec/content/audio.json` (and the asset register). Voices are covered in spec 08 and D-005 and are not implemented yet.
 
 ## 1. Channels and volume
@@ -8,13 +8,13 @@ changed at any time by editing `spec/content/audio.json` (and the asset register
 |---------|---------------|---------|
 | Music | 0.45 | Background music playlist |
 | Effects | 0.80 | Card and table sounds |
-| Voices | 1.00 | Character voice clips (later) |
+| Voices | 1.00 | Character voice clips (spec 08 §Voices) |
 
 - Each channel has a level slider from 0 to 100%, plus one **Mute all** switch. The settings persist
   with the other preferences (spec 12 §5).
 - Perceived loudness: slider position `p` (0–1) maps to gain `p²`, so the slider feels even.
-- When a voice clip plays, music is **ducked** to 50% of its level for the clip's length, fading
-  in and out over 250 ms (once voices exist).
+- When a voice clip plays, music is **ducked** to 50% of its level for the clip's length, using
+  an exponential approach with an 80 ms time constant down and back up (D-048).
 - When the app is hidden or minimized, music pauses, and it resumes when the app is shown again.
 
 ## 2. Sound cues

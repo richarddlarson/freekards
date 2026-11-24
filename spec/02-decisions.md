@@ -500,3 +500,20 @@ Template:
 - Why: Piper runs offline, produces good quality, and has per-voice model cards that make licensing
   verifiable. Checking the whole fine-tuning chain is needed because a clean dataset on top of a
   restricted base model is not clean.
+
+## D-048 — Voice clip pipeline and in-game voice playback
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: `scripts/build-voices.py` synthesizes every line of every character that has a
+  `voice.tts` block. It uses Piper 1.8.0 (installed automatically into the git-ignored
+  `.cache/piper-env`) and voice models from `rhasspy/piper-voices` at pinned revision
+  `e5349433ed883a32f893a434dc43a6c66b95ef7c`, each verified by MD5. Leading and trailing silence is
+  trimmed, and clips are encoded to Opus 32 kbps mono at `assets/voices/<characterId>/<lineId>.opus`.
+  `assets/voices/manifest.json` records a hash of text plus voice settings per line, so only changed
+  lines are regenerated and clips for deleted lines are removed. Piper's synthesis is stochastic, so
+  regenerated clips sound the same but are not byte-identical; the committed clips are canonical. In
+  game, the opponents' clips are decoded when the table opens. A comment plays its clip on the Voices
+  channel, music is ducked to 50% while it plays, and the bubble lasts max(2.5 s, clip + 0.6 s).
+  Tapping the bubble stops the clip.
+- Why: Owner request to add speaking. Pre-generated clips (D-005) give consistent voices offline,
+  and incremental builds make editing dialogue cheap.

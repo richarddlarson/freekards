@@ -8,6 +8,10 @@ const audioFiles = import.meta.glob<string>('../../assets/audio/**/*.{ogg,opus,m
   query: '?url',
   import: 'default',
 });
+/** Character voice clips: assets/voices/<characterId>/<lineId>.opus (spec 08, D-048). */
+const voiceFiles = import.meta.glob<string>('../../assets/voices/*/*.opus', { eager: true, query: '?url', import: 'default' });
+const voicePath = (characterId: string, lineId: string) => `../../assets/voices/${characterId}/${lineId}.opus`;
+
 const manifestFiles = import.meta.glob<AudioManifest>('../../spec/content/audio.json', { eager: true, import: 'default' });
 
 export type Channel = 'music' | 'sfx' | 'voice';
@@ -41,6 +45,9 @@ const TUNING = {
   pitchMin: 0.96,
   pitchMax: 1.04,
   gainMin: 0.9,
+  /** Music level while a character speaks (spec 13 §1), and the duck/unduck ramp time constant. */
+  duckLevel: 0.5,
+  duckTimeConstant: 0.08,
   /** Length of the fade when a cue is cut short by maxSeconds. */
   cutFadeS: 0.3,
   crossfadeS: 3,
@@ -49,12 +56,16 @@ const TUNING = {
 
 /** Repo-relative path ("assets/…") → bundled URL. */
 function urlFor(path: string): string | undefined {
-  return audioFiles[`../../${path}`];
+  return audioFiles[`../../${path}`] ?? voiceFiles[`../../${path}`];
 }
 
 class AudioEngine {
   private ctx: AudioContext | null = null;
   private master!: GainNode;
+  /** Sits between the music channel and the master, for ducking under voices. */
+  private musicDuck!: GainNode;
+  private voiceBuffers = new Map<string, AudioBuffer>();
+  private speaking: AudioBufferSourceNode | null = null;
   private buses = {} as Record<Channel, GainNode>;
   private buffers = new Map<string, Promise<AudioBuffer | null>>();
   private lastPick = new Map<string, string>();
@@ -80,9 +91,11 @@ class AudioEngine {
         this.ctx = new AudioContext();
         this.master = this.ctx.createGain();
         this.master.connect(this.ctx.destination);
+        this.musicDuck = this.ctx.createGain();
+        this.musicDuck.connect(this.master);
         for (const ch of ['music', 'sfx', 'voice'] as const) {
           const g = this.ctx.createGain();
-          g.connect(this.master);
+          g.connect(ch === 'music' ? this.musicDuck : this.master);
           this.buses[ch] = g;
         }
         this.applyVolumes();
@@ -179,6 +192,60 @@ class AudioEngine {
         src.stop(end + 0.05);
       }
     });
+  }
+
+  // ---------------------------------------------------------------- voices
+
+  /** Decode the voice clips of the given characters ahead of time (call when a table opens). */
+  async preloadVoices(characterIds: readonly string[]): Promise<void> {
+    if (!this.ensure()) return;
+    const prefixes = characterIds.map((id) => `../../assets/voices/${id}/`);
+    const keys = Object.keys(voiceFiles).filter((k) => prefixes.some((p) => k.startsWith(p)) && !this.voiceBuffers.has(k));
+    await Promise.all(
+      keys.map(async (k) => {
+        const buf = await this.load(k.replace('../../', ''));
+        if (buf) this.voiceBuffers.set(k, buf);
+      }),
+    );
+    console.info(`audio: ${this.voiceBuffers.size} voice clips ready`);
+  }
+
+  /**
+   * Speak a dialogue line if its clip is loaded and voices are audible. Returns the clip length in
+   * milliseconds, or undefined if nothing was played (the bubble then uses text-based timing).
+   */
+  speak(characterId: string, lineId: string): number | undefined {
+    const ctx = this.ctx;
+    const buffer = this.voiceBuffers.get(voicePath(characterId, lineId));
+    if (!ctx || !buffer || this.volumes.muted || this.volumes.voice <= 0) return undefined;
+    this.stopSpeaking();
+    const src = ctx.createBufferSource();
+    src.buffer = buffer;
+    src.connect(this.buses.voice);
+    const t = ctx.currentTime;
+    this.musicDuck.gain.setTargetAtTime(TUNING.duckLevel, t, TUNING.duckTimeConstant);
+    src.onended = () => {
+      if (this.speaking === src) {
+        this.speaking = null;
+        this.musicDuck.gain.setTargetAtTime(1, ctx.currentTime, TUNING.duckTimeConstant);
+      }
+    };
+    src.start(t);
+    this.speaking = src;
+    console.info(`audio: voice ${lineId} (${buffer.duration.toFixed(1)} s)`);
+    return buffer.duration * 1000;
+  }
+
+  /** Stop the current voice clip (e.g. the player tapped the bubble closed). */
+  stopSpeaking(): void {
+    const s = this.speaking;
+    this.speaking = null;
+    try {
+      s?.stop();
+    } catch {
+      /* already stopped */
+    }
+    if (this.ctx) this.musicDuck.gain.setTargetAtTime(1, this.ctx.currentTime, TUNING.duckTimeConstant);
   }
 
   // ---------------------------------------------------------------- music

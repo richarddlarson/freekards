@@ -6,7 +6,7 @@ import { h, onTap } from './stage.js';
 const ROWS: [Channel, string, string?][] = [
   ['music', 'Music'],
   ['sfx', 'Sound effects'],
-  ['voice', 'Voices', 'coming soon'],
+  ['voice', 'Voices'],
 ];
 
 export function soundSettingsPanel(onDone: () => void): HTMLElement {

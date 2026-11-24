@@ -78,6 +78,38 @@
       "licenseUrl": "https://github.com/actions/download-artifact/blob/9000827ccba6bdab643e8b6fd33ac0654aef8333/LICENSE",
       "scope": "build",
       "usedIn": ".github/workflows/build.yml"
+    },
+    {
+      "name": "piper-tts",
+      "version": "1.8.0",
+      "source": "https://github.com/OHF-Voice/piper1-gpl",
+      "license": "GPL-3.0-or-later",
+      "scope": "build",
+      "usedFor": "Synthesizing character voice clips (scripts/build-voices.py). Only the generated audio ships; the GPL puts no conditions on program output (spec 09 \u00a72)."
+    },
+    {
+      "name": "espeak-ng (bundled in piper-tts)",
+      "version": "as bundled in piper-tts 1.8.0",
+      "source": "https://github.com/espeak-ng/espeak-ng",
+      "license": "GPL-3.0-or-later",
+      "scope": "build",
+      "usedFor": "Text-to-phoneme conversion inside Piper during voice synthesis."
+    },
+    {
+      "name": "onnxruntime",
+      "version": "1.32.0",
+      "source": "https://github.com/microsoft/onnxruntime",
+      "license": "MIT",
+      "scope": "build",
+      "usedFor": "Runs Piper voice models during voice synthesis."
+    },
+    {
+      "name": "Piper voice models (rhasspy/piper-voices)",
+      "version": "revision e5349433ed883a32f893a434dc43a6c66b95ef7c",
+      "source": "https://huggingface.co/rhasspy/piper-voices",
+      "license": "MIT (model files); per-voice training-data licenses in spec 02 D-047",
+      "scope": "build",
+      "usedFor": "Voice models used to synthesize clips; the models themselves do not ship."
     }
   ]
 }

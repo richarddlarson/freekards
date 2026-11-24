@@ -195,6 +195,84 @@
       "attribution": "\"Frogs Legs Rag\" by Kevin MacLeod (FreePD.com), CC0",
       "modified": "Re-encoded from the original MP3 to Opus 64 kbps VBR (48 kHz stereo) by scripts/build-music.mjs; metadata replaced with title/composer",
       "tool": "Original sha256 912e8864a7c590e97490c64d70ed875b8efd85aee3bd9487785efe86450250a8; output sha256 5371e93d6718fd8dc0726ff7942a0586b2938e55119db14069dd133dd79dc567; ffmpeg + libopus. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+    },
+    {
+      "path": "assets/voices/gus/*.opus",
+      "title": "Voice clips for gus",
+      "kind": "voice",
+      "origin": "generated",
+      "author": "The FreeKards Contributors (generated with Piper)",
+      "source": "https://github.com/richarddlarson/freekards/blob/main/scripts/build-voices.py",
+      "license": "MIT",
+      "licenseUrl": "https://opensource.org/license/mit",
+      "attribution": "Voice: Piper en_US-john-medium. LibriVox recordings (public domain); Piper voice \"john\" by Bryce Beattie (MIT)",
+      "modified": null,
+      "tool": "scripts/build-voices.py, piper-tts 1.8.0, voice en_US-john-medium, piper-voices revision e5349433ed88 (D-047, D-048)"
+    },
+    {
+      "path": "assets/voices/dot/*.opus",
+      "title": "Voice clips for dot",
+      "kind": "voice",
+      "origin": "generated",
+      "author": "The FreeKards Contributors (generated with Piper)",
+      "source": "https://github.com/richarddlarson/freekards/blob/main/scripts/build-voices.py",
+      "license": "MIT",
+      "licenseUrl": "https://opensource.org/license/mit",
+      "attribution": "Voice: Piper en_GB-cori-high. LibriVox recordings of Cori Samuel (public domain); Piper voice \"cori\" by Bryce Beattie (MIT)",
+      "modified": null,
+      "tool": "scripts/build-voices.py, piper-tts 1.8.0, voice en_GB-cori-high, piper-voices revision e5349433ed88 (D-047, D-048)"
+    },
+    {
+      "path": "assets/voices/marguerite/*.opus",
+      "title": "Voice clips for marguerite",
+      "kind": "voice",
+      "origin": "generated",
+      "author": "The FreeKards Contributors (generated with Piper)",
+      "source": "https://github.com/richarddlarson/freekards/blob/main/scripts/build-voices.py",
+      "license": "MIT AND CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Voice: Piper en_GB-alba-medium. Voice model trained on the \"alba\" recordings, University of Edinburgh (CC BY 4.0), https://datashare.ed.ac.uk/handle/10283/3270",
+      "modified": null,
+      "tool": "scripts/build-voices.py, piper-tts 1.8.0, voice en_GB-alba-medium, piper-voices revision e5349433ed88 (D-047, D-048)"
+    },
+    {
+      "path": "assets/voices/bernie/*.opus",
+      "title": "Voice clips for bernie",
+      "kind": "voice",
+      "origin": "generated",
+      "author": "The FreeKards Contributors (generated with Piper)",
+      "source": "https://github.com/richarddlarson/freekards/blob/main/scripts/build-voices.py",
+      "license": "MIT AND CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Voice: Piper en_GB-vctk-medium speaker p225. Voice model trained on the VCTK corpus 0.92, CSTR, University of Edinburgh (CC BY 4.0), https://datashare.ed.ac.uk/handle/10283/3443",
+      "modified": null,
+      "tool": "scripts/build-voices.py, piper-tts 1.8.0, voice en_GB-vctk-medium speaker p225, piper-voices revision e5349433ed88 (D-047, D-048)"
+    },
+    {
+      "path": "assets/voices/reginald/*.opus",
+      "title": "Voice clips for reginald",
+      "kind": "voice",
+      "origin": "generated",
+      "author": "The FreeKards Contributors (generated with Piper)",
+      "source": "https://github.com/richarddlarson/freekards/blob/main/scripts/build-voices.py",
+      "license": "MIT AND CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Voice: Piper en_GB-vctk-medium speaker p273. Voice model trained on the VCTK corpus 0.92, CSTR, University of Edinburgh (CC BY 4.0), https://datashare.ed.ac.uk/handle/10283/3443",
+      "modified": null,
+      "tool": "scripts/build-voices.py, piper-tts 1.8.0, voice en_GB-vctk-medium speaker p273, piper-voices revision e5349433ed88 (D-047, D-048)"
+    },
+    {
+      "path": "assets/voices/manifest.json",
+      "title": "Voice clip build manifest",
+      "kind": "other",
+      "origin": "generated",
+      "author": "The FreeKards Contributors",
+      "source": "https://github.com/richarddlarson/freekards",
+      "license": "MIT",
+      "licenseUrl": "https://opensource.org/license/mit",
+      "attribution": null,
+      "modified": null,
+      "tool": "scripts/build-voices.py"
     }
   ]
 }

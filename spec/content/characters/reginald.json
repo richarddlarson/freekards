@@ -18,7 +18,13 @@
   "voice": {
     "description": "Plummy, theatrical middle-aged male voice; precise diction, dramatic emphasis on outrage.",
     "pitch": "medium-low",
-    "pace": "medium"
+    "pace": "medium",
+    "tts": {
+      "engine": "piper",
+      "model": "en_GB-vctk-medium",
+      "speaker": "p273",
+      "lengthScale": 1.0
+    }
   },
   "lines": {
     "game.start": [
