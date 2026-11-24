@@ -68,13 +68,29 @@ jobs:
       - name: Build installers
         shell: bash
         run: npx electron-builder ${{ matrix.targets }} --${{ matrix.arch }} --publish never
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+      # One artifact per installer type (D-057): Windows setup, Linux .deb, Linux AppImage.
+      - name: Upload Windows installer
+        if: matrix.os == 'win'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: freekards-${{ matrix.os }}-${{ matrix.arch }}
-          path: |
-            release/*.exe
-            release/*.deb
-            release/*.AppImage
+          name: freekards-win-${{ matrix.arch }}
+          path: release/*.exe
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload Linux .deb
+        if: matrix.os == 'linux'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: freekards-linux-${{ matrix.arch }}-deb
+          path: release/*.deb
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload Linux AppImage
+        if: matrix.os == 'linux'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: freekards-linux-${{ matrix.arch }}-appimage
+          path: release/*.AppImage
           if-no-files-found: error
           retention-days: 14
 

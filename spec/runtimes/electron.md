@@ -225,14 +225,15 @@ preload), `release/` (installers), `coverage/`.
   |--------|-----------|--------------------------|---------------|
   | `windows-latest` | Windows x64 | `--win nsis --x64` | `freekards-win-x64` |
   | `windows-11-arm` | Windows arm64 | `--win nsis --arm64` | `freekards-win-arm64` |
-  | `ubuntu-latest` | Linux x64 | `--linux deb AppImage --x64` | `freekards-linux-x64` |
-  | `ubuntu-24.04-arm` | Linux arm64 | `--linux deb AppImage --arm64` | `freekards-linux-arm64` |
+  | `ubuntu-latest` | Linux x64 | `--linux deb AppImage --x64` | `freekards-linux-x64-deb`, `freekards-linux-x64-appimage` |
+  | `ubuntu-24.04-arm` | Linux arm64 | `--linux deb AppImage --arm64` | `freekards-linux-arm64-deb`, `freekards-linux-arm64-appimage` |
 
   Each matrix entry: checkout, setup-node, a cache of Electron and electron-builder downloads
   (keyed on OS, arch, and the `package-lock.json` hash), `npm ci`, `npm run build`, then
-  `npx electron-builder <targets> --<arch> --publish never`. It uploads `release/*.exe`,
-  `release/*.deb`, and `release/*.AppImage` as one artifact per OS and arch, kept for **14 days**,
-  and fails if no installer was produced.
+  `npx electron-builder <targets> --<arch> --publish never`. It uploads **one artifact per installer
+  type** (D-057): `release/*.exe` on Windows, and on Linux `release/*.deb` and `release/*.AppImage`
+  separately. Each is kept for **14 days**, and the job fails if an expected installer is missing.
+  Both Linux packages still come from one build per arch, so the split costs no runner time.
 - **Job `release`** (only for `v*` tags; needs `build`; `contents: write`): downloads all artifacts and
   runs `gh release create <tag> --draft --generate-notes`, attaching every installer plus
   `sbom/*.json` and `LICENSE`. Nothing is published automatically.

@@ -403,7 +403,7 @@ Template:
   build. A `build` matrix then produces installers on **native** runners for Windows x64/arm64 (NSIS)
   and Linux x64/arm64 (deb + AppImage), uploaded as artifacts `freekards-<os>-<arch>` and kept for
   14 days. Permissions default to read-only, and superseded runs are cancelled. Full design is in
-  `runtimes/electron.md` §CI.
+  `runtimes/electron.md` §CI. **Linux artifact names amended by D-057.**
 - Why: Native runners give real ARM64 builds (especially Windows on ARM, for the Surface) without
   cross-compiling. Every push yields testable installers.
 
@@ -594,3 +594,13 @@ Template:
   completed-trick pause by 1.5 / 1 / 0.5. Default Normal. Animations are unchanged.
 - Why: Same play-testing feedback (R-005) that the game felt "a little laggy" overall. Owner chose to
   add it now rather than defer it.
+
+## D-057 — One CI artifact per installer type
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: Linux CI jobs upload the `.deb` and the AppImage as separate artifacts,
+  `freekards-linux-<arch>-deb` and `freekards-linux-<arch>-appimage`. Windows stays
+  `freekards-win-<arch>`. Each Linux arch is still built once, with both targets in one run. The
+  draft-release job is unchanged: it merges all artifacts.
+- Why: Owner request. A tester downloads only the package they need (each is about 120–145 MB)
+  instead of both.
