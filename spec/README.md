@@ -21,7 +21,8 @@ look, feel, behavior, build, packaging, install, runtime, or development process
 | [07-themes.md](07-themes.md) | Theme system and theme manifest. |
 | [08-characters.md](08-characters.md) | Character roster, personality, difficulty model, and dialogue. |
 | [09-licensing-and-sbom.md](09-licensing-and-sbom.md) | MIT license, third-party license policy, SBOM, and Credits screen. |
-| [runtimes/electron.md](runtimes/electron.md) | Electron-specific stack, packaging, installers, and CI. |
+| [10-core-logic.md](10-core-logic.md) | Shared logic conventions: card ids, seats, seeded random numbers, state-machine shape. |
+| [runtimes/electron.md](runtimes/electron.md) | Electron-specific stack, versions, source tree, scripts, packaging, installers, SBOM tooling, and CI. |
 
 Every document except those in `runtimes/` is **engine-neutral** (see 05). Later documents get the
 next free number. Planned ones include architecture, Hearts rules and AI, characters and dialogue,

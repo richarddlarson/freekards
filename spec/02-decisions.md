@@ -145,3 +145,61 @@ Template:
   exception reconfirmed for its runtime.
 - Why: Owner approval. Without the exception, no modern web-based runtime could be used, and
   shipping the runtime unmodified with its license notices meets the LGPL's requirements.
+
+## D-017 — Electron toolchain versions, pinned exactly
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: Electron 45.4.1, TypeScript 7.0.2, Vite 8.3.8, Vitest 5.1.1, electron-builder 26.18.0,
+  @cyclonedx/cyclonedx-npm 7.0.1, @types/node 26.6.6, all pinned to exact versions with the lockfile
+  committed. All of them are dev dependencies. There are no production npm dependencies so far.
+  Details are in `runtimes/electron.md` §Stack.
+- Why: These were the current releases at project start. Exact pins make builds reproducible and
+  keep the SBOM stable. Each license was checked before adding it (all MIT or Apache-2.0).
+
+## D-018 — Source tree layout, with logic isolation enforced by the compiler
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: Engine-neutral logic lives in `src/logic/`, presentation in `src/renderer/`, Electron
+  processes in `src/main/`, and tests in `tests/`. `tsconfig.logic.json` compiles `src/logic` against
+  the ECMAScript library only (no DOM, no Node types), so a platform import there fails the build.
+  The full tree is documented in `runtimes/electron.md` §Source tree.
+- Why: Spec 05 requires the logic layer to be portable. Enforcing that in the compiler is more
+  reliable than relying on habit.
+
+## D-022 — Card ids, deck order, and seat numbering
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: Cards are two-character ids (rank char + suit char, e.g. `QS`, `TD`). The canonical deck
+  order is C, D, S, H with 2 → A in each suit. Seats are 0 South (human), 1 West, 2 North, 3 East,
+  in clockwise play order, and "left" is the next seat clockwise. See `10-core-logic.md`.
+- Why: Compact, readable, easy to serialize, and the same ids name the theme's card-face files.
+
+## D-023 — Mulberry32 random generator and Fisher–Yates shuffle
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: All randomness uses seeded Mulberry32, whose state is one 32-bit integer stored in the
+  game state, and the shuffle is Fisher–Yates. Each AI player has its own generator. The exact
+  algorithm and test vectors are in `10-core-logic.md` §3.
+- Why: Deterministic replays (spec 05), a tiny serializable state, and easy to port exactly.
+
+## D-024 — How the Hearts engine reads the rules
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: The `setup` phase lives in presentation, and the engine starts at `deal`. Scoring is
+  entered automatically after trick 13, and a `continue` action moves on to the next hand or ends
+  the game. Dealing always starts with West. A player holding only hearts and/or Q♠ on the first
+  trick may play any of them, and the J♦ is not restricted on the first trick. `moon_shot_blocked`
+  means one player took 13 of the 14 point cards and another took the last one. The full event
+  table and order are in `06-hearts.md` §3–§4. The target score is an option (default 100).
+- Why: These points were ambiguous in the original spec and had to be fixed to implement and test it.
+
+## D-025 — Basic Hearts AI
+- Date: 2026-11-23
+- Status: Accepted (tuning expected later)
+- Decision: A heuristic computer player that scores every legal card and then makes a skill roll:
+  below `skill` it plays the best card, otherwise the 2nd-best (50%) or a random legal card. Memory
+  (card tracking) is rolled against skill for each decision. Moon blocking needs skill ≥ 0.5, and a
+  moon attempt needs a strong hand and a roll below `risk × skill`. All heuristics are in
+  `06-hearts.md` §5.
+- Why: It is simple and deterministic, the difference between difficulty levels shows up clearly
+  in simulations, and every rule can be described in engine-neutral terms for porting.

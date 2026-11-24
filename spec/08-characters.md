@@ -11,7 +11,7 @@ Status: model **[Confirmed]** (D-010). Numbers and roster **[Proposed]**.
   - how often it picks its best-evaluated move instead of a plausible weaker one;
   - how much it remembers (for example, counting which cards have been played);
   - how far ahead it plans (for example, spotting or blocking a shoot-the-moon attempt).
-  The per-game details are in each game's spec.
+  The per-game details are in each game's spec (Hearts: `06-hearts.md` §5).
 
 ## Personality
 Each character has traits that affect **what they say** and, slightly, **how they play**:

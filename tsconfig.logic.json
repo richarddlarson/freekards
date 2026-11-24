@@ -1,0 +1,12 @@
+{
+  "$comment": "Engine-neutral logic layer (spec 05). Only the ECMAScript library: no DOM, no Node, no Electron types, so any platform import fails to compile.",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023"],
+    "types": [],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noEmit": true
+  },
+  "include": ["src/logic/**/*.ts"]
+}
