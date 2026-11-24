@@ -12,6 +12,9 @@ These rules apply to everyone working on FreeKards, including the AI coding assi
    rebuilt from `/spec`?" If not, add what is missing.
 4. **Open questions** go in `03-open-questions.md` until answered, then move to the decision log.
 5. **`00-provenance.md` is never edited.**
+6. **Keep core and runtime separate.** Before writing a spec entry, decide whether it is
+   engine-neutral (core document) or specific to one runtime (`spec/runtimes/<runtime>.md`).
+   Follow the rules in `05-portability.md`.
 
 ## AI assistant working rules
 - Ask the owner when a choice really belongs to him: anything about how the game looks, feels, or

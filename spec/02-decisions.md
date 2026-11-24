@@ -36,3 +36,39 @@ Template:
 - Decision: Windows and Linux, each on ARM64 and x64. The app runs in its own native-feeling window
   and is delivered as an installer the end user can run herself.
 - Why: The main device is an ARM Windows tablet, and the old Hoyle app cannot run on ARM.
+
+## D-004 — Electron as the first runtime, with an engine-neutral spec
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: The first implementation uses Electron. Everything Electron-specific goes in
+  `spec/runtimes/electron.md`. All other spec documents are engine-neutral, following the rules in
+  `05-portability.md`, so the app can be rebuilt on another runtime such as Godot from the same core spec.
+- Why: Electron gives the same rendering and audio everywhere and builds well for Windows ARM. The
+  owner also wants to try other runtimes later and port the app by pointing at the existing spec.
+  Alternatives considered: Tauri (weaker audio and WebKit on Linux, harder Windows ARM builds) and
+  Godot (a possible future port).
+
+## D-005 — Character voices are pre-generated text-to-speech clips
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: Each character has its own synthetic voice. Every dialogue line is turned into an audio
+  clip once, ahead of time, with an offline text-to-speech tool, and the clips ship with the app. The
+  app plays clips and never synthesizes speech at runtime. The text-to-speech tool and voice choices
+  are an open question; the voice models must be licensed for redistribution.
+- Why: Sounds the same on every machine and works offline. The operating systems' built-in voices
+  vary widely in quality, especially on Linux.
+
+## D-006 — Hearts is built first
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: Hearts is the first game. Building it also builds the shared foundation: table, cards,
+  dealing and play animation, characters with speech bubbles and voice, sound, music, and settings.
+- Why: It uses nearly every shared system, and it is a 4-player game with plenty of moments for
+  character comments.
+
+## D-007 — Source hosting and release builds
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: The code lives in a private GitHub repository. GitHub Actions builds installers for all
+  four targets on native runners. Runner details are in the runtime spec.
+- Why: Real Windows ARM build machines, and a backup off this machine.
