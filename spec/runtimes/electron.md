@@ -45,7 +45,7 @@ Status key: **[Confirmed]** / **[Proposed]**, as in `01-requirements.md`.
   `sbom/code.cdx.json` on every build.
 - **[Proposed]** License gate: a script in `scripts/` reads the CycloneDX file and the asset register
   and fails the build on any license not in the allowed list or any file missing from the register.
-- **[Proposed]** Runtime platform exception: Electron (MIT) and the Chromium build it bundles, with
+- **[Confirmed]** (D-016) Runtime platform exception: Electron (MIT) and the Chromium build it bundles, with
   that build's third-party components, some under other licenses such as LGPL for FFmpeg. Electron's
   own `LICENSE` and `LICENSES.chromium.html` ship unmodified in the installed app and are linked from
   the Credits screen.

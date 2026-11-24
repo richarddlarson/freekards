@@ -8,8 +8,6 @@ question is removed from this list.
 - Q3. Should the installers be code-signed? An unsigned Windows installer triggers a SmartScreen
   "Windows protected your PC" warning on first run. Because the project is open source, the SignPath
   Foundation may provide free code signing; that option is worth checking.
-- Q19. Accept the runtime platform exception (Electron and Chromium ship some LGPL parts such as
-  FFmpeg; see 09 §2)?
 - Q4. Which Linux distribution and desktop is used, so we know which package formats to build
   (AppImage, .deb, Flatpak)?
 - Q17. Which text-to-speech tool and voices (D-005)? Candidate: Piper, which is offline and

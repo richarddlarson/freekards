@@ -29,7 +29,7 @@ text-to-speech generator or an image converter) may use any open-source license,
 provided that license puts no conditions on the output. They are still listed in the SBOM, marked
 `"scope": "build"`.
 
-**Runtime platform exception [Proposed]:** the app runtime itself (currently Electron, which includes
+**Runtime platform exception [Confirmed] (D-016):** the app runtime itself (currently Electron, which includes
 Chromium and its bundled third-party parts, such as an LGPL-licensed FFmpeg build) is accepted as a
 platform. It is shipped unmodified, together with its own license files, and is listed in the SBOM.
 Each runtime spec names its platform exception explicitly.

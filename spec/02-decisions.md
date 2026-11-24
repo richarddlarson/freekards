@@ -122,7 +122,7 @@ Template:
 - Decision: Everything shipped must use one of the allowed permissive or public-domain licenses listed
   in `09-licensing-and-sbom.md` §2. No copyleft, no non-commercial, no no-derivatives licenses.
   Build-time-only tools are exempt when their license puts no conditions on the output. The app's
-  runtime platform is a documented exception (proposed).
+  runtime platform is a documented exception (D-016).
 - Why: Owner choice. It keeps the whole app cleanly compatible with MIT and leaves no question of
   rights. Alternative considered: allowing share-alike assets and LGPL code, rejected as adding
   obligations to track.
@@ -134,3 +134,14 @@ Template:
   list live in `sbom/`, are checked in CI, ship inside the app, and are shown on an in-app
   About & Credits screen. Full details are in `09-licensing-and-sbom.md`.
 - Why: Owner choice. Everyone can see what is used, where it came from, and under what license.
+
+## D-016 — Runtime platform license exception
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: The app runtime is exempt from the permissive-only rule (D-014). For Electron, that covers
+  Chromium and its bundled third-party components, including LGPL parts such as FFmpeg. The runtime
+  ships unmodified with its own license files, which are listed in the SBOM and linked from the
+  Credits screen. Each runtime spec must name its own exception, and any future port needs this
+  exception reconfirmed for its runtime.
+- Why: Owner approval. Without the exception, no modern web-based runtime could be used, and
+  shipping the runtime unmodified with its license notices meets the LGPL's requirements.
