@@ -11,6 +11,7 @@ These rules apply to everyone working on FreeKards, including the AI coding assi
 3. **Rebuildability test.** Before finishing a piece of work, ask: "If the code were lost, could it be
    rebuilt from `/spec`?" If not, add what is missing.
 4. **Open questions** go in `03-open-questions.md` until answered, then move to the decision log.
+   **Feature requests and to-dos** go in `14-roadmap.md` as R-NNN items, keeping the owner's wording.
 5. **`00-provenance.md` is never edited.**
 6. **Keep core and runtime separate.** Before writing a spec entry, decide whether it is
    engine-neutral (core document) or specific to one runtime (`spec/runtimes/<runtime>.md`).

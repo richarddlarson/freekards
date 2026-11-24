@@ -26,6 +26,7 @@ look, feel, behavior, build, packaging, install, runtime, or development process
 | [11-display-and-layout.md](11-display-and-layout.md) | Target screens, resolution scaling, layout model, touch targets, orientation. |
 | [12-hearts-table.md](12-hearts-table.md) | Screen flow, Hearts table layout, timing, interaction, dialogs. |
 | [13-audio.md](13-audio.md) | Audio channels, volume, sound cues, music playlist, sources. |
+| [14-roadmap.md](14-roadmap.md) | Enhancement backlog / to-do list (R-NNN items), including profiles, stats, and KardCoins. |
 | [runtimes/electron.md](runtimes/electron.md) | Electron-specific stack, versions, source tree, scripts, packaging, installers, SBOM tooling, and CI. |
 
 Every document except those in `runtimes/` is **engine-neutral** (see 05). Later documents get the
