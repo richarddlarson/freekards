@@ -604,3 +604,12 @@ Template:
   draft-release job is unchanged: it merges all artifacts.
 - Why: Owner request. A tester downloads only the package they need (each is about 120–145 MB)
   instead of both.
+
+## D-058 — Esc opens and closes the pause menu
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: On the Hearts table, Esc opens the pause menu like ☰. Pressing it again closes the
+  topmost panel: Sound or Settings first, then the pause menu itself (resuming play). It is ignored
+  on the Hand results and Game over dialogs. Details in `12-hearts-table.md` §4.
+- Why: Owner request while play-testing: players with a keyboard expect Esc to pause. Having it
+  also back out of panels follows the usual desktop convention.

@@ -75,6 +75,10 @@ All card images are loaded and decoded before the first deal, so flips never sho
 - **Playing:** on her turn, the "You" nameplate glows and cards that can't legally be played are
   dimmed (brightness 60%). **A single tap plays a legal card**, or the player can **drag** a legal
   card up onto the table (spec 16 §3). Tapping an illegal card shakes it (240 ms) and does nothing else.
+- **Esc key** (D-058), for players with a keyboard: with no dialog open, it opens the pause menu
+  (the same as ☰). While paused, it resumes, or, when Sound or Settings is open on top of the
+  pause menu, it closes that panel (the same as its Done button). It does nothing on the Hand results
+  and Game over dialogs. Holding the key down doesn't repeat.
 - **Turn indicator:** the active computer player's portrait glows, and the active player's name is
   highlighted in the score panel.
 - **Toasts** (short center notices) for: hearts broken, Queen of Spades taken, Jack of Diamonds
@@ -101,7 +105,7 @@ don't cover them.
 - **Game over:** "You win!" or "<Nickname> wins!", the final standings sorted by score, the
   KardCoins award (spec 15 §3), and the buttons **Play again** (same settings, new deal) and
   **Main menu**.
-- **Pause (☰):** **Resume**, **Sound** (spec 13), **Settings** (spec 16), **New game**, and **Main menu**. The game is paused while it's open.
+- **Pause (☰ or Esc):** **Resume**, **Sound** (spec 13), **Settings** (spec 16), **New game**, and **Main menu**. The game is paused while it's open.
 
 ## 7. Not yet implemented
 Portrait art, the About & Credits screen, saving a game in progress, and other themes.
