@@ -1,6 +1,6 @@
 # FreeKards Specification
 
-FreeKards is a desktop card-game collection for Windows and Linux, on both x64 and ARM64. It replaces
+FreeKards (https://freekards.org, domain owned; no site yet) is a desktop card-game collection for Windows and Linux, on both x64 and ARM64. It replaces
 a 2012 Hoyle Card Games title that will not run on ARM-based Windows tablets.
 
 **The rule for this folder:** `/spec` is the single source of truth. If everything else in the repo were

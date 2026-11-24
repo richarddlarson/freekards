@@ -233,7 +233,7 @@ Template:
 
 ## D-026 — GitHub repository and commit identity
 - Date: 2026-11-23
-- Status: Accepted (answers Q2; completes D-007 and D-012)
+- Status: Accepted (answers Q2; completes D-007 and D-012). The appId part is superseded by D-034.
 - Decision: The public repository is https://github.com/richarddlarson/freekards, with remote
   `origin` and branch `main`. Commits use the owner's GitHub no-reply address
   (`49679068+richarddlarson@users.noreply.github.com`), set in the repo's git config, so no personal
@@ -297,3 +297,35 @@ Template:
   The **.deb** package is the primary Linux installer. The AppImage is still built, as a portable
   no-install option. Flatpak and Snap are not built.
 - Why: Owner choice. A .deb installs by double-click in Mint's package installer.
+
+## D-033 — Product name "FreeKards" kept, with trademark precautions
+- Date: 2026-11-24
+- Status: Accepted (answers Q15)
+- Decision: The product name is **FreeKards**, and the project owns the domain **freekards.org**
+  for a future website. A name search on 2026-11-24 found no existing "FreeKards" product or
+  trademark. It did find **KARDS** (US Reg. No. 5987037, 1939 Games ehf.), a live stylized mark for a
+  WWII digital card game. To stay clearly distinct:
+  1. Always write the name as one word, "FreeKards", in its own lettering. Never imitate the KARDS
+     logo or typography.
+  2. No war or military theme, art, or wording anywhere in the product.
+  3. Be prepared to rename if asked. D-034 makes a rename cheap.
+- Why: Owner choice after reviewing the search. The risk was judged low: "Kards" is a respelling of
+  the generic word "cards", and the products, audiences, and business models are very different.
+  This is not legal advice; the owner may check the USPTO directly or consult an attorney.
+
+## D-034 — Internal identity separate from the brand
+- Date: 2026-11-24
+- Status: Accepted (replaces the appId in D-026)
+- Decision: Everything the operating system uses to recognize the app uses a permanent,
+  brand-free identity based on the internal codename **`cardtable`**. These values must never change:
+  | Identifier | Value | Used for |
+  |------------|-------|----------|
+  | App ID (Windows AppUserModelID) | `io.github.richarddlarson.cardtable` | Taskbar grouping, shortcuts, notifications |
+  | Windows installer GUID | `603b3361-eb1a-4e18-9d18-ef44b2392b21` | Uninstall registry key, upgrade-in-place detection |
+  | User data folder name | `cardtable` (inside the OS app-data folder) | Settings, saves, statistics |
+  | Package name | `cardtable` | npm package, `.deb` package (upgrades on Linux) |
+  The brand "FreeKards" appears only in display-only places that can change freely: product name,
+  window title, shortcut names, installer file names, `.exe` name, the Linux command name
+  (`freekards`), and in-app text.
+- Why: Owner request. A future rename must not break upgrades or lose the player's saved data.
+  "cardtable" is never shown to users.

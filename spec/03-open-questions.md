@@ -21,4 +21,3 @@ question is removed from this list.
 
 ## Other
 - Q13. Keep statistics (games played, wins) and save a game in progress to resume later?
-- Q15. Is "FreeKards" the final product name?

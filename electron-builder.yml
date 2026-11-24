@@ -1,5 +1,7 @@
 # Installer packaging (spec runtimes/electron.md §Packaging and installers).
-appId: io.github.richarddlarson.freekards
+# Internal identity (D-034): appId and nsis.guid are brand-independent and must NEVER change,
+# so installs keep upgrading in place even if the product is renamed. Only display names use the brand.
+appId: io.github.richarddlarson.cardtable
 productName: FreeKards
 copyright: Copyright (c) 2026 The FreeKards Contributors
 directories:
@@ -22,6 +24,7 @@ win:
     - target: nsis
       arch: [x64, arm64]
 nsis:
+  guid: 603b3361-eb1a-4e18-9d18-ef44b2392b21
   oneClick: false
   perMachine: false
   allowElevation: false
@@ -32,6 +35,7 @@ nsis:
   license: LICENSE
 
 linux:
+  executableName: freekards
   target:
     - target: AppImage
       arch: [x64, arm64]

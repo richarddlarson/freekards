@@ -101,7 +101,10 @@ preload), `release/` (installers), `coverage/`.
 - **[Proposed]** App icon. Window position and size remembered between runs.
 
 ## Packaging and installers (`electron-builder.yml`)
-- **[Confirmed]** appId `io.github.richarddlarson.freekards` (D-026), productName `FreeKards`. Artifact names follow
+- **[Confirmed]** Internal identity (D-034, **never change**): appId `io.github.richarddlarson.cardtable`,
+  `nsis.guid` `603b3361-eb1a-4e18-9d18-ef44b2392b21`, npm/deb package name `cardtable`. The main
+  process sets `userData` to `<appData>/cardtable` and calls `app.setAppUserModelId(appId)` on Windows
+  before the app is ready. Display: productName `FreeKards`, Linux `executableName: freekards`. Artifact names follow
   `FreeKards-<version>-<os>-<arch>.<ext>`, written to `release/`.
 - **[Confirmed]** The app contains `dist-electron/**/*.cjs`, `dist/renderer/**`, and `package.json`,
   in an asar archive. `sbom/` and `LICENSE` (as `LICENSE.FreeKards.txt`) go into the app's

@@ -8,6 +8,15 @@ import * as path from 'node:path';
 
 const DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL'];
 
+/**
+ * Internal identity (spec D-034). Brand-independent and permanent, so a product rename never
+ * orphans settings or saves, or breaks Windows taskbar grouping and shortcuts.
+ */
+const APP_ID = 'io.github.richarddlarson.cardtable';
+const DATA_FOLDER = 'cardtable';
+app.setPath('userData', path.join(app.getPath('appData'), DATA_FOLDER));
+if (process.platform === 'win32') app.setAppUserModelId(APP_ID);
+
 function createWindow(): BrowserWindow {
   const win = new BrowserWindow({
     width: 1280,
