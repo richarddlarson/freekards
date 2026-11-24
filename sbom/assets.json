@@ -39,6 +39,19 @@
       "attribution": null,
       "modified": null,
       "tool": "scripts/generate-cards.mjs (in-repo, original geometry; D-027)"
+    },
+    {
+      "path": "spec/content/audio.json",
+      "title": "Audio cue map and music playlist",
+      "kind": "other",
+      "origin": "original",
+      "author": "The FreeKards Contributors",
+      "source": "https://github.com/richarddlarson/freekards",
+      "license": "MIT",
+      "licenseUrl": "https://opensource.org/license/mit",
+      "attribution": null,
+      "modified": null,
+      "tool": null
     }
   ]
 }

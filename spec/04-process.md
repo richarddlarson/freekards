@@ -35,3 +35,9 @@ These rules apply to everyone working on FreeKards, including the AI coding assi
   This avoids overwriting each other's changes.
 - When the background work finishes, the main session re-runs the tests, build, and license
   check itself before building on it.
+
+## Commit gate
+- Before every commit, run tests, build, and the license check, and commit **only if all three pass**.
+  Chain them with `&&` (never `;`), so a failure stops the commit.
+- Stage files deliberately and check `git status` before committing. Never commit `.claude/`
+  worktrees or local settings (they are in `.gitignore`).
