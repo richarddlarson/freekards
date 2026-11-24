@@ -1,7 +1,7 @@
 # 13 — Audio: Sound Effects, Music, Volume (core spec, engine-neutral)
 
-Status: **[Confirmed]** system design (D-038). Track and sample choices are pending the owner's picks
-(D-039). Voices are covered in spec 08 and D-005 and are not implemented yet.
+Status: **[Confirmed]** system design (D-038) and sources (D-039). The default playlist below can be
+changed at any time by editing `spec/content/audio.json` (and the asset register). Voices are covered in spec 08 and D-005 and are not implemented yet.
 
 ## 1. Channels and volume
 | Channel | Default level | Content |
@@ -42,6 +42,16 @@ A cue with no file mapped is silent. Missing or broken files never stop the game
   screens. After the last track it is reshuffled, without starting on the track that just played.
 - Tracks **crossfade over 3 s**. The first track fades in over 2 s at startup.
 - Music on or off is simply the Music slider (0 = off). There is no separate music switch.
+- **Default playlist** (all CC0, from FreePD; shipped byte-for-byte as MP3):
+  | Track | Composer | Length |
+  |-------|----------|--------|
+  | A Good Bass for Gambling | Komiku | 2:36 |
+  | Downtown Boogie | Bryan Teoh | 2:27 |
+  | Spring Chicken | Bryan Teoh | 2:47 |
+  | Compy Jazz | Kevin MacLeod | 4:07 |
+  | The Entertainer | Scott Joplin, arranged by Kevin MacLeod | 3:13 |
+  Other candidates checked and available from the same source: Martini Sunset, BeBop for Joey (no
+  composer tag in the file), Bass Meant Jazz, Dancing at the Inn, Frogs Legs Rag.
 
 ## 4. `spec/content/audio.json` schema (`schemaVersion: 1`)
 ```json

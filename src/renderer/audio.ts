@@ -229,6 +229,7 @@ class AudioEngine {
       old.source.stop(t + TUNING.crossfadeS + 0.1);
     }
     this.current = { source, gain, id: track.id };
+    console.info(`audio: now playing "${track.title}" (${track.composer}), context ${ctx.state}`);
     this.crossfadeAt = t + Math.max(1, buffer.duration - TUNING.crossfadeS);
   }
 

@@ -383,7 +383,7 @@ Template:
 
 ## D-039 — Audio sources: Kenney Casino Audio (effects) and FreePD (music)
 - Date: 2026-11-24
-- Status: Accepted (track picks pending)
+- Status: Accepted. Default playlist chosen 2026-11-24 (see `13-audio.md` §3); the owner may swap tracks.
 - Decision: Sound effects come from Kenney "Casino Audio" (CC0), downloaded manually by the owner,
   because the download page asks visitors whether they'd like to donate and that should not be
   scripted around. Music comes from FreePD's CC0 catalog: FreePD's license statement was verified on

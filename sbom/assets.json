@@ -65,6 +65,71 @@
       "attribution": "Casino Audio by Kenney (www.kenney.nl), CC0",
       "modified": null,
       "tool": "Downloaded by the owner 2026-11-24 (kenney_casino-audio.zip, sha256 f36250766ac5bc378c13708ddf12a23a8e54a3251f8d482c7536e51b5dbafa18); files copied unmodified"
+    },
+    {
+      "path": "assets/audio/music/a-good-bass-for-gambling.mp3",
+      "title": "Music: A Good Bass for Gambling",
+      "kind": "music",
+      "origin": "third-party",
+      "author": "Komiku",
+      "source": "https://web.archive.org/web/20251122233216id_/https://freepd.com/music/A%20Good%20Bass%20for%20Gambling.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "\"A Good Bass for Gambling\" by Komiku (FreePD.com), CC0",
+      "modified": null,
+      "tool": "Original freepd.com file via the Wayback Machine; byte-for-byte, sha256 dfaea2fa74a35bcbccd64eed8b47a5058f358a2aa1ea976eebaf654344e6ce10. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+    },
+    {
+      "path": "assets/audio/music/downtown-boogie.mp3",
+      "title": "Music: Downtown Boogie",
+      "kind": "music",
+      "origin": "third-party",
+      "author": "Bryan Teoh",
+      "source": "https://web.archive.org/web/20251122233443id_/https://freepd.com/music/Downtown%20Boogie.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "\"Downtown Boogie\" by Bryan Teoh (FreePD.com), CC0",
+      "modified": null,
+      "tool": "Original freepd.com file via the Wayback Machine; byte-for-byte, sha256 fac095f68050e9f9325269b06f261f85441209e2f5742e3fc2234115bb9fdc00. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+    },
+    {
+      "path": "assets/audio/music/spring-chicken.mp3",
+      "title": "Music: Spring Chicken",
+      "kind": "music",
+      "origin": "third-party",
+      "author": "Bryan Teoh",
+      "source": "https://web.archive.org/web/20250812115015id_/https://freepd.com/music/Spring%20Chicken.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "\"Spring Chicken\" by Bryan Teoh (FreePD.com), CC0",
+      "modified": null,
+      "tool": "Original freepd.com file via the Wayback Machine; byte-for-byte, sha256 cb6e536674d7cade8631977cd7edc3c56940e3646f542502d3648756b65340e9. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+    },
+    {
+      "path": "assets/audio/music/compy-jazz.mp3",
+      "title": "Music: Compy Jazz",
+      "kind": "music",
+      "origin": "third-party",
+      "author": "Kevin MacLeod",
+      "source": "https://web.archive.org/web/20251122233424id_/https://freepd.com/music/Compy%20Jazz.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "\"Compy Jazz\" by Kevin MacLeod (FreePD.com), CC0",
+      "modified": null,
+      "tool": "Original freepd.com file via the Wayback Machine; byte-for-byte, sha256 bd7e017374891f01dc5ffad74880ecb773131ffe3706f60c49c1aa79cc2e3f24. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+    },
+    {
+      "path": "assets/audio/music/the-entertainer.mp3",
+      "title": "Music: The Entertainer",
+      "kind": "music",
+      "origin": "third-party",
+      "author": "Scott Joplin, arranged by Kevin MacLeod",
+      "source": "https://web.archive.org/web/20250812115029id_/https://freepd.com/music/The%20Entertainer.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "\"The Entertainer\" by Scott Joplin, arranged by Kevin MacLeod (FreePD.com), CC0",
+      "modified": null,
+      "tool": "Original freepd.com file via the Wayback Machine; byte-for-byte, sha256 a7297aacdb0702cacdcd086a018e4419cf56c98dea08bfa70a50665fd7ce80c1. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
     }
   ]
 }

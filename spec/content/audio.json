@@ -46,7 +46,38 @@
       "assets/audio/sfx/kenney-casino-audio/card-fan-2.ogg"
     ]
   },
-  "music": [],
+  "music": [
+    {
+      "id": "a-good-bass-for-gambling",
+      "title": "A Good Bass for Gambling",
+      "composer": "Komiku",
+      "file": "assets/audio/music/a-good-bass-for-gambling.mp3"
+    },
+    {
+      "id": "downtown-boogie",
+      "title": "Downtown Boogie",
+      "composer": "Bryan Teoh",
+      "file": "assets/audio/music/downtown-boogie.mp3"
+    },
+    {
+      "id": "spring-chicken",
+      "title": "Spring Chicken",
+      "composer": "Bryan Teoh",
+      "file": "assets/audio/music/spring-chicken.mp3"
+    },
+    {
+      "id": "compy-jazz",
+      "title": "Compy Jazz",
+      "composer": "Kevin MacLeod",
+      "file": "assets/audio/music/compy-jazz.mp3"
+    },
+    {
+      "id": "the-entertainer",
+      "title": "The Entertainer",
+      "composer": "Scott Joplin, arranged by Kevin MacLeod",
+      "file": "assets/audio/music/the-entertainer.mp3"
+    }
+  ],
   "cueOptions": {
     "card.shuffle": {
       "maxSeconds": 1.8
