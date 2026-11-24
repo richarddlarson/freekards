@@ -73,6 +73,7 @@ src/renderer/               Presentation (DOM + CSS):
   style.css                 Classic Casino styles, in logical px
 tests/logic/                Vitest suites + helpers (simulateGame, playState)
 scripts/check-licenses.mjs  SBOM generator + license gate (also scans assets/ and spec/content/)
+scripts/build-music.mjs     Music: fetch originals, verify SHA-256, encode to Opus (D-045)
 scripts/generate-cards.mjs  Classic Casino card-face generator → assets/themes/classic-casino/cards (D-027)
 scripts/capture.cjs         Offscreen screenshot tool (D-037)
 assets/themes/              Runtime-neutral theme assets (generated card SVGs committed)
@@ -92,6 +93,7 @@ preload), `release/` (installers), `coverage/`.
 | `npm start` | Build, then launch Electron. |
 | `npm test` | Vitest, run once. |
 | `npm run licenses` | Regenerate the SBOMs and run the license gate. |
+| `npm run music` | Rebuild `assets/audio/music/*.opus` from the verified originals (needs ffmpeg with libopus). |
 | `npm run cards` | Regenerate the Classic Casino card SVGs (deterministic; commit the result). |
 | `npm run capture -- <page> <out.png> [w] [h] [ms,ms…]` | Offscreen screenshots (D-037). Build first. |
 | `npm run dist` / `dist:win` / `dist:linux` | Build, check licenses, then build installers with electron-builder. |

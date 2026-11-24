@@ -51,31 +51,81 @@
       "id": "a-good-bass-for-gambling",
       "title": "A Good Bass for Gambling",
       "composer": "Komiku",
-      "file": "assets/audio/music/a-good-bass-for-gambling.mp3"
+      "file": "assets/audio/music/a-good-bass-for-gambling.opus",
+      "source": "https://web.archive.org/web/20251122233216id_/https://freepd.com/music/A%20Good%20Bass%20for%20Gambling.mp3",
+      "sourceSha256": "dfaea2fa74a35bcbccd64eed8b47a5058f358a2aa1ea976eebaf654344e6ce10"
     },
     {
       "id": "downtown-boogie",
       "title": "Downtown Boogie",
       "composer": "Bryan Teoh",
-      "file": "assets/audio/music/downtown-boogie.mp3"
+      "file": "assets/audio/music/downtown-boogie.opus",
+      "source": "https://web.archive.org/web/20251122233443id_/https://freepd.com/music/Downtown%20Boogie.mp3",
+      "sourceSha256": "fac095f68050e9f9325269b06f261f85441209e2f5742e3fc2234115bb9fdc00"
     },
     {
       "id": "spring-chicken",
       "title": "Spring Chicken",
       "composer": "Bryan Teoh",
-      "file": "assets/audio/music/spring-chicken.mp3"
+      "file": "assets/audio/music/spring-chicken.opus",
+      "source": "https://web.archive.org/web/20250812115015id_/https://freepd.com/music/Spring%20Chicken.mp3",
+      "sourceSha256": "cb6e536674d7cade8631977cd7edc3c56940e3646f542502d3648756b65340e9"
     },
     {
       "id": "compy-jazz",
       "title": "Compy Jazz",
       "composer": "Kevin MacLeod",
-      "file": "assets/audio/music/compy-jazz.mp3"
+      "file": "assets/audio/music/compy-jazz.opus",
+      "source": "https://web.archive.org/web/20251122233424id_/https://freepd.com/music/Compy%20Jazz.mp3",
+      "sourceSha256": "bd7e017374891f01dc5ffad74880ecb773131ffe3706f60c49c1aa79cc2e3f24"
     },
     {
       "id": "the-entertainer",
       "title": "The Entertainer",
       "composer": "Scott Joplin, arranged by Kevin MacLeod",
-      "file": "assets/audio/music/the-entertainer.mp3"
+      "file": "assets/audio/music/the-entertainer.opus",
+      "source": "https://web.archive.org/web/20250812115029id_/https://freepd.com/music/The%20Entertainer.mp3",
+      "sourceSha256": "a7297aacdb0702cacdcd086a018e4419cf56c98dea08bfa70a50665fd7ce80c1"
+    },
+    {
+      "id": "martini-sunset",
+      "title": "Martini Sunset",
+      "composer": "Anonymous",
+      "file": "assets/audio/music/martini-sunset.opus",
+      "source": "https://web.archive.org/web/20251122233347id_/https://freepd.com/music/Martini%20Sunset.mp3",
+      "sourceSha256": "b9d12b5d59c187e07316cab61e82ccbea0f48f2f64a3e8062abbf1861acc7add"
+    },
+    {
+      "id": "bebop-for-joey",
+      "title": "BeBop for Joey",
+      "composer": "Kevin MacLeod",
+      "file": "assets/audio/music/bebop-for-joey.opus",
+      "source": "https://web.archive.org/web/20250812115025id_/https://freepd.com/music/BeBop%20for%20Joey.mp3",
+      "sourceSha256": "c512922521ec30604cc2892d3fc84a7e0ed88f3c758ee3ccad40730c641ed2d8"
+    },
+    {
+      "id": "bass-meant-jazz",
+      "title": "Bass Meant Jazz",
+      "composer": "Kevin MacLeod",
+      "file": "assets/audio/music/bass-meant-jazz.opus",
+      "source": "https://web.archive.org/web/20251122233216id_/https://freepd.com/music/Bass%20Meant%20Jazz.mp3",
+      "sourceSha256": "c876b42602e23df4e46b1c4a686e4e155d32852ea852b77a2e76fdc0c5e71745"
+    },
+    {
+      "id": "dancing-at-the-inn",
+      "title": "Dancing at the Inn",
+      "composer": "Kevin MacLeod",
+      "file": "assets/audio/music/dancing-at-the-inn.opus",
+      "source": "https://web.archive.org/web/20250809160157id_/https://freepd.com/music/Dancing%20at%20the%20Inn.mp3",
+      "sourceSha256": "4069cc0c500fa5360111598efce89a13aca2b684cc6d0fcc19a8574d5ef035fd"
+    },
+    {
+      "id": "frogs-legs-rag",
+      "title": "Frogs Legs Rag",
+      "composer": "Kevin MacLeod",
+      "file": "assets/audio/music/frogs-legs-rag.opus",
+      "source": "https://web.archive.org/web/20250812115020id_/https://freepd.com/music/Frogs%20Legs%20Rag.mp3",
+      "sourceSha256": "912e8864a7c590e97490c64d70ed875b8efd85aee3bd9487785efe86450250a8"
     }
   ],
   "cueOptions": {
@@ -89,5 +139,11 @@
     "card.select": {
       "gain": 0.7
     }
+  },
+  "musicEncoding": {
+    "codec": "opus",
+    "container": "ogg",
+    "bitrateKbps": 64,
+    "script": "scripts/build-music.mjs"
   }
 }

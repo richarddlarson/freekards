@@ -417,3 +417,16 @@ Template:
   are in `13-audio.md` §3.
 - Why: Owner request: let the player change which track is playing at any time. Repeating a chosen
   track matches what a player expects after deliberately picking it.
+
+## D-045 — All 10 music tracks, re-encoded to Opus 64 kbps
+- Date: 2026-11-24
+- Status: Accepted (replaces the "byte-for-byte MP3" part of D-039)
+- Decision: Ship all 10 FreePD candidate tracks, re-encoded to Opus (Ogg) at 64 kbps VBR, 48 kHz
+  stereo: about 16 MB in total, compared with 26 MB for the earlier 5 MP3s. `scripts/build-music.mjs`
+  rebuilds them reproducibly. For each track in `spec/content/audio.json` it fetches the original
+  from its recorded Wayback URL (cached in the git-ignored `.cache/music-src/`), verifies the
+  recorded SHA-256, and encodes deterministically with ffmpeg and libopus. Originals are not
+  committed. CC0 allows modification, so re-encoding raises no rights question. FFmpeg is a
+  build-only tool (spec 09 §2) and is listed in `sbom/build-tools.json`.
+- Why: Owner request: more choice in the track picker at a smaller download size. Opus at 64 kbps
+  is close to the original quality for background music and plays natively in every target runtime.

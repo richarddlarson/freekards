@@ -3,7 +3,7 @@
  * small random variation, and a shuffled, crossfading music playlist. Every failure is silent:
  * audio problems must never interrupt the game.
  */
-const audioFiles = import.meta.glob<string>('../../assets/audio/**/*.{ogg,mp3,wav}', {
+const audioFiles = import.meta.glob<string>('../../assets/audio/**/*.{ogg,opus,mp3,wav}', {
   eager: true,
   query: '?url',
   import: 'default',

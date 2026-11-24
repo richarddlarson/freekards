@@ -48,10 +48,11 @@ A cue with no file mapped is silent. Missing or broken files never stop the game
   choice is made. Choosing Shuffle lets the current track finish, then continues in random order.
   The choice persists with the other preferences and is applied at startup. Under the drop-down, a
   line reads "Now playing: <title> — <composer>" and updates when a new track starts. The drop-down
-  is a custom list with finger-sized rows (min 84 tall), not the platform's native select, so it is
+  is a custom list with finger-sized rows (min 84 tall; the list is at most 500 tall and scrolls,
+  with a thin brass scrollbar), not the platform's native select, so it is
   touch-friendly and scales with the stage. The main-menu Sound panel is vertically centered so the
   open list fits at the smallest supported size.
-- **Default playlist** (all CC0, from FreePD; shipped byte-for-byte as MP3):
+- **Playlist** (all CC0, from FreePD; D-045), in manifest order:
   | Track | Composer | Length |
   |-------|----------|--------|
   | A Good Bass for Gambling | Komiku | 2:36 |
@@ -59,8 +60,15 @@ A cue with no file mapped is silent. Missing or broken files never stop the game
   | Spring Chicken | Bryan Teoh | 2:47 |
   | Compy Jazz | Kevin MacLeod | 4:07 |
   | The Entertainer | Scott Joplin, arranged by Kevin MacLeod | 3:13 |
-  Other candidates checked and available from the same source: Martini Sunset, BeBop for Joey (no
-  composer tag in the file), Bass Meant Jazz, Dancing at the Inn, Frogs Legs Rag.
+  | Martini Sunset | Anonymous (as credited on FreePD) | 2:54 |
+  | BeBop for Joey | Kevin MacLeod | 2:19 |
+  | Bass Meant Jazz | Kevin MacLeod | 4:40 |
+  | Dancing at the Inn | Kevin MacLeod | 2:38 |
+  | Frogs Legs Rag | Kevin MacLeod | 2:50 |
+  Composer credits come from FreePD's archived category pages ("Written by …") and the files' tags.
+- **Encoding:** Opus in Ogg (`.opus`), 64 kbps VBR, 48 kHz stereo, made by `scripts/build-music.mjs`
+  from the verified originals (about 16 MB for all 10 tracks). The script is deterministic: the same
+  inputs and ffmpeg/libopus version give byte-identical files.
 
 ## 4. `spec/content/audio.json` schema (`schemaVersion: 1`)
 ```json
@@ -69,9 +77,12 @@ A cue with no file mapped is silent. Missing or broken files never stop the game
   "defaults": { "music": 0.45, "sfx": 0.8, "voice": 1.0 },
   "cues": { "card.place": ["assets/audio/sfx/kenney-casino-audio/card-place-1.ogg", "…"] },
   "cueOptions": { "card.deal": { "gain": 0.6, "minGapMs": 110 }, "card.shuffle": { "maxSeconds": 1.8 } },
+  "musicEncoding": { "codec": "opus", "container": "ogg", "bitrateKbps": 64, "script": "scripts/build-music.mjs" },
   "music": [
     { "id": "a-good-bass-for-gambling", "title": "A Good Bass for Gambling", "composer": "Komiku",
-      "file": "assets/audio/music/a-good-bass-for-gambling.mp3" }
+      "file": "assets/audio/music/a-good-bass-for-gambling.opus",
+      "source": "https://web.archive.org/web/20251122233216id_/https://freepd.com/music/A%20Good%20Bass%20for%20Gambling.mp3",
+      "sourceSha256": "dfaea2fa…" }
   ]
 }
 ```
@@ -90,5 +101,7 @@ place → `card-place-1…4`; collect → `card-shove-1…4`; pass → `card-fan
 - Music: tracks from **FreePD** (all CC0 1.0, by FreePD's own statement, archived 2024-06-01 at
   https://web.archive.org/web/20240601000000/https://freepd.com/). freepd.com closed in 2025, so each
   track is taken from the Wayback Machine's copy of its **original freepd.com URL**. That URL and the
-  file's SHA-256 are recorded in the asset register. Files are shipped exactly as published, without
-  re-encoding.
+  original file's SHA-256 are kept in `spec/content/audio.json` (`source`, `sourceSha256`) and in the
+  asset register. Originals are not committed; `scripts/build-music.mjs` re-downloads them into the
+  git-ignored `.cache/music-src/` when needed, verifies each SHA-256, and re-encodes (D-045). FFmpeg is
+  listed in `sbom/build-tools.json` as a build-only tool.

@@ -705,8 +705,10 @@ button:disabled {
   right: 0;
   top: calc(100% + 8px);
   z-index: 20;
-  max-height: 560px;
+  max-height: 500px;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brass) rgba(255, 255, 255, 0.08);
   border-radius: 18px;
   border: 2px solid var(--panel-border);
   background: #0b2414;
@@ -754,4 +756,18 @@ button:disabled {
   font-size: 22px;
   font-style: italic;
   opacity: 0.85;
+}
+
+.track-list::-webkit-scrollbar {
+  width: 14px;
+}
+
+.track-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 7px;
+}
+
+.track-list::-webkit-scrollbar-thumb {
+  background: var(--brass);
+  border-radius: 7px;
 }

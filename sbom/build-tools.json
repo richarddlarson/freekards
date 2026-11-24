@@ -1,4 +1,13 @@
 {
   "$comment": "Build-time-only tools. Schema and rules: spec/09-licensing-and-sbom.md section 3c.",
-  "tools": []
+  "tools": [
+    {
+      "name": "FFmpeg (with libopus)",
+      "version": "6.1.1 (Ubuntu 24.04 package 6.1.1-3ubuntu5) / libopus",
+      "source": "https://ffmpeg.org/",
+      "license": "GPL-2.0-or-later (this build is configured --enable-gpl); libopus is BSD-3-Clause",
+      "scope": "build",
+      "usedFor": "Encoding music to Opus (scripts/build-music.mjs). Only its output ships; FFmpeg's license puts no conditions on encoded output (spec 09 \u00a72)."
+    }
+  ]
 }

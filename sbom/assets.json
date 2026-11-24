@@ -67,7 +67,7 @@
       "tool": "Downloaded by the owner 2026-11-24 (kenney_casino-audio.zip, sha256 f36250766ac5bc378c13708ddf12a23a8e54a3251f8d482c7536e51b5dbafa18); files copied unmodified"
     },
     {
-      "path": "assets/audio/music/a-good-bass-for-gambling.mp3",
+      "path": "assets/audio/music/a-good-bass-for-gambling.opus",
       "title": "Music: A Good Bass for Gambling",
       "kind": "music",
       "origin": "third-party",
@@ -76,11 +76,11 @@
       "license": "CC0-1.0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "attribution": "\"A Good Bass for Gambling\" by Komiku (FreePD.com), CC0",
-      "modified": null,
-      "tool": "Original freepd.com file via the Wayback Machine; byte-for-byte, sha256 dfaea2fa74a35bcbccd64eed8b47a5058f358a2aa1ea976eebaf654344e6ce10. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+      "modified": "Re-encoded from the original MP3 to Opus 64 kbps VBR (48 kHz stereo) by scripts/build-music.mjs; metadata replaced with title/composer",
+      "tool": "Original sha256 dfaea2fa74a35bcbccd64eed8b47a5058f358a2aa1ea976eebaf654344e6ce10; output sha256 34f911c4395fadf235717e5e5ab319fd3a3d6f1aa27542379a955819bc88b38c; ffmpeg + libopus. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
     },
     {
-      "path": "assets/audio/music/downtown-boogie.mp3",
+      "path": "assets/audio/music/downtown-boogie.opus",
       "title": "Music: Downtown Boogie",
       "kind": "music",
       "origin": "third-party",
@@ -89,11 +89,11 @@
       "license": "CC0-1.0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "attribution": "\"Downtown Boogie\" by Bryan Teoh (FreePD.com), CC0",
-      "modified": null,
-      "tool": "Original freepd.com file via the Wayback Machine; byte-for-byte, sha256 fac095f68050e9f9325269b06f261f85441209e2f5742e3fc2234115bb9fdc00. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+      "modified": "Re-encoded from the original MP3 to Opus 64 kbps VBR (48 kHz stereo) by scripts/build-music.mjs; metadata replaced with title/composer",
+      "tool": "Original sha256 fac095f68050e9f9325269b06f261f85441209e2f5742e3fc2234115bb9fdc00; output sha256 43fbfe47bfeaaf1374a56ef191b23967f23dc9f8cdf55827f3ab259205528cf7; ffmpeg + libopus. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
     },
     {
-      "path": "assets/audio/music/spring-chicken.mp3",
+      "path": "assets/audio/music/spring-chicken.opus",
       "title": "Music: Spring Chicken",
       "kind": "music",
       "origin": "third-party",
@@ -102,11 +102,11 @@
       "license": "CC0-1.0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "attribution": "\"Spring Chicken\" by Bryan Teoh (FreePD.com), CC0",
-      "modified": null,
-      "tool": "Original freepd.com file via the Wayback Machine; byte-for-byte, sha256 cb6e536674d7cade8631977cd7edc3c56940e3646f542502d3648756b65340e9. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+      "modified": "Re-encoded from the original MP3 to Opus 64 kbps VBR (48 kHz stereo) by scripts/build-music.mjs; metadata replaced with title/composer",
+      "tool": "Original sha256 cb6e536674d7cade8631977cd7edc3c56940e3646f542502d3648756b65340e9; output sha256 063a3cd84f8be1da81451fcc0204dc7c0eb03685e7545c224c27b4b008b51572; ffmpeg + libopus. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
     },
     {
-      "path": "assets/audio/music/compy-jazz.mp3",
+      "path": "assets/audio/music/compy-jazz.opus",
       "title": "Music: Compy Jazz",
       "kind": "music",
       "origin": "third-party",
@@ -115,11 +115,11 @@
       "license": "CC0-1.0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "attribution": "\"Compy Jazz\" by Kevin MacLeod (FreePD.com), CC0",
-      "modified": null,
-      "tool": "Original freepd.com file via the Wayback Machine; byte-for-byte, sha256 bd7e017374891f01dc5ffad74880ecb773131ffe3706f60c49c1aa79cc2e3f24. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+      "modified": "Re-encoded from the original MP3 to Opus 64 kbps VBR (48 kHz stereo) by scripts/build-music.mjs; metadata replaced with title/composer",
+      "tool": "Original sha256 bd7e017374891f01dc5ffad74880ecb773131ffe3706f60c49c1aa79cc2e3f24; output sha256 cd730dc24525c44f21985a2c79206041b3633d2aea89450fb34dfa7f5ead01e3; ffmpeg + libopus. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
     },
     {
-      "path": "assets/audio/music/the-entertainer.mp3",
+      "path": "assets/audio/music/the-entertainer.opus",
       "title": "Music: The Entertainer",
       "kind": "music",
       "origin": "third-party",
@@ -128,8 +128,73 @@
       "license": "CC0-1.0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
       "attribution": "\"The Entertainer\" by Scott Joplin, arranged by Kevin MacLeod (FreePD.com), CC0",
-      "modified": null,
-      "tool": "Original freepd.com file via the Wayback Machine; byte-for-byte, sha256 a7297aacdb0702cacdcd086a018e4419cf56c98dea08bfa70a50665fd7ce80c1. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+      "modified": "Re-encoded from the original MP3 to Opus 64 kbps VBR (48 kHz stereo) by scripts/build-music.mjs; metadata replaced with title/composer",
+      "tool": "Original sha256 a7297aacdb0702cacdcd086a018e4419cf56c98dea08bfa70a50665fd7ce80c1; output sha256 47596677bfc8ba7a74d9e7a7b4dfb4523a27afd702d3ad6a21f82741104df408; ffmpeg + libopus. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+    },
+    {
+      "path": "assets/audio/music/martini-sunset.opus",
+      "title": "Music: Martini Sunset",
+      "kind": "music",
+      "origin": "third-party",
+      "author": "Anonymous",
+      "source": "https://web.archive.org/web/20251122233347id_/https://freepd.com/music/Martini%20Sunset.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "\"Martini Sunset\" by Anonymous (FreePD.com), CC0",
+      "modified": "Re-encoded from the original MP3 to Opus 64 kbps VBR (48 kHz stereo) by scripts/build-music.mjs; metadata replaced with title/composer",
+      "tool": "Original sha256 b9d12b5d59c187e07316cab61e82ccbea0f48f2f64a3e8062abbf1861acc7add; output sha256 b75ce5071bd425bca13f6ca92f13fb577957bcf47f9bcf54c97fadc1d52ccdd3; ffmpeg + libopus. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+    },
+    {
+      "path": "assets/audio/music/bebop-for-joey.opus",
+      "title": "Music: BeBop for Joey",
+      "kind": "music",
+      "origin": "third-party",
+      "author": "Kevin MacLeod",
+      "source": "https://web.archive.org/web/20250812115025id_/https://freepd.com/music/BeBop%20for%20Joey.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "\"BeBop for Joey\" by Kevin MacLeod (FreePD.com), CC0",
+      "modified": "Re-encoded from the original MP3 to Opus 64 kbps VBR (48 kHz stereo) by scripts/build-music.mjs; metadata replaced with title/composer",
+      "tool": "Original sha256 c512922521ec30604cc2892d3fc84a7e0ed88f3c758ee3ccad40730c641ed2d8; output sha256 d0f50bf5e1bed009f0da120a387bd286870ad285ad5ea7eafa663073f2f13923; ffmpeg + libopus. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+    },
+    {
+      "path": "assets/audio/music/bass-meant-jazz.opus",
+      "title": "Music: Bass Meant Jazz",
+      "kind": "music",
+      "origin": "third-party",
+      "author": "Kevin MacLeod",
+      "source": "https://web.archive.org/web/20251122233216id_/https://freepd.com/music/Bass%20Meant%20Jazz.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "\"Bass Meant Jazz\" by Kevin MacLeod (FreePD.com), CC0",
+      "modified": "Re-encoded from the original MP3 to Opus 64 kbps VBR (48 kHz stereo) by scripts/build-music.mjs; metadata replaced with title/composer",
+      "tool": "Original sha256 c876b42602e23df4e46b1c4a686e4e155d32852ea852b77a2e76fdc0c5e71745; output sha256 8561cc06ccdbb7d110ff4b94bd5b929496be5d16fde9e1289519c18d2ad7c360; ffmpeg + libopus. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+    },
+    {
+      "path": "assets/audio/music/dancing-at-the-inn.opus",
+      "title": "Music: Dancing at the Inn",
+      "kind": "music",
+      "origin": "third-party",
+      "author": "Kevin MacLeod",
+      "source": "https://web.archive.org/web/20250809160157id_/https://freepd.com/music/Dancing%20at%20the%20Inn.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "\"Dancing at the Inn\" by Kevin MacLeod (FreePD.com), CC0",
+      "modified": "Re-encoded from the original MP3 to Opus 64 kbps VBR (48 kHz stereo) by scripts/build-music.mjs; metadata replaced with title/composer",
+      "tool": "Original sha256 4069cc0c500fa5360111598efce89a13aca2b684cc6d0fcc19a8574d5ef035fd; output sha256 79a0a88146737b4ba58c78c378aa3c0dd8fe4269ab3ac99b94ff135891ea9a67; ffmpeg + libopus. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
+    },
+    {
+      "path": "assets/audio/music/frogs-legs-rag.opus",
+      "title": "Music: Frogs Legs Rag",
+      "kind": "music",
+      "origin": "third-party",
+      "author": "Kevin MacLeod",
+      "source": "https://web.archive.org/web/20250812115020id_/https://freepd.com/music/Frogs%20Legs%20Rag.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "\"Frogs Legs Rag\" by Kevin MacLeod (FreePD.com), CC0",
+      "modified": "Re-encoded from the original MP3 to Opus 64 kbps VBR (48 kHz stereo) by scripts/build-music.mjs; metadata replaced with title/composer",
+      "tool": "Original sha256 912e8864a7c590e97490c64d70ed875b8efd85aee3bd9487785efe86450250a8; output sha256 5371e93d6718fd8dc0726ff7942a0586b2938e55119db14069dd133dd79dc567; ffmpeg + libopus. FreePD CC0 statement: https://web.archive.org/web/20240601000000/https://freepd.com/"
     }
   ]
 }
