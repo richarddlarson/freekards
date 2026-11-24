@@ -27,8 +27,24 @@ These rules apply to everyone working on FreeKards, including the AI coding assi
 - The repository root `CLAUDE.md` only points to this folder. The rules themselves live here.
 
 ## Git
-- Default branch is `main`. Make small commits with descriptive messages.
+- Default branch is `main`. Make small commits with descriptive messages. Each commit still pairs a
+  code change with its spec update.
 - Commits made by the AI assistant end with its `Co-Authored-By` attribution line.
+
+### One pull request per working session (D-059)
+1. **Start of a session:** update `main` from GitHub, then create a branch named
+   `session/YYYY-MM-DD-<short-topic>` from it. All of the session's commits go on that branch.
+   Nobody commits directly to `main`.
+2. **Push only when the owner asks.** The owner may still be testing or adding changes. Committing
+   locally is fine at any time.
+3. **When the owner asks to push,** push the branch and open one pull request for the session (as a
+   draft if more changes are expected). Its title names the session's main change. Its body lists
+   what changed, the decisions recorded (D-numbers), roadmap items touched, and how it was tested.
+   Later pushes to the same branch update the same PR. Confirm CI is green on the PR.
+4. **The owner merges** when ready, with a **merge commit**, not squash or rebase. This keeps each
+   commit, and the decision it records, in `main`'s history, grouped under the session's merge.
+   The AI assistant never merges a PR and never pushes to `main`.
+5. **After the merge:** delete the branch (on GitHub and locally) and fast-forward local `main`.
 
 ## Parallel work (background agents)
 - When a background agent is editing files, the main session holds its own edits to the same

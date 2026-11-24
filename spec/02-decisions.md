@@ -403,7 +403,7 @@ Template:
   build. A `build` matrix then produces installers on **native** runners for Windows x64/arm64 (NSIS)
   and Linux x64/arm64 (deb + AppImage), uploaded as artifacts `freekards-<os>-<arch>` and kept for
   14 days. Permissions default to read-only, and superseded runs are cancelled. Full design is in
-  `runtimes/electron.md` §CI. **Linux artifact names amended by D-057.**
+  `runtimes/electron.md` §CI. **Linux artifact names amended by D-057; triggers amended by D-059.**
 - Why: Native runners give real ARM64 builds (especially Windows on ARM, for the Surface) without
   cross-compiling. Every push yields testable installers.
 
@@ -613,3 +613,16 @@ Template:
   on the Hand results and Game over dialogs. Details in `12-hearts-table.md` §4.
 - Why: Owner request while play-testing: players with a keyboard expect Esc to pause. Having it
   also back out of panels follows the usual desktop convention.
+
+## D-059 — One pull request per working session
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: Each working session's changes go on a `session/YYYY-MM-DD-<topic>` branch. It is
+  pushed only when the owner asks, and becomes one pull request that the owner merges with a merge
+  commit. Nobody pushes directly to `main`. CI runs on pull requests, pushes to `main`, `v*` tags,
+  and manual dispatch; it no longer runs on every branch push. Steps in `04-process.md` §Git.
+- Why: Owner request: "It would probably be best to capture each session of changes into a PR and
+  then submit and merge that PR when we're ready, rather than automatically pushing to main with
+  each change. That provides a better overall control of the changes and also gives us a better
+  history to work with over time." Merge commits keep each decision's commit visible. Dropping the
+  branch-push trigger avoids building the same commit twice (push and PR).

@@ -3,9 +3,11 @@
 # listed in sbom/build-tools.json (spec 09 §3c).
 name: build
 
+# Session work arrives through pull requests (D-059), so branch pushes are covered by the PR run;
+# pushes to main (merges) and v* tags still build on their own.
 on:
   push:
-    branches: ['**']
+    branches: [main]
     tags: ['v*']
   pull_request:
   workflow_dispatch:

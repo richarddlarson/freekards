@@ -205,8 +205,9 @@ preload), `release/` (installers), `coverage/`.
 ## CI (D-040, D-041, D-042)
 - **[Confirmed]** Public GitHub repository with GitHub Actions builds (D-007, D-012). The workflow is
   `.github/workflows/build.yml` (name `build`).
-- **Triggers:** push to any branch, push of a `v*` tag, pull requests, and manual runs
-  (`workflow_dispatch`). A concurrency group per workflow and ref cancels superseded runs.
+- **Triggers:** push to `main` (that is, a merged PR), push of a `v*` tag, pull requests, and manual
+  runs (`workflow_dispatch`). Session branches are built through their PR (D-059), not on every
+  branch push, so each change isn't built twice. A concurrency group per workflow and ref cancels superseded runs.
 - **Permissions:** `contents: read` for the whole workflow. Only the `release` job gets `contents: write`.
 - **Job `check`** (`ubuntu-latest`), in this order:
   1. checkout, then setup-node with `node-version-file: .nvmrc` and the npm cache;
