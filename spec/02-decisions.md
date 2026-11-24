@@ -68,7 +68,7 @@ Template:
 
 ## D-007 — Source hosting and release builds
 - Date: 2026-11-23
-- Status: Accepted
+- Status: Accepted. Repository visibility superseded by D-012.
 - Decision: The code lives in a private GitHub repository. GitHub Actions builds installers for all
   four targets on native runners. Runner details are in the runtime spec.
 - Why: Real Windows ARM build machines, and a backup off this machine.
@@ -102,3 +102,35 @@ Template:
 - Decision: The assistant installs the developer tools on the dev machine (Linux): Node.js LTS through
   nvm (per user, no sudo needed) and the GitHub CLI `gh`. The owner runs `gh auth login` himself.
 - Why: Owner choice.
+
+## D-012 — Public repository from day one
+- Date: 2026-11-23
+- Status: Accepted (replaces the "private" part of D-007; CI builds are unchanged)
+- Decision: The GitHub repository is public from the first push.
+- Why: Owner choice. FreeKards is an open-source project.
+
+## D-013 — MIT license
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: The whole project, including original assets, is MIT-licensed:
+  "Copyright (c) 2026 The FreeKards Contributors".
+- Why: Owner choice. It is a simple, permissive, widely understood license.
+
+## D-014 — Third-party code and assets: permissive licenses only
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: Everything shipped must use one of the allowed permissive or public-domain licenses listed
+  in `09-licensing-and-sbom.md` §2. No copyleft, no non-commercial, no no-derivatives licenses.
+  Build-time-only tools are exempt when their license puts no conditions on the output. The app's
+  runtime platform is a documented exception (proposed).
+- Why: Owner choice. It keeps the whole app cleanly compatible with MIT and leaves no question of
+  rights. Alternative considered: allowing share-alike assets and LGPL code, rejected as adding
+  obligations to track.
+
+## D-015 — SBOM shipped in the app
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: A generated CycloneDX SBOM for code, a hand-maintained asset register, and a build-tools
+  list live in `sbom/`, are checked in CI, ship inside the app, and are shown on an in-app
+  About & Credits screen. Full details are in `09-licensing-and-sbom.md`.
+- Why: Owner choice. Everyone can see what is used, where it came from, and under what license.

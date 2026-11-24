@@ -4,9 +4,12 @@ When a question is answered, the answer is recorded as a decision in `02-decisio
 question is removed from this list.
 
 ## Technology and delivery
-- Q2. GitHub account or organization, and repository name for the private repo (D-007)?
+- Q2. GitHub account or organization, and repository name for the public repo (D-012)?
 - Q3. Should the installers be code-signed? An unsigned Windows installer triggers a SmartScreen
-  "Windows protected your PC" warning on first run.
+  "Windows protected your PC" warning on first run. Because the project is open source, the SignPath
+  Foundation may provide free code signing; that option is worth checking.
+- Q19. Accept the runtime platform exception (Electron and Chromium ship some LGPL parts such as
+  FFmpeg; see 09 §2)?
 - Q4. Which Linux distribution and desktop is used, so we know which package formats to build
   (AppImage, .deb, Flatpak)?
 - Q17. Which text-to-speech tool and voices (D-005)? Candidate: Piper, which is offline and
@@ -19,8 +22,8 @@ question is removed from this list.
 
 ## Characters, art, and audio
 - Q12. The roster itself: names, looks, personalities, and voices for 6–8 original characters.
-- Q18. Card art source: draw original SVGs, or use an existing public-domain or open-licensed set
-  (for example a CC0 SVG deck) as the base for Classic Casino?
+- Q18. Card art source: draw original SVGs, or use an existing CC0 or public-domain SVG deck as the
+  base for Classic Casino? It must meet the permissive-only policy (D-014).
 
 ## Other
 - Q13. Keep statistics (games played, wins) and save a game in progress to resume later?

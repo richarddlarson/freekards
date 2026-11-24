@@ -20,6 +20,7 @@ look, feel, behavior, build, packaging, install, runtime, or development process
 | [06-hearts.md](06-hearts.md) | Hearts rules, phases, events, and AI. |
 | [07-themes.md](07-themes.md) | Theme system and theme manifest. |
 | [08-characters.md](08-characters.md) | Character roster, personality, difficulty model, and dialogue. |
+| [09-licensing-and-sbom.md](09-licensing-and-sbom.md) | MIT license, third-party license policy, SBOM, and Credits screen. |
 | [runtimes/electron.md](runtimes/electron.md) | Electron-specific stack, packaging, installers, and CI. |
 
 Every document except those in `runtimes/` is **engine-neutral** (see 05). Later documents get the

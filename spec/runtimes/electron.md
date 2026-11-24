@@ -40,6 +40,18 @@ Status key: **[Confirmed]** / **[Proposed]**, as in `01-requirements.md`.
   user with no admin rights needed, and adds Start-menu and desktop shortcuts.
 - **[Proposed]** Linux: an AppImage (runs on any distribution) plus a `.deb`, for both x64 and arm64.
 
+## Licensing and SBOM (per core spec 09)
+- **[Proposed]** Code SBOM: `@cyclonedx/cyclonedx-npm`, limited to production dependencies, writes
+  `sbom/code.cdx.json` on every build.
+- **[Proposed]** License gate: a script in `scripts/` reads the CycloneDX file and the asset register
+  and fails the build on any license not in the allowed list or any file missing from the register.
+- **[Proposed]** Runtime platform exception: Electron (MIT) and the Chromium build it bundles, with
+  that build's third-party components, some under other licenses such as LGPL for FFmpeg. Electron's
+  own `LICENSE` and `LICENSES.chromium.html` ship unmodified in the installed app and are linked from
+  the Credits screen.
+- Development-only npm packages (build, test, lint) are not shipped. They are still listed in a
+  separate dev SBOM, `sbom/dev.cdx.json`, for completeness.
+
 ## CI
 - **[Confirmed]** Private GitHub repository with GitHub Actions builds (D-007).
 - **[Proposed]** A build matrix running on native runners: `windows-latest` (x64), `windows-11-arm`

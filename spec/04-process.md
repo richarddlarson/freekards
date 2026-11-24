@@ -15,6 +15,8 @@ These rules apply to everyone working on FreeKards, including the AI coding assi
 6. **Keep core and runtime separate.** Before writing a spec entry, decide whether it is
    engine-neutral (core document) or specific to one runtime (`spec/runtimes/<runtime>.md`).
    Follow the rules in `05-portability.md`.
+7. **License check.** Every new dependency, asset, or build tool is checked against the allowed
+   licenses and added to the SBOM or asset register in the same commit (`09-licensing-and-sbom.md` §6).
 
 ## AI assistant working rules
 - Ask the owner when a choice really belongs to him: anything about how the game looks, feels, or

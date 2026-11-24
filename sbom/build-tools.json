@@ -1,0 +1,4 @@
+{
+  "$comment": "Build-time-only tools. Schema and rules: spec/09-licensing-and-sbom.md section 3c.",
+  "tools": []
+}

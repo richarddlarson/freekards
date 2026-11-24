@@ -43,8 +43,12 @@ Status key: **[Confirmed]** = stated by the owner or settled in `02-decisions.md
 - **[Proposed]** Separate volume controls (or mute) for music, sound effects, and character voices.
   Speech bubbles can be turned off on their own.
 
-## 5. Intellectual property
+## 5. Licensing and intellectual property
 
-- **[Proposed]** All art, sounds, music, character names, and dialogue are **original or properly
-  licensed**. Nothing is copied from the Hoyle product. FreeKards recreates the *kind* of experience,
-  not Hoyle's assets or trademarks.
+- **[Confirmed]** Free and open-source software under the MIT License, in a public repository (D-012, D-013).
+- **[Confirmed]** Uses only freely available, permissively licensed graphics, sounds, fonts,
+  libraries, and tools (D-014).
+- **[Confirmed]** A software bill of materials is part of the app and is visible to users (D-015).
+- **[Confirmed]** Nothing is copied from the Hoyle product. FreeKards recreates the *kind* of
+  experience, not Hoyle's assets or trademarks.
+- Details: `09-licensing-and-sbom.md`.
