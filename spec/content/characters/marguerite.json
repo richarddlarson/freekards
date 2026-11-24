@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "id": "marguerite",
+  "name": "Professor Marguerite Quill",
+  "nickname": "The Professor",
+  "kind": "human",
+  "gender": "female",
+  "ageRange": "mid 50s",
+  "tagline": "Mathematics professor. Will calculate your odds out loud, whether you asked or not.",
+  "bio": "Professor Quill teaches probability at a small college and treats every card game as a fascinating lecture. She is brilliant, scatterbrained, and constantly losing her glasses, which are almost always on top of her head. Prone to delightful tangents about the history of playing cards.",
+  "look": "Woman in her mid 50s, wild curly auburn hair streaked with gray, two pairs of glasses (one on her nose, one forgotten on top of her head), tweed blazer, chalk dust on her sleeve, a pencil stuck in her hair. Default expression: thoughtful, slightly distracted.",
+  "traits": {
+    "tone": "absent-minded intellectual",
+    "chattiness": 0.65,
+    "risk": 0.2,
+    "skillAdjust": 0.05
+  },
+  "voice": {
+    "description": "Clear, articulate middle-aged female voice; quick and enthusiastic, slightly breathless when excited.",
+    "pitch": "medium",
+    "pace": "medium-fast"
+  },
+  "lines": {
+    "game.start": [
+      {
+        "id": "marguerite.game.start.1",
+        "text": "Splendid! Four players, fifty-two cards. The possibilities are astronomical. Literally."
+      },
+      {
+        "id": "marguerite.game.start.2",
+        "text": "Has anyone seen my glasses? ...Oh. They're on my head. Let's begin."
+      },
+      {
+        "id": "marguerite.game.start.3",
+        "text": "Fun fact: there are more ways to shuffle a deck than atoms on Earth. Anyway, deal!"
+      }
+    ],
+    "game.won.self": [
+      {
+        "id": "marguerite.game.won.self.1",
+        "text": "Victory! Statistically, it was bound to happen eventually."
+      },
+      {
+        "id": "marguerite.game.won.self.2",
+        "text": "Ha! The math works! I'll be mentioning this in Monday's lecture."
+      }
+    ],
+    "game.won.human": [
+      {
+        "id": "marguerite.game.won.human.1",
+        "text": "Remarkable! You'd make a fine statistician."
+      },
+      {
+        "id": "marguerite.game.won.human.2",
+        "text": "Well played! I shall have to revise my model of you."
+      }
+    ],
+    "game.won.other": [
+      {
+        "id": "marguerite.game.won.other.1",
+        "text": "Well done. My calculations suggest I was distracted."
+      }
+    ],
+    "hand.good.self": [
+      {
+        "id": "marguerite.hand.good.self.1",
+        "text": "Excellent. Exactly as the probabilities predicted. Roughly."
+      },
+      {
+        "id": "marguerite.hand.good.self.2",
+        "text": "Lovely. Elegant, even."
+      }
+    ],
+    "hand.bad.self": [
+      {
+        "id": "marguerite.hand.bad.self.1",
+        "text": "Hmm. That outcome was improbable. Yet here we are."
+      },
+      {
+        "id": "marguerite.hand.bad.self.2",
+        "text": "I must have carried a one somewhere."
+      }
+    ],
+    "hand.good.human": [
+      {
+        "id": "marguerite.hand.good.human.1",
+        "text": "Well reasoned! I'd give that an A."
+      }
+    ],
+    "hand.bad.human": [
+      {
+        "id": "marguerite.hand.bad.human.1",
+        "text": "Variance, my dear. Pure variance. Don't take it personally."
+      }
+    ],
+    "idle.human": [
+      {
+        "id": "marguerite.idle.human.1",
+        "text": "Take your time. Did you know playing cards came to Europe in the 1370s? Anyway, no rush."
+      },
+      {
+        "id": "marguerite.idle.human.2",
+        "text": "Thinking deeply, I see. I approve."
+      }
+    ],
+    "hearts.queen_taken.self": [
+      {
+        "id": "marguerite.hearts.queen_taken.self.1",
+        "text": "Ah. I estimated a twelve percent chance of that. Rounding error."
+      },
+      {
+        "id": "marguerite.hearts.queen_taken.self.2",
+        "text": "The Queen of Spades. Historically quite unlucky. Personally, also."
+      }
+    ],
+    "hearts.queen_taken.human": [
+      {
+        "id": "marguerite.hearts.queen_taken.human.1",
+        "text": "Oh dear. The odds were in your favor, I promise."
+      }
+    ],
+    "hearts.queen_taken.other": [
+      {
+        "id": "marguerite.hearts.queen_taken.other.1",
+        "text": "Fascinating. I had a hunch she was hiding there."
+      }
+    ],
+    "hearts.queen_given.self": [
+      {
+        "id": "marguerite.hearts.queen_given.self.1",
+        "text": "And the Queen finds a new home. Probability is so satisfying."
+      },
+      {
+        "id": "marguerite.hearts.queen_given.self.2",
+        "text": "As predicted. I'd show my work, but it's on my other glasses."
+      }
+    ],
+    "hearts.hearts_broken.self": [
+      {
+        "id": "marguerite.hearts.hearts_broken.self.1",
+        "text": "Hearts are broken. A necessary inflection point."
+      }
+    ],
+    "hearts.hearts_broken.other": [
+      {
+        "id": "marguerite.hearts.hearts_broken.other.1",
+        "text": "Ah, and the hearts are broken. The game enters its second phase."
+      }
+    ],
+    "hearts.jack_taken.self": [
+      {
+        "id": "marguerite.hearts.jack_taken.self.1",
+        "text": "The Jack of Diamonds! A negative number has never looked so lovely."
+      }
+    ],
+    "hearts.jack_taken.human": [
+      {
+        "id": "marguerite.hearts.jack_taken.human.1",
+        "text": "Well spotted! That Jack is worth a good deal."
+      }
+    ],
+    "hearts.moon_shot.self": [
+      {
+        "id": "marguerite.hearts.moon_shot.self.1",
+        "text": "I shot the moon! Somebody fetch my chalkboard!"
+      },
+      {
+        "id": "marguerite.hearts.moon_shot.self.2",
+        "text": "Twenty-six points to everyone else. The math is beautiful."
+      }
+    ],
+    "hearts.moon_shot.human": [
+      {
+        "id": "marguerite.hearts.moon_shot.human.1",
+        "text": "You shot the moon! The odds of that are... well, quite small! Bravo!"
+      },
+      {
+        "id": "marguerite.hearts.moon_shot.human.2",
+        "text": "Extraordinary! I must write a paper about this."
+      }
+    ],
+    "hearts.moon_shot.other": [
+      {
+        "id": "marguerite.hearts.moon_shot.other.1",
+        "text": "A moon shot! How statistically delightful."
+      }
+    ],
+    "hearts.moon_blocked.self": [
+      {
+        "id": "marguerite.hearts.moon_blocked.self.1",
+        "text": "Blocked by a single card. How very improbable. How very annoying."
+      }
+    ],
+    "hearts.moon_blocked.human": [
+      {
+        "id": "marguerite.hearts.moon_blocked.human.1",
+        "text": "So close! You were one card from glory."
+      }
+    ],
+    "hearts.moon_block.self": [
+      {
+        "id": "marguerite.hearts.moon_block.self.1",
+        "text": "I saw that coming three tricks ago. I simply forgot to mention it."
+      }
+    ],
+    "hearts.pass.received": [
+      {
+        "id": "marguerite.hearts.pass.received.1",
+        "text": "Interesting choices. I'm analyzing your motives."
+      },
+      {
+        "id": "marguerite.hearts.pass.received.2",
+        "text": "Hmm. These tell me a great deal about your hand."
+      }
+    ]
+  }
+}

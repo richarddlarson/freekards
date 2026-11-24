@@ -1,4 +1,18 @@
 {
   "$comment": "Asset register. Schema and rules: spec/09-licensing-and-sbom.md section 3b.",
-  "assets": []
+  "assets": [
+    {
+      "path": "spec/content/characters/*.json",
+      "title": "Character roster, profiles, and dialogue (first six characters)",
+      "kind": "other",
+      "origin": "ai-assisted",
+      "author": "The FreeKards Contributors",
+      "source": "https://github.com/richarddlarson/freekards",
+      "license": "MIT",
+      "licenseUrl": "https://opensource.org/license/mit",
+      "attribution": null,
+      "modified": null,
+      "tool": "Written with Claude (Anthropic) for this project, under owner direction (D-030)"
+    }
+  ]
 }

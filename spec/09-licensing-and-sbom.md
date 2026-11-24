@@ -53,8 +53,8 @@ The SBOM has two parts. Both live in the repository and both ship inside the app
 
 ### 3b. Asset register
 - A hand-maintained file `sbom/assets.json`, describing every non-code file: art, card faces, fonts,
-  sounds, music, voice clips, and icons.
-- CI fails if any file under `assets/` is missing from the register, or if an entry has no license.
+  sounds, music, voice clips, icons, and the content data in `spec/content/` (D-031).
+- CI fails if any file under `assets/` or `spec/content/` is missing from the register, or if an entry has no license.
 - Schema (each entry):
 ```json
 {

@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "id": "chad",
+  "name": "Chad Brightwater",
+  "nickname": "Coach",
+  "kind": "human",
+  "gender": "male",
+  "ageRange": "early 30s",
+  "tagline": "Life coach, smoothie enthusiast, and the most confident bad card player in the world.",
+  "bio": "Chad believes every card game is really a mindset game, and his mindset is ELITE. He narrates his own plays like a sports announcer, high-fives himself, and has never once let a loss shake his positivity. He loses a lot.",
+  "look": "Athletic man in his early 30s, perfect teeth, headband and wristbands, neon athletic zip-up, a protein shaker bottle on the table. Default expression: huge grin, double thumbs up.",
+  "traits": {
+    "tone": "overconfident",
+    "chattiness": 0.8,
+    "risk": 0.9,
+    "skillAdjust": -0.15
+  },
+  "voice": {
+    "description": "Energetic, upbeat young male voice; fast and loud, like a fitness instructor.",
+    "pitch": "medium",
+    "pace": "fast"
+  },
+  "lines": {
+    "game.start": [
+      {
+        "id": "chad.game.start.1",
+        "text": "Let's GO! Game face: ON."
+      },
+      {
+        "id": "chad.game.start.2",
+        "text": "Alright team, hydrate and dominate!"
+      },
+      {
+        "id": "chad.game.start.3",
+        "text": "Big energy today, people. BIG energy."
+      }
+    ],
+    "game.won.self": [
+      {
+        "id": "chad.game.won.self.1",
+        "text": "CHAMPION MINDSET! Did everyone see that?"
+      },
+      {
+        "id": "chad.game.won.self.2",
+        "text": "That's what happens when you trust the process!"
+      },
+      {
+        "id": "chad.game.won.self.3",
+        "text": "I'd like to thank my smoothie."
+      }
+    ],
+    "game.won.human": [
+      {
+        "id": "chad.game.won.human.1",
+        "text": "Respect! That was an elite performance. I'm taking notes."
+      },
+      {
+        "id": "chad.game.won.human.2",
+        "text": "You crushed it! Up top! ...Okay, virtual up top."
+      }
+    ],
+    "game.won.other": [
+      {
+        "id": "chad.game.won.other.1",
+        "text": "Tough loss. Great learning opportunity, though!"
+      },
+      {
+        "id": "chad.game.won.other.2",
+        "text": "Second place is just first place with extra motivation."
+      }
+    ],
+    "hand.good.self": [
+      {
+        "id": "chad.hand.good.self.1",
+        "text": "Boom! That's called momentum."
+      },
+      {
+        "id": "chad.hand.good.self.2",
+        "text": "Textbook. I should teach a seminar."
+      }
+    ],
+    "hand.bad.self": [
+      {
+        "id": "chad.hand.bad.self.1",
+        "text": "That's fine. That's fine. Pain is just progress in disguise."
+      },
+      {
+        "id": "chad.hand.bad.self.2",
+        "text": "I'm not losing, I'm building a comeback story."
+      },
+      {
+        "id": "chad.hand.bad.self.3",
+        "text": "Totally part of my strategy. Which I'll explain later."
+      }
+    ],
+    "hand.good.human": [
+      {
+        "id": "chad.hand.good.human.1",
+        "text": "Okay, okay! You're bringing the heat!"
+      }
+    ],
+    "hand.bad.human": [
+      {
+        "id": "chad.hand.bad.human.1",
+        "text": "Shake it off! Next hand is a fresh rep!"
+      }
+    ],
+    "idle.human": [
+      {
+        "id": "chad.idle.human.1",
+        "text": "No pressure! But also, what's taking so long, buddy?"
+      },
+      {
+        "id": "chad.idle.human.2",
+        "text": "Deep breaths. Visualize the card. Become the card."
+      }
+    ],
+    "hearts.queen_taken.self": [
+      {
+        "id": "chad.hearts.queen_taken.self.1",
+        "text": "Thirteen points? That's just a really heavy rep."
+      },
+      {
+        "id": "chad.hearts.queen_taken.self.2",
+        "text": "Okay, taking the Queen was a power move. I meant to do that."
+      }
+    ],
+    "hearts.queen_taken.human": [
+      {
+        "id": "chad.hearts.queen_taken.human.1",
+        "text": "Oof! Walk it off, champ!"
+      }
+    ],
+    "hearts.queen_taken.other": [
+      {
+        "id": "chad.hearts.queen_taken.other.1",
+        "text": "Brutal! Gotta respect the grind, though."
+      }
+    ],
+    "hearts.queen_given.self": [
+      {
+        "id": "chad.hearts.queen_given.self.1",
+        "text": "Pass the ball! TEAMWORK!"
+      },
+      {
+        "id": "chad.hearts.queen_given.self.2",
+        "text": "And Brightwater dumps the Queen! The crowd goes wild!"
+      }
+    ],
+    "hearts.hearts_broken.self": [
+      {
+        "id": "chad.hearts.hearts_broken.self.1",
+        "text": "Hearts are open! Let's get cardio!"
+      },
+      {
+        "id": "chad.hearts.hearts_broken.self.2",
+        "text": "I broke the hearts! Like I break personal records!"
+      }
+    ],
+    "hearts.hearts_broken.other": [
+      {
+        "id": "chad.hearts.hearts_broken.other.1",
+        "text": "Here we go! Game on!"
+      }
+    ],
+    "hearts.jack_taken.self": [
+      {
+        "id": "chad.hearts.jack_taken.self.1",
+        "text": "The Jack! That's what a winner looks like!"
+      }
+    ],
+    "hearts.jack_taken.human": [
+      {
+        "id": "chad.hearts.jack_taken.human.1",
+        "text": "Nice grab! Great hands, great hands."
+      }
+    ],
+    "hearts.moon_shot.self": [
+      {
+        "id": "chad.hearts.moon_shot.self.1",
+        "text": "MOON SHOT! I told you! I TOLD everyone!"
+      },
+      {
+        "id": "chad.hearts.moon_shot.self.2",
+        "text": "Shoot for the moon! Even if you miss... wait, I didn't miss!"
+      }
+    ],
+    "hearts.moon_shot.human": [
+      {
+        "id": "chad.hearts.moon_shot.human.1",
+        "text": "No way! That's legendary! Can I put you in my podcast?"
+      },
+      {
+        "id": "chad.hearts.moon_shot.human.2",
+        "text": "You shot the MOON! That's straight-up elite!"
+      }
+    ],
+    "hearts.moon_shot.other": [
+      {
+        "id": "chad.hearts.moon_shot.other.1",
+        "text": "Wow! Respect! Big respect!"
+      }
+    ],
+    "hearts.moon_blocked.self": [
+      {
+        "id": "chad.hearts.moon_blocked.self.1",
+        "text": "So close! I'm counting that as a moral victory."
+      },
+      {
+        "id": "chad.hearts.moon_blocked.self.2",
+        "text": "That's okay! I'll shoot for the moon again next hand. And the next."
+      }
+    ],
+    "hearts.moon_blocked.human": [
+      {
+        "id": "chad.hearts.moon_blocked.human.1",
+        "text": "Ahh, so close! Still elite effort, though."
+      }
+    ],
+    "hearts.moon_block.self": [
+      {
+        "id": "chad.hearts.moon_block.self.1",
+        "text": "DEFENSE! Brightwater with the block!"
+      }
+    ],
+    "hearts.pass.received": [
+      {
+        "id": "chad.hearts.pass.received.1",
+        "text": "Great cards! I mean, terrible cards. Great attitude though!"
+      }
+    ]
+  }
+}

@@ -27,6 +27,8 @@ not the runtime file.
   bottom edge at 96% of table height"), and audio levels in dB or 0–1 gain.
 - **Data in neutral formats.** Dialogue lines, character definitions, and the asset catalog are
   JSON (or YAML) files whose schemas are documented in the spec, so any engine can load them as-is.
+- **Canonical content data** (characters, dialogue) lives in `spec/content/` and is loaded by
+  every runtime directly (D-031).
 - **Assets are shared.** Card art (SVG masters plus PNG exports), sound effects, music, and voice clips
   live in a runtime-neutral `assets/` tree, and the core spec documents them.
 

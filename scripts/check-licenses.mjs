@@ -10,7 +10,7 @@
  * 3. Fails if any development component has no license at all (not open source / unknown).
  *    Development components with other open-source licenses are reported as build-only.
  * 4. Validates sbom/assets.json and sbom/build-tools.json, and checks that every file under
- *    assets/ is covered by an asset-register entry with an allowed license.
+ *    assets/ or spec/content/ is covered by an asset-register entry with an allowed license.
  *
  * Usage: node scripts/check-licenses.mjs [--no-generate]
  */
@@ -163,7 +163,8 @@ entries.forEach((a, idx) => {
   if (a.license && /^CC-BY-/.test(a.license) && !a.attribution) errors.push(`asset ${a.path} is ${a.license} but has no attribution text`);
 });
 const patterns = entries.filter((a) => a.path).map((a) => globToRegExp(a.path));
-for (const file of listFiles(join(root, 'assets'))) {
+// Canonical content data (spec/content, D-031) is covered by the register just like assets/.
+for (const file of [...listFiles(join(root, 'assets')), ...listFiles(join(root, 'spec', 'content'))]) {
   const rel = relative(root, file).split(sep).join('/');
   if (!patterns.some((re) => re.test(rel))) errors.push(`asset not in sbom/assets.json: ${rel}`);
 }

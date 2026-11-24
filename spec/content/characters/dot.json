@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "id": "dot",
+  "name": "Dolores Finchley",
+  "nickname": "Dot",
+  "kind": "human",
+  "gender": "female",
+  "ageRange": "late 70s",
+  "tagline": "Sweetest grandmother you'll ever meet. Will absolutely destroy you at cards.",
+  "bio": "Dot has fourteen grandchildren, a famous lemon bar recipe, and a card-counting brain that would get her banned from most casinos. She knits between hands, apologizes every time she beats you, and does not mean a word of it.",
+  "look": "Petite woman in her late 70s, silver hair in a neat bun, pearl earrings, lavender cardigan, reading glasses on a beaded chain, knitting needles and a half-finished scarf in her lap. Default expression: angelic smile with a gleam in the eye.",
+  "traits": {
+    "tone": "sweet-but-ruthless",
+    "chattiness": 0.55,
+    "risk": 0.6,
+    "skillAdjust": 0.15
+  },
+  "voice": {
+    "description": "Warm, soft, older female voice; gentle and slow, with a sly little lilt.",
+    "pitch": "high",
+    "pace": "slow"
+  },
+  "lines": {
+    "game.start": [
+      {
+        "id": "dot.game.start.1",
+        "text": "Oh, how lovely! I do enjoy a friendly game."
+      },
+      {
+        "id": "dot.game.start.2",
+        "text": "Let me just put my knitting down. There. Now, let's play nicely."
+      },
+      {
+        "id": "dot.game.start.3",
+        "text": "I brought lemon bars for after. Winners get two."
+      }
+    ],
+    "game.won.self": [
+      {
+        "id": "dot.game.won.self.1",
+        "text": "Oh my goodness, did I win? How did that happen? I'm sorry, dears."
+      },
+      {
+        "id": "dot.game.won.self.2",
+        "text": "Well, isn't that nice. Same time next week?"
+      },
+      {
+        "id": "dot.game.won.self.3",
+        "text": "Grandma's still got it, sweeties."
+      }
+    ],
+    "game.won.human": [
+      {
+        "id": "dot.game.won.human.1",
+        "text": "Well done, sweetheart! You earned a lemon bar."
+      },
+      {
+        "id": "dot.game.won.human.2",
+        "text": "Oh, you clever thing. I'll remember this."
+      },
+      {
+        "id": "dot.game.won.human.3",
+        "text": "Wonderful! You've been practicing, haven't you?"
+      }
+    ],
+    "game.won.other": [
+      {
+        "id": "dot.game.won.other.1",
+        "text": "Good for you, dear. Enjoy it."
+      }
+    ],
+    "hand.good.self": [
+      {
+        "id": "dot.hand.good.self.1",
+        "text": "Oh, look at that. Beginner's luck, I suppose. For the sixtieth year."
+      }
+    ],
+    "hand.bad.self": [
+      {
+        "id": "dot.hand.bad.self.1",
+        "text": "Oh dear. Well, it's only a game. For now."
+      },
+      {
+        "id": "dot.hand.bad.self.2",
+        "text": "Hmm. Grandma's going to have to pay closer attention."
+      }
+    ],
+    "hand.good.human": [
+      {
+        "id": "dot.hand.good.human.1",
+        "text": "Look at you go! Very nicely played, dear."
+      }
+    ],
+    "hand.bad.human": [
+      {
+        "id": "dot.hand.bad.human.1",
+        "text": "Oh, bless your heart."
+      },
+      {
+        "id": "dot.hand.bad.human.2",
+        "text": "Don't you worry, sweetie. There's always next hand."
+      }
+    ],
+    "idle.human": [
+      {
+        "id": "dot.idle.human.1",
+        "text": "Take your time, dear. I'll just finish this row."
+      },
+      {
+        "id": "dot.idle.human.2",
+        "text": "No rush, sweetheart. I've got a scarf to finish."
+      }
+    ],
+    "hearts.queen_taken.self": [
+      {
+        "id": "dot.hearts.queen_taken.self.1",
+        "text": "Oh, the Queen! Well, we're both old ladies, I suppose."
+      },
+      {
+        "id": "dot.hearts.queen_taken.self.2",
+        "text": "Hmm. I'll remember who did that, dear."
+      }
+    ],
+    "hearts.queen_taken.human": [
+      {
+        "id": "dot.hearts.queen_taken.human.1",
+        "text": "Oh, I'm so sorry, sweetheart. Not really, but I'm sorry."
+      },
+      {
+        "id": "dot.hearts.queen_taken.human.2",
+        "text": "Oops! Was that me? Silly old Dot."
+      }
+    ],
+    "hearts.queen_taken.other": [
+      {
+        "id": "dot.hearts.queen_taken.other.1",
+        "text": "Oh dear, oh dear. Thirteen points. Have a lemon bar."
+      },
+      {
+        "id": "dot.hearts.queen_taken.other.2",
+        "text": "Somebody had to take her, dear."
+      }
+    ],
+    "hearts.queen_given.self": [
+      {
+        "id": "dot.hearts.queen_given.self.1",
+        "text": "Here you are, dear. A little gift from Grandma."
+      },
+      {
+        "id": "dot.hearts.queen_given.self.2",
+        "text": "Oh, I didn't have anything else. Honestly. Mostly."
+      }
+    ],
+    "hearts.hearts_broken.self": [
+      {
+        "id": "dot.hearts.hearts_broken.self.1",
+        "text": "Oh, did I break the hearts? I'm such a klutz."
+      },
+      {
+        "id": "dot.hearts.hearts_broken.self.2",
+        "text": "Hearts are open, dears. Mind your fingers."
+      }
+    ],
+    "hearts.hearts_broken.other": [
+      {
+        "id": "dot.hearts.hearts_broken.other.1",
+        "text": "Oh my, here we go."
+      }
+    ],
+    "hearts.jack_taken.self": [
+      {
+        "id": "dot.hearts.jack_taken.self.1",
+        "text": "Oh, the Jack! He's always been my favorite."
+      },
+      {
+        "id": "dot.hearts.jack_taken.self.2",
+        "text": "Minus ten for Grandma. Isn't that sweet?"
+      }
+    ],
+    "hearts.jack_taken.human": [
+      {
+        "id": "dot.hearts.jack_taken.human.1",
+        "text": "Oh, good for you, dear!"
+      }
+    ],
+    "hearts.moon_shot.self": [
+      {
+        "id": "dot.hearts.moon_shot.self.1",
+        "text": "Oh! I seem to have shot the moon. Whoopsie."
+      },
+      {
+        "id": "dot.hearts.moon_shot.self.2",
+        "text": "Twenty-six for everyone else! Don't be cross with Grandma."
+      }
+    ],
+    "hearts.moon_shot.human": [
+      {
+        "id": "dot.hearts.moon_shot.human.1",
+        "text": "My goodness! You shot the moon! I'm so proud. And a little annoyed."
+      },
+      {
+        "id": "dot.hearts.moon_shot.human.2",
+        "text": "Well, I never! Wonderful, dear!"
+      }
+    ],
+    "hearts.moon_shot.other": [
+      {
+        "id": "dot.hearts.moon_shot.other.1",
+        "text": "Oh my. Well, isn't that impressive."
+      }
+    ],
+    "hearts.moon_blocked.self": [
+      {
+        "id": "dot.hearts.moon_blocked.self.1",
+        "text": "Oh, phooey. Grandma was so close."
+      }
+    ],
+    "hearts.moon_blocked.human": [
+      {
+        "id": "dot.hearts.moon_blocked.human.1",
+        "text": "Oh, so close, sweetie! Next time."
+      }
+    ],
+    "hearts.moon_block.self": [
+      {
+        "id": "dot.hearts.moon_block.self.1",
+        "text": "Sorry, dear. Grandma had to stop you. It's for your own good."
+      }
+    ],
+    "hearts.pass.received": [
+      {
+        "id": "dot.hearts.pass.received.1",
+        "text": "Oh, how thoughtful of you, dear. Truly."
+      },
+      {
+        "id": "dot.hearts.pass.received.2",
+        "text": "What lovely cards. I'll put them to good use."
+      }
+    ]
+  }
+}

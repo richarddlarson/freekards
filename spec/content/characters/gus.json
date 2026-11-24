@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "id": "gus",
+  "name": "Gus Pettigrew",
+  "nickname": "Grumbles",
+  "kind": "human",
+  "gender": "male",
+  "ageRange": "late 60s",
+  "tagline": "Retired mail carrier. Has complained about every hand since 1974.",
+  "bio": "Gus delivered mail for 31 years through rain, sleet, and one very persistent goose, and he will tell you about all of it. He is convinced the shuffle is rigged against him personally. Under the grumbling he is a big softie who keeps peppermints in his cardigan for everyone at the table.",
+  "look": "Stocky man in his late 60s, bushy white eyebrows doing most of the talking, flat cap, brown cardigan with leather elbow patches, a dented thermos of coffee at his elbow. Default expression: unimpressed squint.",
+  "traits": {
+    "tone": "grumpy",
+    "chattiness": 0.6,
+    "risk": 0.3,
+    "skillAdjust": 0.1
+  },
+  "voice": {
+    "description": "Low, gravelly older male voice; slow, deadpan, with exaggerated sighs.",
+    "pitch": "low",
+    "pace": "slow"
+  },
+  "lines": {
+    "game.start": [
+      {
+        "id": "gus.game.start.1",
+        "text": "Fine. Deal 'em. I already know they're bad."
+      },
+      {
+        "id": "gus.game.start.2",
+        "text": "Thirty-one years of carrying mail and this is my retirement. Cards."
+      },
+      {
+        "id": "gus.game.start.3",
+        "text": "Let's get this over with. My coffee's getting cold."
+      }
+    ],
+    "game.won.self": [
+      {
+        "id": "gus.game.won.self.1",
+        "text": "Well, what do you know. The universe owes me one less."
+      },
+      {
+        "id": "gus.game.won.self.2",
+        "text": "I won? Somebody write that down. With a date."
+      },
+      {
+        "id": "gus.game.won.self.3",
+        "text": "Don't get used to this. I'm not."
+      }
+    ],
+    "game.won.human": [
+      {
+        "id": "gus.game.won.human.1",
+        "text": "Beginner's luck. For the hundredth time."
+      },
+      {
+        "id": "gus.game.won.human.2",
+        "text": "Congratulations. Have a peppermint. Don't tell anyone I'm nice."
+      },
+      {
+        "id": "gus.game.won.human.3",
+        "text": "You won fair and square. I'm still going to complain about it."
+      }
+    ],
+    "game.won.other": [
+      {
+        "id": "gus.game.won.other.1",
+        "text": "Of course. Of course they won."
+      },
+      {
+        "id": "gus.game.won.other.2",
+        "text": "Everybody wins but Gus. Story of my life."
+      }
+    ],
+    "hand.good.self": [
+      {
+        "id": "gus.hand.good.self.1",
+        "text": "Huh. That almost felt like luck."
+      },
+      {
+        "id": "gus.hand.good.self.2",
+        "text": "Don't look so surprised. I'm surprised enough for all of us."
+      }
+    ],
+    "hand.bad.self": [
+      {
+        "id": "gus.hand.bad.self.1",
+        "text": "Rigged. I'm telling you, the deck's rigged."
+      },
+      {
+        "id": "gus.hand.bad.self.2",
+        "text": "I've had better hands delivering junk mail."
+      },
+      {
+        "id": "gus.hand.bad.self.3",
+        "text": "That hand was worse than the goose on Elm Street."
+      }
+    ],
+    "hand.good.human": [
+      {
+        "id": "gus.hand.good.human.1",
+        "text": "You're making the rest of us look bad. Mostly me."
+      },
+      {
+        "id": "gus.hand.good.human.2",
+        "text": "Smooth. Real smooth. I hate it."
+      }
+    ],
+    "hand.bad.human": [
+      {
+        "id": "gus.hand.bad.human.1",
+        "text": "Join the club. We have jackets."
+      },
+      {
+        "id": "gus.hand.bad.human.2",
+        "text": "Rough one. Have a peppermint."
+      }
+    ],
+    "idle.human": [
+      {
+        "id": "gus.idle.human.1",
+        "text": "Take your time. I've only got maybe twenty good years left."
+      },
+      {
+        "id": "gus.idle.human.2",
+        "text": "I delivered mail faster than this. Uphill. In the snow."
+      }
+    ],
+    "hearts.queen_taken.self": [
+      {
+        "id": "gus.hearts.queen_taken.self.1",
+        "text": "Thirteen points. Just like my blood pressure. Times ten."
+      },
+      {
+        "id": "gus.hearts.queen_taken.self.2",
+        "text": "The Queen and I go way back. She never liked me."
+      },
+      {
+        "id": "gus.hearts.queen_taken.self.3",
+        "text": "Oh good. More mail I didn't ask for."
+      }
+    ],
+    "hearts.queen_taken.human": [
+      {
+        "id": "gus.hearts.queen_taken.human.1",
+        "text": "Ooh. Return to sender, I'm afraid."
+      },
+      {
+        "id": "gus.hearts.queen_taken.human.2",
+        "text": "Special delivery! Signature required."
+      }
+    ],
+    "hearts.queen_taken.other": [
+      {
+        "id": "gus.hearts.queen_taken.other.1",
+        "text": "Better you than me. Much better."
+      },
+      {
+        "id": "gus.hearts.queen_taken.other.2",
+        "text": "Ha! Finally, somebody else's turn."
+      }
+    ],
+    "hearts.queen_given.self": [
+      {
+        "id": "gus.hearts.queen_given.self.1",
+        "text": "Package delivered. No refunds."
+      },
+      {
+        "id": "gus.hearts.queen_given.self.2",
+        "text": "Thirty-one years of practice getting rid of things nobody wants."
+      }
+    ],
+    "hearts.hearts_broken.self": [
+      {
+        "id": "gus.hearts.hearts_broken.self.1",
+        "text": "There. I broke 'em. Somebody had to."
+      },
+      {
+        "id": "gus.hearts.hearts_broken.self.2",
+        "text": "Hearts are open. Like my heart. Which is closed."
+      }
+    ],
+    "hearts.hearts_broken.other": [
+      {
+        "id": "gus.hearts.hearts_broken.other.1",
+        "text": "And there go the hearts. Here comes the trouble."
+      }
+    ],
+    "hearts.jack_taken.self": [
+      {
+        "id": "gus.hearts.jack_taken.self.1",
+        "text": "The Jack! Finally, a card that likes me."
+      },
+      {
+        "id": "gus.hearts.jack_taken.self.2",
+        "text": "Minus ten. Don't tell anyone I smiled."
+      }
+    ],
+    "hearts.jack_taken.human": [
+      {
+        "id": "gus.hearts.jack_taken.human.1",
+        "text": "Hey, I wanted that one."
+      },
+      {
+        "id": "gus.hearts.jack_taken.human.2",
+        "text": "You got the Jack. Figures."
+      }
+    ],
+    "hearts.moon_shot.self": [
+      {
+        "id": "gus.hearts.moon_shot.self.1",
+        "text": "I shot the moon. Don't make a fuss. Okay, make a small fuss."
+      },
+      {
+        "id": "gus.hearts.moon_shot.self.2",
+        "text": "Twenty-six for everybody! Merry Christmas from Gus."
+      }
+    ],
+    "hearts.moon_shot.human": [
+      {
+        "id": "gus.hearts.moon_shot.human.1",
+        "text": "You shot the moon? I need to sit down. I am sitting down. I need to sit down more."
+      },
+      {
+        "id": "gus.hearts.moon_shot.human.2",
+        "text": "Unbelievable. Truly. I'm calling the post office."
+      }
+    ],
+    "hearts.moon_shot.other": [
+      {
+        "id": "gus.hearts.moon_shot.other.1",
+        "text": "Someone shot the moon and it wasn't me. Shocking. Not."
+      }
+    ],
+    "hearts.moon_blocked.self": [
+      {
+        "id": "gus.hearts.moon_blocked.self.1",
+        "text": "One card. ONE card. I was this close."
+      },
+      {
+        "id": "gus.hearts.moon_blocked.self.2",
+        "text": "Foiled again. Story of my life."
+      }
+    ],
+    "hearts.moon_blocked.human": [
+      {
+        "id": "gus.hearts.moon_blocked.human.1",
+        "text": "Ooh, so close. Welcome to my whole life."
+      }
+    ],
+    "hearts.moon_block.self": [
+      {
+        "id": "gus.hearts.moon_block.self.1",
+        "text": "Not on my watch. Gus delivers. Gus also blocks."
+      }
+    ],
+    "hearts.pass.received": [
+      {
+        "id": "gus.hearts.pass.received.1",
+        "text": "Thanks for the garbage. Really."
+      },
+      {
+        "id": "gus.hearts.pass.received.2",
+        "text": "You passed me these? On purpose?"
+      }
+    ]
+  }
+}

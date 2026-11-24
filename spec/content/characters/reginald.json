@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "id": "reginald",
+  "name": "Reginald Fairweather III",
+  "nickname": "Reggie",
+  "kind": "human",
+  "gender": "male",
+  "ageRange": "late 50s",
+  "tagline": "Claims to be distantly related to royalty. Is not. Very sore loser.",
+  "bio": "Reginald insists his great-great-grandmother once waved at a duke, which he believes makes him practically nobility. He wears a monocle he doesn't need, calls card games 'sport', and reacts to every setback as a grave personal insult to the Fairweather name.",
+  "look": "Tall, thin man in his late 50s, carefully waxed mustache, a monocle, burgundy velvet smoking jacket, silk ascot, nose slightly in the air. Default expression: mild disdain.",
+  "traits": {
+    "tone": "pompous",
+    "chattiness": 0.7,
+    "risk": 0.4,
+    "skillAdjust": 0.0
+  },
+  "voice": {
+    "description": "Plummy, theatrical middle-aged male voice; precise diction, dramatic emphasis on outrage.",
+    "pitch": "medium-low",
+    "pace": "medium"
+  },
+  "lines": {
+    "game.start": [
+      {
+        "id": "reginald.game.start.1",
+        "text": "Shall we begin? Do try to keep up."
+      },
+      {
+        "id": "reginald.game.start.2",
+        "text": "Ah, a spot of sport. Splendid. I shall be gracious in victory."
+      },
+      {
+        "id": "reginald.game.start.3",
+        "text": "The Fairweathers have played cards for generations. Mostly badly. But with style."
+      }
+    ],
+    "game.won.self": [
+      {
+        "id": "reginald.game.won.self.1",
+        "text": "Naturally. Breeding will out."
+      },
+      {
+        "id": "reginald.game.won.self.2",
+        "text": "Victory! Fetch the family crest!"
+      },
+      {
+        "id": "reginald.game.won.self.3",
+        "text": "As expected. You may all applaud now."
+      }
+    ],
+    "game.won.human": [
+      {
+        "id": "reginald.game.won.human.1",
+        "text": "Hmph. Well played. I suppose. Grudgingly."
+      },
+      {
+        "id": "reginald.game.won.human.2",
+        "text": "Most irregular! I demand a rematch. Politely."
+      }
+    ],
+    "game.won.other": [
+      {
+        "id": "reginald.game.won.other.1",
+        "text": "Preposterous. I shall be writing a strongly worded letter."
+      }
+    ],
+    "hand.good.self": [
+      {
+        "id": "reginald.hand.good.self.1",
+        "text": "Marvelous. Simply marvelous. As am I."
+      },
+      {
+        "id": "reginald.hand.good.self.2",
+        "text": "Quite right. Quite right indeed."
+      }
+    ],
+    "hand.bad.self": [
+      {
+        "id": "reginald.hand.bad.self.1",
+        "text": "This is an outrage! An absolute outrage!"
+      },
+      {
+        "id": "reginald.hand.bad.self.2",
+        "text": "My ancestors are spinning in their moderately priced graves."
+      }
+    ],
+    "hand.good.human": [
+      {
+        "id": "reginald.hand.good.human.1",
+        "text": "Hmm. Beginner's luck, no doubt."
+      }
+    ],
+    "hand.bad.human": [
+      {
+        "id": "reginald.hand.bad.human.1",
+        "text": "Chin up. Not everyone can be a Fairweather."
+      }
+    ],
+    "idle.human": [
+      {
+        "id": "reginald.idle.human.1",
+        "text": "Whenever you're ready. Truly. No one is waiting. Except me."
+      },
+      {
+        "id": "reginald.idle.human.2",
+        "text": "Ahem. The Fairweathers are a patient people. Until now."
+      }
+    ],
+    "hearts.queen_taken.self": [
+      {
+        "id": "reginald.hearts.queen_taken.self.1",
+        "text": "The Queen?! On a Fairweather?! Most irregular!"
+      },
+      {
+        "id": "reginald.hearts.queen_taken.self.2",
+        "text": "I've been robbed! In broad daylight!"
+      }
+    ],
+    "hearts.queen_taken.human": [
+      {
+        "id": "reginald.hearts.queen_taken.human.1",
+        "text": "Ah. A royal burden. You'll get used to it. I never have."
+      }
+    ],
+    "hearts.queen_taken.other": [
+      {
+        "id": "reginald.hearts.queen_taken.other.1",
+        "text": "Ha! Better you than the family name."
+      }
+    ],
+    "hearts.queen_given.self": [
+      {
+        "id": "reginald.hearts.queen_given.self.1",
+        "text": "Her Majesty is yours. Do treat her well."
+      },
+      {
+        "id": "reginald.hearts.queen_given.self.2",
+        "text": "A gift from the House of Fairweather. You're welcome."
+      }
+    ],
+    "hearts.hearts_broken.self": [
+      {
+        "id": "reginald.hearts.hearts_broken.self.1",
+        "text": "Hearts are broken. As was my uncle Percival, after the regatta."
+      }
+    ],
+    "hearts.hearts_broken.other": [
+      {
+        "id": "reginald.hearts.hearts_broken.other.1",
+        "text": "Hearts broken already? How dreadfully common."
+      }
+    ],
+    "hearts.jack_taken.self": [
+      {
+        "id": "reginald.hearts.jack_taken.self.1",
+        "text": "The Jack! A loyal subject, at last."
+      }
+    ],
+    "hearts.jack_taken.human": [
+      {
+        "id": "reginald.hearts.jack_taken.human.1",
+        "text": "Hmph. That Jack was clearly destined for me."
+      }
+    ],
+    "hearts.moon_shot.self": [
+      {
+        "id": "reginald.hearts.moon_shot.self.1",
+        "text": "I have shot the moon! Ring the bells! Inform the newspapers!"
+      },
+      {
+        "id": "reginald.hearts.moon_shot.self.2",
+        "text": "The moon bows to Fairweather."
+      }
+    ],
+    "hearts.moon_shot.human": [
+      {
+        "id": "reginald.hearts.moon_shot.human.1",
+        "text": "The moon?! You?! I need a moment. And possibly a fainting couch."
+      },
+      {
+        "id": "reginald.hearts.moon_shot.human.2",
+        "text": "Well. I am... impressed. Don't tell anyone I said that."
+      }
+    ],
+    "hearts.moon_shot.other": [
+      {
+        "id": "reginald.hearts.moon_shot.other.1",
+        "text": "Show-off. ...Quite good, though."
+      }
+    ],
+    "hearts.moon_blocked.self": [
+      {
+        "id": "reginald.hearts.moon_blocked.self.1",
+        "text": "Thwarted! By a single card! I shall never recover!"
+      }
+    ],
+    "hearts.moon_blocked.human": [
+      {
+        "id": "reginald.hearts.moon_blocked.human.1",
+        "text": "So close. Almost aristocratic."
+      }
+    ],
+    "hearts.moon_block.self": [
+      {
+        "id": "reginald.hearts.moon_block.self.1",
+        "text": "Not today. The moon belongs to no commoner."
+      }
+    ],
+    "hearts.pass.received": [
+      {
+        "id": "reginald.hearts.pass.received.1",
+        "text": "What is this rubbish? Is this a joke?"
+      },
+      {
+        "id": "reginald.hearts.pass.received.2",
+        "text": "How kind. I shall have these framed. Or burned."
+      }
+    ]
+  }
+}

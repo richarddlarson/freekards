@@ -267,3 +267,33 @@ Template:
 - Status: Accepted
 - Decision: There is no portrait layout. In portrait the table scales down to fit the width and stays playable.
 - Why: Owner choice. A four-player table fits landscape naturally, and one layout halves design and testing work.
+
+## D-030 — First character roster
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: The first roster has six original human characters, three male and three female, each a
+  comic personality: Gus "Grumbles" Pettigrew, Dolores "Dot" Finchley, Chad "Coach" Brightwater,
+  Prof. Marguerite Quill, Bernadette "Bernie" Kowalski, and Reginald "Reggie" Fairweather III. Each
+  has a bio, art brief, voice brief, numeric traits, and 36–49 Hearts and general lines. The `kind`
+  field is reserved for future non-human characters. Tone rules and the trigger system are in
+  `08-characters.md`.
+- Why: Owner request. Six is enough variety for 3-opponent games, and the main player will suggest
+  future additions.
+
+## D-031 — Canonical content data lives in spec/content
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: Engine-neutral content data files (character profiles and dialogue now; later perhaps
+  game tables or layout data) live in `spec/content/` as the single canonical copy. Runtimes load
+  them directly and never copy them. They are covered by the asset register, and the license check
+  scans `spec/content/` as well as `assets/`. Binary assets (art, audio) stay in `assets/`.
+- Why: The spec must be enough to rebuild the app. Dialogue is part of the design, so it belongs in
+  the spec. Keeping one copy avoids drift.
+
+## D-032 — Linux target: Linux Mint and other Debian/Ubuntu derivatives
+- Date: 2026-11-24
+- Status: Accepted (answers Q4)
+- Decision: The main Linux target is Linux Mint, and with it other Debian and Ubuntu derivatives.
+  The **.deb** package is the primary Linux installer. The AppImage is still built, as a portable
+  no-install option. Flatpak and Snap are not built.
+- Why: Owner choice. A .deb installs by double-click in Mint's package installer.

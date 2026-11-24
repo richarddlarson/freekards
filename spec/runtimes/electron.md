@@ -110,7 +110,8 @@ preload), `release/` (installers), `coverage/`.
 - **[Confirmed]** Windows: NSIS `.exe` for x64 and for arm64. Assisted installer (`oneClick: false`),
   per user, no admin rights or elevation, fixed install folder, Start-menu and desktop shortcuts,
   and the MIT license shown during install.
-- **[Confirmed]** Linux: AppImage and `.deb` for x64 and arm64, category `Game`.
+- **[Confirmed]** Linux: `.deb` (primary, D-032) and AppImage (portable) for x64 and arm64, category `Game`.
+  The target is Linux Mint and other Debian/Ubuntu derivatives.
 
 ## Licensing and SBOM (per core spec 09) (D-020)
 - **[Confirmed]** `npm run licenses` runs `scripts/check-licenses.mjs`, which:

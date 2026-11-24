@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "id": "bernie",
+  "name": "Bernadette Kowalski",
+  "nickname": "Bernie",
+  "kind": "human",
+  "gender": "female",
+  "ageRange": "mid 40s",
+  "tagline": "Diner waitress for 22 years. Calls everyone 'hon'. Knows everybody's business.",
+  "bio": "Bernie has worked the morning shift at the same diner for twenty-two years and can carry six plates and a conversation at once. She has a story about her cousin Darlene for every possible situation, most of them unbelievable, all of them true.",
+  "look": "Cheerful woman in her mid 40s, big teased red hair, cat-eye glasses, pink diner uniform with a name tag reading BERNIE, pencil tucked behind her ear, chewing gum. Default expression: wide friendly grin.",
+  "traits": {
+    "tone": "chatty and warm",
+    "chattiness": 0.9,
+    "risk": 0.5,
+    "skillAdjust": -0.05
+  },
+  "voice": {
+    "description": "Bright, friendly middle-aged female voice; fast-talking and expressive, with a warm laugh.",
+    "pitch": "medium-high",
+    "pace": "fast"
+  },
+  "lines": {
+    "game.start": [
+      {
+        "id": "bernie.game.start.1",
+        "text": "Alright, hons, cards are up! Who wants coffee?"
+      },
+      {
+        "id": "bernie.game.start.2",
+        "text": "Ooh, I love a card game. My cousin Darlene once played Hearts for three days straight."
+      },
+      {
+        "id": "bernie.game.start.3",
+        "text": "Okay sugar, deal 'em out. I'm on my break."
+      }
+    ],
+    "game.won.self": [
+      {
+        "id": "bernie.game.won.self.1",
+        "text": "Whoo! Pie's on me, everybody!"
+      },
+      {
+        "id": "bernie.game.won.self.2",
+        "text": "I won! Wait'll I tell Darlene. She's gonna be so jealous."
+      }
+    ],
+    "game.won.human": [
+      {
+        "id": "bernie.game.won.human.1",
+        "text": "Look at you, hon! Big winner! That deserves a slice of pie."
+      },
+      {
+        "id": "bernie.game.won.human.2",
+        "text": "Well, aren't you something! Nicely done, sugar."
+      }
+    ],
+    "game.won.other": [
+      {
+        "id": "bernie.game.won.other.1",
+        "text": "Good game, hon! You earned it."
+      }
+    ],
+    "hand.good.self": [
+      {
+        "id": "bernie.hand.good.self.1",
+        "text": "Ha! Order up! One winning hand!"
+      },
+      {
+        "id": "bernie.hand.good.self.2",
+        "text": "Now that's what I call a good shift."
+      }
+    ],
+    "hand.bad.self": [
+      {
+        "id": "bernie.hand.bad.self.1",
+        "text": "Oof. That hand was like a Monday double shift."
+      },
+      {
+        "id": "bernie.hand.bad.self.2",
+        "text": "Well, that went over like a cold cup of coffee."
+      }
+    ],
+    "hand.good.human": [
+      {
+        "id": "bernie.hand.good.human.1",
+        "text": "Ooh, look at you go, hon!"
+      }
+    ],
+    "hand.bad.human": [
+      {
+        "id": "bernie.hand.bad.human.1",
+        "text": "Aw, sugar. Happens to the best of us. Happens to Darlene a lot."
+      }
+    ],
+    "idle.human": [
+      {
+        "id": "bernie.idle.human.1",
+        "text": "Take your time, hon. Darlene once took twenty minutes to pick a card."
+      },
+      {
+        "id": "bernie.idle.human.2",
+        "text": "No rush, sugar. Want me to top off your coffee?"
+      }
+    ],
+    "hearts.queen_taken.self": [
+      {
+        "id": "bernie.hearts.queen_taken.self.1",
+        "text": "Oh, for crying out loud. Thirteen points! That's like a whole table of bad tippers."
+      },
+      {
+        "id": "bernie.hearts.queen_taken.self.2",
+        "text": "Well, that's just my luck. Darlene would laugh so hard."
+      }
+    ],
+    "hearts.queen_taken.human": [
+      {
+        "id": "bernie.hearts.queen_taken.human.1",
+        "text": "Oh, hon. I'm so sorry. Want a muffin?"
+      },
+      {
+        "id": "bernie.hearts.queen_taken.human.2",
+        "text": "Ooh, that's a rough one, sugar."
+      }
+    ],
+    "hearts.queen_taken.other": [
+      {
+        "id": "bernie.hearts.queen_taken.other.1",
+        "text": "Oh honey, nobody wants her. Nobody!"
+      }
+    ],
+    "hearts.queen_given.self": [
+      {
+        "id": "bernie.hearts.queen_given.self.1",
+        "text": "Here ya go, hon! Compliments of the house!"
+      },
+      {
+        "id": "bernie.hearts.queen_given.self.2",
+        "text": "Special of the day: one Queen of Spades. Enjoy!"
+      }
+    ],
+    "hearts.hearts_broken.self": [
+      {
+        "id": "bernie.hearts.hearts_broken.self.1",
+        "text": "Hearts are open, hons! Kitchen's hot!"
+      },
+      {
+        "id": "bernie.hearts.hearts_broken.self.2",
+        "text": "Oops! Broke the hearts. Like Darlene's third husband."
+      }
+    ],
+    "hearts.hearts_broken.other": [
+      {
+        "id": "bernie.hearts.hearts_broken.other.1",
+        "text": "Ooh, here come the hearts!"
+      }
+    ],
+    "hearts.jack_taken.self": [
+      {
+        "id": "bernie.hearts.jack_taken.self.1",
+        "text": "The Jack! Now that's a good tip!"
+      }
+    ],
+    "hearts.jack_taken.human": [
+      {
+        "id": "bernie.hearts.jack_taken.human.1",
+        "text": "Nice one, sugar! Ten points off the bill!"
+      }
+    ],
+    "hearts.moon_shot.self": [
+      {
+        "id": "bernie.hearts.moon_shot.self.1",
+        "text": "I shot the moon! Somebody call Darlene!"
+      },
+      {
+        "id": "bernie.hearts.moon_shot.self.2",
+        "text": "Twenty-six for everybody! Sorry, hons, kitchen's closed!"
+      }
+    ],
+    "hearts.moon_shot.human": [
+      {
+        "id": "bernie.hearts.moon_shot.human.1",
+        "text": "You shot the moon?! Well, I'll be! Pie for you, on the house!"
+      },
+      {
+        "id": "bernie.hearts.moon_shot.human.2",
+        "text": "Holy moly, hon! That's amazing!"
+      }
+    ],
+    "hearts.moon_shot.other": [
+      {
+        "id": "bernie.hearts.moon_shot.other.1",
+        "text": "Well, I'll be darned. Good for you, hon."
+      }
+    ],
+    "hearts.moon_blocked.self": [
+      {
+        "id": "bernie.hearts.moon_blocked.self.1",
+        "text": "Oh, so close! That's like dropping the last plate on the tray."
+      }
+    ],
+    "hearts.moon_blocked.human": [
+      {
+        "id": "bernie.hearts.moon_blocked.human.1",
+        "text": "Aw, sugar, you almost had it!"
+      }
+    ],
+    "hearts.moon_block.self": [
+      {
+        "id": "bernie.hearts.moon_block.self.1",
+        "text": "Sorry, hon! Can't let you have the whole pie!"
+      }
+    ],
+    "hearts.pass.received": [
+      {
+        "id": "bernie.hearts.pass.received.1",
+        "text": "Thanks, hon! ...I think."
+      },
+      {
+        "id": "bernie.hearts.pass.received.2",
+        "text": "Ooh, what did you send me? Oh. Oh, sugar, no."
+      }
+    ]
+  }
+}
