@@ -12,7 +12,7 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 ---
 
 ## R-001 — Player profiles, statistics, KardCoins, and avatars
-- **Status:** Idea (to be fleshed out as more games are built)
+- **Status:** In progress (parts 1–3 started 2026-11-24)
 - **Requested:** 2026-11-24, by the owner
 - **Request (original wording):** "I want users to be able to set up their own profile so that as they
   play more and more games they can see their stats as well as maybe we can add some kind of currency
@@ -48,6 +48,27 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 - **Status:** Planned (order to be decided)
 - **Games:** Spades, Rummy 500, Gin Rummy, Blackjack, Poker, Solitaire. Open questions Q6–Q8 cover
   rules and variants.
+
+## R-004 — More natural-sounding character voices
+- **Status:** Idea
+- **Requested:** 2026-11-24, by the owner
+- **Request (original wording):** "I would prefer a more natural human sound, the generated ones are a
+  little fake sounding due to the tools being used. But for now that's OK. Add a todo for later to
+  investigate other ways to generate the voiced speech that result in more natural human sounds."
+- **Current state:** Piper voices (D-047, D-048) are clear but sound synthetic, like an audiobook reader.
+- **Directions to investigate** (each must pass D-014 and D-047: permissive model **and** clean
+  training data, all the way down the fine-tuning chain):
+  - Newer open TTS models with more expressive prosody, for example Kokoro (Apache-2.0 weights;
+    check its training-data provenance carefully, since some of its data is reportedly synthetic
+    audio from commercial engines), StyleTTS 2, Parler-TTS, and successors released by then.
+    Many popular models are ruled out by non-commercial licenses (for example XTTS/CPML and F5-TTS).
+  - Expressive controls on the current engine: per-line pace and pitch, emphasis markup, and
+    post-processing.
+  - **Recorded human voices**: volunteers (family, friends, community) record the lines under a
+    CC0 release form. This sounds most natural and is cleanest legally, but costs the most effort per
+    line, and new lines need new sessions.
+- **Constraint:** keep the pipeline in `scripts/build-voices.py` (or its successor) so voices can be
+  swapped per character without code changes; only `voice.tts` and the clips change.
 
 ## R-003 — Smaller items noted along the way
 - **Status:** Idea
