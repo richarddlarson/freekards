@@ -52,6 +52,19 @@
       "attribution": null,
       "modified": null,
       "tool": null
+    },
+    {
+      "path": "assets/audio/sfx/kenney-casino-audio/*",
+      "title": "Kenney Casino Audio 1.1 (19 card sounds used, plus License.txt)",
+      "kind": "sfx",
+      "origin": "third-party",
+      "author": "Kenney Vleugels (Kenney.nl)",
+      "source": "https://kenney.nl/assets/casino-audio",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "Casino Audio by Kenney (www.kenney.nl), CC0",
+      "modified": null,
+      "tool": "Downloaded by the owner 2026-11-24 (kenney_casino-audio.zip, sha256 f36250766ac5bc378c13708ddf12a23a8e54a3251f8d482c7536e51b5dbafa18); files copied unmodified"
     }
   ]
 }

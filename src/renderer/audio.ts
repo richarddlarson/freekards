@@ -16,6 +16,8 @@ interface AudioManifest {
   schemaVersion: 1;
   defaults: Record<Channel, number>;
   cues: Record<string, string[]>;
+  /** Optional per-cue tuning (spec 13 §2). */
+  cueOptions?: Record<string, { gain?: number; minGapMs?: number; maxSeconds?: number }>;
   music: { id: string; title: string; composer: string; file: string }[];
 }
 
@@ -39,7 +41,8 @@ const TUNING = {
   pitchMin: 0.96,
   pitchMax: 1.04,
   gainMin: 0.9,
-  dealMinGapMs: 70,
+  /** Length of the fade when a cue is cut short by maxSeconds. */
+  cutFadeS: 0.3,
   crossfadeS: 3,
   firstFadeInS: 2,
 };
@@ -55,7 +58,7 @@ class AudioEngine {
   private buses = {} as Record<Channel, GainNode>;
   private buffers = new Map<string, Promise<AudioBuffer | null>>();
   private lastPick = new Map<string, string>();
-  private lastDeal = 0;
+  private lastPlayed = new Map<string, number>();
   private volumes: Volumes = { ...DEFAULT_VOLUMES };
 
   private playlist: AudioManifest['music'] = [];
@@ -112,20 +115,26 @@ class AudioEngine {
     if (!p) {
       const url = urlFor(path);
       const ctx = this.ensure();
+      if (!url) console.warn(`audio: no bundled file for ${path}`);
       p = !url || !ctx
         ? Promise.resolve(null)
         : fetch(url)
             .then((r) => r.arrayBuffer())
             .then((b) => ctx.decodeAudioData(b))
-            .catch(() => null);
+            .catch((e: unknown) => {
+              console.warn(`audio: could not load ${path}`, e);
+              return null;
+            });
       this.buffers.set(path, p);
     }
     return p;
   }
 
   /** Decode every effect up front so the first play of each cue has no delay. */
-  preloadCues(): Promise<unknown> {
-    return Promise.all(Object.values(manifest.cues).flat().map((p) => this.load(p)));
+  async preloadCues(): Promise<void> {
+    const files = [...new Set(Object.values(manifest.cues).flat())];
+    const loaded = await Promise.all(files.map((p) => this.load(p)));
+    console.info(`audio: ${loaded.filter(Boolean).length}/${files.length} effects ready`);
   }
 
   hasCue(cue: string): boolean {
@@ -136,10 +145,11 @@ class AudioEngine {
   play(cue: string): void {
     const files = manifest.cues[cue];
     if (!files || files.length === 0) return;
-    if (cue === 'card.deal') {
+    const opts = manifest.cueOptions?.[cue] ?? {};
+    if (opts.minGapMs) {
       const now = performance.now();
-      if (now - this.lastDeal < TUNING.dealMinGapMs) return;
-      this.lastDeal = now;
+      if (now - (this.lastPlayed.get(cue) ?? -Infinity) < opts.minGapMs) return;
+      this.lastPlayed.set(cue, now);
     }
     const last = this.lastPick.get(cue);
     const choices = files.length > 1 ? files.filter((f) => f !== last) : files;
@@ -152,9 +162,17 @@ class AudioEngine {
       src.buffer = buffer;
       src.playbackRate.value = TUNING.pitchMin + Math.random() * (TUNING.pitchMax - TUNING.pitchMin);
       const g = ctx.createGain();
-      g.gain.value = TUNING.gainMin + Math.random() * (1 - TUNING.gainMin);
+      const level = (opts.gain ?? 1) * (TUNING.gainMin + Math.random() * (1 - TUNING.gainMin));
+      g.gain.value = level;
       src.connect(g).connect(this.buses.sfx);
-      src.start();
+      const t = ctx.currentTime;
+      src.start(t);
+      if (opts.maxSeconds && opts.maxSeconds < buffer.duration) {
+        const end = t + opts.maxSeconds;
+        g.gain.setValueAtTime(level, end - TUNING.cutFadeS);
+        g.gain.linearRampToValueAtTime(0, end);
+        src.stop(end + 0.05);
+      }
     });
   }
 

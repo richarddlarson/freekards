@@ -1,6 +1,62 @@
 {
   "schemaVersion": 1,
-  "defaults": { "music": 0.45, "sfx": 0.8, "voice": 1.0 },
-  "cues": {},
-  "music": []
+  "defaults": {
+    "music": 0.45,
+    "sfx": 0.8,
+    "voice": 1.0
+  },
+  "cues": {
+    "card.shuffle": [
+      "assets/audio/sfx/kenney-casino-audio/card-shuffle.ogg"
+    ],
+    "card.deal": [
+      "assets/audio/sfx/kenney-casino-audio/card-slide-1.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-2.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-3.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-4.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-5.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-6.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-7.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-8.ogg"
+    ],
+    "card.select": [
+      "assets/audio/sfx/kenney-casino-audio/card-slide-1.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-2.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-3.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-4.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-5.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-6.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-7.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-slide-8.ogg"
+    ],
+    "card.place": [
+      "assets/audio/sfx/kenney-casino-audio/card-place-1.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-place-2.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-place-3.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-place-4.ogg"
+    ],
+    "card.collect": [
+      "assets/audio/sfx/kenney-casino-audio/card-shove-1.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-shove-2.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-shove-3.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-shove-4.ogg"
+    ],
+    "card.pass": [
+      "assets/audio/sfx/kenney-casino-audio/card-fan-1.ogg",
+      "assets/audio/sfx/kenney-casino-audio/card-fan-2.ogg"
+    ]
+  },
+  "music": [],
+  "cueOptions": {
+    "card.shuffle": {
+      "maxSeconds": 1.8
+    },
+    "card.deal": {
+      "gain": 0.6,
+      "minGapMs": 110
+    },
+    "card.select": {
+      "gain": 0.7
+    }
+  }
 }

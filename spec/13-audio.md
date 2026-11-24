@@ -24,12 +24,12 @@ Every play varies slightly: pitch (playback rate) × random 0.96–1.04 and volu
 
 | Cue | When (Hearts) |
 |-----|---------------|
-| `card.shuffle` | Start of every deal, before the first card leaves the deck |
-| `card.deal` | Each card dealt, at most one sound every 70 ms (cards in between are silent) |
+| `card.shuffle` | Start of every deal. Cut to 1.8 s with a 0.3 s fade; dealing starts 1.5 s after it begins |
+| `card.deal` | Each card dealt, at most one sound every 110 ms (cards in between are silent), at gain 0.6 |
 | `card.place` | A card lands in the trick |
 | `card.collect` | A finished trick is swept to its winner |
 | `card.pass` | The pass exchange starts |
-| `card.select` | A card is lifted or lowered while choosing cards to pass |
+| `card.select` | A card is lifted or lowered while choosing cards to pass (gain 0.7) |
 | `table.hearts_broken` | Hearts are broken (optional; silent if no file is mapped) |
 | `table.queen` | Someone takes the Queen of Spades (optional) |
 | `table.moon` | Someone shoots the moon (optional) |
@@ -48,7 +48,8 @@ A cue with no file mapped is silent. Missing or broken files never stop the game
 {
   "schemaVersion": 1,
   "defaults": { "music": 0.45, "sfx": 0.8, "voice": 1.0 },
-  "cues": { "card.place": ["assets/audio/sfx/card-place-1.ogg", "…"] },
+  "cues": { "card.place": ["assets/audio/sfx/kenney-casino-audio/card-place-1.ogg", "…"] },
+  "cueOptions": { "card.deal": { "gain": 0.6, "minGapMs": 110 }, "card.shuffle": { "maxSeconds": 1.8 } },
   "music": [
     { "id": "a-good-bass-for-gambling", "title": "A Good Bass for Gambling", "composer": "Komiku",
       "file": "assets/audio/music/a-good-bass-for-gambling.mp3" }
@@ -56,10 +57,16 @@ A cue with no file mapped is silent. Missing or broken files never stop the game
 }
 ```
 Paths are relative to the repository root. Every file must also be in the asset register.
+`cueOptions` (all optional): `gain` multiplies the cue's volume; `minGapMs` drops repeats that come
+sooner than this; `maxSeconds` cuts the sound at that length with a 0.3 s fade.
+
+Current mapping (Kenney Casino Audio): shuffle → `card-shuffle`; deal and select → `card-slide-1…8`;
+place → `card-place-1…4`; collect → `card-shove-1…4`; pass → `card-fan-1…2`. Stinger cues have no files yet.
 
 ## 5. Sources (D-039)
-- Effects: Kenney "Casino Audio" (CC0), https://kenney.nl/assets/casino-audio. The owner downloads it
-  manually, because the site's download page asks visitors whether they'd like to donate, and that
+- Effects: Kenney "Casino Audio" 1.1 (CC0), https://kenney.nl/assets/casino-audio. Its bundled
+  `License.txt` (CC0) ships beside the sounds in `assets/audio/sfx/kenney-casino-audio/`. Only the 19
+  card sounds used are copied, unmodified. The owner downloads the pack manually, because the site's download page asks visitors whether they'd like to donate, and that
   is not scripted around.
 - Music: tracks from **FreePD** (all CC0 1.0, by FreePD's own statement, archived 2024-06-01 at
   https://web.archive.org/web/20240601000000/https://freepd.com/). freepd.com closed in 2025, so each

@@ -350,7 +350,7 @@ export class HeartsTable {
     for (const hand of hands) for (const card of hand) this.sprites.set(card, new CardSprite(card, this.cardLayer, deck));
 
     audio.play('card.shuffle');
-    await this.sleep(audio.hasCue('card.shuffle') ? 700 : 0);
+    await this.sleep(audio.hasCue('card.shuffle') ? 1500 : 0);
     const moves: Promise<void>[] = [];
     let k = 0;
     for (let r = 0; r < 13; r++) {
