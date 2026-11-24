@@ -315,7 +315,7 @@ Template:
 
 ## D-034 — Internal identity separate from the brand
 - Date: 2026-11-24
-- Status: Accepted (replaces the appId in D-026)
+- Status: Accepted (replaces the appId in D-026). The `.deb` package name is amended by D-043.
 - Decision: Everything the operating system uses to recognize the app uses a permanent,
   brand-free identity based on the internal codename **`cardtable`**. These values must never change:
   | Identifier | Value | Used for |
@@ -394,3 +394,17 @@ Template:
   registered with content-claim services, and attribution is required), and the anonymous archive.org
   FreePD mirror as a download source (no provenance of its own).
 - Why: CC0 with documented provenance meets the "no question" rights bar (D-014).
+
+## D-043 — The .deb package name shows the brand
+- Date: 2026-11-24
+- Status: Accepted (amends D-034 for Linux packages only)
+- Decision: The Debian package is named **`freekards`**, not `cardtable`, because Linux Mint's
+  installer shows the package name to the user ("freekards 0.1.0 is now installed"). Upgrade
+  safety across renames comes from Debian's own mechanism instead: a renamed package declares
+  `Replaces` and `Conflicts` on every earlier package name, so installing it cleanly removes the old
+  one. The current package declares `Replaces: cardtable` and `Conflicts: cardtable`, which covers
+  test installs of the pre-release `cardtable` package. Everything else in D-034 is unchanged: the
+  app ID, Windows installer GUID, user-data folder (`cardtable`), and npm package name stay
+  brand-free and permanent.
+- Why: Owner request. Users should see "FreeKards", and Debian already has a standard way to move
+  installs from one package name to another.

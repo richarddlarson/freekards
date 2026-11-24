@@ -46,3 +46,9 @@ linux:
   synopsis: Classic card games with friendly computer opponents
 deb:
   packageCategory: games
+  # Brand-visible .deb name (D-043). Installers show it ("freekards 0.1.0 is now installed").
+  # A future rename keeps upgrades working via Debian replaces/conflicts on the old name, as below.
+  packageName: freekards
+  fpm:
+    - --replaces=cardtable
+    - --conflicts=cardtable

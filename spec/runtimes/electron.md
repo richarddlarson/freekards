@@ -136,7 +136,8 @@ preload), `release/` (installers), `coverage/`.
 
 ## Packaging and installers (`electron-builder.yml`)
 - **[Confirmed]** Internal identity (D-034, **never change**): appId `io.github.richarddlarson.cardtable`,
-  `nsis.guid` `603b3361-eb1a-4e18-9d18-ef44b2392b21`, npm/deb package name `cardtable`. The main
+  `nsis.guid` `603b3361-eb1a-4e18-9d18-ef44b2392b21`, npm package name `cardtable` (the `.deb` name is
+  `freekards`, D-043). The main
   process sets `userData` to `<appData>/cardtable` and calls `app.setAppUserModelId(appId)` on Windows
   before the app is ready. Display: productName `FreeKards`, Linux `executableName: freekards`. Artifact names follow
   `FreeKards-<version>-<os>-<arch>.<ext>`, written to `release/`.
@@ -148,6 +149,7 @@ preload), `release/` (installers), `coverage/`.
   per user, no admin rights or elevation, fixed install folder, Start-menu and desktop shortcuts,
   and the MIT license shown during install.
 - **[Confirmed]** Linux: `.deb` (primary, D-032) and AppImage (portable) for x64 and arm64, category `Game`.
+  The `.deb` package is named `freekards`, with `Replaces`/`Conflicts: cardtable` set through fpm (D-043).
   The target is Linux Mint and other Debian/Ubuntu derivatives.
 
 ## Licensing and SBOM (per core spec 09) (D-020)
