@@ -1,0 +1,100 @@
+# FreeKards CI: test, license gate, native installers for all four targets, draft release on tags.
+# Design: spec/runtimes/electron.md §CI (D-040..D-042). Actions are pinned to full commit SHAs and
+# listed in sbom/build-tools.json (spec 09 §3c).
+name: build
+
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Test, build, license gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm run licenses
+      - name: SBOMs must match the committed versions
+        run: git diff --exit-code -- sbom/code.cdx.json sbom/dev.cdx.json
+
+  build:
+    name: Installer (${{ matrix.os }}-${{ matrix.arch }})
+    needs: check
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { runner: windows-latest, os: win, arch: x64, targets: '--win nsis' }
+          - { runner: windows-11-arm, os: win, arch: arm64, targets: '--win nsis' }
+          - { runner: ubuntu-latest, os: linux, arch: x64, targets: '--linux deb AppImage' }
+          - { runner: ubuntu-24.04-arm, os: linux, arch: arm64, targets: '--linux deb AppImage' }
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Cache Electron and electron-builder downloads
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.cache/electron
+            ~/.cache/electron-builder
+            ~/AppData/Local/electron/Cache
+            ~/AppData/Local/electron-builder/Cache
+          key: electron-${{ matrix.os }}-${{ matrix.arch }}-${{ hashFiles('package-lock.json') }}
+      - run: npm ci
+      - run: npm run build
+      - name: Build installers
+        shell: bash
+        run: npx electron-builder ${{ matrix.targets }} --${{ matrix.arch }} --publish never
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: freekards-${{ matrix.os }}-${{ matrix.arch }}
+          path: |
+            release/*.exe
+            release/*.deb
+            release/*.AppImage
+          if-no-files-found: error
+          retention-days: 14
+
+  release:
+    name: Draft GitHub Release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          path: dist-installers
+          merge-multiple: true
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --draft \
+            --title "FreeKards $GITHUB_REF_NAME" \
+            --generate-notes \
+            dist-installers/* sbom/*.json LICENSE
