@@ -9,6 +9,16 @@ original request wording is kept.
 Status values: **Idea** (captured, not designed) · **Planned** (designed, scheduled) ·
 **In progress** · **Done**.
 
+## Where we left off (updated at the end of each working session)
+**2026-11-24:** Hearts is fully playable with sound effects, 10 music tracks, voices for all six
+characters, player profiles, statistics, and KardCoins. CI builds all four installers, and `main`
+is green. Waiting on the owner:
+1. Confirm that profiles and coins persist in the **installed** app across restarts
+   (`~/.config/cardtable/data/profiles.json`); only the localStorage fallback was tested.
+2. Try the Windows ARM64 installer on the Surface Pro 9 (CI artifact `freekards-win-arm64`).
+3. Choose what's next: the first tagged release `v0.1.0` (D-041), code signing (Q3), the next game
+   (R-002), the app icon and Credits screen (R-003), or KardCoin spending (R-001 part 4).
+
 ---
 
 ## R-001 — Player profiles, statistics, KardCoins, and avatars
