@@ -28,11 +28,13 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - run: npm test
-      - run: npm run build
+      # The license gate runs BEFORE tests and build: Vite/Vitest write caches into node_modules,
+      # which makes npm's hidden lockfile stale and drops package hashes from the dev SBOM.
       - run: npm run licenses
       - name: SBOMs must match the committed versions
         run: git diff --exit-code -- sbom/code.cdx.json sbom/dev.cdx.json
+      - run: npm test
+      - run: npm run build
 
   build:
     name: Installer (${{ matrix.os }}-${{ matrix.arch }})
