@@ -28,3 +28,10 @@ These rules apply to everyone working on FreeKards, including the AI coding assi
 ## Git
 - Default branch is `main`. Make small commits with descriptive messages.
 - Commits made by the AI assistant end with its `Co-Authored-By` attribution line.
+
+## Parallel work (background agents)
+- When a background agent is editing files, the main session holds its own edits to the same
+  files, drafting them in the scratchpad if needed, and applies them after the agent finishes.
+  This avoids overwriting each other's changes.
+- When the background work finishes, the main session re-runs the tests, build, and license
+  check itself before building on it.

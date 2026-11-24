@@ -101,7 +101,7 @@ preload), `release/` (installers), `coverage/`.
 - **[Proposed]** App icon. Window position and size remembered between runs.
 
 ## Packaging and installers (`electron-builder.yml`)
-- **[Confirmed]** appId `io.github.freekards.app`, productName `FreeKards`. Artifact names follow
+- **[Confirmed]** appId `io.github.richarddlarson.freekards` (D-026), productName `FreeKards`. Artifact names follow
   `FreeKards-<version>-<os>-<arch>.<ext>`, written to `release/`.
 - **[Confirmed]** The app contains `dist-electron/**/*.cjs`, `dist/renderer/**`, and `package.json`,
   in an asar archive. `sbom/` and `LICENSE` (as `LICENSE.FreeKards.txt`) go into the app's

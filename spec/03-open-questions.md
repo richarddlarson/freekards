@@ -4,7 +4,6 @@ When a question is answered, the answer is recorded as a decision in `02-decisio
 question is removed from this list.
 
 ## Technology and delivery
-- Q2. GitHub account or organization, and repository name for the public repo (D-012)?
 - Q3. Should the installers be code-signed? An unsigned Windows installer triggers a SmartScreen
   "Windows protected your PC" warning on first run. Because the project is open source, the SignPath
   Foundation may provide free code signing; that option is worth checking.
@@ -20,11 +19,7 @@ question is removed from this list.
 
 ## Characters, art, and audio
 - Q12. The roster itself: names, looks, personalities, and voices for 6–8 original characters.
-- Q18. Card art source: draw original SVGs, or use an existing CC0 or public-domain SVG deck as the
-  base for Classic Casino? It must meet the permissive-only policy (D-014).
 
 ## Other
 - Q13. Keep statistics (games played, wins) and save a game in progress to resume later?
-- Q14. What exact Windows tablet model does she use? This tells us the screen size, resolution,
-  and orientation to design for.
 - Q15. Is "FreeKards" the final product name?

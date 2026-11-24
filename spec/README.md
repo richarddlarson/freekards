@@ -22,11 +22,12 @@ look, feel, behavior, build, packaging, install, runtime, or development process
 | [08-characters.md](08-characters.md) | Character roster, personality, difficulty model, and dialogue. |
 | [09-licensing-and-sbom.md](09-licensing-and-sbom.md) | MIT license, third-party license policy, SBOM, and Credits screen. |
 | [10-core-logic.md](10-core-logic.md) | Shared logic conventions: card ids, seats, seeded random numbers, state-machine shape. |
+| [11-display-and-layout.md](11-display-and-layout.md) | Target screens, resolution scaling, layout model, touch targets, orientation. |
 | [runtimes/electron.md](runtimes/electron.md) | Electron-specific stack, versions, source tree, scripts, packaging, installers, SBOM tooling, and CI. |
 
 Every document except those in `runtimes/` is **engine-neutral** (see 05). Later documents get the
-next free number. Planned ones include architecture, Hearts rules and AI, characters and dialogue,
-art and audio, and screen flow and layout.
+next free number. Planned ones include screen flow, table layout positions, animation timing, audio, and the
+character roster and dialogue.
 
 ## Conventions
 

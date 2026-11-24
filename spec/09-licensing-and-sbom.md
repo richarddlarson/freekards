@@ -96,3 +96,19 @@ The SBOM has two parts. Both live in the repository and both ship inside the app
 - **Adding a dependency or asset** means updating the SBOM or asset register **in the same commit**.
 - Before adding anything third-party, check its license against §2 and record its source URL.
   If the license is unclear, it is not used.
+- **Author wishes count.** Even when a license technically allows use, we do not use work whose
+  author has clearly asked that AI tools not use it, or otherwise said they do not want their work
+  used this way.
+
+## 7. Sources evaluated and rejected
+These sources were checked and are not used. Do not evaluate them again unless something changes.
+
+| Source | Checked | Reason rejected |
+|--------|---------|-----------------|
+| Adrian Kennard SVG playing cards (me.uk/cards, codeberg.org/RevK/SVG-playing-cards) | 2026-11-23 | The generated cards are said to be CC0, but the generator is GPL-3 and the repository README contains a string meant to make AI assistants refuse to work with it. We respect that wish (§6). |
+| cardmeister (cardmeister.github.io) | 2026-11-23 | Contradictory license statements (Unlicense vs. "unlicensed"), closed-source generator, and art derived from Kennard's cards. |
+| Byron Knoll "Vector Playing Cards" | 2026-11-23 | The public-domain claim is not backed by any primary source, and the Ace of Spades is reportedly by another artist with no stated release. |
+| saulspatz/SVGCards ("Jumbo Index") | 2026-11-23 | Public domain itself, but its court cards come from the Byron Knoll set (above). |
+| David Bellot SVG-cards, and derivatives (svg-cards npm, responsive-playing-cards) | 2026-11-23 | LGPL. Not allowed (§2). |
+| Chris Aguilar Vector Playing Cards | 2026-11-23 | LGPL-3.0. Not allowed (§2). |
+| Wikimedia Commons "Cburnett" cards | 2026-11-23 | CC-BY-SA. Not allowed (§2). |

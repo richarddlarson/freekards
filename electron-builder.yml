@@ -1,5 +1,5 @@
 # Installer packaging (spec runtimes/electron.md §Packaging and installers).
-appId: io.github.freekards.app
+appId: io.github.richarddlarson.freekards
 productName: FreeKards
 copyright: Copyright (c) 2026 The FreeKards Contributors
 directories:
