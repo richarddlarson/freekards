@@ -368,3 +368,29 @@ Template:
   supported resolutions before showing work to the owner.
 - Why: Visual changes need to be seen, not assumed. Hidden (non-offscreen) windows throttle frames,
   which stalls animations, so offscreen rendering is required.
+
+## D-038 — Audio system
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: Three channels (Music 0.45, Effects 0.80, Voices 1.00 by default) plus Mute all. Slider
+  position maps to gain as position squared. There are named sound cues with random variation, and a
+  shuffled background playlist that crossfades over 3 s, plays continuously across screens, and
+  pauses while the app is hidden. Cue-to-file mappings and the track list live in
+  `spec/content/audio.json`. A **Sound** panel is reachable from the main menu and the in-game pause
+  menu, and changes apply live and persist. Full design is in `13-audio.md`.
+- Why: Owner request ("start with sound effects and music"). Data-driven cues keep the engine
+  neutral, so a port only needs a player for named cues.
+
+## D-039 — Audio sources: Kenney Casino Audio (effects) and FreePD (music)
+- Date: 2026-11-24
+- Status: Accepted (track picks pending)
+- Decision: Sound effects come from Kenney "Casino Audio" (CC0), downloaded manually by the owner,
+  because the download page asks visitors whether they'd like to donate and that should not be
+  scripted around. Music comes from FreePD's CC0 catalog: FreePD's license statement was verified on
+  the Wayback Machine's 2024-06-01 copy of freepd.com. Because the site closed in 2025, each track is
+  fetched from the Wayback copy of its original freepd.com URL, and that URL, the composer (from the
+  file's tags), and the SHA-256 are recorded in the asset register. Files ship byte-for-byte as
+  published. Rejected: Kevin MacLeod tracks from incompetech (licenses vary by track, some tracks are
+  registered with content-claim services, and attribution is required), and the anonymous archive.org
+  FreePD mirror as a download source (no provenance of its own).
+- Why: CC0 with documented provenance meets the "no question" rights bar (D-014).

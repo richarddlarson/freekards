@@ -2,6 +2,7 @@
  * Renderer entry point: screen flow (spec 12 §1).
  * Demo hashes for development screenshots (scripts/capture.cjs):
  *   #setup                         the Hearts setup screen
+ *   #sound                         the main menu with the Sound panel open
  *   #hearts&seed=7&autoplay&speed=3  a Hearts game with fixed seed, optionally self-playing
  */
 import type { dialogue } from '../logic/index.js';
@@ -10,6 +11,7 @@ import { CHARACTERS, characterById } from './content.js';
 import { showHeartsSetup, showMainMenu } from './screens.js';
 import { loadSettings, saveSettings, type Settings } from './settings.js';
 import { Stage } from './stage.js';
+import { audio } from './audio.js';
 import { HeartsTable } from './table/hearts-table.js';
 
 // Native-app feel: no browser context menu, no ctrl+wheel zoom (spec runtimes/electron.md).
@@ -17,6 +19,9 @@ window.addEventListener('contextmenu', (e) => e.preventDefault());
 window.addEventListener('wheel', (e) => { if (e.ctrlKey) e.preventDefault(); }, { passive: false });
 
 const stage = new Stage(document.getElementById('app')!);
+audio.setVolumes(loadSettings().volumes);
+void audio.preloadCues();
+audio.startMusic();
 let table: HeartsTable | null = null;
 
 function pickOpponents(settings: Settings, seed: number): dialogue.CharacterDef[] {
@@ -59,6 +64,10 @@ function play(settings: Settings, demo: { seed?: number; autoplay?: boolean; spe
 
 const hash = new URLSearchParams(location.hash.slice(1));
 if (hash.has('setup')) setup();
+else if (hash.has('sound')) {
+  menu();
+  document.querySelector('.menu-footer button')?.dispatchEvent(new PointerEvent('pointerup', { button: 0 }));
+}
 else if (hash.has('hearts')) {
   play(loadSettings(), {
     seed: Number(hash.get('seed') ?? 1),

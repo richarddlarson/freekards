@@ -7,6 +7,8 @@ import { dialogue, effectiveSkill, hearts, layout, sortHand, type Card, type Dif
 import { portraitColors, preloadCardImages } from '../content.js';
 import { h, onTap, type Stage } from '../stage.js';
 import { CardSprite } from './card-sprite.js';
+import { audio } from '../audio.js';
+import { soundSettingsPanel } from '../sound-settings.js';
 
 type Seat = hearts.Seat;
 type CharacterDef = dialogue.CharacterDef;
@@ -324,6 +326,7 @@ export class HeartsTable {
         return;
       }
       this.actionBtn.disabled = this.lifted.size !== 3;
+      audio.play('card.select');
       void this.syncHand(0, 140);
     } else if (this.mode === 'play' && this.pick) {
       if (this.legal.has(card)) {
@@ -346,6 +349,8 @@ export class HeartsTable {
     const hands = SEATS.map((s) => this.displayHand(s));
     for (const hand of hands) for (const card of hand) this.sprites.set(card, new CardSprite(card, this.cardLayer, deck));
 
+    audio.play('card.shuffle');
+    await this.sleep(audio.hasCue('card.shuffle') ? 700 : 0);
     const moves: Promise<void>[] = [];
     let k = 0;
     for (let r = 0; r < 13; r++) {
@@ -353,6 +358,11 @@ export class HeartsTable {
         const card = hands[seat]![r]!;
         const sp = this.sprites.get(card)!;
         sp.setZ(10 + r);
+        const id = window.setTimeout(() => {
+          this.timers.delete(id);
+          audio.play('card.deal');
+        }, this.ms(k * T.dealStagger));
+        this.timers.add(id);
         moves.push(
           sp.moveTo(layout.handPlacement(this.lay, seat, r, 13), {
             duration: this.ms(T.dealFlight),
@@ -393,6 +403,7 @@ export class HeartsTable {
     let events = this.apply({ type: 'pass', seat: 0, cards: mine });
     for (const seat of COMPUTER_SEATS) events = [...events, ...this.apply({ type: 'pass', seat, cards: this.ais[seat]!.choosePass(this.state, seat) })];
 
+    audio.play('card.pass');
     for (const seat of SEATS) for (const card of this.state.hands[seat]) this.sprites.get(card)?.setFaceUp(seat === 0);
     for (const card of this.state.received[0]) this.lifted.add(card);
     await Promise.all(SEATS.map((s) => this.syncHand(s, T.passFlight)));
@@ -427,13 +438,23 @@ export class HeartsTable {
       this.syncHand(seat, T.resort),
     ]);
     this.guard();
+    audio.play('card.place');
 
     for (const e of events) {
-      if (e.type === 'hearts_broken') this.showToast('Hearts are broken!');
+      if (e.type === 'hearts_broken') {
+        this.showToast('Hearts are broken!');
+        audio.play('table.hearts_broken');
+      }
       if (e.type === 'trick_won') await this.collectTrick(e.seat as Seat, e.cards);
-      if (e.type === 'queen_of_spades_taken') this.showToast(`${this.nameOf(e.seat as Seat)} took the Queen of Spades!`, 2200);
+      if (e.type === 'queen_of_spades_taken') {
+        this.showToast(`${this.nameOf(e.seat as Seat)} took the Queen of Spades!`, 2200);
+        audio.play('table.queen');
+      }
       if (e.type === 'jack_of_diamonds_taken') this.showToast(`${this.nameOf(e.seat as Seat)} took the Jack of Diamonds (−10)`, 2200);
-      if (e.type === 'moon_shot') this.showToast(`${this.nameOf(e.seat as Seat)} shot the moon!`, 3000);
+      if (e.type === 'moon_shot') {
+        this.showToast(`${this.nameOf(e.seat as Seat)} shot the moon!`, 3000);
+        audio.play('table.moon');
+      }
     }
     this.updateScores();
     this.say(dialogue.heartsCandidates(events, this.state));
@@ -443,6 +464,7 @@ export class HeartsTable {
   private async collectTrick(winner: Seat, cards: readonly Card[]): Promise<void> {
     await this.sleep(T.trickPause);
     const target = this.lay.seats[winner].collect;
+    audio.play('card.collect');
     await Promise.all(
       cards.map((c) =>
         this.sprites.get(c)?.moveTo({ ...target, rot: 0, scale: 0.45 }, { duration: this.ms(T.collect), opacity: 0, easing: 'ease-in' }),
@@ -525,6 +547,7 @@ export class HeartsTable {
 
   private async gameOver(): Promise<void> {
     const winner = this.state.winner;
+    audio.play(winner === 0 ? 'game.win' : 'game.lose');
     const panel = h('div', 'dialog');
     panel.append(h('h2', '', winner === 0 ? 'You win!' : `${this.nameOf(winner ?? 0)} wins!`));
     panel.append(this.standingsTable(null));
@@ -545,6 +568,13 @@ export class HeartsTable {
     panel.append(h('h2', '', 'Paused'));
     const col = h('div', 'dialog-buttons column');
     const resume = h('button', 'big-button', 'Resume');
+    const sound = h('button', 'big-button secondary', 'Sound');
+    onTap(sound, () => {
+      const back = this.overlay;
+      const o = h('div', 'overlay');
+      o.append(soundSettingsPanel(() => o.remove()));
+      back?.append(o);
+    });
     const restart = h('button', 'big-button secondary', 'New game');
     const menu = h('button', 'big-button secondary', 'Main menu');
     onTap(resume, () => {
@@ -556,7 +586,7 @@ export class HeartsTable {
     });
     onTap(restart, () => this.opts.onExit('again'));
     onTap(menu, () => this.opts.onExit('menu'));
-    col.append(resume, restart, menu);
+    col.append(resume, sound, restart, menu);
     panel.append(col);
     this.showOverlay(panel);
   }

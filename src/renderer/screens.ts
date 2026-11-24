@@ -2,6 +2,7 @@
 import type { Difficulty, dialogue, hearts } from '../logic/index.js';
 import { CHARACTERS, portraitColors } from './content.js';
 import type { Settings } from './settings.js';
+import { soundSettingsPanel } from './sound-settings.js';
 import { h, onTap, type Stage } from './stage.js';
 
 type CharacterDef = dialogue.CharacterDef;
@@ -20,9 +21,17 @@ export function showMainMenu(stage: Stage, actions: { playHearts(): void; quit()
     b.disabled = true;
     list.append(b);
   }
+  const sound = h('button', 'big-button quiet', 'Sound');
+  onTap(sound, () => {
+    const overlay = h('div', 'overlay');
+    overlay.append(soundSettingsPanel(() => overlay.remove()));
+    screen.append(overlay);
+  });
   const quit = h('button', 'big-button quiet', 'Quit');
   onTap(quit, actions.quit);
-  list.append(quit);
+  const footer = h('div', 'menu-footer');
+  footer.append(sound, quit);
+  list.append(footer);
   screen.append(list);
   stage.el.append(screen);
 }

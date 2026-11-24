@@ -15,7 +15,7 @@ Main menu ──Play Hearts──▶ Hearts setup ──Deal!──▶ Hearts ta
 ```
 - **Main menu:** the "FreeKards" title, tagline "Classic card games with friendly faces", a large
   **Play Hearts** button, a 2-column grid of the other six games marked *coming soon* (disabled),
-  and **Quit** (closes the app).
+  and, along the bottom, **Sound** (opens the Sound panel, spec 13) and **Quit** (closes the app).
 - **Hearts setup** (one panel):
   - **Rules:** Standard | Jack of Diamonds −10 (D-008).
   - **Difficulty:** Easy | Medium | Hard (D-010).
@@ -95,8 +95,8 @@ don't cover them.
   is over).
 - **Game over:** "You win!" or "<Nickname> wins!", the final standings sorted by score, and the
   buttons **Play again** (same settings, new deal) and **Main menu**.
-- **Pause (☰):** **Resume**, **New game**, and **Main menu**. The game is paused while it's open.
+- **Pause (☰):** **Resume**, **Sound** (spec 13), **New game**, and **Main menu**. The game is paused while it's open.
 
 ## 7. Not yet implemented
-Sound effects, music, voices, portrait art, the About & Credits screen, a settings screen, statistics,
+Voices, portrait art, the About & Credits screen, a settings screen, statistics,
 saving a game in progress, a drag gesture for playing cards, and other themes.

@@ -64,7 +64,9 @@ src/renderer/               Presentation (DOM + CSS):
   main.ts                   Screen flow and demo hashes (#setup, #hearts&seed=N&autoplay&speed=N)
   stage.ts                  Stage scaled to the window (spec 11 §2), DOM helpers, tap handling
   content.ts                Loads spec/content characters and assets/themes images via import.meta.glob
-  settings.ts               Remembered preferences in localStorage (spec 12 §5)
+  settings.ts               Remembered preferences in localStorage (spec 12 §5), including volumes
+  audio.ts                  Web Audio engine: channels, cues, playlist (spec 13)
+  sound-settings.ts         Sound panel (sliders, Mute all)
   screens.ts                Main menu and Hearts setup
   table/card-sprite.ts      One element per card, moved with the Web Animations API
   table/hearts-table.ts     Hearts table controller and view (spec 12)
@@ -100,6 +102,11 @@ preload), `release/` (installers), `coverage/`.
 - Vite bundles `spec/content` and `assets/` through `import.meta.glob` (eager). Small SVGs are
   inlined as data URIs and larger ones are emitted as files. The CSP allows `img-src 'self' data:`.
   `server.fs.allow` includes the repo root, so the dev server can reach both folders.
+- Audio: one `AudioContext` with master → music/sfx/voice `GainNode`s. Files are bundled through
+  `import.meta.glob('assets/audio/**')` and decoded with `decodeAudioData`. Music crossfades are
+  scheduled against `AudioContext.currentTime`, polled every 250 ms, so a suspended (hidden) app keeps
+  its place. Electron's default autoplay policy lets music start without a user gesture. In a
+  browser, the context resumes on the first pointer press.
 - Card motion: each card is one absolutely positioned element. A move sets the final `transform`
   and plays a Web Animations keyframe from the old to the new transform, with `fill: backwards` so
   staggered delays hold the start position.

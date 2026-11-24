@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "defaults": { "music": 0.45, "sfx": 0.8, "voice": 1.0 },
+  "cues": {},
+  "music": []
+}
