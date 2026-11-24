@@ -34,6 +34,7 @@ Every play varies slightly: pitch (playback rate) × random 0.96–1.04 and volu
 | `table.queen` | Someone takes the Queen of Spades (optional) |
 | `table.moon` | Someone shoots the moon (optional) |
 | `game.win` / `game.lose` | Game-over dialog, depending on whether the human won (optional) |
+| `coins.award` | KardCoins award count-up starts (Kenney `chips-stack-1/3/5`) |
 
 A cue with no file mapped is silent. Missing or broken files never stop the game.
 

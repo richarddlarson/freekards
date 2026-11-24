@@ -3,8 +3,9 @@
  * Responsibilities: create the window, app lifecycle, single-instance lock.
  * The game itself runs entirely in the renderer.
  */
-import { app, BrowserWindow, Menu, shell } from 'electron';
+import { app, BrowserWindow, ipcMain, Menu, shell } from 'electron';
 import * as path from 'node:path';
+import { promises as fs } from 'node:fs';
 
 const DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL'];
 
@@ -16,6 +17,45 @@ const APP_ID = 'io.github.richarddlarson.cardtable';
 const DATA_FOLDER = 'cardtable';
 app.setPath('userData', path.join(app.getPath('appData'), DATA_FOLDER));
 if (process.platform === 'win32') app.setAppUserModelId(APP_ID);
+
+/**
+ * JSON document store (D-051): <userData>/data/<name>.json. Names are restricted to [a-z0-9-] so the
+ * renderer can never reach other paths. Writes go to a temp file, the previous version is kept as
+ * <name>.json.bak, and the temp file is renamed into place.
+ */
+const STORE_NAME = /^[a-z0-9-]{1,40}$/;
+const MAX_DOC_BYTES = 5 * 1024 * 1024;
+
+function storePath(name: unknown): string {
+  if (typeof name !== 'string' || !STORE_NAME.test(name)) throw new Error('invalid store name');
+  return path.join(app.getPath('userData'), 'data', `${name}.json`);
+}
+
+function registerStore(): void {
+  ipcMain.handle('store:read', async (_event, name: unknown) => {
+    const file = storePath(name);
+    for (const candidate of [file, `${file}.bak`]) {
+      try {
+        const text = await fs.readFile(candidate, 'utf8');
+        JSON.parse(text); // fall back to the backup if the main file is damaged
+        return text;
+      } catch {
+        /* missing or unreadable: try the next candidate */
+      }
+    }
+    return null;
+  });
+  ipcMain.handle('store:write', async (_event, name: unknown, text: unknown) => {
+    const file = storePath(name);
+    if (typeof text !== 'string' || text.length > MAX_DOC_BYTES) throw new Error('invalid document');
+    JSON.parse(text);
+    await fs.mkdir(path.dirname(file), { recursive: true });
+    const tmp = `${file}.tmp`;
+    await fs.writeFile(tmp, text, 'utf8');
+    await fs.copyFile(file, `${file}.bak`).catch(() => undefined);
+    await fs.rename(tmp, file);
+  });
+}
 
 function createWindow(): BrowserWindow {
   const win = new BrowserWindow({
@@ -70,6 +110,8 @@ if (!app.requestSingleInstanceLock()) {
 
   // No application menu: the game provides its own in-window menus.
   Menu.setApplicationMenu(null);
+
+  registerStore();
 
   void app.whenReady().then(() => {
     mainWindow = createWindow();

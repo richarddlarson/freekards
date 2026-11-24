@@ -4,7 +4,8 @@
  *
  *   npx electron scripts/capture.cjs <url-or-file> <out.png> [width] [height] [waitMs[,waitMs...]] [scaleFactor]
  *
- * For the app itself, pass dist/renderer/index.html plus a hash such as "#demo=hearts-play".
+ * For the app itself, pass dist/renderer/index.html plus a hash such as "#hearts&seed=3&autoplay".
+ * Env CAPTURE_INIT_JS: JavaScript run in the page once loaded (e.g. seed localStorage), then reload.
  */
 const { app, BrowserWindow } = require('electron');
 const path = require('node:path');
@@ -44,6 +45,12 @@ app.whenReady().then(async () => {
   else {
     const [file, hash] = target.split('#');
     await win.loadFile(path.resolve(file), hash ? { hash } : undefined);
+  }
+  // Optional setup: CAPTURE_INIT_JS runs in the page (e.g. to seed localStorage), then the page reloads.
+  if (process.env.CAPTURE_INIT_JS) {
+    await win.webContents.executeJavaScript(process.env.CAPTURE_INIT_JS);
+    win.webContents.reload();
+    await new Promise((r) => win.webContents.once('did-finish-load', r));
   }
   // waitMs may be a comma-separated list of times (ms since load); one PNG per time: out-1.png, out-2.png, ...
   const times = String(wait).split(',').map(Number);

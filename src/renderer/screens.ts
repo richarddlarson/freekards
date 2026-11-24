@@ -3,13 +3,31 @@ import type { Difficulty, dialogue, hearts } from '../logic/index.js';
 import { CHARACTERS, portraitColors } from './content.js';
 import type { Settings } from './settings.js';
 import { soundSettingsPanel } from './sound-settings.js';
+import { coinBadge, playerBadge } from './profile-screens.js';
+import type { profile } from '../logic/index.js';
 import { h, onTap, type Stage } from './stage.js';
 
 type CharacterDef = dialogue.CharacterDef;
 
-export function showMainMenu(stage: Stage, actions: { playHearts(): void; quit(): void }): void {
+export function showMainMenu(
+  stage: Stage,
+  actions: { playHearts(): void; quit(): void; stats(): void; switchPlayer(): void },
+  player: profile.Profile | null,
+): void {
   stage.clear();
   const screen = h('div', 'screen menu-screen');
+  if (player) {
+    // Player bar (spec 15 §4): who's playing, their KardCoins, Stats and Switch player.
+    const bar = h('div', 'player-bar');
+    const who = h('div', 'player-chip');
+    who.append(playerBadge(player, 'player-face small'), h('span', 'player-name', player.name), coinBadge(player.coins));
+    const stats = h('button', 'choice', 'My stats');
+    const sw = h('button', 'choice', 'Switch player');
+    onTap(stats, actions.stats);
+    onTap(sw, actions.switchPlayer);
+    bar.append(who, stats, sw);
+    screen.append(bar);
+  }
   screen.append(h('h1', 'title', 'FreeKards'), h('p', 'subtitle', 'Classic card games with friendly faces'));
   const list = h('div', 'menu-list');
   const hearts = h('button', 'big-button', 'Play Hearts');

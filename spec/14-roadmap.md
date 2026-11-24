@@ -12,7 +12,8 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 ---
 
 ## R-001 — Player profiles, statistics, KardCoins, and avatars
-- **Status:** In progress (parts 1–3 started 2026-11-24)
+- **Status:** In progress. Parts 1–3 (profiles, stats, KardCoins earning) were built 2026-11-24;
+  see `15-profiles-and-coins.md` and D-049 to D-052. Part 4 (spending, avatars) is still an Idea.
 - **Requested:** 2026-11-24, by the owner
 - **Request (original wording):** "I want users to be able to set up their own profile so that as they
   play more and more games they can see their stats as well as maybe we can add some kind of currency

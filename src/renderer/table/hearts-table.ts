@@ -27,7 +27,22 @@ export interface HeartsTableOptions {
   autoplay?: boolean;
   /** Demo/testing: divide all game timings by this factor. */
   speed?: number;
+  /** Called once when a game finishes (never for abandoned games). Returns the award to show, if any. */
+  onGameFinished?(result: HeartsGameResult): GameAward | null;
   onExit(next: 'menu' | 'again'): void;
+}
+
+/** What the table reports about the player (seat 0) when a game finishes (spec 15 §3). */
+export interface HeartsGameResult {
+  finalScores: number[];
+  handsPlayed: number;
+  moonsShot: number;
+  queensTaken: number;
+}
+
+export interface GameAward {
+  payout: { place: number; placeCoins: number; multiplier: number; moonBonus: number; total: number };
+  profile: { coins: number };
 }
 
 class Cancelled extends Error {}
@@ -76,6 +91,8 @@ export class HeartsTable {
   private bubbleTimer = 0;
   private toastTimer = 0;
   private readonly unsubscribeResize: () => void;
+  private humanMoons = 0;
+  private humanQueens = 0;
 
   constructor(private readonly stage: Stage, private readonly opts: HeartsTableOptions) {
     this.speed = opts.speed ?? 1;
@@ -449,6 +466,8 @@ export class HeartsTable {
         audio.play('table.hearts_broken');
       }
       if (e.type === 'trick_won') await this.collectTrick(e.seat as Seat, e.cards);
+      if (e.type === 'queen_of_spades_taken' && e.seat === 0) this.humanQueens++;
+      if (e.type === 'moon_shot' && e.seat === 0) this.humanMoons++;
       if (e.type === 'queen_of_spades_taken') {
         this.showToast(`${this.nameOf(e.seat as Seat)} took the Queen of Spades!`, 2200);
         audio.play('table.queen');
@@ -551,9 +570,16 @@ export class HeartsTable {
   private async gameOver(): Promise<void> {
     const winner = this.state.winner;
     audio.play(winner === 0 ? 'game.win' : 'game.lose');
+    const award = this.opts.onGameFinished?.({
+      finalScores: [...this.state.scores],
+      handsPlayed: this.state.handNumber,
+      moonsShot: this.humanMoons,
+      queensTaken: this.humanQueens,
+    }) ?? null;
     const panel = h('div', 'dialog');
     panel.append(h('h2', '', winner === 0 ? 'You win!' : `${this.nameOf(winner ?? 0)} wins!`));
     panel.append(this.standingsTable(null));
+    if (award) panel.append(this.awardPanel(award));
     const row = h('div', 'dialog-buttons');
     const again = h('button', 'big-button', 'Play again');
     const menu = h('button', 'big-button secondary', 'Main menu');
@@ -562,6 +588,31 @@ export class HeartsTable {
     row.append(again, menu);
     panel.append(row);
     this.showOverlay(panel);
+  }
+
+  /** KardCoins award with a count-up (spec 15 §3). */
+  private awardPanel(a: GameAward): HTMLElement {
+    const PLACE = ['1st', '2nd', '3rd', '4th'];
+    const DIFF: Record<string, string> = { easy: 'Easy', medium: 'Medium', hard: 'Hard' };
+    const box = h('div', 'award');
+    const amount = h('span', 'award-amount', '+0');
+    const top = h('div', 'award-top');
+    top.append(h('span', 'coin-icon large', 'K'), amount, h('span', 'coin-label', 'KardCoins'));
+    const p = a.payout;
+    let detail = `${PLACE[p.place - 1]} place: ${p.placeCoins} × ${p.multiplier} (${DIFF[this.opts.difficulty]})`;
+    if (p.moonBonus) detail += ` · Moon bonus +${p.moonBonus}`;
+    const balance = h('div', 'award-balance', `Balance: ${a.profile.coins.toLocaleString('en-US')} KardCoins`);
+    box.append(top, h('div', 'award-detail', detail), balance);
+    const start = performance.now();
+    const DURATION = 1200;
+    audio.play('coins.award');
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / DURATION);
+      amount.textContent = `+${Math.round(p.total * (1 - (1 - t) ** 3)).toLocaleString('en-US')}`;
+      if (t < 1 && this.alive) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    return box;
   }
 
   private openMenu(): void {

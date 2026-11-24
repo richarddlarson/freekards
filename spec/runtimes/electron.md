@@ -64,7 +64,9 @@ src/renderer/               Presentation (DOM + CSS):
   main.ts                   Screen flow and demo hashes (#setup, #hearts&seed=N&autoplay&speed=N)
   stage.ts                  Stage scaled to the window (spec 11 §2), DOM helpers, tap handling
   content.ts                Loads spec/content characters and assets/themes images via import.meta.glob
-  settings.ts               Remembered preferences in localStorage (spec 12 §5), including volumes
+  settings.ts               Device-wide preferences in localStorage (sound levels, music choice)
+  profiles.ts               Profile store over the preload bridge (localStorage fallback) (spec 15, D-051)
+  profile-screens.ts        Welcome / Add player, Who's playing?, My stats, coin and player badges
   audio.ts                  Web Audio engine: channels, cues, playlist (spec 13)
   sound-settings.ts         Sound panel (sliders, Mute all)
   screens.ts                Main menu and Hearts setup
@@ -97,7 +99,7 @@ preload), `release/` (installers), `coverage/`.
 | `npm run voices` | Generate or refresh character voice clips (Python 3 + ffmpeg; sets up Piper in `.cache/`). `--force` regenerates all. |
 | `npm run music` | Rebuild `assets/audio/music/*.opus` from the verified originals (needs ffmpeg with libopus). |
 | `npm run cards` | Regenerate the Classic Casino card SVGs (deterministic; commit the result). |
-| `npm run capture -- <page> <out.png> [w] [h] [ms,ms…]` | Offscreen screenshots (D-037). Build first. |
+| `npm run capture -- <page> <out.png> [w] [h] [ms,ms…]` | Offscreen screenshots (D-037). Build first. Env `CAPTURE_INIT_JS` runs JS in the page and reloads (e.g. to seed demo profiles into localStorage). |
 | `npm run dist` / `dist:win` / `dist:linux` | Build, check licenses, then build installers with electron-builder. |
 
 ## Renderer implementation notes (D-035)
@@ -126,6 +128,11 @@ preload), `release/` (installers), `coverage/`.
   `webviewTag: false`. The preload script exposes only `window.freekards`, currently
   `{ platform, versions }`. Main and preload compile to CommonJS `.cjs`, because sandboxed preloads
   must be CommonJS.
+- **[Confirmed]** Document store (D-051): `ipcMain.handle('store:read' | 'store:write')` in the main
+  process, exposed as `window.freekards.store.read(name)` / `.write(name, text)`. Files live at
+  `<userData>/data/<name>.json` (names must match `[a-z0-9-]{1,40}`, max 5 MB, must be valid JSON),
+  written to `.tmp`, the old file copied to `.bak`, then renamed. Reads fall back to `.bak` if the
+  main file is missing or not valid JSON.
 - **[Confirmed]** No remote content. A Content-Security-Policy in `index.html` allows only `'self'`
   (plus `ws://localhost:*` for the Vite dev server). In-app navigation is blocked. `window.open` is
   denied, and http(s) links open in the system browser through `shell.openExternal`.

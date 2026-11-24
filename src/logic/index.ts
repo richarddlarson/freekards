@@ -5,3 +5,4 @@ export * from './core/skill.js';
 export * as hearts from './hearts/index.js';
 export * as dialogue from './dialogue/index.js';
 export * as layout from './layout/hearts-table.js';
+export * as profile from './profile/profile.js';

@@ -83,8 +83,8 @@ All card images are loaded and decoded before the first deal, so flips never sho
   unique to each character and the first letter of their nickname (ignoring a leading "The").
 
 ## 5. Remembered preferences
-Rule set, difficulty, and the opponent choice (three ids, or Random) are saved when **Deal!** is
-pressed and restored on the setup screen. Sound levels, Mute all, and the music track choice are
+Rule set, difficulty, and the opponent choice (three ids, or Random) are saved **in the active
+profile** (spec 15) when **Deal!** is pressed, and restored on the setup screen. Sound levels, Mute all, and the music track choice are
 saved as soon as they change (spec 13). If stored preferences are missing or unreadable, the
 defaults are used: Standard, Medium, Random.
 
@@ -94,8 +94,9 @@ don't cover them.
 - **Hand results:** "Hand N results", an optional "X shot the moon!" note, a table of
   player / this hand (+points) / total, and a **Next hand** button (or **Final results** if the game
   is over).
-- **Game over:** "You win!" or "<Nickname> wins!", the final standings sorted by score, and the
-  buttons **Play again** (same settings, new deal) and **Main menu**.
+- **Game over:** "You win!" or "<Nickname> wins!", the final standings sorted by score, the
+  KardCoins award (spec 15 §3), and the buttons **Play again** (same settings, new deal) and
+  **Main menu**.
 - **Pause (☰):** **Resume**, **Sound** (spec 13), **New game**, and **Main menu**. The game is paused while it's open.
 
 ## 7. Not yet implemented

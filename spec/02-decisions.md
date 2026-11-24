@@ -517,3 +517,41 @@ Template:
   Tapping the bubble stops the clip.
 - Why: Owner request to add speaking. Pre-generated clips (D-005) give consistent voices offline,
   and incremental builds make editing dialogue cheap.
+
+## D-049 — Local player profiles with a "Who's playing?" picker
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: Several local profiles per device, with no passwords. First launch asks for a name;
+  two or more profiles bring up the "Who's playing?" picker at launch; the main menu shows the
+  active player with **My stats** and **Switch player**. Hearts preferences move into the profile.
+  Details are in `15-profiles-and-coins.md`.
+- Why: Owner choice (R-001). A shared family tablet needs per-person stats and coins with no friction.
+
+## D-050 — KardCoin economy (first version)
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: 500 welcome coins. A finished Hearts game pays by place, 100 / 40 / 15 / 5, multiplied by
+  difficulty (Easy 1×, Medium 1.5×, Hard 2×) and rounded, plus 25 per moon the player shot. Abandoned
+  games pay nothing. Play money only.
+- Why: Owner choices. Everyone earns a little, winning earns most, and harder games are worth more.
+
+## D-051 — Profiles stored as a JSON document through the runtime
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: Profiles are one JSON document. In Electron, the main process stores named documents at
+  `<userData>/data/<name>.json` (the userData folder is `cardtable`, D-034). Names are limited to
+  `[a-z0-9-]`, writes go to a temp file and are then renamed, the previous version is kept as
+  `.bak`, and a damaged main file falls back to the backup. The preload exposes only
+  `freekards.store.read/write`. Without the bridge (browser preview or the screenshot tool), the
+  renderer falls back to localStorage.
+- Why: Player progress is the most valuable data in the app, so it should survive crashes, be easy
+  to back up as a plain file, and stay outside browser storage.
+
+## D-052 — The currency is named "KardCoins"
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: The in-game currency is "KardCoins" ("KardCoin" singular). It is shown with an original
+  drawn gold coin marked "K".
+- Why: Owner's suggested name. A 2026-11-24 search found no existing product or trademark named
+  KardCoins. The KARDS game (D-033) calls its currency "Diamonds", so there is no overlap. Not legal
+  advice.

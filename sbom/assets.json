@@ -55,7 +55,7 @@
     },
     {
       "path": "assets/audio/sfx/kenney-casino-audio/*",
-      "title": "Kenney Casino Audio 1.1 (19 card sounds used, plus License.txt)",
+      "title": "Kenney Casino Audio 1.1 (19 card sounds and 3 chip sounds used, plus License.txt)",
       "kind": "sfx",
       "origin": "third-party",
       "author": "Kenney Vleugels (Kenney.nl)",

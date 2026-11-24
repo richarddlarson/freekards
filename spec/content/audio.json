@@ -44,6 +44,11 @@
     "card.pass": [
       "assets/audio/sfx/kenney-casino-audio/card-fan-1.ogg",
       "assets/audio/sfx/kenney-casino-audio/card-fan-2.ogg"
+    ],
+    "coins.award": [
+      "assets/audio/sfx/kenney-casino-audio/chips-stack-1.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-stack-3.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-stack-5.ogg"
     ]
   },
   "music": [
