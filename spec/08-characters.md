@@ -120,10 +120,11 @@ Chosen by the owner from auditions. All models qualify under D-047.
 |-----------|-------------|---------|--------------------|-----------------------|
 | Gus | en_US-john-medium | — | 1.15 | Public domain (LibriVox) |
 | Dot | en_GB-cori-high | — | 1.10 | Public domain (LibriVox) |
-| Chad | *pending* | | | |
+| Chad | en_GB-vctk-medium | p345 | 0.85 | CC BY 4.0 (VCTK, CSTR, University of Edinburgh) |
 | Marguerite | en_GB-alba-medium | — | 0.95 | CC BY 4.0 (University of Edinburgh) |
 | Bernie | en_GB-vctk-medium | p225 | 0.90 | CC BY 4.0 (VCTK, CSTR, University of Edinburgh) |
 | Reginald | en_GB-vctk-medium | p273 | 1.00 | CC BY 4.0 (VCTK, CSTR, University of Edinburgh) |
 
+Chad needed a second audition round (10 more candidates, mostly North American VCTK speakers).
 Rejected during auditions: hifi_tts_92 for Marguerite, because it was trained on the same reader as
 Dot's cori voice, so the two would sound alike.

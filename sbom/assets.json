@@ -273,6 +273,19 @@
       "attribution": null,
       "modified": null,
       "tool": "scripts/build-voices.py"
+    },
+    {
+      "path": "assets/voices/chad/*.opus",
+      "title": "Voice clips for chad",
+      "kind": "voice",
+      "origin": "generated",
+      "author": "The FreeKards Contributors (generated with Piper)",
+      "source": "https://github.com/richarddlarson/freekards/blob/main/scripts/build-voices.py",
+      "license": "MIT AND CC-BY-4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "Voice: Piper en_GB-vctk-medium speaker p345. Voice model trained on the VCTK corpus 0.92, CSTR, University of Edinburgh (CC BY 4.0), https://datashare.ed.ac.uk/handle/10283/3443",
+      "modified": null,
+      "tool": "scripts/build-voices.py, piper-tts 1.8.0, voice en_GB-vctk-medium speaker p345, piper-voices revision e5349433ed88 (D-047, D-048)"
     }
   ]
 }

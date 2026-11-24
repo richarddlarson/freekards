@@ -18,7 +18,13 @@
   "voice": {
     "description": "Energetic, upbeat young male voice; fast and loud, like a fitness instructor.",
     "pitch": "medium",
-    "pace": "fast"
+    "pace": "fast",
+    "tts": {
+      "engine": "piper",
+      "model": "en_GB-vctk-medium",
+      "speaker": "p345",
+      "lengthScale": 0.85
+    }
   },
   "lines": {
     "game.start": [

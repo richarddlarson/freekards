@@ -151,6 +151,166 @@
   "key": "dc0b53418b827a8e853884400cc342ab8fd86968450231eeef1a1b8c31130c12",
   "text": "No rush, sugar. Want me to top off your coffee?"
  },
+ "chad.game.start.1": {
+  "key": "fedd20eb448c4d6f7c9341e82761748af7f83a72968d8ed833626e07d1608490",
+  "text": "Let's GO! Game face: ON."
+ },
+ "chad.game.start.2": {
+  "key": "f5669e73c1062341c8584a2ab471049ed7fe2a1122ad29557087441d70c085ce",
+  "text": "Alright team, hydrate and dominate!"
+ },
+ "chad.game.start.3": {
+  "key": "257819185403129cc80a0ab6ac34bdb1b1c098f035015de52da927b9026c7c9e",
+  "text": "Big energy today, people. BIG energy."
+ },
+ "chad.game.won.human.1": {
+  "key": "0d5a5eda52985fe5c71aa9601970b1f5eafafbb6e12f235bc72cce2059e341a4",
+  "text": "Respect! That was an elite performance. I'm taking notes."
+ },
+ "chad.game.won.human.2": {
+  "key": "12771b8ccf56fe473b17b889eafdd1499bf6ebe17d310ba76aa9f5c211536b12",
+  "text": "You crushed it! Up top! ...Okay, virtual up top."
+ },
+ "chad.game.won.other.1": {
+  "key": "30a5c90d5895e223f56423e4a0eea65aed29032838aa4197c2cebd51af0470a1",
+  "text": "Tough loss. Great learning opportunity, though!"
+ },
+ "chad.game.won.other.2": {
+  "key": "4d433cbf763c3926454d37189f08bdd2d6e3ac1e338ecd659083b588407b0edb",
+  "text": "Second place is just first place with extra motivation."
+ },
+ "chad.game.won.self.1": {
+  "key": "c8f1f1b28512eda3673d09e939412bb8a21da58373380f393266dfcfec0b8a3d",
+  "text": "CHAMPION MINDSET! Did everyone see that?"
+ },
+ "chad.game.won.self.2": {
+  "key": "0532451c6e91179c61c51fc3ed48ad76b4ba18a1513f84e1e81f5b6e566d8405",
+  "text": "That's what happens when you trust the process!"
+ },
+ "chad.game.won.self.3": {
+  "key": "24adfad3d94badf12e21e637762738fc64796f990b29361ff5335d279f9c66fc",
+  "text": "I'd like to thank my smoothie."
+ },
+ "chad.hand.bad.human.1": {
+  "key": "0d24b0d79e8ed325deb161aaae13440cfde49d7658d0c308b4f4b5c346e37cdc",
+  "text": "Shake it off! Next hand is a fresh rep!"
+ },
+ "chad.hand.bad.self.1": {
+  "key": "79ab22b5be50a956794d8d18b6a1d923f99e328cfe383f46f29315c77305ed7c",
+  "text": "That's fine. That's fine. Pain is just progress in disguise."
+ },
+ "chad.hand.bad.self.2": {
+  "key": "3361b968313f61d88a3ecbbe6cb6618d851042d1b60b275386f686b416169876",
+  "text": "I'm not losing, I'm building a comeback story."
+ },
+ "chad.hand.bad.self.3": {
+  "key": "f05babe3489ed2d6e43254320211389146549687b23cdf24cf16ad7b97e93305",
+  "text": "Totally part of my strategy. Which I'll explain later."
+ },
+ "chad.hand.good.human.1": {
+  "key": "cf59ad404c5579934e4fbabef06bcc7c2999ca183e7ccea8f2dc40fc4587bef2",
+  "text": "Okay, okay! You're bringing the heat!"
+ },
+ "chad.hand.good.self.1": {
+  "key": "f492deb84fa2d2ce82797a409ad7308f4fd8256d2955cccd8c28b30c528f6096",
+  "text": "Boom! That's called momentum."
+ },
+ "chad.hand.good.self.2": {
+  "key": "9196a2466e82b47bf1724aa92b997bfd39faf4d81a2a6128dc281b60f58bd348",
+  "text": "Textbook. I should teach a seminar."
+ },
+ "chad.hearts.hearts_broken.other.1": {
+  "key": "18a385eed9d1e49b5223833c8d1eb26c37da0f1fdd1ed7a5562fdc954f162174",
+  "text": "Here we go! Game on!"
+ },
+ "chad.hearts.hearts_broken.self.1": {
+  "key": "dad7130f935528fe2225180cf2ccbc60ce66a0048037b0ed7ee9c2ed7ba392df",
+  "text": "Hearts are open! Let's get cardio!"
+ },
+ "chad.hearts.hearts_broken.self.2": {
+  "key": "a609400040076f25d5df4b1019bf152187de2e64ad24019b34eb0334a687dc86",
+  "text": "I broke the hearts! Like I break personal records!"
+ },
+ "chad.hearts.jack_taken.human.1": {
+  "key": "cdfb42ba7cb31761e6290c01da9d7d3a7c718ab3e68b53b78f2d0c1e8b04c54e",
+  "text": "Nice grab! Great hands, great hands."
+ },
+ "chad.hearts.jack_taken.self.1": {
+  "key": "2896538119528f2737ed8809f74e8d3d77cb34ce1e31366a025d92d32e2f4e0a",
+  "text": "The Jack! That's what a winner looks like!"
+ },
+ "chad.hearts.moon_block.self.1": {
+  "key": "6c532e559144546fb011c19809150c756365a27c028ed3609a00f0d4b49a419b",
+  "text": "DEFENSE! Brightwater with the block!"
+ },
+ "chad.hearts.moon_blocked.human.1": {
+  "key": "6e631edd87cfbdc152b1cbf0665da71edfdea9915915dc3e7dd98ad8bc872d4f",
+  "text": "Ahh, so close! Still elite effort, though."
+ },
+ "chad.hearts.moon_blocked.self.1": {
+  "key": "29cb806f81b313537842f3a9834028b8a91468e07af943f008d241c216ac8677",
+  "text": "So close! I'm counting that as a moral victory."
+ },
+ "chad.hearts.moon_blocked.self.2": {
+  "key": "e949887ee18714781a0868f327fcdcc143a04dd2a107cd427403ff6da8341dc9",
+  "text": "That's okay! I'll shoot for the moon again next hand. And the next."
+ },
+ "chad.hearts.moon_shot.human.1": {
+  "key": "566a8ed50eaa1a8c6a4a5ad4dba970ee692edc7a584ae9fc3a88a8a7bfbfa897",
+  "text": "No way! That's legendary! Can I put you in my podcast?"
+ },
+ "chad.hearts.moon_shot.human.2": {
+  "key": "d84d36aeac7723f5a99da2ae0ea1d1150395c686a3c44fd6408f0b8aefa082a6",
+  "text": "You shot the MOON! That's straight-up elite!"
+ },
+ "chad.hearts.moon_shot.other.1": {
+  "key": "e921a3dd85b9767f86255d9cdac872c74c91232c118c8e8c970c05008c226b8e",
+  "text": "Wow! Respect! Big respect!"
+ },
+ "chad.hearts.moon_shot.self.1": {
+  "key": "10f16418ab45fdcde3f55c10303253e5c58c5886e761f780bde019401ca94995",
+  "text": "MOON SHOT! I told you! I TOLD everyone!"
+ },
+ "chad.hearts.moon_shot.self.2": {
+  "key": "61f5cc952a84b12887e8f2a85b82985d45f2f8f441099097910c8fac02460f2e",
+  "text": "Shoot for the moon! Even if you miss... wait, I didn't miss!"
+ },
+ "chad.hearts.pass.received.1": {
+  "key": "793a46de28b9b948e8bdd89bbc29de2cd511f86f56c61bdcecf5e4e2cba8213d",
+  "text": "Great cards! I mean, terrible cards. Great attitude though!"
+ },
+ "chad.hearts.queen_given.self.1": {
+  "key": "ab44ba4e097e66916159710f6786828fd96dfac9fe445b1faa0ec5fe478549fd",
+  "text": "Pass the ball! TEAMWORK!"
+ },
+ "chad.hearts.queen_given.self.2": {
+  "key": "1ff3cf5814178d13af29be05b5ea0ec752cc05d315adb6bd6f1447127ddbd88e",
+  "text": "And Brightwater dumps the Queen! The crowd goes wild!"
+ },
+ "chad.hearts.queen_taken.human.1": {
+  "key": "1f6c8aa4f53c15018cd74b83ab746051291011bbe87173733cced1bd66d4d9a1",
+  "text": "Oof! Walk it off, champ!"
+ },
+ "chad.hearts.queen_taken.other.1": {
+  "key": "29daa47fe30171e63f5af03b98fc762334d23d2afa2abea29c05b2700c0fa035",
+  "text": "Brutal! Gotta respect the grind, though."
+ },
+ "chad.hearts.queen_taken.self.1": {
+  "key": "d6079f1d7caaccba7d06b8ea0f551b12f3cc3a7e7242e64e62c9abfdb8ec3f2c",
+  "text": "Thirteen points? That's just a really heavy rep."
+ },
+ "chad.hearts.queen_taken.self.2": {
+  "key": "0c1430b7104245cba3fb326ac5bfd4ce409e05b85586ddcdf036d114970bba22",
+  "text": "Okay, taking the Queen was a power move. I meant to do that."
+ },
+ "chad.idle.human.1": {
+  "key": "f48628889a6d1464b7969180055e5b891c52b9934daa219b8760c6da6ed9ed27",
+  "text": "No pressure! But also, what's taking so long, buddy?"
+ },
+ "chad.idle.human.2": {
+  "key": "dda009c60573aab3cdf60ec66307d04b1d76992f6c085254a14daf2475a3fd96",
+  "text": "Deep breaths. Visualize the card. Become the card."
+ },
  "dot.game.start.1": {
   "key": "864f2434096b16715a038dbde794c15b8519000da8f4b4a3cff2e71be25d0dab",
   "text": "Oh, how lovely! I do enjoy a friendly game."
