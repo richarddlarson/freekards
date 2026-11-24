@@ -155,9 +155,12 @@ preload), `release/` (installers), `coverage/`.
   The target is Linux Mint and other Debian/Ubuntu derivatives.
 
 ## Licensing and SBOM (per core spec 09) (D-020)
-- If `sbom/dev.cdx.json` suddenly loses its package hashes, npm's hidden lockfile
-  (`node_modules/.package-lock.json`) is stale, for example after the package was renamed. Run `npm ci`,
-  then `npm run licenses` again.
+- **SBOMs are generated from `package-lock.json` only** (`cyclonedx-npm --package-lock-only`, D-046).
+  Earlier they were generated from `node_modules`, whose hidden lockfile goes stale whenever Vite or
+  Vitest write caches or the package is renamed. That silently dropped package hashes and made CI's
+  SBOM drift check fail. Reading the lockfile makes the SBOM identical on every machine and in every
+  `node_modules` state. It also lists optional, platform-specific packages (such as other OSes' build
+  binaries) that aren't installed locally.
 - **[Confirmed]** `npm run licenses` runs `scripts/check-licenses.mjs`, which:
   1. runs `cyclonedx-npm --spec-version 1.6 --output-reproducible --flatten-components` twice:
      `--omit dev` writes `sbom/code.cdx.json` (shipped), and the full tree writes `sbom/dev.cdx.json`;

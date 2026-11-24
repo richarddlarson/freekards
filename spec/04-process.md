@@ -37,7 +37,8 @@ These rules apply to everyone working on FreeKards, including the AI coding assi
   check itself before building on it.
 
 ## Commit gate
-- Before every commit, run tests, build, and the license check, and commit **only if all three pass**.
-  Chain them with `&&` (never `;`), so a failure stops the commit.
+- Before every commit, run the license check, tests, and build (in that order, as CI does), and
+  commit **only if all three pass**. Chain them with `&&` (never `;`), so a failure stops the commit.
+- After pushing, confirm the CI run on GitHub is green. A local pass is not proof.
 - Stage files deliberately and check `git status` before committing. Never commit `.claude/`
   worktrees or local settings (they are in `.gitignore`).

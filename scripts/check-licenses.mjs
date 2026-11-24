@@ -66,7 +66,9 @@ const fullName = (c) => `${c.group ? `${c.group}/` : ''}${c.name}@${c.version}`;
 // ---------------------------------------------------------------- generation
 
 function runCycloneDx(outFile, omitDev) {
-  const args = ['--spec-version', '1.6', '--output-format', 'JSON', '--output-reproducible', '--flatten-components', '--output-file', outFile];
+  // --package-lock-only: read package-lock.json, not node_modules, so the SBOM is identical however
+  // node_modules was produced or touched by builds (D-046).
+  const args = ['--spec-version', '1.6', '--output-format', 'JSON', '--output-reproducible', '--flatten-components', '--package-lock-only', '--output-file', outFile];
   if (omitDev) args.push('--omit', 'dev');
   execFileSync(cyclonedx, args, { cwd: root, stdio: ['ignore', 'ignore', 'inherit'], shell: process.platform === 'win32' });
 }

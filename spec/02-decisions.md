@@ -460,3 +460,13 @@ Template:
   build-only tool (spec 09 §2) and is listed in `sbom/build-tools.json`.
 - Why: Owner request: more choice in the track picker at a smaller download size. Opus at 64 kbps
   is close to the original quality for background music and plays natively in every target runtime.
+
+## D-046 — SBOMs are generated from the lockfile
+- Date: 2026-11-24
+- Status: Accepted (refines D-020 and D-042)
+- Decision: `scripts/check-licenses.mjs` runs cyclonedx-npm with `--package-lock-only`, so
+  `sbom/code.cdx.json` and `sbom/dev.cdx.json` depend only on `package-lock.json`.
+- Why: Generating from `node_modules` was non-deterministic. Builds and tests leave npm's hidden
+  lockfile stale, which drops package hashes, so a locally committed SBOM differed from CI's fresh
+  one and the first CI run on `main` failed its drift check. Reading the lockfile is reproducible
+  everywhere and includes every locked package, including optional platform-specific ones.
