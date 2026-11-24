@@ -15,6 +15,13 @@ Status key: **[Confirmed]** / **[Proposed]**, as in `01-requirements.md`.
 - **[Proposed]** Audio: Web Audio API, with separate gain nodes for music, sound effects, and voice.
 - **[Proposed]** Tests: Vitest for the logic layer, which runs in Node with no Electron dependency.
 
+## Developer toolchain (D-011)
+- **[Confirmed]** Node.js **26 LTS**, managed by nvm. The repo root `.nvmrc` contains `26`; run
+  `nvm use` in the repo before any npm command. (Node 22 also exists on the dev machine and is left alone.)
+- **[Confirmed]** GitHub CLI `gh`, installed as a single binary in `~/.local/bin` (no sudo), after
+  checking its SHA-256 against the release checksums file.
+- Dev machine: Linux Mint 22.3, x86_64.
+
 ## Process model
 - **[Proposed]** The main process only creates the window, handles file system access (settings,
   saves, statistics), and manages the app lifecycle.

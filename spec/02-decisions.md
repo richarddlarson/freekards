@@ -72,3 +72,33 @@ Template:
 - Decision: The code lives in a private GitHub repository. GitHub Actions builds installers for all
   four targets on native runners. Runner details are in the runtime spec.
 - Why: Real Windows ARM build machines, and a backup off this machine.
+
+## D-008 — Hearts rule variants chosen per game
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: Hearts offers two rule sets, picked on the setup screen before each game: **Standard**
+  and **Standard + Jack of Diamonds** (J♦ = −10). Full rules are in `06-hearts.md`.
+- Why: Owner choice. Both are common, and having the choice costs very little.
+
+## D-009 — The app supports themes from the start
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: The architecture supports interchangeable visual themes (cards, backs, table, chrome,
+  character portraits, fonts, colors). The first theme is **Classic Casino**. A **Bright
+  Illustrated** theme follows once basic gameplay works. See `07-themes.md`.
+- Why: Owner choice. Building theme support in from the start avoids re-plumbing later.
+
+## D-010 — Opponent roster, picked by the player, with layered difficulty
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: A roster of named characters, each with a personality and a skill adjustment. Before a
+  game the player picks the opponents or chooses Random. A global **Easy / Medium / Hard** setting
+  sets the baseline skill, and each character's adjustment is applied on top of it. See `08-characters.md`.
+- Why: Owner choice. Variety and personality, with the overall challenge still in the player's control.
+
+## D-011 — Development toolchain
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: The assistant installs the developer tools on the dev machine (Linux): Node.js LTS through
+  nvm (per user, no sudo needed) and the GitHub CLI `gh`. The owner runs `gh auth login` himself.
+- Why: Owner choice.
