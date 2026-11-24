@@ -1,0 +1,21 @@
+{
+  "$comment": "Electron main and preload processes, emitted as CommonJS (.cjs) into dist-electron/.",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": [
+      "ES2023"
+    ],
+    "types": [
+      "node"
+    ],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "rootDir": "src/main",
+    "outDir": "dist-electron",
+    "sourceMap": true,
+    "verbatimModuleSyntax": false
+  },
+  "include": [
+    "src/main/**/*.cts"
+  ]
+}

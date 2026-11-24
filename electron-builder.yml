@@ -1,0 +1,44 @@
+# Installer packaging (spec runtimes/electron.md §Packaging and installers).
+appId: io.github.freekards.app
+productName: FreeKards
+copyright: Copyright (c) 2026 The FreeKards Contributors
+directories:
+  output: release
+  buildResources: build
+files:
+  - dist-electron/**/*.cjs
+  - dist/renderer/**/*
+  - package.json
+extraResources:
+  - from: sbom
+    to: sbom
+  - from: LICENSE
+    to: LICENSE.FreeKards.txt
+asar: true
+artifactName: ${productName}-${version}-${os}-${arch}.${ext}
+
+win:
+  target:
+    - target: nsis
+      arch: [x64, arm64]
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: false
+  allowToChangeInstallationDirectory: false
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: FreeKards
+  license: LICENSE
+
+linux:
+  target:
+    - target: AppImage
+      arch: [x64, arm64]
+    - target: deb
+      arch: [x64, arm64]
+  category: Game
+  maintainer: The FreeKards Contributors
+  synopsis: Classic card games with friendly computer opponents
+deb:
+  packageCategory: games

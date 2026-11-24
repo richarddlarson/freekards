@@ -166,6 +166,33 @@ Template:
 - Why: Spec 05 requires the logic layer to be portable. Enforcing that in the compiler is more
   reliable than relying on habit.
 
+## D-019 — Electron process model and security settings
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: Sandboxed renderer (`contextIsolation`, `sandbox`, no `nodeIntegration`, no webview).
+  Main and preload are compiled to CommonJS `.cjs`. A strict CSP allows only `'self'`. Navigation is
+  blocked, and external links open in the system browser. There is no application menu, and the
+  window opens maximized. Details are in `runtimes/electron.md` §Process model and §Native feel.
+- Why: The app never needs remote content, so the tightest settings cost nothing.
+
+## D-020 — SBOM generation and license gate tooling
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: `npm run licenses` (`scripts/check-licenses.mjs`) generates reproducible CycloneDX 1.6
+  SBOMs for shipped code (`sbom/code.cdx.json`, with Electron added as the D-016 runtime component)
+  and for all dependencies (`sbom/dev.cdx.json`). Both are committed. It enforces spec 09 §2 on
+  shipped components and on the asset register, and lists development-only licenses that are
+  outside the allowed list as build-only. The allowed list is mirrored in `scripts/license-policy.mjs`.
+- Why: It implements D-015. Reproducible output keeps the committed SBOMs free of churn.
+
+## D-021 — npm install scripts gated
+- Date: 2026-11-23
+- Status: Accepted
+- Decision: The install script of `electron-winstaller` is denied in `package.json` `allowScripts`.
+  Any new package that wants an install script needs an explicit decision.
+- Why: That package is unused (we build NSIS installers, not Squirrel), and fewer install scripts
+  means a smaller supply-chain risk.
+
 ## D-022 — Card ids, deck order, and seat numbering
 - Date: 2026-11-23
 - Status: Accepted
