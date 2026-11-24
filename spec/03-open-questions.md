@@ -7,8 +7,7 @@ question is removed from this list.
 - Q3. Should the installers be code-signed? An unsigned Windows installer triggers a SmartScreen
   "Windows protected your PC" warning on first run. Because the project is open source, the SignPath
   Foundation may provide free code signing; that option is worth checking.
-- Q17. Which text-to-speech tool and voices (D-005)? Candidate: Piper, which is offline and
-  open-source; each voice model's license must allow redistribution.
+- Q17b. Which eligible Piper voice (D-047) and pace for each character? Auditions in progress.
 
 ## Games and rules
 - Q6. Poker: which variant? Texas Hold'em, Five-Card Draw, or something else? Played for chips, with a bankroll?

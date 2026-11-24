@@ -470,3 +470,33 @@ Template:
   lockfile stale, which drops package hashes, so a locally committed SBOM differed from CI's fresh
   one and the first CI run on `main` failed its drift check. Reading the lockfile is reproducible
   everywhere and includes every locked package, including optional platform-specific ones.
+
+## D-047 — Voice engine: Piper, with a clean voice-model shortlist
+- Date: 2026-11-24
+- Status: Accepted (answers Q17; per-character voice picks pending)
+- Decision: Character voice clips are generated with **Piper** (`piper-tts` 1.8.0, GPL-3.0-or-later,
+  a build-only tool that bundles espeak-ng, also GPL). Voice models come from `rhasspy/piper-voices`
+  (model files MIT). A voice is eligible only if **its training data and every model it was
+  fine-tuned from** are public domain, CC0, or CC-BY:
+  | Voice | Data (license) | Trained from |
+  |-------|----------------|--------------|
+  | en_US-kristin-medium (F) | LibriVox (public domain) | scratch |
+  | en_US-norman-medium (M) | LibriVox (public domain) | scratch |
+  | en_US-john-medium (M) | LibriVox (public domain) | kristin |
+  | en_GB-cori-high (F) | LibriVox (public domain) | scratch |
+  | en_US-ljspeech-high (F) | LJ Speech (public domain) | scratch |
+  | en_US-hifi_tts_92-medium (F) | Hi-Fi TTS reader 92 (CC BY 4.0, NVIDIA; LibriVox source) | scratch |
+  | en_US-kathleen-medium (F) | CC0 | hifi_tts_92 |
+  | en_US-joe-medium, en_US-mike-medium (M) | CC0 | rdh (nl_BE, CC0) |
+  | en_GB-vctk-medium (109 speakers) | VCTK 0.92 (CC BY 4.0) | hifi_tts_92 |
+  | en_GB-alba-medium (F), en_GB-aru-medium (12 speakers) | CC BY 4.0 | hifi_tts_92 |
+  Ineligible: libritts / libritts_r (fine-tuned from lessac); lessac (Blizzard 2013 research
+  license); ryan, hfc_male/female, semaine, l2arctic (non-commercial terms); northern_english_male,
+  southern_english_female (CC-BY-SA); bryce (fine-tuned from an unreleased voice of unknown data);
+  alan, amy, danny, kusal, arctic, jenny_dioco (license "see URL", not verified).
+  When a CC-BY voice is used, its dataset credit goes in the asset register and on the Credits screen.
+  **Text rule for TTS:** lines are sent to the engine with ALL-CAPS words lowered to normal case
+  (espeak-ng can spell all-caps words letter by letter). The on-screen bubble text is unchanged.
+- Why: Piper runs offline, produces good quality, and has per-voice model cards that make licensing
+  verifiable. Checking the whole fine-tuning chain is needed because a clean dataset on top of a
+  restricted base model is not clean.
