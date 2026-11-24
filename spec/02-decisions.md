@@ -368,3 +368,33 @@ Template:
   supported resolutions before showing work to the owner.
 - Why: Visual changes need to be seen, not assumed. Hidden (non-offscreen) windows throttle frames,
   which stalls animations, so offscreen rendering is required.
+
+## D-040 — CI workflow: check job plus native installer matrix
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: One GitHub Actions workflow (`.github/workflows/build.yml`) runs on every push, PR, `v*` tag,
+  and manual dispatch. A `check` job runs the license gate and SBOM drift check, then the tests and
+  build. A `build` matrix then produces installers on **native** runners for Windows x64/arm64 (NSIS)
+  and Linux x64/arm64 (deb + AppImage), uploaded as artifacts `freekards-<os>-<arch>` and kept for
+  14 days. Permissions default to read-only, and superseded runs are cancelled. Full design is in
+  `runtimes/electron.md` §CI.
+- Why: Native runners give real ARM64 builds (especially Windows on ARM, for the Surface) without
+  cross-compiling. Every push yields testable installers.
+
+## D-041 — Releases are drafts created from version tags
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: Pushing a tag `vX.Y.Z` (matching `package.json` version) makes CI create a **draft** GitHub
+  Release with all installers, `sbom/*.json`, and `LICENSE` attached. A person reviews and publishes it.
+  Nothing is ever published automatically.
+- Why: Keeps a human check before anything reaches users, while making the release itself one click.
+
+## D-042 — CI actions pinned by SHA and listed in the build-tools SBOM
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: Only GitHub's own MIT-licensed actions are used, each pinned to a full commit SHA with a
+  version comment and recorded in `sbom/build-tools.json` (scope `build`). The release step uses the
+  preinstalled `gh` CLI rather than a third-party action. The SBOM drift check runs straight after
+  `npm ci`, because Vite/Vitest caches in `node_modules` make npm's hidden lockfile stale.
+- Why: SHA pinning protects against tag hijacking. Listing the actions keeps the "everything we use"
+  promise of D-015. Running the check early keeps the committed dev SBOM reproducible.

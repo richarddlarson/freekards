@@ -171,9 +171,56 @@ preload), `release/` (installers), `coverage/`.
   own `LICENSE` and `LICENSES.chromium.html` ship unmodified in the installed app and are linked from
   the Credits screen.
 
-## CI
-- **[Confirmed]** Public GitHub repository with GitHub Actions builds (D-007, D-012).
-- **[Proposed]** A build matrix running on native runners: `windows-latest` (x64), `windows-11-arm`
-  (arm64), `ubuntu-latest` (x64), `ubuntu-24.04-arm` (arm64). Each job runs `npm ci`, `npm test`,
-  `npm run licenses`, and `npm run dist` for its own arch. Tagging a version publishes the
-  installers to a GitHub Release draft.
+## CI (D-040, D-041, D-042)
+- **[Confirmed]** Public GitHub repository with GitHub Actions builds (D-007, D-012). The workflow is
+  `.github/workflows/build.yml` (name `build`).
+- **Triggers:** push to any branch, push of a `v*` tag, pull requests, and manual runs
+  (`workflow_dispatch`). A concurrency group per workflow and ref cancels superseded runs.
+- **Permissions:** `contents: read` for the whole workflow. Only the `release` job gets `contents: write`.
+- **Job `check`** (`ubuntu-latest`), in this order:
+  1. checkout, then setup-node with `node-version-file: .nvmrc` and the npm cache;
+  2. `npm ci`;
+  3. `npm run licenses`, then `git diff --exit-code -- sbom/code.cdx.json sbom/dev.cdx.json`.
+     A committed SBOM that is out of date fails the build. This runs **before** the tests and the
+     build on purpose: Vite and Vitest write caches into `node_modules` (`.vite`, `.vite-temp`,
+     `.vitest-cache`), which makes npm's hidden lockfile stale, so a later `npm ls` drops the package
+     hashes and dev flags from the dev SBOM. The same applies locally: regenerate SBOMs right after
+     `npm ci`;
+  4. `npm test`;
+  5. `npm run build`.
+- **Job `build`** (needs `check`), a matrix on **native runners**, with `fail-fast: false`:
+
+  | Runner | OS / arch | electron-builder targets | Artifact name |
+  |--------|-----------|--------------------------|---------------|
+  | `windows-latest` | Windows x64 | `--win nsis --x64` | `freekards-win-x64` |
+  | `windows-11-arm` | Windows arm64 | `--win nsis --arm64` | `freekards-win-arm64` |
+  | `ubuntu-latest` | Linux x64 | `--linux deb AppImage --x64` | `freekards-linux-x64` |
+  | `ubuntu-24.04-arm` | Linux arm64 | `--linux deb AppImage --arm64` | `freekards-linux-arm64` |
+
+  Each matrix entry: checkout, setup-node, a cache of Electron and electron-builder downloads
+  (keyed on OS, arch, and the `package-lock.json` hash), `npm ci`, `npm run build`, then
+  `npx electron-builder <targets> --<arch> --publish never`. It uploads `release/*.exe`,
+  `release/*.deb`, and `release/*.AppImage` as one artifact per OS and arch, kept for **14 days**,
+  and fails if no installer was produced.
+- **Job `release`** (only for `v*` tags; needs `build`; `contents: write`): downloads all artifacts and
+  runs `gh release create <tag> --draft --generate-notes`, attaching every installer plus
+  `sbom/*.json` and `LICENSE`. Nothing is published automatically.
+- **Actions** are GitHub's own (`actions/checkout`, `setup-node`, `cache`, `upload-artifact`,
+  `download-artifact`, all MIT), each pinned to a full commit SHA with a version comment, and listed in
+  `sbom/build-tools.json` (spec 09 §3c). The release step uses the `gh` CLI preinstalled on the
+  runner, so no third-party action is needed. To update an action: look up the new release's commit
+  SHA, update both the workflow and `build-tools.json`, and check its license is still permissive.
+
+### How to cut a release
+1. Bump `version` in `package.json` (and run `npm install --package-lock-only` so the lockfile matches),
+   then commit to `main`.
+2. Tag the commit: `git tag vX.Y.Z` (it must match the package.json version), then `git push origin vX.Y.Z`.
+3. Wait for the `build` workflow to finish. It creates a **draft** GitHub Release with all installers and SBOMs.
+4. Review the draft (notes, files), then click **Publish release**.
+
+### Unsigned installers (Q3 open)
+The installers are not code-signed yet:
+- **Windows:** SmartScreen shows "Windows protected your PC" the first time the installer runs. The
+  user has to click **More info → Run anyway**. Microsoft Edge may also warn when downloading the
+  `.exe`. The warning fades once a release builds download reputation, and disappears with signing.
+- **Linux:** no signing is involved. The AppImage needs to be marked executable before it runs.
