@@ -2,7 +2,7 @@
  * Renderer entry point: screen flow (spec 12 §1).
  * Demo hashes for development screenshots (scripts/capture.cjs):
  *   #setup                         the Hearts setup screen
- *   #sound                         the main menu with the Sound panel open
+ *   #sound[&tracks]                the main menu with the Sound panel open (and its track list)
  *   #hearts&seed=7&autoplay&speed=3  a Hearts game with fixed seed, optionally self-playing
  */
 import type { dialogue } from '../logic/index.js';
@@ -20,6 +20,7 @@ window.addEventListener('wheel', (e) => { if (e.ctrlKey) e.preventDefault(); }, 
 
 const stage = new Stage(document.getElementById('app')!);
 audio.setVolumes(loadSettings().volumes);
+audio.setMusicChoice(loadSettings().musicTrack);
 void audio.preloadCues();
 audio.startMusic();
 let table: HeartsTable | null = null;
@@ -67,6 +68,7 @@ if (hash.has('setup')) setup();
 else if (hash.has('sound')) {
   menu();
   document.querySelector('.menu-footer button')?.dispatchEvent(new PointerEvent('pointerup', { button: 0 }));
+  if (hash.has('tracks')) document.querySelector('.track-button')?.dispatchEvent(new PointerEvent('pointerup', { button: 0 }));
 }
 else if (hash.has('hearts')) {
   play(loadSettings(), {

@@ -610,7 +610,9 @@ button:disabled {
 
 /* ------------------------------------------------------------ sound settings (spec 13 §1) */
 
-.overlay .overlay {
+/* Nested overlays (Sound from the pause menu) and menu overlays have no speech bubbles to avoid. */
+.overlay .overlay,
+.overlay.centered {
   padding-top: 0;
 }
 
@@ -663,4 +665,93 @@ button:disabled {
 
 .mute-toggle {
   font-size: 30px;
+}
+
+.track-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 30px;
+  text-align: left;
+}
+
+.track-picker {
+  position: relative;
+}
+
+.track-button {
+  width: 100%;
+  min-height: 72px;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 18px;
+  border: 2px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  font-size: 30px;
+  text-align: left;
+}
+
+.track-caret {
+  font-size: 26px;
+  opacity: 0.8;
+}
+
+.track-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 20;
+  max-height: 560px;
+  overflow-y: auto;
+  border-radius: 18px;
+  border: 2px solid var(--panel-border);
+  background: #0b2414;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  touch-action: pan-y;
+}
+
+.track-option {
+  width: 100%;
+  min-height: 84px;
+  padding: 10px 24px;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  grid-template-rows: auto auto;
+  align-items: center;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+}
+
+.track-option.selected {
+  background: rgba(217, 168, 43, 0.2);
+}
+
+.track-check {
+  grid-row: span 2;
+  font-size: 30px;
+  color: var(--brass);
+}
+
+.track-title {
+  font-size: 28px;
+}
+
+.track-sub {
+  font-size: 20px;
+  opacity: 0.7;
+}
+
+.now-playing {
+  margin: 14px 0 26px;
+  min-height: 30px;
+  font-size: 22px;
+  font-style: italic;
+  opacity: 0.85;
 }

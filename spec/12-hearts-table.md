@@ -84,7 +84,8 @@ All card images are loaded and decoded before the first deal, so flips never sho
 
 ## 5. Remembered preferences
 Rule set, difficulty, and the opponent choice (three ids, or Random) are saved when **Deal!** is
-pressed and restored on the setup screen. If stored preferences are missing or unreadable, the
+pressed and restored on the setup screen. Sound levels, Mute all, and the music track choice are
+saved as soon as they change (spec 13). If stored preferences are missing or unreadable, the
 defaults are used: Standard, Medium, Random.
 
 ## 6. Dialogs

@@ -12,10 +12,12 @@ export interface Settings {
   opponents: string[] | null;
   /** Channel levels 0–1 and mute (spec 13 §1). */
   volumes: Volumes;
+  /** Track to repeat, or null to shuffle all (spec 13 §3). */
+  musicTrack: string | null;
 }
 
 const KEY = 'cardtable.settings.v1';
-const DEFAULTS: Settings = { difficulty: 'medium', ruleSet: 'standard', opponents: null, volumes: { ...DEFAULT_VOLUMES } };
+const DEFAULTS: Settings = { difficulty: 'medium', ruleSet: 'standard', opponents: null, volumes: { ...DEFAULT_VOLUMES }, musicTrack: null };
 
 function level(v: unknown, fallback: number): number {
   return typeof v === 'number' && v >= 0 && v <= 1 ? v : fallback;
@@ -36,6 +38,7 @@ export function loadSettings(): Settings {
         voice: level(s.volumes?.voice, DEFAULT_VOLUMES.voice),
         muted: s.volumes?.muted === true,
       },
+      musicTrack: typeof s.musicTrack === 'string' ? s.musicTrack : null,
     };
   } catch {
     return { ...DEFAULTS, volumes: { ...DEFAULTS.volumes } };

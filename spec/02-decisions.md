@@ -408,3 +408,12 @@ Template:
   brand-free and permanent.
 - Why: Owner request. Users should see "FreeKards", and Debian already has a standard way to move
   installs from one package name to another.
+
+## D-044 — Music track chooser
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: The Sound panel gets a **Music track** drop-down: "Shuffle all tracks" (default) or one
+  specific track, which plays immediately (crossfade) and repeats. The choice is remembered. Details
+  are in `13-audio.md` §3.
+- Why: Owner request: let the player change which track is playing at any time. Repeating a chosen
+  track matches what a player expects after deliberately picking it.

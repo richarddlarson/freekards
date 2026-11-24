@@ -67,6 +67,11 @@ class AudioEngine {
   /** Audio-clock time at which the next crossfade starts (the clock stops while the app is hidden). */
   private crossfadeAt = Infinity;
   private musicStarted = false;
+  /** Track chosen by the player to repeat, or null to shuffle all (spec 13 §3). */
+  private pinned: string | null = null;
+  /** Increments on every track change, so a slow load can't override a newer choice. */
+  private musicGen = 0;
+  private trackListeners = new Set<(id: string | null) => void>();
 
   /** Create the audio graph lazily (also resumes after a user gesture if the browser suspended it). */
   private ensure(): AudioContext | null {
@@ -201,13 +206,54 @@ class AudioEngine {
     this.playlist = tracks;
   }
 
+  /** All playlist tracks, in manifest order. */
+  get tracks(): readonly AudioManifest['music'][number][] {
+    return manifest.music;
+  }
+
+  /** The chosen track id, or null for "Shuffle all tracks". */
+  get musicChoice(): string | null {
+    return this.pinned;
+  }
+
+  /** Id of the track playing now, if any. */
+  get nowPlaying(): string | null {
+    return this.current?.id ?? null;
+  }
+
+  /** Call `fn` whenever a new track starts. Returns an unsubscribe function. */
+  onTrackChange(fn: (id: string | null) => void): () => void {
+    this.trackListeners.add(fn);
+    return () => this.trackListeners.delete(fn);
+  }
+
+  /**
+   * Choose a track to play now and repeat, or null to return to shuffling all tracks.
+   * Picking a track crossfades to it immediately. Returning to shuffle lets the current track finish.
+   */
+  setMusicChoice(id: string | null): void {
+    const valid = id !== null && manifest.music.some((t) => t.id === id) ? id : null;
+    this.pinned = valid;
+    if (valid === null) {
+      this.playlist = [];
+      return;
+    }
+    if (this.musicStarted && this.current?.id !== valid) void this.nextTrack(TUNING.crossfadeS);
+  }
+
   private async nextTrack(fadeIn: number): Promise<void> {
     const ctx = this.ctx;
     if (!ctx) return;
-    if (this.playlist.length === 0) this.reshuffle();
-    const track = this.playlist.shift();
+    const gen = ++this.musicGen;
+    let track: AudioManifest['music'][number] | undefined;
+    if (this.pinned) track = manifest.music.find((t) => t.id === this.pinned);
+    else {
+      if (this.playlist.length === 0) this.reshuffle();
+      track = this.playlist.shift();
+    }
     if (!track) return;
     const buffer = await this.load(track.file);
+    if (gen !== this.musicGen) return; // a newer choice was made while this one loaded
     if (!buffer) {
       this.crossfadeAt = ctx.currentTime + 1; // skip an unreadable track
       return;
@@ -230,6 +276,7 @@ class AudioEngine {
     }
     this.current = { source, gain, id: track.id };
     console.info(`audio: now playing "${track.title}" (${track.composer}), context ${ctx.state}`);
+    for (const fn of this.trackListeners) fn(track.id);
     this.crossfadeAt = t + Math.max(1, buffer.duration - TUNING.crossfadeS);
   }
 

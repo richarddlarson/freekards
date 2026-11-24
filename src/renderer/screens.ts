@@ -23,7 +23,7 @@ export function showMainMenu(stage: Stage, actions: { playHearts(): void; quit()
   }
   const sound = h('button', 'big-button quiet', 'Sound');
   onTap(sound, () => {
-    const overlay = h('div', 'overlay');
+    const overlay = h('div', 'overlay centered');
     overlay.append(soundSettingsPanel(() => overlay.remove()));
     screen.append(overlay);
   });

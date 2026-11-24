@@ -42,6 +42,15 @@ A cue with no file mapped is silent. Missing or broken files never stop the game
   screens. After the last track it is reshuffled, without starting on the track that just played.
 - Tracks **crossfade over 3 s**. The first track fades in over 2 s at startup.
 - Music on or off is simply the Music slider (0 = off). There is no separate music switch.
+- **Music track chooser** (D-044): the Sound panel has a **Music track** drop-down. Its first option
+  is **Shuffle all tracks** (the default, "All tracks, in random order"), followed by each track
+  (title and composer). Choosing a track crossfades to it immediately and **repeats it** until another
+  choice is made. Choosing Shuffle lets the current track finish, then continues in random order.
+  The choice persists with the other preferences and is applied at startup. Under the drop-down, a
+  line reads "Now playing: <title> — <composer>" and updates when a new track starts. The drop-down
+  is a custom list with finger-sized rows (min 84 tall), not the platform's native select, so it is
+  touch-friendly and scales with the stage. The main-menu Sound panel is vertically centered so the
+  open list fits at the smallest supported size.
 - **Default playlist** (all CC0, from FreePD; shipped byte-for-byte as MP3):
   | Track | Composer | Length |
   |-------|----------|--------|
