@@ -325,6 +325,19 @@
       "attribution": "Nunito, Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito). Licensed under the SIL Open Font License 1.1 (OFL.txt, beside the font).",
       "modified": "Static instance of the variable font Nunito[wght].ttf at weight 800 (ExtraBold), made with fontTools 4.46.0 varLib.instancer (updateFontNames=False). Glyph outlines are otherwise unchanged. The font declares no Reserved Font Name.",
       "tool": "Downloaded 2026-11-25 from the Google Fonts repository (Nunito[wght].ttf sha256 bb55a5ca5c2042335b3991af27c4d0705d0ef41cac6164ac737fd8f2a1e85207). Build input only: scripts/generate-cards.mjs converts its glyphs to vector outlines in the Rounded deck; the font file itself is not shipped"
+    },
+    {
+      "path": "assets/licenses/*.txt",
+      "title": "Creative Commons legal code: CC0 1.0 Universal and Attribution 4.0 International (shown on the Licenses tab of the About screen, D-066)",
+      "kind": "other",
+      "origin": "third-party",
+      "author": "Creative Commons",
+      "source": "https://creativecommons.org/licenses/by/4.0/legalcode.txt",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": null,
+      "modified": null,
+      "tool": "Downloaded unmodified 2026-11-25: CC0-1.0.txt from https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt (sha256 a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499), CC-BY-4.0.txt from https://creativecommons.org/licenses/by/4.0/legalcode.txt (sha256 9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411). Creative Commons dedicates the text of its licenses to the public domain under CC0 (stated in each legal code's closing notice)."
     }
   ]
 }

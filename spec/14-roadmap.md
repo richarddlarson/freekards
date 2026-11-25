@@ -138,7 +138,8 @@ without installing (D-063). Waiting on the owner:
 ## R-003 — Smaller items noted along the way
 - **Status:** Idea
 - App icon (all platforms) and Linux `desktopName` for window grouping.
-- About & Credits screen showing the SBOM, licenses, and attributions (spec 09 §5).
+- ~~About & Credits screen showing the SBOM, licenses, and attributions (spec 09 §5).~~ **Done**
+  2026-11-25 (D-066).
 - Character portrait art for the Classic Casino theme (spec 07, 08).
 - Phase 2 court-card art from public-domain 19th-century designs (D-027).
 - Bright Illustrated theme (D-009).

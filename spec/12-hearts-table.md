@@ -16,7 +16,21 @@ Main menu ──Play Hearts──▶ Hearts setup ──Deal!──▶ Hearts ta
 - **Main menu:** the "FreeKards" title, tagline "Classic card games with friendly faces", a large
   **Play Hearts** button, a 2-column grid of the other six games marked *coming soon* (disabled),
   and, along the bottom, **Sound** (opens the Sound panel, spec 13), **Settings** (the player's
-  Settings panel, spec 16), and **Quit** (closes the app).
+  Settings panel, spec 16), **About** (the About & Credits screen, below), and **Quit** (closes the app).
+- **About & Credits** (D-066, spec 09 §5), one panel that fills most of the screen:
+  - Header: "FreeKards" and "Version X.Y.Z" on the left; on the right, "Free, open-source card games
+    with friendly faces. MIT License." and a link to the GitHub repository.
+  - Two tabs, **Credits** (shown first) and **Licenses**, above a scrolling area (scrolls by finger
+    or mouse wheel; switching tabs returns to the top).
+  - **Credits:** a **Software** group first: the runtime (name, version, license, description,
+    website) with buttons that open its bundled license notices in the system viewer. Then the asset
+    register, grouped in this order: Music, Character voices, Sound effects, Fonts, Artwork, Game
+    content (any other kind). Each entry: title (bold); author · license; the attribution text in
+    italics if there is one; the source link. A closing note says the full SBOM ships in the app's
+    "sbom" folder and is attached to every release.
+  - **Licenses:** the full text of each license, in this order: MIT (FreeKards), Creative Commons
+    Attribution 4.0, Creative Commons CC0 1.0, then each font's OFL file (titled with the font name).
+  - Links open in the system browser. **Back** returns to the main menu.
 - **Hearts setup** (one panel):
   - **Rules:** Standard | Jack of Diamonds −10 (D-008).
   - **Difficulty:** Easy | Medium | Hard (D-010).
@@ -108,4 +122,4 @@ don't cover them.
 - **Pause (☰ or Esc):** **Resume**, **Sound** (spec 13), **Settings** (spec 16), **New game**, and **Main menu**. The game is paused while it's open.
 
 ## 7. Not yet implemented
-Portrait art, the About & Credits screen, saving a game in progress, and other themes.
+Portrait art, saving a game in progress, and other themes.

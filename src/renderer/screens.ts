@@ -12,7 +12,7 @@ type CharacterDef = dialogue.CharacterDef;
 
 export function showMainMenu(
   stage: Stage,
-  actions: { playHearts(): void; quit(): void; stats(): void; switchPlayer(): void },
+  actions: { playHearts(): void; quit(): void; stats(): void; switchPlayer(): void; about(): void },
   player: profile.Profile | null,
 ): void {
   stage.clear();
@@ -52,10 +52,12 @@ export function showMainMenu(
     overlay.append(settingsPanel(() => overlay.remove()));
     screen.append(overlay);
   });
+  const about = h('button', 'big-button quiet', 'About');
+  onTap(about, actions.about);
   const quit = h('button', 'big-button quiet', 'Quit');
   onTap(quit, actions.quit);
   const footer = h('div', 'menu-footer');
-  footer.append(sound, settings, quit);
+  footer.append(sound, settings, about, quit);
   list.append(footer);
   screen.append(list);
   stage.el.append(screen);

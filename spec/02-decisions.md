@@ -719,3 +719,19 @@ Template:
   order when showing a hand face-up on the screen. Later we may add a user-setting to allow the user
   to choose which suit-order they prefer, but not yet."
 
+## D-066 — About & Credits screen
+- Date: 2026-11-25
+- Status: Accepted (implements spec 09 §5)
+- Decision: An **About** button on the main menu (bottom row: Sound, Settings, About, Quit) opens
+  the About & Credits screen. Its header shows "FreeKards", the version, a one-line description with
+  "MIT License", and a link to the GitHub repository. Two tabs follow. **Credits** lists the shipped
+  software (the runtime, with buttons that open its own license notices) and then every entry in the
+  asset register, grouped as Music, Character voices, Sound effects, Fonts, Artwork, and Game
+  content. Each entry shows its title, author, license, attribution text, and source link.
+  **Licenses** shows the full text of every license in use: MIT (FreeKards), CC BY 4.0, CC0 1.0, and
+  each font's own OFL.txt. All of this is bundled into the app at build time, so it works offline. The
+  Creative Commons legal texts are stored in `assets/licenses/`, unmodified from creativecommons.org,
+  which dedicates them to the public domain under CC0.
+- Why: Spec 09 §5 requires it, and several voices are CC BY 4.0, whose attribution should be visible
+  to players. It was a prerequisite for the first public release (D-069).
+

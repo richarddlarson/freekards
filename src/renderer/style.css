@@ -1166,3 +1166,117 @@ button:disabled {
   font-size: 24px;
   font-weight: bold;
 }
+
+/* ------------------------------------------------------------ About & Credits (spec 09 §5, D-066) */
+
+.about-panel {
+  width: 1600px;
+  height: 1180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.about-title {
+  margin: 0;
+}
+
+.about-version {
+  font-size: 28px;
+  opacity: 0.85;
+}
+
+.about-blurb {
+  text-align: right;
+  font-size: 26px;
+}
+
+.about-blurb p {
+  margin: 0 0 6px;
+}
+
+.about-tabs {
+  margin: 24px 0 18px;
+}
+
+.about-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 4px 24px 4px 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brass) rgba(255, 255, 255, 0.08);
+  touch-action: pan-y;
+}
+
+.credit-group {
+  margin-bottom: 26px;
+}
+
+.credit-heading {
+  margin: 8px 0 12px;
+  font-size: 34px;
+  color: var(--brass);
+}
+
+.credit-item {
+  padding: 12px 0 14px;
+  border-bottom: 1px solid rgba(217, 168, 43, 0.25);
+  font-size: 24px;
+  line-height: 1.35;
+}
+
+.credit-title {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.credit-meta,
+.credit-attribution {
+  opacity: 0.9;
+}
+
+.credit-attribution {
+  font-style: italic;
+}
+
+.credit-link,
+.credit-source {
+  color: #ffe98a;
+  word-break: break-all;
+}
+
+.credit-notice-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.credit-notice-status {
+  opacity: 0.85;
+}
+
+.credit-note {
+  font-size: 22px;
+  opacity: 0.8;
+}
+
+.license-text {
+  margin: 0;
+  padding: 20px 24px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.3);
+  font: 20px/1.4 ui-monospace, 'DejaVu Sans Mono', Consolas, monospace;
+  white-space: pre-wrap;
+}
+
+.about-panel .dialog-buttons {
+  margin-top: 20px;
+}

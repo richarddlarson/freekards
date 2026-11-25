@@ -84,6 +84,7 @@ The SBOM has two parts. Both live in the repository and both ship inside the app
   generated audio, under a permissive or public-domain license. Both appear in the SBOM.
 
 ## 5. In-app presentation
+Status: **[Confirmed]** built 2026-11-25 (D-066). Layout in spec 12 §1.
 - An **About & Credits** screen, reachable from the main menu, shows:
   - the FreeKards version and the MIT license text;
   - every code dependency and asset, with author, license, and source link, grouped by kind;

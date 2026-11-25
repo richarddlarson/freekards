@@ -64,12 +64,15 @@ src/logic/                  ENGINE-NEUTRAL game logic (spec 05, 10). No DOM/Node
 src/main/main.cts           Electron main process
 src/main/preload.cts        Preload bridge (window.freekards)
 src/renderer/               Presentation (DOM + CSS):
-  main.ts                   Screen flow and demo hashes (#setup, #settings, #hearts&seed=N&autoplay&speed=N)
+  main.ts                   Screen flow and demo hashes (#setup, #settings, #about[&licenses], #hearts&seed=N&autoplay&speed=N)
   stage.ts                  Stage scaled to the window (spec 11 §2), DOM helpers, tap handling, choice rows
   content.ts                Loads spec/content characters and assets/themes images via import.meta.glob
   settings.ts               Device-wide preferences in localStorage (sound levels, music choice)
   profiles.ts               Profile store over the preload bridge (localStorage fallback) (spec 15, D-051)
   profile-screens.ts        Welcome / Add player, Who's playing?, My stats, coin and player badges
+  credits.ts                About & Credits screen (spec 09 §5, D-066): bundles package.json version,
+                            sbom/assets.json, sbom/code.cdx.json, LICENSE, assets/licenses/*.txt and
+                            assets/fonts/*/OFL.txt through import.meta.glob (JSON named imports, ?raw text)
   audio.ts                  Web Audio engine: channels, cues, playlist (spec 13)
   sound-settings.ts         Sound panel (sliders, Mute all)
   settings-panel.ts         Per-player Settings panel (spec 16)
@@ -88,6 +91,7 @@ scripts/capture.cjs         Offscreen screenshot tool (D-037)
 scripts/run-local.sh        Build and run this checkout without installing (Linux, D-063)
 scripts/install-local-launcher.sh  Adds the "FreeKards (local build)" desktop menu entry (D-063)
 assets/themes/              Runtime-neutral theme assets (generated card SVGs committed)
+assets/licenses/            CC0-1.0.txt and CC-BY-4.0.txt legal code, unmodified, for the Licenses tab (D-066)
 assets/fonts/               Bundled OFL fonts, each with its OFL.txt: Fira Sans (interface, loaded by
                             style.css @font-face); Fira Sans Condensed and Nunito ExtraBold (card-generator
                             inputs only, D-060, D-062)
@@ -157,8 +161,14 @@ To try the current checkout on a Linux desktop without installing it:
 - **[Confirmed]** The renderer runs the whole game: logic layer plus presentation.
 - **[Confirmed]** Security settings: `contextIsolation: true`, `nodeIntegration: false`, `sandbox: true`,
   `webviewTag: false`. The preload script exposes only `window.freekards`, currently
-  `{ platform, versions }`. Main and preload compile to CommonJS `.cjs`, because sandboxed preloads
+  `{ platform, versions, store, credits }`. Main and preload compile to CommonJS `.cjs`, because sandboxed preloads
   must be CommonJS.
+- **[Confirmed]** Runtime notices (D-066): `ipcMain.handle('credits:open-notice', which)`, exposed as
+  `window.freekards.credits.openNotice('electron' | 'chromium')`. It opens one of two files next to
+  the executable with `shell.openPath`: `LICENSE.electron.txt` (falling back to `LICENSE`, its name
+  in an unpackaged run under `node_modules/electron/dist`) or `LICENSES.chromium.html`. It resolves to
+  `false` if the file is missing. Any other value is rejected. Without the bridge (browser preview), the
+  Credits screen says the notices are available in the installed app.
 - **[Confirmed]** Document store (D-051): `ipcMain.handle('store:read' | 'store:write')` in the main
   process, exposed as `window.freekards.store.read(name)` / `.write(name, text)`. Files live at
   `<userData>/data/<name>.json` (names must match `[a-z0-9-]{1,40}`, max 5 MB, must be valid JSON),
