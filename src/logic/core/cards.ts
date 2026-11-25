@@ -46,11 +46,10 @@ export function isCard(value: string): value is Card {
   );
 }
 
-/** Sort for display: grouped by suit (C, D, S, H), ascending rank within a suit. */
 /**
- * Display order of the player's hand (D-054): suits always grouped C, D, S, H (spec 10); within a
- * suit, low cards on the left (the default) or on the right. Hearts does not rank suits, so the
- * suit groups never move.
+ * Display order of the player's hand (D-054, D-064): suits always grouped C, D, S, H (spec 10);
+ * within a suit, low cards on the left (the default) or on the right. The suit groups never move,
+ * whichever order is chosen.
  */
 export type CardOrder = 'low-left' | 'low-right';
 

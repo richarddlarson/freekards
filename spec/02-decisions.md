@@ -567,7 +567,7 @@ Template:
 
 ## D-054 — Card order setting: low cards on the left or on the right
 - Date: 2026-11-24
-- Status: Accepted
+- Status: Accepted (suit rule amended by D-064: suits never reverse)
 - Decision: The player's hand can show low cards on the left (default, as before) or on the right.
   Reversal flips ranks within each suit. The ♣ ♦ ♠ ♥ suit groups stay in place because Hearts doesn't
   rank suits. A future game that ranks suits reverses the suit order as well.
@@ -694,4 +694,15 @@ Template:
 - Why: Owner request: an easy way to run each new version on the Linux Mint development machine
   without reinstalling a `.deb` every time. Sharing the data folder keeps his and his wife's
   profiles and settings in both.
+
+## D-064 — Card order never reverses the suits
+- Date: 2026-11-25
+- Status: Accepted (amends D-054)
+- Decision: "Low cards on the right" only reverses the ranks within each suit. The suit groups
+  always stay in the default left-to-right order, in every game, including future games that rank
+  suits. This drops D-054's rule that such games would reverse the suit order too. Hearts is
+  unchanged: it never reversed suits.
+- Why: Owner, passing on his wife's play-testing: "she loves the "low cards on the right" option we
+  added, but my assumption that we needed to also reverse the suits was incorrect. We need to keep
+  the suits in the same order they are on the default "low cards on the left"."
 

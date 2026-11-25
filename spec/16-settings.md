@@ -31,13 +31,12 @@ a default, and a repair rule.
 **Repair rule:** on load, each field is checked on its own; a missing or unknown value becomes that
 field's default. Profiles saved before settings existed simply get all the defaults.
 
-## 2. Card order (D-054)
+## 2. Card order (D-054, D-064)
 - How the player's own hand is arranged. Suits are always grouped ♣ ♦ ♠ ♥ (spec 10 §1). Within each
   suit, **low-left** puts 2 on the left and Ace on the right, and **low-right** is the reverse.
-- The suit groups do not move, because Hearts doesn't rank suits: their order is only a
-  display convention that alternates colors. If a later game does rank suits, its "low-right" also
-  reverses the suit order (owner's rule: "if there's an inherent order to the suits as well, then
-  reversal should reverse both").
+- **The suit groups never move**, in any game: both choices show the suits in the same
+  left-to-right order. This holds for future games that rank suits as well (D-064 replaced the
+  earlier rule that those games would reverse the suits too).
 - Under the row, a preview shows a sample hand (2♣ 9♣ K♣ 4♦ J♦ 5♠ Q♠ A♠ 3♥ 10♥) as small
   overlapping card faces (80 × 112, 44 apart) in the chosen order, drawn in the chosen deck.
 
