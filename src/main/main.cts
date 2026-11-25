@@ -1,6 +1,7 @@
 /**
  * Electron main process (spec runtimes/electron.md §Process model).
- * Responsibilities: create the window, app lifecycle, single-instance lock.
+ * Responsibilities: create the window, app lifecycle, single-instance lock, the document store,
+ * and opening the runtime's license notices for the Credits screen.
  * The game itself runs entirely in the renderer.
  */
 import { app, BrowserWindow, ipcMain, Menu, shell } from 'electron';
@@ -57,6 +58,36 @@ function registerStore(): void {
   });
 }
 
+/**
+ * Runtime license notices (spec 09 §5, D-066). electron-builder copies Electron's LICENSE (renamed
+ * LICENSE.electron.txt) and LICENSES.chromium.html next to the executable; in a development run they
+ * sit next to the Electron binary under node_modules with the original names. Only these two files
+ * can be opened, in the system's default viewer.
+ */
+const NOTICES: Record<string, readonly string[]> = {
+  electron: ['LICENSE.electron.txt', 'LICENSE'],
+  chromium: ['LICENSES.chromium.html'],
+};
+
+function registerNotices(): void {
+  ipcMain.handle('credits:open-notice', async (_event, which: unknown) => {
+    const names = typeof which === 'string' ? NOTICES[which] : undefined;
+    if (!names) throw new Error('unknown notice');
+    const dir = path.dirname(process.execPath);
+    for (const name of names) {
+      const file = path.join(dir, name);
+      try {
+        await fs.access(file);
+      } catch {
+        continue;
+      }
+      const error = await shell.openPath(file);
+      return error === '';
+    }
+    return false;
+  });
+}
+
 function createWindow(): BrowserWindow {
   const win = new BrowserWindow({
     width: 1280,
@@ -65,6 +96,8 @@ function createWindow(): BrowserWindow {
     minHeight: 600,
     show: false,
     title: 'FreeKards',
+    // Linux window icon for unpackaged runs; installed builds use the desktop entry's icon.
+    ...(process.platform === 'linux' && !app.isPackaged ? { icon: path.join(__dirname, '..', 'build', 'icon.png') } : {}),
     backgroundColor: '#0b5d2a',
     autoHideMenuBar: true,
     webPreferences: {
@@ -112,6 +145,7 @@ if (!app.requestSingleInstanceLock()) {
   Menu.setApplicationMenu(null);
 
   registerStore();
+  registerNotices();
 
   void app.whenReady().then(() => {
     mainWindow = createWindow();

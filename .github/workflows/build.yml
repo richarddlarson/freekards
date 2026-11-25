@@ -109,12 +109,27 @@ jobs:
         with:
           path: dist-installers
           merge-multiple: true
+      # The tag must match package.json, or the installers would carry a different version (D-041).
+      - name: Tag matches package.json version
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match package.json version $version"
+            exit 1
+          fi
+      # Draft only; a person publishes it (D-041). 0.x versions are marked as pre-releases (D-069).
+      # .github/release-header.md (download guide, SmartScreen note) is prepended to the generated notes.
       - name: Create draft release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          version="${GITHUB_REF_NAME#v}"
+          prerelease=false
+          case "$version" in 0.*) prerelease=true ;; esac
           gh release create "$GITHUB_REF_NAME" \
             --draft \
+            --prerelease="$prerelease" \
             --title "FreeKards $GITHUB_REF_NAME" \
+            --notes "$(sed "s/<version>/$version/g" .github/release-header.md)" \
             --generate-notes \
             dist-installers/* sbom/*.json LICENSE

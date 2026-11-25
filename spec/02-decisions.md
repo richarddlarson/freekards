@@ -414,6 +414,7 @@ Template:
   Release with all installers, `sbom/*.json`, and `LICENSE` attached. A person reviews and publishes it.
   Nothing is ever published automatically.
 - Why: Keeps a human check before anything reaches users, while making the release itself one click.
+  **Amended by D-069** (pre-release flag for 0.x, tag/version check, download guide, release steps under D-059).
 
 ## D-042 — CI actions pinned by SHA and listed in the build-tools SBOM
 - Date: 2026-11-24
@@ -718,4 +719,73 @@ Template:
   specific to Hearts since hearts and spades are important. For now let's just make that the default
   order when showing a hand face-up on the screen. Later we may add a user-setting to allow the user
   to choose which suit-order they prefer, but not yet."
+
+## D-066 — About & Credits screen
+- Date: 2026-11-25
+- Status: Accepted (implements spec 09 §5)
+- Decision: An **About** button on the main menu (bottom row: Sound, Settings, About, Quit) opens
+  the About & Credits screen. Its header shows "FreeKards", the version, a one-line description with
+  "MIT License", and a link to the GitHub repository. Two tabs follow. **Credits** lists the shipped
+  software (the runtime, with buttons that open its own license notices) and then every entry in the
+  asset register, grouped as Music, Character voices, Sound effects, Fonts, Artwork, and Game
+  content. Each entry shows its title, author, license, attribution text, and source link.
+  **Licenses** shows the full text of every license in use: MIT (FreeKards), CC BY 4.0, CC0 1.0, and
+  each font's own OFL.txt. All of this is bundled into the app at build time, so it works offline. The
+  Creative Commons legal texts are stored in `assets/licenses/`, unmodified from creativecommons.org,
+  which dedicates them to the public domain under CC0.
+- Why: Spec 09 §5 requires it, and several voices are CC BY 4.0, whose attribution should be visible
+  to players. It was a prerequisite for the first public release (D-069).
+
+## D-067 — App icon: three fanned cards on the felt
+- Date: 2026-11-25
+- Status: Accepted
+- Decision: The app icon is three fanned playing cards on a rounded-square green felt tile with a gold
+  rim: the blue (Rounded) and red (Classic) deck backs behind, tilted 18° each way, and a white card
+  in front with a large red heart. It is original geometry drawn by `scripts/generate-icon.mjs`,
+  using the card generator's suit shapes and the Classic Casino palette. Full geometry is in spec 07
+  §App icon. The same image is used on every platform, and electron-builder derives the Windows
+  `.ico` and the Linux icon sizes from one 1024×1024 PNG.
+- Why: Owner's choice from four drafts (fanned cards, a tilted ace of hearts, the four suits on a
+  disc, a casino chip with a heart), compared at 256 px and at 64 to 16 px on light and dark
+  backgrounds. The fan says "card games" rather than only Hearts, stays readable at 16 px, and
+  avoids a gambling look.
+
+## D-068 — Windows installers stay unsigned for now
+- Date: 2026-11-25
+- Status: Accepted (answers Q3 for the first release; the signing route is still open, see Q3)
+- Decision: The first releases ship unsigned Windows installers. The release notes and README tell
+  Windows users how to get past the SmartScreen warning (More info → Run anyway).
+- Options researched on 2026-11-25 (Microsoft Learn "Code signing options for Windows app developers",
+  updated 2026-11-10; signpath.org/terms.html):
+  - **Signing an .exe no longer avoids the warning on its own.** Since 2024, OV and EV certificates
+    and Azure Artifact Signing all start with no SmartScreen reputation. The warning fades as a
+    consistently signed publisher builds download reputation, with no published threshold.
+  - **Microsoft Store (MSIX):** free for individuals (ID and selfie check). The Store signs the
+    package, installs it with no SmartScreen warning, updates it automatically, and supports ARM64.
+    It needs a Store listing (description, screenshots, age rating, privacy policy) and an MSIX build
+    target. A Store install keeps its data apart from a GitHub-installed copy.
+  - **Azure Artifact Signing** (formerly Trusted Signing): about $9.99/month on a paid Azure
+    subscription. Individuals must be in the US or Canada. The publisher shown is the person's legal
+    name. It signs in CI with no hardware token.
+  - **SignPath Foundation:** free for OSS. The project must already be released and have "a certain
+    verifiable reputation", and applications are sometimes rejected. "SignPath Foundation" is shown as
+    publisher. Every release needs manual approval, the team needs MFA, and the home page needs a
+    "Code signing policy" section.
+  - **Certum Open Source** certificate: low cost, but the key lives on a smart card or the SimplySign
+    cloud, which is awkward for CI.
+- Why: Owner's choice: release now and decide on signing later. Signing alone would not remove the
+  warning for a new publisher anyway, and SignPath requires an existing public release.
+
+## D-069 — First release: v0.1.0, as a pre-release
+- Date: 2026-11-25
+- Status: Accepted (extends D-041; release steps updated for D-059)
+- Decision: The first release is **v0.1.0**, containing Hearts and everything built so far, plus
+  the app icon (D-067) and the About & Credits screen (D-066), which were required before release.
+  Every `0.x` release is marked as a **pre-release** on GitHub; from `1.0.0` on, releases are normal.
+  The CI release job checks that the tag matches the `package.json` version and prepends a
+  download guide (`.github/release-header.md`: which file for which computer, plus the SmartScreen
+  note) to GitHub's generated notes. The version bump goes through the session pull request like
+  any other change (D-059). After the owner merges, the merge commit on `main` is tagged.
+- Why: Owner's choice. A pre-release tells visitors the game is still being play-tested. The tag
+  check stops an installer from carrying the wrong version number.
 

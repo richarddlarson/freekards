@@ -5,6 +5,7 @@
  *   #sound[&tracks]                the main menu with the Sound panel open (and its track list)
  *   #settings                      the main menu with the Settings panel open
  *   #welcome / #who / #stats       first-run name entry, the player picker, the stats page
+ *   #about[&licenses]              the About & Credits screen (on its Licenses tab)
  *   (add &record to a #hearts autoplay demo to record its result for the active player)
  *   #hearts&seed=7&autoplay&speed=3  a Hearts game with fixed seed, optionally self-playing
  */
@@ -19,6 +20,7 @@ import { HeartsTable, type HeartsGameResult } from './table/hearts-table.js';
 import { profile } from '../logic/index.js';
 import { activeProfile, activeSettings, allProfiles, loadProfiles, replaceProfile } from './profiles.js';
 import { showNameEntry, showProfilePage, showWhoIsPlaying } from './profile-screens.js';
+import { showAbout } from './credits.js';
 
 // Native-app feel: no browser context menu, no ctrl+wheel zoom (spec runtimes/electron.md).
 window.addEventListener('contextmenu', (e) => e.preventDefault());
@@ -42,7 +44,7 @@ function menu(): void {
   table = null;
   showMainMenu(
     stage,
-    { playHearts: setup, quit: () => window.close(), stats: statsPage, switchPlayer: whoIsPlaying },
+    { playHearts: setup, quit: () => window.close(), stats: statsPage, switchPlayer: whoIsPlaying, about: aboutPage },
     activeProfile(),
   );
 }
@@ -67,6 +69,10 @@ function whoIsPlaying(): void {
 
 function statsPage(): void {
   showProfilePage(stage, { onBack: menu, onDeletedLast: welcome });
+}
+
+function aboutPage(): void {
+  showAbout(stage, { onBack: menu });
 }
 
 function setup(): void {
@@ -119,6 +125,11 @@ async function start(): Promise<void> {
   if (hash.has('welcome')) return welcome();
   if (hash.has('who')) return whoIsPlaying();
   if (hash.has('stats')) return statsPage();
+  if (hash.has('about')) {
+    aboutPage();
+    if (hash.has('licenses')) document.querySelectorAll('.about-tabs button')[1]?.dispatchEvent(new PointerEvent('pointerup', { button: 0 }));
+    return;
+  }
   if (hash.has('settings')) {
     menu();
     document.querySelectorAll('.menu-footer button')[1]?.dispatchEvent(new PointerEvent('pointerup', { button: 0 }));

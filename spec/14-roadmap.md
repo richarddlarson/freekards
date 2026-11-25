@@ -10,23 +10,22 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 **In progress** · **Done**.
 
 ## Where we left off (updated at the end of each working session)
-**2026-11-24:** Hearts is fully playable with sound effects, 10 music tracks, voices for all six
-characters, player profiles, statistics, KardCoins, and a per-player Settings panel (card order,
-card response with drag to play, game speed). Esc pauses (D-058). The player's cards and the trick
-are bigger, with jumbo card indices and the Fira Sans font (R-006). CI builds all four installers,
-and `main` is green. The 2026-11-24 session was merged as PR #1. **2026-11-25:** players can choose a
-card deck in Settings: Classic, or the new Rounded deck with blue backs (R-007). This is on branch
-`session/2026-11-25-card-decks`, which becomes one pull request when the owner says so (D-059).
-On this Linux machine, the **FreeKards (local build)** menu entry runs the checked-out branch
-without installing (D-063). Waiting on the owner:
-1. Confirm that profiles and coins persist in the **installed** app across restarts
-   (`~/.config/cardtable/data/profiles.json`); only the localStorage fallback was tested.
-2. Try the Windows ARM64 installer on the Surface Pro 9 (CI artifact `freekards-win-arm64`).
-3. Have the play-tester try the new **Settings** (R-005): Card response Quick or Instant, drag to
-   play, and Game speed Fast. Also the bigger cards and new font (R-006), and the Rounded deck
-   (R-007). Tune from her feedback.
-4. Choose what's next: the first tagged release `v0.1.0` (D-041), code signing (Q3), the next game
-   (R-002), the app icon and Credits screen (R-003), or KardCoin spending (R-001 part 4).
+**2026-11-25 (second session):** PR #1 (Hearts, profiles, settings) and PR #2 (card decks,
+hearts-first suit order, local build launcher) are merged, and `main` is green. This session, on
+`session/2026-11-25-release`, prepared the first release: the About & Credits screen (D-066), the app
+icon (D-067), Windows signing deferred with the options researched (D-068), and v0.1.0 as a
+pre-release with a download guide in the release notes (D-069). Waiting on the owner:
+1. Try the session build: **About** on the main menu (both tabs, the Electron and Chromium license
+   buttons) and the new icon. Rerun `scripts/install-local-launcher.sh` once so the local-build menu
+   entry shows the icon.
+2. Push and merge the session PR. Then tag `v0.1.0` on `main` (the release steps are in
+   `runtimes/electron.md` §How to cut a release), review the draft release, test-install the Windows
+   ARM64 installer on the Surface Pro 9, and publish.
+3. Still open from before: confirm that profiles and coins persist in the **installed** app across
+   restarts (`~/.config/cardtable/data/profiles.json`), and the play-tester's feedback on Settings
+   (R-005), the bigger cards (R-006), and the Rounded deck (R-007).
+4. Next, after the release: code signing (Q3, D-068), the next game (R-002), or KardCoin spending
+   (R-001 part 4).
 
 ---
 
@@ -137,12 +136,13 @@ without installing (D-063). Waiting on the owner:
 
 ## R-003 — Smaller items noted along the way
 - **Status:** Idea
-- App icon (all platforms) and Linux `desktopName` for window grouping.
-- About & Credits screen showing the SBOM, licenses, and attributions (spec 09 §5).
+- ~~App icon (all platforms)~~ **Done** 2026-11-25 (D-067). Still open: Linux `desktopName` for window grouping.
+- ~~About & Credits screen showing the SBOM, licenses, and attributions (spec 09 §5).~~ **Done**
+  2026-11-25 (D-066).
 - Character portrait art for the Classic Casino theme (spec 07, 08).
 - Phase 2 court-card art from public-domain 19th-century designs (D-027).
 - Bright Illustrated theme (D-009).
-- Code signing for Windows installers (Q3; SignPath Foundation).
+- Code signing for Windows installers: deferred for the first releases (D-068); route still open (Q3).
 - Optional sound stingers (hearts broken, Queen of Spades, moon shot, win/lose); `table.*` and
   `game.*` cues exist but have no files.
 - Characters replying to each other (Q20).

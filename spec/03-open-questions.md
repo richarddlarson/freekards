@@ -4,9 +4,10 @@ When a question is answered, the answer is recorded as a decision in `02-decisio
 question is removed from this list.
 
 ## Technology and delivery
-- Q3. Should the installers be code-signed? An unsigned Windows installer triggers a SmartScreen
-  "Windows protected your PC" warning on first run. Because the project is open source, the SignPath
-  Foundation may provide free code signing; that option is worth checking.
+- Q3. Which code-signing route, and when? The first releases ship unsigned (D-068, which summarizes
+  the options researched: Microsoft Store MSIX, Azure Artifact Signing, SignPath Foundation, Certum).
+  The Store is the only route that removes the SmartScreen warning at once. SignPath needs an
+  existing public release first.
 
 ## Games and rules
 - Q6. Poker: which variant? Texas Hold'em, Five-Card Draw, or something else? Played for chips, with a bankroll?
