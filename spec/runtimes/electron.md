@@ -280,24 +280,31 @@ To try the current checkout on a Linux desktop without installing it:
   type** (D-057): `release/*.exe` on Windows, and on Linux `release/*.deb` and `release/*.AppImage`
   separately. Each is kept for **14 days**, and the job fails if an expected installer is missing.
   Both Linux packages still come from one build per arch, so the split costs no runner time.
-- **Job `release`** (only for `v*` tags; needs `build`; `contents: write`): downloads all artifacts and
-  runs `gh release create <tag> --draft --generate-notes`, attaching every installer plus
-  `sbom/*.json` and `LICENSE`. Nothing is published automatically.
+- **Job `release`** (only for `v*` tags; needs `build`; `contents: write`): fails unless the tag is
+  `v` + the `package.json` version, then downloads all artifacts and runs `gh release create <tag>
+  --draft --generate-notes`, with `--prerelease` for `0.x` versions (D-069) and `--notes` set to
+  `.github/release-header.md` (with `<version>` filled in), which gh puts before the generated notes.
+  It attaches every installer plus `sbom/*.json` and `LICENSE`. Nothing is published automatically.
 - **Actions** are GitHub's own (`actions/checkout`, `setup-node`, `cache`, `upload-artifact`,
   `download-artifact`, all MIT), each pinned to a full commit SHA with a version comment, and listed in
   `sbom/build-tools.json` (spec 09 §3c). The release step uses the `gh` CLI preinstalled on the
   runner, so no third-party action is needed. To update an action: look up the new release's commit
   SHA, update both the workflow and `build-tools.json`, and check its license is still permissive.
 
-### How to cut a release
-1. Bump `version` in `package.json` (and run `npm install --package-lock-only` so the lockfile matches),
-   then commit to `main`.
-2. Tag the commit: `git tag vX.Y.Z` (it must match the package.json version), then `git push origin vX.Y.Z`.
-3. Wait for the `build` workflow to finish. It creates a **draft** GitHub Release with all installers and SBOMs.
-4. Review the draft (notes, files), then click **Publish release**.
+### How to cut a release (D-041, D-069)
+1. On the session branch, set `version` in `package.json` and run `npm install --package-lock-only`
+   so the lockfile matches. Commit with the spec updates for the release. The owner merges the
+   session PR as usual (D-059).
+2. After the merge, with the owner's go-ahead, tag the merge commit on an up-to-date `main`:
+   `git tag -a vX.Y.Z -m "FreeKards vX.Y.Z"`, then `git push origin vX.Y.Z`. The tag must match the
+   `package.json` version (CI checks this).
+3. Wait for the `build` workflow on the tag. It creates a **draft** GitHub Release with all
+   installers, the SBOMs, and `LICENSE`, marked as a pre-release for `0.x`.
+4. The owner reviews the draft (notes, files, a test install), then clicks **Publish release**.
 
-### Unsigned installers (Q3 open)
-The installers are not code-signed yet:
+### Unsigned installers (D-068; Q3 open)
+The installers are not code-signed yet. The release notes (`.github/release-header.md`) and the
+README explain the steps below to users:
 - **Windows:** SmartScreen shows "Windows protected your PC" the first time the installer runs. The
   user has to click **More info → Run anyway**. Microsoft Edge may also warn when downloading the
   `.exe`. The warning fades once a release builds download reputation, and disappears with signing.

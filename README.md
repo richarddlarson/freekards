@@ -5,14 +5,23 @@ both x64 and ARM64.
 
 Planned games: Hearts (in progress), Spades, Blackjack, Poker, Rummy 500, Gin Rummy, and Solitaire.
 
-> **Status:** early development. The Hearts rules engine and AI work and are tested. The game table
-> and installers are next.
+> **Status:** early pre-release. Hearts is fully playable, with sound, music, talking opponents,
+> player profiles, and statistics. The other games are coming.
+
+## Download and install
+Get the installer for your computer from the
+[Releases page](https://github.com/richarddlarson/freekards/releases). Each release lists which
+file to download.
+
+- **Windows** (x64 or ARM64): run the `.exe`. The installer is not code-signed yet, so Windows
+  may show "Windows protected your PC" the first time. Click **More info**, then **Run anyway**.
+- **Linux Mint, Ubuntu, Debian:** open the `.deb` to install it. On other distributions, use the
+  `.AppImage` (mark it executable, then run it).
 
 ## Highlights (planned)
 - Animated card dealing and play, designed for touch screens such as the Surface Pro.
 - Computer opponents with personalities who comment on the game in speech bubbles and spoken voice.
 - Sound effects, background music, and interchangeable visual themes.
-- Easy-to-install apps: `.exe` for Windows, AppImage and `.deb` for Linux.
 - 100% offline. No accounts, no ads, no tracking.
 
 ## Spec-driven
