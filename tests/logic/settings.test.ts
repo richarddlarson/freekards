@@ -1,8 +1,9 @@
+import { existsSync, readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { sortHand } from '../../src/logic/core/cards.js';
 import { GAME_SPEED_FACTOR, RESPONSE_TIMING, TIMING } from '../../src/logic/layout/hearts-table.js';
 import { createProfile, normalizeProfilesFile } from '../../src/logic/profile/profile.js';
-import { DEFAULT_PLAYER_SETTINGS, normalizePlayerSettings } from '../../src/logic/settings/player-settings.js';
+import { CARD_DECKS, DEFAULT_PLAYER_SETTINGS, normalizePlayerSettings } from '../../src/logic/settings/player-settings.js';
 
 const NOW = '2026-11-24T12:00:00.000Z';
 
@@ -20,15 +21,17 @@ describe('card order (D-054)', () => {
 describe('player settings', () => {
   it('new profiles get the defaults', () => {
     expect(createProfile('Ann', 'a', NOW).settings).toEqual(DEFAULT_PLAYER_SETTINGS);
-    expect(DEFAULT_PLAYER_SETTINGS).toEqual({ cardOrder: 'low-left', cardResponse: 'standard', gameSpeed: 'normal' });
+    expect(DEFAULT_PLAYER_SETTINGS).toEqual({ cardOrder: 'low-left', cardResponse: 'standard', gameSpeed: 'normal', cardDeck: 'classic' });
   });
   it('repairs each field on its own', () => {
     expect(normalizePlayerSettings(undefined)).toEqual(DEFAULT_PLAYER_SETTINGS);
-    expect(normalizePlayerSettings({ cardOrder: 'low-right', cardResponse: 'warp', gameSpeed: 3 })).toEqual({
+    expect(normalizePlayerSettings({ cardOrder: 'low-right', cardResponse: 'warp', gameSpeed: 3, cardDeck: 'tarot' })).toEqual({
       cardOrder: 'low-right',
       cardResponse: 'standard',
       gameSpeed: 'normal',
+      cardDeck: 'classic',
     });
+    expect(normalizePlayerSettings({ cardDeck: 'rounded' }).cardDeck).toBe('rounded');
   });
   it('profiles saved before settings existed load with the defaults', () => {
     const f = normalizeProfilesFile({ profiles: [{ id: 'a', name: 'Ann' }, { id: 'b', name: 'Bo', settings: { cardResponse: 'instant' } }] });
@@ -53,5 +56,15 @@ describe('response and pace timing (D-055, D-056)', () => {
     expect(i.tapOn).toBe('press');
     expect(GAME_SPEED_FACTOR.relaxed).toBeGreaterThan(1);
     expect(GAME_SPEED_FACTOR.fast).toBeLessThan(1);
+  });
+});
+
+describe('card decks (D-062)', () => {
+  it('every deck a player can choose has 52 faces and a back', () => {
+    for (const deck of CARD_DECKS) {
+      const dir = `assets/themes/classic-casino/decks/${deck}`;
+      expect(existsSync(`${dir}/back.svg`), `${deck} back`).toBe(true);
+      expect(readdirSync(`${dir}/faces`).filter((f) => f.endsWith('.svg'))).toHaveLength(52);
+    }
   });
 });

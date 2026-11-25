@@ -58,7 +58,7 @@ The SBOM has two parts. Both live in the repository and both ship inside the app
 - Schema (each entry):
 ```json
 {
-  "path": "assets/themes/classic-casino/cards/faces/AS.svg",
+  "path": "assets/themes/classic-casino/decks/classic/faces/AS.svg",
   "title": "Ace of Spades",
   "kind": "image | font | sfx | music | voice | icon | other",
   "origin": "third-party | original | ai-assisted | generated",

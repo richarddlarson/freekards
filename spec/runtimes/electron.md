@@ -16,7 +16,7 @@ All versions are pinned exactly in `package.json` (no `^` or `~` ranges). `packa
 | Vitest | 5.1.1 | MIT | Unit tests for the logic layer. |
 | electron-builder | 26.18.0 | MIT | Installers. |
 | @cyclonedx/cyclonedx-npm | 7.0.1 | Apache-2.0 | SBOM generation. |
-| @types/node | 26.6.6 | MIT | Types for the main and preload processes. |
+| @types/node | 26.6.6 | MIT | Types for the main and preload processes, and for tests (which run in Node). |
 | opentype.js | 2.0.0 | MIT | Dev tool only: the card generator converts index lettering to outlines with it (D-060). No dependencies of its own. |
 
 - **[Confirmed]** Electron bundles its own Chromium, so rendering and audio behave the same on every OS.
@@ -48,7 +48,8 @@ tsconfig.base.json          Shared strict compiler options
 tsconfig.logic.json         Logic layer only, lib ES2023, no DOM, no Node types (enforces engine neutrality)
 tsconfig.renderer.json      Renderer + logic, adds the DOM lib and vite/client types (import.meta.glob)
 tsconfig.electron.json      Main + preload (*.cts) → dist-electron/*.cjs (CommonJS, NodeNext)
-tsconfig.test.json          Tests + logic + spec/content JSON (resolveJsonModule)
+tsconfig.test.json          Tests + logic + spec/content JSON (resolveJsonModule), Node types (tests may read files;
+                            tsconfig.logic.json still keeps Node out of the logic layer)
 src/logic/                  ENGINE-NEUTRAL game logic (spec 05, 10). No DOM/Node/Electron imports.
   core/cards.ts             Card ids, deck, sorting
   core/rng.ts               Mulberry32 generator + Fisher–Yates shuffle
@@ -80,12 +81,14 @@ tests/logic/                Vitest suites + helpers (simulateGame, playState)
 scripts/check-licenses.mjs  SBOM generator + license gate (also scans assets/ and spec/content/)
 scripts/build-voices.py     Voice clips: Piper synthesis → Opus, incremental (D-048)
 scripts/build-music.mjs     Music: fetch originals, verify SHA-256, encode to Opus (D-045)
-scripts/generate-cards.mjs  Classic Casino card-face generator → assets/themes/classic-casino/cards (D-027);
-                            outlines index lettering from assets/fonts/fira-sans-condensed with opentype.js (D-060)
+scripts/generate-cards.mjs  Classic Casino deck generator → assets/themes/classic-casino/decks/<deck> (D-027, D-062);
+                            outlines each deck's index font from assets/fonts with opentype.js (D-060).
+                            --font <ttf> --out <dir> writes a trial deck for font auditions
 scripts/capture.cjs         Offscreen screenshot tool (D-037)
 assets/themes/              Runtime-neutral theme assets (generated card SVGs committed)
 assets/fonts/               Bundled OFL fonts, each with its OFL.txt: Fira Sans (interface, loaded by
-                            style.css @font-face), Fira Sans Condensed (card-generator input only, D-060)
+                            style.css @font-face); Fira Sans Condensed and Nunito ExtraBold (card-generator
+                            inputs only, D-060, D-062)
 scripts/license-policy.mjs  Allowed licenses + runtime exceptions (mirrors spec 09 §2)
 sbom/                       assets.json, build-tools.json (hand-kept); code.cdx.json, dev.cdx.json (generated)
 build/                      electron-builder resources (icons go here)

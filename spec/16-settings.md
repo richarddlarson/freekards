@@ -1,6 +1,7 @@
 # 16 — Player Settings (core spec, engine-neutral)
 
-Status: **[Confirmed]** first version (D-053 to D-056), from roadmap R-005. More settings will be
+Status: **[Confirmed]** first version (D-053 to D-056), from roadmap R-005. Card deck added by
+D-062 (R-007). More settings will be
 added here as play-testing turns them up. Each new setting gets a decision entry, a section below,
 a default, and a repair rule.
 
@@ -14,12 +15,15 @@ a default, and a repair rule.
   a bold label (290 wide), a group of choice buttons (the selected one filled in brass), and under it
   a line that describes the selected choice. A **Done** button closes it.
 - **Changes apply and save at once**, with no Save or Cancel. A change made mid-game takes effect
-  when the panel closes. The player's hand re-sorts, and new timings apply to the next card.
+  when the panel closes. Every card on the table switches to the chosen deck, the player's hand
+  re-sorts, and new timings apply to the next card.
+- Rows, top to bottom: Card deck, Card order, Card response, Game speed.
 - With no active profile (only in development demo screens), the panel shows the defaults with
   the note "Not saved: no player is selected", and changes are not kept.
 
 | Setting | Choices (stored value) | Default |
 |---------|------------------------|---------|
+| Card deck | Classic (`classic`) · Rounded (`rounded`) | `classic` |
 | Card order | Low cards on the left (`low-left`) · Low cards on the right (`low-right`) | `low-left` |
 | Card response | Standard (`standard`) · Quick (`quick`) · Instant (`instant`) | `standard` |
 | Game speed | Relaxed (`relaxed`) · Normal (`normal`) · Fast (`fast`) | `normal` |
@@ -35,7 +39,7 @@ field's default. Profiles saved before settings existed simply get all the defau
   reverses the suit order (owner's rule: "if there's an inherent order to the suits as well, then
   reversal should reverse both").
 - Under the row, a preview shows a sample hand (2♣ 9♣ K♣ 4♦ J♦ 5♠ Q♠ A♠ 3♥ 10♥) as small
-  overlapping card faces (80 × 112, 44 apart) in the chosen order.
+  overlapping card faces (80 × 112, 44 apart) in the chosen order, drawn in the chosen deck.
 
 ## 3. Card response (D-055)
 How quickly the player's own cards react to a touch, pen, or mouse press. The opponents' cards are
@@ -80,3 +84,18 @@ A multiplier on the waits that make the table feel slow:
 Descriptions: Relaxed "Opponents take their time, and finished tricks stay on the table longer." ·
 Normal "The usual pace." · Fast "Opponents play quickly, and finished tricks clear sooner."
 Dealing, passing, and trick-collection animations are unchanged.
+
+## 5. Card deck (D-062)
+Which deck of cards the table uses: every face and back, for all four players. Decks are defined
+by the theme (`07-themes.md` §Card decks).
+
+| | Classic | Rounded |
+|---|---|---|
+| Index font | Fira Sans Condensed Bold | Nunito ExtraBold |
+| Back | red `#a3192e` | blue `#1f4e9c` |
+| Description shown | "Crisp, narrow letters. Red backs." | "Soft, rounded letters. Blue backs." |
+
+Under the row, a preview shows the deck's back and six of its cards (A♠ K♥ Q♣ 10♦ 7♠ 2♥), at the
+same size and overlap as the Card order preview, with the description to the right. Choosing a
+deck also redraws the Card order preview in that deck.
+

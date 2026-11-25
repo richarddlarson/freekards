@@ -14,13 +14,16 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 characters, player profiles, statistics, KardCoins, and a per-player Settings panel (card order,
 card response with drag to play, game speed). Esc pauses (D-058). The player's cards and the trick
 are bigger, with jumbo card indices and the Fira Sans font (R-006). CI builds all four installers,
-and `main` is green. This session's work is on branch `session/2026-11-24-playtest-feedback`, not
-pushed yet: it becomes one pull request when the owner says so (D-059). Waiting on the owner:
+and `main` is green. The 2026-11-24 session was merged as PR #1. **2026-11-25:** players can choose a
+card deck in Settings: Classic, or the new Rounded deck with blue backs (R-007). This is on branch
+`session/2026-11-25-card-decks`, which becomes one pull request when the owner says so (D-059).
+Waiting on the owner:
 1. Confirm that profiles and coins persist in the **installed** app across restarts
    (`~/.config/cardtable/data/profiles.json`); only the localStorage fallback was tested.
 2. Try the Windows ARM64 installer on the Surface Pro 9 (CI artifact `freekards-win-arm64`).
 3. Have the play-tester try the new **Settings** (R-005): Card response Quick or Instant, drag to
-   play, and Game speed Fast. Also the bigger cards and new font (R-006). Tune from her feedback.
+   play, and Game speed Fast. Also the bigger cards and new font (R-006), and the Rounded deck
+   (R-007). Tune from her feedback.
 4. Choose what's next: the first tagged release `v0.1.0` (D-041), code signing (Q3), the next game
    (R-002), the app icon and Credits screen (R-003), or KardCoin spending (R-001 part 4).
 
@@ -88,6 +91,22 @@ pushed yet: it becomes one pull request when the owner says so (D-059). Waiting 
 - **Choices made by the owner:** the new font applies to the cards and all interface text; only
   the player's hand and the trick get bigger (opponents' fans stay compact); font picked from an
   audition sheet (Fira Sans + Fira Sans Condensed, option B of four).
+
+## R-007 — Choosable card decks, starting with a rounded one
+- **Status:** In progress. Built 2026-11-25: the Card deck setting with two decks, Classic and
+  Rounded; see D-062, `07-themes.md` §Card decks, and `16-settings.md` §5. More decks (other
+  colors, then new artwork) can be added later.
+- **Requested:** 2026-11-25, by the owner, passing on his wife's feedback
+- **Request (original wording):** "my wife likes all the new changes, but still feels the font on
+  the cards is too sharp and needs a more rounded look to it. Maybe we should add a card-deck
+  look-and-feel section to the settings to allow for the user to choose from multiple "decks" with
+  each deck having a different font, colors, and (eventually) artwork. We could make the current
+  "deck" the first one in the set, and add a new one with blue backs and a more rounded font as the
+  next one, that way we achieve 2 goals, one to get my wife her more rounded font, and the second of
+  setting us up for better personalization overall by allowing users to choose their decks."
+- **Choices made by the owner:** Nunito ExtraBold, picked from an audition of six rounded fonts
+  (Nunito Black and ExtraBold, Fredoka Bold and SemiBold, Baloo 2 ExtraBold, M PLUS Rounded 1c
+  ExtraBold). Deck names Classic and Rounded.
 
 ## R-002 — Remaining games
 - **Status:** Planned (order to be decided)

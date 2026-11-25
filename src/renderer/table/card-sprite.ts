@@ -1,5 +1,5 @@
 /** A card on the table: one element per card, moved with the Web Animations API (spec 12 §3). */
-import { layout, type Card } from '../../logic/index.js';
+import { layout, type Card, type settings } from '../../logic/index.js';
 import { cardBackUrl, cardFaceUrl } from '../content.js';
 
 const { CARD_W, CARD_H } = layout;
@@ -21,14 +21,19 @@ export class CardSprite {
   place: layout.Placement;
   private faceUp = false;
 
-  constructor(readonly card: Card, parent: HTMLElement, at: layout.Placement) {
+  constructor(
+    readonly card: Card,
+    parent: HTMLElement,
+    at: layout.Placement,
+    private deck: settings.CardDeck,
+  ) {
     this.el = document.createElement('div');
     this.el.className = 'card';
     this.el.dataset['card'] = card;
     this.img = document.createElement('img');
     this.img.draggable = false;
     this.img.alt = '';
-    this.img.src = cardBackUrl();
+    this.img.src = cardBackUrl(deck);
     this.el.appendChild(this.img);
     this.place = at;
     this.el.style.transform = transformFor(at);
@@ -38,8 +43,19 @@ export class CardSprite {
   setFaceUp(up: boolean): void {
     if (up === this.faceUp) return;
     this.faceUp = up;
-    this.img.src = up ? cardFaceUrl(this.card) : cardBackUrl();
-    this.img.alt = up ? this.card : '';
+    this.showImage();
+  }
+
+  /** Switch to another card deck in place (D-062). */
+  setDeck(deck: settings.CardDeck): void {
+    if (deck === this.deck) return;
+    this.deck = deck;
+    this.showImage();
+  }
+
+  private showImage(): void {
+    this.img.src = this.faceUp ? cardFaceUrl(this.card, this.deck) : cardBackUrl(this.deck);
+    this.img.alt = this.faceUp ? this.card : '';
   }
 
   setZ(z: number): void {

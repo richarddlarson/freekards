@@ -1,16 +1,19 @@
 #!/usr/bin/env node
 /**
- * Card-face generator for the Classic Casino theme (spec 07 §Classic Casino card faces, D-027).
+ * Card-deck generator for the Classic Casino theme (spec 07 §Card decks, D-027, D-062).
  *
- * Writes one self-contained SVG per card to assets/themes/classic-casino/cards/faces/{rank}{suit}.svg
- * and the card backs to assets/themes/classic-casino/cards/backs/. All artwork is drawn from
- * geometry in this file and is original work of The FreeKards Contributors (MIT).
+ * For each deck in DECKS, writes one self-contained SVG per card to
+ * assets/themes/classic-casino/decks/<deck>/faces/{rank}{suit}.svg plus the deck's back.svg.
+ * All artwork is drawn from geometry in this file and is original work of The FreeKards
+ * Contributors (MIT). Decks share the layout and differ in index font and back color.
  *
- * All lettering (corner indices, the A♠ legend) is converted to vector outlines from
- * Fira Sans Condensed Bold (OFL-1.1, assets/fonts/fira-sans-condensed) with opentype.js, so the cards
- * look the same everywhere and need no font at run time (D-060).
+ * All lettering (corner indices, the A♠ legend) is converted to vector outlines from the deck's
+ * font (OFL-1.1, assets/fonts/) with opentype.js, so the cards look the same everywhere and need no
+ * font at run time (D-060).
  *
  * Usage: node scripts/generate-cards.mjs     (output is deterministic; commit the results)
+ *        node scripts/generate-cards.mjs --font <file.ttf> --out <dir> [--back <#rrggbb>]
+ *                                            (try another index font: writes one trial deck to <dir>)
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -18,9 +21,36 @@ import { fileURLToPath } from 'node:url';
 import opentype from 'opentype.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const outDir = join(root, 'assets', 'themes', 'classic-casino', 'cards');
-const fontFile = readFileSync(join(root, 'assets', 'fonts', 'fira-sans-condensed', 'FiraSansCondensed-Bold.ttf'));
-const FONT = opentype.parse(fontFile.buffer.slice(fontFile.byteOffset, fontFile.byteOffset + fontFile.byteLength));
+const arg = (name) => {
+  const i = process.argv.indexOf(name);
+  return i > 0 ? process.argv[i + 1] : undefined;
+};
+const decksDir = join(root, 'assets', 'themes', 'classic-casino', 'decks');
+
+/**
+ * The decks a player can choose in Settings (spec 16, D-062). The ids must match CARD_DECKS in
+ * src/logic/settings/player-settings.ts.
+ */
+const DECKS = {
+  classic: { font: 'assets/fonts/fira-sans-condensed/FiraSansCondensed-Bold.ttf', back: '#a3192e' },
+  rounded: { font: 'assets/fonts/nunito/Nunito-ExtraBold.ttf', back: '#1f4e9c' },
+};
+
+/** The font of the deck being drawn; set by useFont() before each deck. */
+let FONT;
+/** Capital height in font units, measured from "H" (some fonts leave the OS/2 value empty). */
+let CAP_HEIGHT;
+let RANK_SIZE;
+
+function useFont(file) {
+  const bytes = readFileSync(file);
+  FONT = opentype.parse(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength));
+  CAP_HEIGHT = -FONT.charToGlyph('H').getPath(0, 0, FONT.unitsPerEm).getBoundingBox().y1;
+  RANK_SIZE = (INDEX.rankHeight * FONT.unitsPerEm) / CAP_HEIGHT;
+}
+
+/** One glyph per character, straight from the character map: card lettering needs no shaping or ligatures. */
+const glyphsOf = (text) => [...text].map((ch) => FONT.charToGlyph(ch));
 
 // ---------------------------------------------------------------- geometry & palette
 
@@ -61,7 +91,7 @@ function pip(suit, cx, cy, size, rotate = false, fill = suitColor(suit)) {
  * `tracking` adds space between letters (font units per 1000 em); `squeeze` narrows the glyphs horizontally.
  */
 function lettering(text, cx, y, size, fill, { tracking = 0, squeeze = 1 } = {}) {
-  const glyphs = FONT.stringToGlyphs(text);
+  const glyphs = glyphsOf(text);
   const unit = size / FONT.unitsPerEm;
   let advance = 0;
   const parts = glyphs.map((g, i) => {
@@ -105,14 +135,30 @@ const INDEX = {
   gap: 13, // between the rank and the suit symbol (J and Q descend into it)
   pip: 40, // suit symbol size
 };
-const RANK_SIZE = (INDEX.rankHeight * FONT.unitsPerEm) / FONT.tables.os2.sCapHeight;
+/** Widest rank ink allowed in the index column; wider ranks (usually "10") are narrowed to fit. */
+const INDEX_MAX_WIDTH = 63.6;
+
+function inkWidth(text, size, tracking) {
+  let advance = 0;
+  let x1 = Infinity;
+  let x2 = -Infinity;
+  glyphsOf(text).forEach((g, i, all) => {
+    const b = g.getPath(advance, 0, size).getBoundingBox();
+    x1 = Math.min(x1, b.x1);
+    x2 = Math.max(x2, b.x2);
+    advance += (g.advanceWidth * size) / FONT.unitsPerEm + (i < all.length - 1 ? (tracking * size) / 1000 : 0);
+  });
+  return x2 - x1;
+}
 
 function index(rank, suit) {
   const label = RANK_LABEL[rank] ?? rank;
   const color = suitColor(suit);
   const base = INDEX.top + INDEX.rankHeight;
-  // "10" is two figures wide, so it is set tight and slightly narrowed to keep the column slim.
-  const opts = label.length > 1 ? { tracking: -50, squeeze: 0.84 } : {};
+  // "10" is two figures wide, so it is set tight, then narrowed if it is still wider than the column.
+  const tracking = label.length > 1 ? -50 : 0;
+  const width = inkWidth(label, RANK_SIZE, tracking);
+  const opts = { tracking, squeeze: width > INDEX_MAX_WIDTH ? Math.round((INDEX_MAX_WIDTH / width) * 1000) / 1000 : 1 };
   const one = lettering(label, INDEX.x, base, RANK_SIZE, color, opts) + pip(suit, INDEX.x, base + INDEX.gap + INDEX.pip / 2, INDEX.pip);
   return `<g>${one}</g><g transform="rotate(180 ${W / 2} ${H / 2})">${one}</g>`;
 }
@@ -235,14 +281,14 @@ function courtCard(kind, suit) {
 
 // ---------------------------------------------------------------- backs
 
-function back(color, id) {
+function back(color) {
   const lattice = [];
   for (let i = -14; i <= 28; i++) {
     const x = i * 16;
     lattice.push(`<line x1="${x}" y1="0" x2="${x + 350}" y2="350"/>`, `<line x1="${x + 350}" y1="0" x2="${x}" y2="350"/>`);
   }
   return `<?xml version="1.0" encoding="UTF-8"?>
-<!-- FreeKards Classic Casino card back (${id}). Generated by scripts/generate-cards.mjs. MIT License, (c) 2026 The FreeKards Contributors. -->
+<!-- FreeKards Classic Casino card back. Generated by scripts/generate-cards.mjs. MIT License, (c) 2026 The FreeKards Contributors. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
 <rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="${RADIUS}" fill="${PAPER}" stroke="#9a9a90" stroke-width="2"/>
 <rect x="14" y="14" width="${W - 28}" height="${H - 28}" rx="8" fill="${color}"/>
@@ -257,16 +303,21 @@ ${pip('S', 106, 160, 22, false, PAPER)}${pip('H', 144, 160, 22, false, PAPER)}${
 
 // ---------------------------------------------------------------- write
 
-mkdirSync(join(outDir, 'faces'), { recursive: true });
-mkdirSync(join(outDir, 'backs'), { recursive: true });
-let count = 0;
-for (const suit of Object.keys(SUITS)) {
-  for (const rank of RANKS) {
-    const svg = rank === 'A' ? aceCard(suit) : 'JQK'.includes(rank) ? courtCard(rank, suit) : numberCard(rank, suit);
-    writeFileSync(join(outDir, 'faces', `${rank}${suit}.svg`), svg);
-    count++;
+function writeDeck(fontFile, backColor, outDir) {
+  useFont(fontFile);
+  mkdirSync(join(outDir, 'faces'), { recursive: true });
+  for (const suit of Object.keys(SUITS)) {
+    for (const rank of RANKS) {
+      const svg = rank === 'A' ? aceCard(suit) : 'JQK'.includes(rank) ? courtCard(rank, suit) : numberCard(rank, suit);
+      writeFileSync(join(outDir, 'faces', `${rank}${suit}.svg`), svg);
+    }
   }
+  writeFileSync(join(outDir, 'back.svg'), back(backColor));
+  console.log(`Wrote 52 faces and a back to ${outDir}`);
 }
-writeFileSync(join(outDir, 'backs', 'red.svg'), back('#a3192e', 'red'));
-writeFileSync(join(outDir, 'backs', 'blue.svg'), back('#1f4e9c', 'blue'));
-console.log(`Wrote ${count} faces and 2 backs to ${outDir}`);
+
+if (arg('--font')) {
+  writeDeck(arg('--font'), arg('--back') ?? DECKS.rounded.back, arg('--out') ?? 'trial-deck');
+} else {
+  for (const [id, deck] of Object.entries(DECKS)) writeDeck(join(root, deck.font), deck.back, join(decksDir, id));
+}

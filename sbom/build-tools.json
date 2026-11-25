@@ -10,6 +10,14 @@
       "usedFor": "Encoding music to Opus (scripts/build-music.mjs). Only its output ships; FFmpeg's license puts no conditions on encoded output (spec 09 \u00a72)."
     },
     {
+      "name": "fontTools",
+      "version": "4.46.0 (Ubuntu 24.04 package python3-fonttools 4.46.0-1build2)",
+      "source": "https://github.com/fonttools/fonttools",
+      "license": "MIT",
+      "scope": "build",
+      "usedFor": "Cutting the static Nunito ExtraBold instance from the variable font (assets/fonts/nunito, D-062). Run once by hand; only its output is committed."
+    },
+    {
       "name": "actions/checkout",
       "version": "v7.0.1",
       "commit": "3d3c42e5aac5ba805825da76410c181273ba90b1",
