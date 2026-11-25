@@ -735,3 +735,17 @@ Template:
 - Why: Spec 09 §5 requires it, and several voices are CC BY 4.0, whose attribution should be visible
   to players. It was a prerequisite for the first public release (D-069).
 
+## D-067 — App icon: three fanned cards on the felt
+- Date: 2026-11-25
+- Status: Accepted
+- Decision: The app icon is three fanned playing cards on a rounded-square green felt tile with a gold
+  rim: the blue (Rounded) and red (Classic) deck backs behind, tilted 18° each way, and a white card
+  in front with a large red heart. It is original geometry drawn by `scripts/generate-icon.mjs`,
+  using the card generator's suit shapes and the Classic Casino palette. Full geometry is in spec 07
+  §App icon. The same image is used on every platform, and electron-builder derives the Windows
+  `.ico` and the Linux icon sizes from one 1024×1024 PNG.
+- Why: Owner's choice from four drafts (fanned cards, a tilted ace of hearts, the four suits on a
+  disc, a casino chip with a heart), compared at 256 px and at 64 to 16 px on light and dark
+  backgrounds. The fan says "card games" rather than only Hearts, stays readable at 16 px, and
+  avoids a gambling look.
+

@@ -20,6 +20,7 @@
     "dist:win": "npm run build && npm run licenses && electron-builder --win --x64 --arm64",
     "dist:linux": "npm run build && npm run licenses && electron-builder --linux --x64 --arm64",
     "cards": "node scripts/generate-cards.mjs",
+    "icon": "node scripts/generate-icon.mjs && electron scripts/render-icon.cjs",
     "capture": "electron scripts/capture.cjs",
     "music": "node scripts/build-music.mjs",
     "voices": "python3 scripts/build-voices.py"

@@ -137,7 +137,7 @@ without installing (D-063). Waiting on the owner:
 
 ## R-003 — Smaller items noted along the way
 - **Status:** Idea
-- App icon (all platforms) and Linux `desktopName` for window grouping.
+- ~~App icon (all platforms)~~ **Done** 2026-11-25 (D-067). Still open: Linux `desktopName` for window grouping.
 - ~~About & Credits screen showing the SBOM, licenses, and attributions (spec 09 §5).~~ **Done**
   2026-11-25 (D-066).
 - Character portrait art for the Classic Casino theme (spec 07, 08).

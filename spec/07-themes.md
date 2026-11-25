@@ -46,6 +46,22 @@ chooses a theme in Settings, and the change takes effect immediately.
    Kenney's "Playing Cards Pack" (CC0, https://kenney.nl/assets/playing-cards-pack) is a possible
    source for it. Its file formats have not been checked yet.
 
+## App icon (D-067)
+The app icon is the same for every theme. It is drawn on a 1024×1024 canvas, origin top-left:
+- **Tile:** a rounded square at (64, 64), 896×896, corner radius 190, filled with a vertical gold
+  gradient (#f0c54d → #8a6414). Inside it, the felt: (88, 88), 848×848, radius 168, a radial gradient
+  centered at 50% / 42% (#14833f → #0d6a31 at 60% → #063d1b). The 64-unit transparent margin keeps
+  desktop shells from cropping it.
+- **Cards** (paper #fdfdf8, corner radius 8% of the card width, each with a soft drop shadow: 14 units
+  down, blur 16, black at 45%):
+  - back left: 330×462, centered (372, 540), rotated −18°, inner panel #1f4e9c (the Rounded back);
+  - back right: 330×462, centered (652, 540), rotated +18°, inner panel #a3192e (the Classic back);
+    each back's inner panel is inset 7% of the card width, corner radius 5% of the width;
+  - front: 360×504, centered (512, 512), upright, plain paper with the card generator's heart shape,
+    250 units across, red #c8102e, centered 6 units below the card's center.
+- The source is `scripts/generate-icon.mjs` (which also keeps the three rejected drafts for
+  comparison). Each runtime spec says how the image becomes platform icon files.
+
 ## Card decks (D-062)
 - A deck is a complete look for the cards: index font, colors, and artwork. Today the Classic
   Casino decks share their layout, pips, and court pictures, and differ in index font and back

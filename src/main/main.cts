@@ -96,6 +96,8 @@ function createWindow(): BrowserWindow {
     minHeight: 600,
     show: false,
     title: 'FreeKards',
+    // Linux window icon for unpackaged runs; installed builds use the desktop entry's icon.
+    ...(process.platform === 'linux' && !app.isPackaged ? { icon: path.join(__dirname, '..', 'build', 'icon.png') } : {}),
     backgroundColor: '#0b5d2a',
     autoHideMenuBar: true,
     webPreferences: {
