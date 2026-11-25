@@ -85,6 +85,8 @@ scripts/generate-cards.mjs  Classic Casino deck generator → assets/themes/clas
                             outlines each deck's index font from assets/fonts with opentype.js (D-060).
                             --font <ttf> --out <dir> writes a trial deck for font auditions
 scripts/capture.cjs         Offscreen screenshot tool (D-037)
+scripts/run-local.sh        Build and run this checkout without installing (Linux, D-063)
+scripts/install-local-launcher.sh  Adds the "FreeKards (local build)" desktop menu entry (D-063)
 assets/themes/              Runtime-neutral theme assets (generated card SVGs committed)
 assets/fonts/               Bundled OFL fonts, each with its OFL.txt: Fira Sans (interface, loaded by
                             style.css @font-face); Fira Sans Condensed and Nunito ExtraBold (card-generator
@@ -110,6 +112,20 @@ preload), `release/` (installers), `coverage/`.
 | `npm run cards` | Regenerate the Classic Casino card SVGs (deterministic; commit the result). |
 | `npm run capture -- <page> <out.png> [w] [h] [ms,ms…]` | Offscreen screenshots (D-037). Build first. Env `CAPTURE_INIT_JS` runs JS in the page and reloads (e.g. to seed demo profiles into localStorage). |
 | `npm run dist` / `dist:win` / `dist:linux` | Build, check licenses, then build installers with electron-builder. |
+
+## Running a local build (D-063)
+To try the current checkout on a Linux desktop without installing it:
+- **Once:** run `scripts/install-local-launcher.sh`. It writes
+  `~/.local/share/applications/freekards-local.desktop`, a menu entry named
+  **FreeKards (local build)**. Run it again if the repo moves. Remove the entry by deleting that file.
+- **Each time:** open **FreeKards (local build)** from the menu. `scripts/run-local.sh` loads nvm,
+  runs `npm run build` on whatever branch is checked out, and starts the repo's Electron (a few
+  seconds). A notification names the branch and commit, and says if there are uncommitted changes.
+  If the build fails, a notification points to `.cache/run-local.log`.
+- It shares player data with an installed FreeKards (`~/.config/cardtable`, D-034). Only one copy of
+  the app runs at a time (single-instance lock), so the launcher refuses to start while the installed
+  app is open.
+- From a terminal, `npm start` does the same build-and-run.
 
 ## Renderer implementation notes (D-035)
 - The stage element is sized to the logical viewport and scaled with a CSS `transform: scale()`

@@ -17,7 +17,8 @@ are bigger, with jumbo card indices and the Fira Sans font (R-006). CI builds al
 and `main` is green. The 2026-11-24 session was merged as PR #1. **2026-11-25:** players can choose a
 card deck in Settings: Classic, or the new Rounded deck with blue backs (R-007). This is on branch
 `session/2026-11-25-card-decks`, which becomes one pull request when the owner says so (D-059).
-Waiting on the owner:
+On this Linux machine, the **FreeKards (local build)** menu entry runs the checked-out branch
+without installing (D-063). Waiting on the owner:
 1. Confirm that profiles and coins persist in the **installed** app across restarts
    (`~/.config/cardtable/data/profiles.json`); only the localStorage fallback was tested.
 2. Try the Windows ARM64 installer on the Surface Pro 9 (CI artifact `freekards-win-arm64`).

@@ -679,3 +679,19 @@ Template:
   also sets up more personalization later. The owner and his wife picked Nunito ExtraBold from an
   audition of six rounded OFL fonts drawn by the real card generator. The interface font is unchanged
   (Fira Sans, D-060).
+
+## D-063 — Run local builds from a desktop menu entry
+- Date: 2026-11-25
+- Status: Accepted
+- Decision: On a Linux development machine, `scripts/install-local-launcher.sh` adds a
+  **FreeKards (local build)** entry to the desktop menu. It runs `scripts/run-local.sh`, which builds
+  whatever branch is checked out (`npm run build`, with nvm loaded) and starts it with the repo's
+  Electron. It shows a desktop notification naming the branch and commit, and another if the build
+  fails; the build output goes to `.cache/run-local.log`. A local build uses the same player data
+  as an installed FreeKards (`~/.config/cardtable`). Because only one copy can run at a time, the
+  launcher stops with a notice if the installed app is open. Details in `runtimes/electron.md`
+  §Running a local build.
+- Why: Owner request: an easy way to run each new version on the Linux Mint development machine
+  without reinstalling a `.deb` every time. Sharing the data folder keeps his and his wife's
+  profiles and settings in both.
+
