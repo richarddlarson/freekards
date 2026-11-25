@@ -30,16 +30,16 @@ Main menu ──Play Hearts──▶ Hearts setup ──Deal!──▶ Hearts ta
 ## 2. Table layout
 | Element | Position / size |
 |---------|-----------------|
-| Card | 150 × 210 at scale 1 |
-| South hand (human) | face up, bottom edge 40 from the bottom, centered on `cx`. Spacing = (min(1300, W − 480) − 150) / (n − 1), clamped to 40…86 |
+| Card | 183 × 256 at scale 1 (height = 20% of the reference table; D-061) |
+| South hand (human) | face up, full size, bottom edge 40 from the bottom, centered on `cx`. Spacing = (min(1300, W − 480) − 183) / (n − 1), clamped to 60…80 |
 | Selected or just-received card | lifted 44 |
-| North hand | face down, scale 0.55, spacing 26, top edge 40 from the top, centered on `cx` |
-| West / East hands | face down, scale 0.55, rotated 90° / 270°, spacing 26, centered vertically on `cy`, 40 from the left / right edge |
+| North hand | face down, scale 0.45 (about 82 wide), spacing 26, top edge 40 from the top, centered on `cx` |
+| West / East hands | face down, scale 0.45, rotated 90° / 270°, spacing 26, centered vertically on `cy`, 40 from the left / right edge |
 | Portraits (diameter 140, with a nameplate below) | North (cx − 330, 120); West (250, cy − 140); East (W − 250, cy − 140) |
 | "You" nameplate | vertically level with the South hand, 80 to the left of where a full 13-card hand would begin |
-| Trick slots (scale 0.9, **upright**, ±4° random tilt) | South (cx, cy + 115); West (cx − 150, cy); North (cx, cy − 115); East (cx + 150, cy) |
+| Trick slots (full size, **upright**, ±4° random tilt) | South (cx, cy + 140); West (cx − 195, cy); North (cx, cy − 140); East (cx + 195, cy) |
 | Deck (dealing origin) | (cx, cy) |
-| Won tricks fly toward | South (cx, H + 210); West (−210, cy); North (cx, −210); East (W + 210, cy), shrinking to 0.45 and fading out |
+| Won tricks fly toward | South (cx, H + 256); West (−256, cy); North (cx, −256); East (W + 256, cy), shrinking to 0.45 and fading out |
 | Score panel | top-right corner, 40 from the edges, 330 wide |
 | Menu button (☰) | 72 diameter, top-left, 40 from the edges |
 | Action button (Pass) | (cx, South card top − 44 − 60) |

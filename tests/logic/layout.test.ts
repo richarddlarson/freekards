@@ -41,7 +41,9 @@ describe('viewport fitting', () => {
 });
 
 describe('hand layout', () => {
-  it('keeps at least 40 logical units of every South card visible', () => {
+  it("keeps every South card's corner index visible", () => {
+    // The index column ends about 29% of the way across the card (scripts/generate-cards.mjs, D-060).
+    expect(LAYOUT.southMinSpacing).toBeGreaterThanOrEqual(0.3 * CARD_W);
     for (const [w, h] of Object.values(WINDOWS)) {
       const layout = tableLayout(fitViewport(w, h));
       expect(southSpacing(layout, 13)).toBeGreaterThanOrEqual(LAYOUT.southMinSpacing);

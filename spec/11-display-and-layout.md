@@ -33,7 +33,8 @@ The exact positions are in `12-hearts-table.md` §2.
 - Interactive elements are at least **48×48 logical units** at the reference scale. On the Surface
   that is about 9 mm, which is comfortable for a finger.
 - At the minimum scale (a 1920×1080 screen at 150% Windows scaling), cards in the player's hand still
-  overlap no more than leaves at least **40 logical units** of each card exposed, so every card can be tapped.
+  overlap no more than leaves at least **60 logical units** of each card exposed: the whole corner
+  index stays visible, and every card can be tapped (D-061).
 
 ## 5. Orientation
 - **Landscape only.** There is no separate portrait layout. In portrait, or in any window taller

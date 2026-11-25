@@ -13,7 +13,9 @@ chooses a theme in Settings, and the change takes effect immediately.
 - Card backs: one or more; the player picks one.
 - Table surface (felt or background) and the border or trim around it.
 - Interface look: buttons, panels, dialogs, score sheet, and speech-bubble style.
-- Fonts and a color palette.
+- Fonts and a color palette. Fonts are bundled with the app, never taken from the system, so every
+  platform looks the same. Classic Casino uses **Fira Sans** (Medium and Bold, OFL-1.1) for all
+  interface text (D-060).
 - Character portraits: one per roster character, with a few expressions (neutral, happy, annoyed, smug).
   If a theme has no portrait for a character, the default theme's portrait is used.
 - Optional: theme-specific music and sound effects. Without them the default audio set is used.
@@ -46,11 +48,20 @@ chooses a theme in Settings, and the change takes effect immediately.
   in the face naming scheme above. Everything it produces is original work under MIT.
   - Corner indices (rank plus suit symbol) appear in the top-left corner and again, rotated 180°,
     in the bottom-right.
-  - Number cards use the traditional pip layouts.
-  - Aces have one large central pip. The A♠ gets a decorative but original design.
+  - **Jumbo indices (D-060):** the rank's capital height is 60 of the card's 350 units (about 17%),
+    in Fira Sans Condensed Bold (OFL-1.1), with a 40-unit suit symbol under it. The index column
+    is centered 36 units from the card's left edge, so a tightly fanned hand still shows it. "10" is
+    set tight and narrowed to 84% width. All lettering is converted to vector outlines when the cards
+    are generated, so the faces need no font at run time.
+  - Number cards use the traditional pip layouts, pulled toward the middle to clear the indices:
+    columns at 39.2% / 50% / 60.8% of the width, rows at 92% of the traditional spread, pips 40
+    units.
+  - Aces have one large central pip. The A♠ gets a decorative but original design (a ring of
+    radius 70, sized to clear the indices).
   - **Court cards (J, Q, K) have original simplified designs:** a stylized, two-headed (mirrored)
     figure with crown, hat, or headdress, drawn from basic shapes in the suit colors. They are
-    instantly readable as a king, queen, or jack, but not copied from any existing pattern.
+    instantly readable as a king, queen, or jack, but not copied from any existing pattern. The
+    picture panel is drawn at 154 × 274 and scaled to 80%, centered, so it sits between the indices.
   - Colors: hearts and diamonds red `#c8102e`, spades and clubs black `#1a1a1a`, on a white
     `#fdfdf8` card with rounded corners (corner radius 5% of the card width) and a thin border.
   - Card proportions: poker size, 63.5 × 88.9 mm, width/height ≈ 0.714.

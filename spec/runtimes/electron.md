@@ -17,6 +17,7 @@ All versions are pinned exactly in `package.json` (no `^` or `~` ranges). `packa
 | electron-builder | 26.18.0 | MIT | Installers. |
 | @cyclonedx/cyclonedx-npm | 7.0.1 | Apache-2.0 | SBOM generation. |
 | @types/node | 26.6.6 | MIT | Types for the main and preload processes. |
+| opentype.js | 2.0.0 | MIT | Dev tool only: the card generator converts index lettering to outlines with it (D-060). No dependencies of its own. |
 
 - **[Confirmed]** Electron bundles its own Chromium, so rendering and audio behave the same on every OS.
 - **[Confirmed]** TypeScript throughout, strict mode plus `noUncheckedIndexedAccess`.
@@ -79,9 +80,12 @@ tests/logic/                Vitest suites + helpers (simulateGame, playState)
 scripts/check-licenses.mjs  SBOM generator + license gate (also scans assets/ and spec/content/)
 scripts/build-voices.py     Voice clips: Piper synthesis → Opus, incremental (D-048)
 scripts/build-music.mjs     Music: fetch originals, verify SHA-256, encode to Opus (D-045)
-scripts/generate-cards.mjs  Classic Casino card-face generator → assets/themes/classic-casino/cards (D-027)
+scripts/generate-cards.mjs  Classic Casino card-face generator → assets/themes/classic-casino/cards (D-027);
+                            outlines index lettering from assets/fonts/fira-sans-condensed with opentype.js (D-060)
 scripts/capture.cjs         Offscreen screenshot tool (D-037)
 assets/themes/              Runtime-neutral theme assets (generated card SVGs committed)
+assets/fonts/               Bundled OFL fonts, each with its OFL.txt: Fira Sans (interface, loaded by
+                            style.css @font-face), Fira Sans Condensed (card-generator input only, D-060)
 scripts/license-policy.mjs  Allowed licenses + runtime exceptions (mirrors spec 09 §2)
 sbom/                       assets.json, build-tools.json (hand-kept); code.cdx.json, dev.cdx.json (generated)
 build/                      electron-builder resources (icons go here)

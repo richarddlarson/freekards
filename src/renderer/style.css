@@ -2,6 +2,23 @@
  * Classic Casino theme styles (spec 07, 12). All px values are LOGICAL units on the reference
  * table (spec 11); the .stage element scales them uniformly to the window.
  */
+
+/* Interface font: Fira Sans (OFL-1.1), bundled so every platform looks the same (D-060).
+   Only Medium and Bold ship: "normal" text uses Medium, "bold" uses Bold. */
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('../../assets/fonts/fira-sans/FiraSans-Medium.ttf') format('truetype');
+  font-weight: 100 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('../../assets/fonts/fira-sans/FiraSans-Bold.ttf') format('truetype');
+  font-weight: 700 900;
+  font-style: normal;
+}
+
 :root {
   --felt: #0d6a31;
   --felt-dark: #063d1b;
@@ -12,7 +29,7 @@
   --panel-border: rgba(217, 168, 43, 0.65);
   --button: #d9a82b;
   --button-text: #2a1a05;
-  --font: 'DejaVu Serif', Georgia, 'Times New Roman', serif;
+  --font: 'Fira Sans', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 }
 
 * {
@@ -420,10 +437,11 @@ button:disabled {
   position: absolute;
   left: 0;
   top: 0;
-  width: 150px;
-  height: 210px;
-  transform-origin: 75px 105px;
-  border-radius: 8px;
+  /* layout.CARD_W × CARD_H (D-061) */
+  width: 183px;
+  height: 256px;
+  transform-origin: 91.5px 128px;
+  border-radius: 9px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
   will-change: transform;
 }
