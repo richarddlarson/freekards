@@ -11,8 +11,10 @@ another runtime must reproduce them exactly, so that saved games, seeds, and tes
 - The same ids name card-face image files in themes (spec 07).
 - **Canonical deck order** (before shuffling): suits in the order C, D, S, H; within each suit 2 → A.
   Index 0 = `2C`, index 51 = `AH`.
-- **Display sort** for a hand: grouped by suit in the order C, D, S, H (so colors alternate:
-  black, red, black, red), ascending rank within each suit. The player's **Card order** setting
+- **Display sort** for a face-up hand (D-065): grouped by suit in the order **H, S, D, C**, left to
+  right (♥ ♠ ♦ ♣: colors alternate red, black, red, black, and the suits that matter most in Hearts
+  come first), ascending rank within each suit. It is separate from the canonical deck order above,
+  which stays C, D, S, H so seeded deals don't change. The player's **Card order** setting
   (spec 16 §2, D-054) can make it descending within each suit; the suit groups never move.
 
 ## 2. Seats

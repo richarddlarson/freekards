@@ -694,6 +694,16 @@ button:disabled {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
 }
 
+.deck-preview {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.deck-text {
+  font-size: 26px;
+}
+
 .settings-panel .dialog-buttons {
   justify-content: center;
 }

@@ -21,7 +21,7 @@ describe('cards', () => {
   });
 
   it('sorts a hand by suit then rank', () => {
-    expect(sortHand(['AH', '2C', 'KS', '3C', 'TD'])).toEqual(['2C', '3C', 'TD', 'KS', 'AH']);
+    expect(sortHand(['AH', '2C', 'KS', '3C', 'TD'])).toEqual(['AH', 'KS', 'TD', '2C', '3C']);
   });
 });
 

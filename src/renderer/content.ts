@@ -2,8 +2,9 @@
  * Loads canonical content (spec/content, D-031) and theme assets (assets/themes) into the renderer.
  * Vite bundles these at build time; nothing is fetched at runtime.
  */
-import type { Card, dialogue } from '../logic/index.js';
+import type { Card, dialogue, settings } from '../logic/index.js';
 
+type CardDeck = settings.CardDeck;
 type CharacterDef = dialogue.CharacterDef;
 type RosterDef = dialogue.RosterDef;
 
@@ -34,27 +35,28 @@ export function characterById(id: string): CharacterDef | undefined {
   return CHARACTERS.find((c) => c.id === id);
 }
 
-const THEME = 'classic-casino';
-const faces = import.meta.glob<string>('../../assets/themes/classic-casino/cards/faces/*.svg', {
+// Card decks (spec 07 §Card decks, D-062): assets/themes/<theme>/decks/<deck>/{faces/*.svg, back.svg}.
+const DECKS_DIR = '../../assets/themes/classic-casino/decks';
+const faces = import.meta.glob<string>('../../assets/themes/classic-casino/decks/*/faces/*.svg', {
   eager: true,
   query: '?url',
   import: 'default',
 });
-const backs = import.meta.glob<string>('../../assets/themes/classic-casino/cards/backs/*.svg', {
+const backs = import.meta.glob<string>('../../assets/themes/classic-casino/decks/*/back.svg', {
   eager: true,
   query: '?url',
   import: 'default',
 });
 
-export function cardFaceUrl(card: Card): string {
-  const url = faces[`../../assets/themes/${THEME}/cards/faces/${card}.svg`];
-  if (!url) throw new Error(`missing card face ${card}`);
+export function cardFaceUrl(card: Card, deck: CardDeck): string {
+  const url = faces[`${DECKS_DIR}/${deck}/faces/${card}.svg`];
+  if (!url) throw new Error(`missing card face ${deck}/${card}`);
   return url;
 }
 
-export function cardBackUrl(name = 'red'): string {
-  const url = backs[`../../assets/themes/${THEME}/cards/backs/${name}.svg`];
-  if (!url) throw new Error(`missing card back ${name}`);
+export function cardBackUrl(deck: CardDeck): string {
+  const url = backs[`${DECKS_DIR}/${deck}/back.svg`];
+  if (!url) throw new Error(`missing card back ${deck}`);
   return url;
 }
 
@@ -72,9 +74,13 @@ export function portraitColors(id: string): [string, string] {
   return PORTRAIT_COLORS[id] ?? ['#777777', '#333333'];
 }
 
-/** Load and decode every card image up front, so flips never show a stale or blank image. */
-export async function preloadCardImages(): Promise<void> {
-  const urls = [...Object.values(faces), ...Object.values(backs)];
+/**
+ * Load and decode every card image of a deck up front, so flips never show a stale or blank image.
+ * Without a deck, every deck is loaded (so switching decks mid-game is instant too).
+ */
+export async function preloadCardImages(deck?: CardDeck): Promise<void> {
+  const inDeck = (path: string) => !deck || path.startsWith(`${DECKS_DIR}/${deck}/`);
+  const urls = [...Object.entries(faces), ...Object.entries(backs)].filter(([path]) => inDeck(path)).map(([, url]) => url);
   await Promise.all(
     urls.map(async (url) => {
       const img = new Image();

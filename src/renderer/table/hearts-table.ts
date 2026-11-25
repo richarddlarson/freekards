@@ -480,6 +480,8 @@ export class HeartsTable {
 
   /** Re-apply the player's settings mid-game (after the Settings panel closes). */
   private applySettings(): void {
+    const deck = this.prefs().cardDeck;
+    for (const sp of this.sprites.values()) sp.setDeck(deck);
     void this.syncHand(0, this.response().resort);
   }
 
@@ -493,7 +495,7 @@ export class HeartsTable {
     this.updateScores();
     const deck: layout.Placement = { ...this.lay.deck, rot: 0, scale: layout.LAYOUT.trickCardScale };
     const hands = SEATS.map((s) => this.displayHand(s));
-    for (const hand of hands) for (const card of hand) this.sprites.set(card, new CardSprite(card, this.cardLayer, deck));
+    for (const hand of hands) for (const card of hand) this.sprites.set(card, new CardSprite(card, this.cardLayer, deck, this.prefs().cardDeck));
 
     audio.play('card.shuffle');
     await this.sleep(audio.hasCue('card.shuffle') ? 1500 : 0);

@@ -567,7 +567,7 @@ Template:
 
 ## D-054 — Card order setting: low cards on the left or on the right
 - Date: 2026-11-24
-- Status: Accepted
+- Status: Accepted (suit rule amended by D-064: suits never reverse)
 - Decision: The player's hand can show low cards on the left (default, as before) or on the right.
   Reversal flips ranks within each suit. The ♣ ♦ ♠ ♥ suit groups stay in place because Hearts doesn't
   rank suits. A future game that ranks suits reverses the suit order as well.
@@ -657,3 +657,65 @@ Template:
 - Why: Owner request after his wife's play-testing: the cards were too small (R-006). The owner
   chose to enlarge only her own cards and the trick. Card height = 20% of the table and full-size
   trick cards follow the proportions of the reference photo (D-060).
+
+## D-062 — Card decks: a per-player choice, starting with Classic and Rounded
+- Date: 2026-11-25
+- Status: Accepted
+- Decision: A theme provides one or more **card decks**. A deck is a full set of 52 faces plus a
+  back, and decks can differ in index font, colors, and (later) artwork. Each player picks a deck in
+  Settings (**Card deck**, spec 16 §5). The choice is saved in their profile and applies at once,
+  even mid-game. Classic Casino ships two decks:
+  - **Classic** (default): the existing deck. Fira Sans Condensed Bold indices, red backs.
+  - **Rounded**: Nunito ExtraBold indices (OFL-1.1), blue backs. It has the same layout, pips, and
+    court pictures as Classic.
+
+  Files live in `assets/themes/<theme>/decks/<deck>/faces/{rank}{suit}.svg` and `…/<deck>/back.svg`,
+  all written by the card generator from one deck table. The old per-theme `cards/backs/red.svg`
+  and `blue.svg` became the two decks' backs, so a back is no longer chosen separately. Nunito is
+  only published as a variable font, so a static ExtraBold instance was cut with fontTools and
+  committed; the asset register records how. Details in `07-themes.md` §Card decks.
+- Why: Owner request after his wife's play-testing: the card font still felt too sharp, and she
+  wanted a more rounded look. The owner proposed decks as a setting so each player can choose, which
+  also sets up more personalization later. The owner and his wife picked Nunito ExtraBold from an
+  audition of six rounded OFL fonts drawn by the real card generator. The interface font is unchanged
+  (Fira Sans, D-060).
+
+## D-063 — Run local builds from a desktop menu entry
+- Date: 2026-11-25
+- Status: Accepted
+- Decision: On a Linux development machine, `scripts/install-local-launcher.sh` adds a
+  **FreeKards (local build)** entry to the desktop menu. It runs `scripts/run-local.sh`, which builds
+  whatever branch is checked out (`npm run build`, with nvm loaded) and starts it with the repo's
+  Electron. It shows a desktop notification naming the branch and commit, and another if the build
+  fails; the build output goes to `.cache/run-local.log`. A local build uses the same player data
+  as an installed FreeKards (`~/.config/cardtable`). Because only one copy can run at a time, the
+  launcher stops with a notice if the installed app is open. Details in `runtimes/electron.md`
+  §Running a local build.
+- Why: Owner request: an easy way to run each new version on the Linux Mint development machine
+  without reinstalling a `.deb` every time. Sharing the data folder keeps his and his wife's
+  profiles and settings in both.
+
+## D-064 — Card order never reverses the suits
+- Date: 2026-11-25
+- Status: Accepted (amends D-054)
+- Decision: "Low cards on the right" only reverses the ranks within each suit. The suit groups
+  always stay in the default left-to-right order, in every game, including future games that rank
+  suits. This drops D-054's rule that such games would reverse the suit order too. Hearts is
+  unchanged: it never reversed suits.
+- Why: Owner, passing on his wife's play-testing: "she loves the "low cards on the right" option we
+  added, but my assumption that we needed to also reverse the suits was incorrect. We need to keep
+  the suits in the same order they are on the default "low cards on the left"."
+
+## D-065 — Face-up hands show hearts, spades, diamonds, clubs
+- Date: 2026-11-25
+- Status: Accepted (replaces the C, D, S, H display sort that spec 10 §1 described; the deck order of D-022 is unchanged)
+- Decision: The player's face-up hand is grouped by suit in the order ♥ ♠ ♦ ♣, left to right, in
+  both Card order choices (only the ranks within a suit flip, D-064). The colors still alternate. The
+  canonical deck order (C, D, S, H) used for dealing is unchanged, so seeded games deal the same
+  cards. The order is fixed for now; a per-player suit-order setting may come later.
+- Why: Owner, passing on his wife's play-testing: there is no official suit order for trick-taking
+  games, and she wants "this order (left to right): hearts, spades, diamonds, clubs. This may be
+  specific to Hearts since hearts and spades are important. For now let's just make that the default
+  order when showing a hand face-up on the screen. Later we may add a user-setting to allow the user
+  to choose which suit-order they prefer, but not yet."
+

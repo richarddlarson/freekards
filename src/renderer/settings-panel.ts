@@ -3,15 +3,22 @@
  * from the in-game pause menu. Every change is saved to the player's profile at once.
  */
 import { sortHand, type Card, type settings } from '../logic/index.js';
-import { cardFaceUrl } from './content.js';
+import { cardBackUrl, cardFaceUrl } from './content.js';
 import { activeProfile, activeSettings, updateActiveSettings } from './profiles.js';
 import { choiceRow, h, onTap } from './stage.js';
 
 type CardOrder = settings.CardOrder;
 type CardResponse = settings.CardResponse;
 type GameSpeed = settings.GameSpeed;
+type CardDeck = settings.CardDeck;
 
 const PREVIEW_HAND: Card[] = ['2C', '9C', 'KC', '4D', 'JD', '5S', 'QS', 'AS', '3H', 'TH'];
+const DECK_PREVIEW: Card[] = ['AS', 'KH', 'QC', 'TD', '7S', '2H'];
+
+const DECK_TEXT: Record<CardDeck, string> = {
+  classic: 'Crisp, narrow letters. Red backs.',
+  rounded: 'Soft, rounded letters. Blue backs.',
+};
 
 const RESPONSE_TEXT: Record<CardResponse, string> = {
   standard: 'A card plays when you lift your finger. You can also drag it onto the table.',
@@ -25,6 +32,12 @@ const SPEED_TEXT: Record<GameSpeed, string> = {
   fast: 'Opponents play quickly, and finished tricks clear sooner.',
 };
 
+interface SettingRow {
+  block: HTMLElement;
+  /** Redraw the explanation (for previews that depend on another setting). */
+  refresh: () => void;
+}
+
 /** A row of choices with a line of explanation under it that follows the selection. */
 function settingRow<T extends string>(
   label: string,
@@ -32,31 +45,46 @@ function settingRow<T extends string>(
   value: T,
   describe: (v: T) => string | HTMLElement,
   onChange: (v: T) => void,
-): HTMLElement {
+): SettingRow {
   const block = h('div', 'setting-block');
   const note = h('div', 'setting-note');
-  const show = (v: T) => note.replaceChildren(describe(v));
+  let current = value;
+  const show = () => note.replaceChildren(describe(current));
   block.append(
     choiceRow(label, options, value, (v) => {
+      current = v;
       onChange(v);
-      show(v);
+      show();
     }),
     note,
   );
-  show(value);
-  return block;
+  show();
+  return { block, refresh: show };
+}
+
+function previewCard(src: string, alt: string): HTMLElement {
+  const img = h('img', 'order-card');
+  img.src = src;
+  img.alt = alt;
+  img.draggable = false;
+  return img;
 }
 
 function orderPreview(order: CardOrder): HTMLElement {
+  const deck = activeSettings().cardDeck;
   const strip = h('div', 'order-preview');
-  for (const card of sortHand(PREVIEW_HAND, order)) {
-    const img = h('img', 'order-card');
-    img.src = cardFaceUrl(card);
-    img.alt = card;
-    img.draggable = false;
-    strip.append(img);
-  }
+  for (const card of sortHand(PREVIEW_HAND, order)) strip.append(previewCard(cardFaceUrl(card, deck), card));
   return strip;
+}
+
+/** The deck's back and a few of its cards, with a line about its look. */
+function deckPreview(deck: CardDeck): HTMLElement {
+  const wrap = h('div', 'deck-preview');
+  const strip = h('div', 'order-preview');
+  strip.append(previewCard(cardBackUrl(deck), 'card back'));
+  for (const card of DECK_PREVIEW) strip.append(previewCard(cardFaceUrl(card, deck), card));
+  wrap.append(strip, h('span', 'deck-text', DECK_TEXT[deck]));
+  return wrap;
 }
 
 export function settingsPanel(onDone: () => void): HTMLElement {
@@ -66,17 +94,33 @@ export function settingsPanel(onDone: () => void): HTMLElement {
   panel.append(h('h2', '', 'Settings'));
   panel.append(h('p', 'settings-for', player ? `Saved for ${player.name}` : 'Not saved: no player is selected'));
 
+  const order = settingRow<CardOrder>(
+    'Card order',
+    [
+      ['low-left', 'Low cards on the left'],
+      ['low-right', 'Low cards on the right'],
+    ],
+    s.cardOrder,
+    orderPreview,
+    (v) => updateActiveSettings({ cardOrder: v }),
+  );
+  const deck = settingRow<CardDeck>(
+    'Card deck',
+    [
+      ['classic', 'Classic'],
+      ['rounded', 'Rounded'],
+    ],
+    s.cardDeck,
+    deckPreview,
+    (v) => {
+      updateActiveSettings({ cardDeck: v });
+      order.refresh(); // the order preview is drawn in the chosen deck
+    },
+  );
+
   panel.append(
-    settingRow<CardOrder>(
-      'Card order',
-      [
-        ['low-left', 'Low cards on the left'],
-        ['low-right', 'Low cards on the right'],
-      ],
-      s.cardOrder,
-      orderPreview,
-      (v) => updateActiveSettings({ cardOrder: v }),
-    ),
+    deck.block,
+    order.block,
     settingRow<CardResponse>(
       'Card response',
       [
@@ -87,7 +131,7 @@ export function settingsPanel(onDone: () => void): HTMLElement {
       s.cardResponse,
       (v) => RESPONSE_TEXT[v],
       (v) => updateActiveSettings({ cardResponse: v }),
-    ),
+    ).block,
     settingRow<GameSpeed>(
       'Game speed',
       [
@@ -98,7 +142,7 @@ export function settingsPanel(onDone: () => void): HTMLElement {
       s.gameSpeed,
       (v) => SPEED_TEXT[v],
       (v) => updateActiveSettings({ gameSpeed: v }),
-    ),
+    ).block,
   );
 
   const row = h('div', 'dialog-buttons');
