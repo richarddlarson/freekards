@@ -403,7 +403,7 @@ Template:
   build. A `build` matrix then produces installers on **native** runners for Windows x64/arm64 (NSIS)
   and Linux x64/arm64 (deb + AppImage), uploaded as artifacts `freekards-<os>-<arch>` and kept for
   14 days. Permissions default to read-only, and superseded runs are cancelled. Full design is in
-  `runtimes/electron.md` §CI. **Linux artifact names amended by D-057.**
+  `runtimes/electron.md` §CI. **Linux artifact names amended by D-057; triggers amended by D-059.**
 - Why: Native runners give real ARM64 builds (especially Windows on ARM, for the Surface) without
   cross-compiling. Every push yields testable installers.
 
@@ -604,3 +604,56 @@ Template:
   draft-release job is unchanged: it merges all artifacts.
 - Why: Owner request. A tester downloads only the package they need (each is about 120–145 MB)
   instead of both.
+
+## D-058 — Esc opens and closes the pause menu
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: On the Hearts table, Esc opens the pause menu like ☰. Pressing it again closes the
+  topmost panel: Sound or Settings first, then the pause menu itself (resuming play). It is ignored
+  on the Hand results and Game over dialogs. Details in `12-hearts-table.md` §4.
+- Why: Owner request while play-testing: players with a keyboard expect Esc to pause. Having it
+  also back out of panels follows the usual desktop convention.
+
+## D-059 — One pull request per working session
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: Each working session's changes go on a `session/YYYY-MM-DD-<topic>` branch. It is
+  pushed only when the owner asks, and becomes one pull request that the owner merges with a merge
+  commit. Nobody pushes directly to `main`. CI runs on pull requests, pushes to `main`, `v*` tags,
+  and manual dispatch; it no longer runs on every branch push. Steps in `04-process.md` §Git.
+- Why: Owner request: "It would probably be best to capture each session of changes into a PR and
+  then submit and merge that PR when we're ready, rather than automatically pushing to main with
+  each change. That provides a better overall control of the changes and also gives us a better
+  history to work with over time." Merge commits keep each decision's commit visible. Dropping the
+  branch-push trigger avoids building the same commit twice (push and PR).
+
+## D-060 — Fira Sans for the interface, jumbo outlined indices on the cards
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: The interface font is **Fira Sans** (Medium for normal text, Bold for bold), bundled
+  with the app instead of relying on installed fonts. The Classic Casino card faces get a **jumbo
+  corner index**: the rank's capital height is 60 of the card's 350 units (about 17%), set in
+  **Fira Sans Condensed Bold**, with a 40-unit suit symbol under it, in a column at the card's left
+  edge. "10" is set tight and narrowed slightly to keep the column slim. The card generator converts
+  all lettering to vector outlines (opentype.js), so the faces need no font at run time. To clear
+  the bigger indices, the pips move toward the middle, the court pictures shrink to 80%, and the
+  A♠ ring gets smaller. Both fonts are OFL-1.1 and are listed in the asset register. Details in
+  `07-themes.md`.
+- Why: Owner request after his wife's play-testing: a clearer, heavier font that is easier to read
+  (R-006). The owner and his wife chose Fira from an audition of four OFL fonts against the old
+  look. The old font, DejaVu Serif, is not installed on Windows, so Windows showed Georgia instead.
+  Index size and weight were measured from a photo the owner supplied of an older commercial Hearts
+  game. Only the proportions were taken from it, as the owner directed.
+
+## D-061 — Bigger cards for the player's hand and the trick
+- Date: 2026-11-24
+- Status: Accepted
+- Decision: A full-size card is **183 × 256** logical units (its height is 20% of the reference
+  table height), up from 150 × 210. The player's hand and the trick use full-size cards. Trick
+  cards were 0.9 scale; they are now 1, and the trick slots move out to ±195 / ±140 so the cards
+  don't overlap. Opponents' face-down fans keep their old size (scale 0.45 of the new card).
+  The hand fans tighter: spacing is 60–80 instead of 40–86, which always leaves the corner index
+  visible. Details in `12-hearts-table.md` §2.
+- Why: Owner request after his wife's play-testing: the cards were too small (R-006). The owner
+  chose to enlarge only her own cards and the trick. Card height = 20% of the table and full-size
+  trick cards follow the proportions of the reference photo (D-060).

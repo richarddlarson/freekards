@@ -12,13 +12,15 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 ## Where we left off (updated at the end of each working session)
 **2026-11-24:** Hearts is fully playable with sound effects, 10 music tracks, voices for all six
 characters, player profiles, statistics, KardCoins, and a per-player Settings panel (card order,
-card response with drag to play, game speed). CI builds all four installers, and `main`
-is green. Waiting on the owner:
+card response with drag to play, game speed). Esc pauses (D-058). The player's cards and the trick
+are bigger, with jumbo card indices and the Fira Sans font (R-006). CI builds all four installers,
+and `main` is green. This session's work is on branch `session/2026-11-24-playtest-feedback`, not
+pushed yet: it becomes one pull request when the owner says so (D-059). Waiting on the owner:
 1. Confirm that profiles and coins persist in the **installed** app across restarts
    (`~/.config/cardtable/data/profiles.json`); only the localStorage fallback was tested.
 2. Try the Windows ARM64 installer on the Surface Pro 9 (CI artifact `freekards-win-arm64`).
 3. Have the play-tester try the new **Settings** (R-005): Card response Quick or Instant, drag to
-   play, and Game speed Fast. Tune from her feedback.
+   play, and Game speed Fast. Also the bigger cards and new font (R-006). Tune from her feedback.
 4. Choose what's next: the first tagged release `v0.1.0` (D-041), code signing (Q3), the next game
    (R-002), the app icon and Credits screen (R-003), or KardCoin spending (R-001 part 4).
 
@@ -73,6 +75,19 @@ is green. Waiting on the owner:
   around "responsiveness" to clicks and drags."
 - **Follow-up:** ask her to try Quick and Instant on the Surface, and to say whether Game speed Fast
   helps. Tune the values in `16-settings.md` from what she reports.
+
+## R-006 — Bigger cards and a clearer font, from play-testing
+- **Status:** Done 2026-11-24, pending play-test feedback. See D-060 (Fira Sans, jumbo outlined
+  card indices) and D-061 (183 × 256 cards for the hand and the trick).
+- **Requested:** 2026-11-24, by the owner, passing on his wife's feedback
+- **Request (original wording):** "Okay, so the next think my wife wanted was larger cards, the
+  current ones are too small, and a clearer font that's easier to read, maybe a bit thicker/heavier
+  weight."
+- **Reference:** the owner supplied a photo of an older commercial Hearts game, with the instruction
+  to use it only to extract relative sizing and weights. Nothing else was taken from it.
+- **Choices made by the owner:** the new font applies to the cards and all interface text; only
+  the player's hand and the trick get bigger (opponents' fans stay compact); font picked from an
+  audition sheet (Fira Sans + Fira Sans Condensed, option B of four).
 
 ## R-002 — Remaining games
 - **Status:** Planned (order to be decided)

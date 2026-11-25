@@ -11149,6 +11149,44 @@
     },
     {
       "type": "library",
+      "name": "opentype.js",
+      "version": "2.0.0",
+      "bom-ref": "cardtable@0.1.0|opentype.js@2.0.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT",
+            "acknowledgement": "declared"
+          }
+        }
+      ],
+      "purl": "pkg:npm/opentype.js@2.0.0",
+      "externalReferences": [
+        {
+          "url": "https://registry.npmjs.org/opentype.js/-/opentype.js-2.0.0.tgz",
+          "type": "distribution",
+          "hashes": [
+            {
+              "alg": "SHA-512",
+              "content": "902ca3bfac5d0d8d56fe32d667f2f742185394a52a0d9310e7e25d970d766f775790a369601aaa94c323d180d03d2856153330819235846d7890ddd75034a0fc"
+            }
+          ],
+          "comment": "as detected from npm-ls property \"resolved\" and property \"integrity\""
+        }
+      ],
+      "properties": [
+        {
+          "name": "cdx:npm:package:development",
+          "value": "true"
+        },
+        {
+          "name": "cdx:npm:package:path",
+          "value": "node_modules/opentype.js"
+        }
+      ]
+    },
+    {
+      "type": "library",
       "name": "p-cancelable",
       "version": "2.1.1",
       "bom-ref": "cardtable@0.1.0|p-cancelable@2.1.1",
@@ -14806,6 +14844,7 @@
         "cardtable@0.1.0|@types/node@26.6.6",
         "cardtable@0.1.0|electron-builder@26.18.0",
         "cardtable@0.1.0|electron@45.4.1",
+        "cardtable@0.1.0|opentype.js@2.0.0",
         "cardtable@0.1.0|typescript@7.0.2",
         "cardtable@0.1.0|vite@8.3.8",
         "cardtable@0.1.0|vitest@5.1.1"
@@ -16318,6 +16357,9 @@
       "dependsOn": [
         "cardtable@0.1.0|wrappy@1.0.2"
       ]
+    },
+    {
+      "ref": "cardtable@0.1.0|opentype.js@2.0.0"
     },
     {
       "ref": "cardtable@0.1.0|p-cancelable@2.1.1"

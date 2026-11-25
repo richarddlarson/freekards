@@ -8,9 +8,12 @@ import type { CardResponse, GameSpeed } from '../settings/player-settings.js';
 
 export const REF_W = 1920;
 export const REF_H = 1280;
-/** Card size at scale 1 (poker ratio 0.714). */
-export const CARD_W = 150;
-export const CARD_H = 210;
+/**
+ * Full-size card (poker ratio 0.714): the player's hand and the trick. Its height is 20% of the
+ * reference table height (D-061).
+ */
+export const CARD_W = 183;
+export const CARD_H = 256;
 
 export interface Viewport {
   /** Multiply logical units by this to get window units. */
@@ -63,15 +66,17 @@ export interface TableLayout {
 export const LAYOUT = {
   margin: 40,
   portraitSize: 140,
-  opponentCardScale: 0.55,
+  /** Opponents' face-down fans stay compact: 0.45 × 183 ≈ 82 units wide (D-061). */
+  opponentCardScale: 0.45,
   opponentCardSpacing: 26,
-  southMaxSpacing: 86,
-  southMinSpacing: 40,
+  /** South's fan: at least the corner-index column stays visible (D-061). */
+  southMaxSpacing: 80,
+  southMinSpacing: 60,
   southMaxSpan: 1300,
   selectedLift: 44,
-  trickOffsetX: 150,
-  trickOffsetY: 115,
-  trickCardScale: 0.9,
+  trickOffsetX: 195,
+  trickOffsetY: 140,
+  trickCardScale: 1,
   scorePanelW: 330,
   scorePanelH: 240,
   menuButtonSize: 72,
@@ -125,7 +130,7 @@ export function tableLayout(vp: Viewport): TableLayout {
   };
 }
 
-/** Spacing between South's cards: as wide as fits, clamped (spec 11 §4: ≥ 40 units visible). */
+/** Spacing between South's cards: as wide as fits, clamped (spec 11 §4: the corner index stays visible). */
 export function southSpacing(layout: TableLayout, count: number): number {
   if (count <= 1) return 0;
   const span = Math.min(LAYOUT.southMaxSpan, layout.width - 2 * LAYOUT.margin - 2 * 200);

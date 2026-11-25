@@ -109,6 +109,7 @@ export function soundSettingsPanel(onDone: () => void): HTMLElement {
 
   const row = h('div', 'dialog-buttons');
   const done = h('button', 'big-button', 'Done');
+  done.dataset['escape'] = ''; // the Esc key presses this button (D-058)
   onTap(done, () => {
     unsubscribe();
     onDone();

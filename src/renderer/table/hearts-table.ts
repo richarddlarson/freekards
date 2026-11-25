@@ -129,6 +129,7 @@ export class HeartsTable {
     this.build();
     this.unsubscribeResize = stage.onResize(() => this.relayout());
     this.relayout();
+    window.addEventListener('keydown', this.onKey);
   }
 
   // ------------------------------------------------------------------ lifecycle
@@ -168,6 +169,7 @@ export class HeartsTable {
     this.director.reset();
     audio.stopSpeaking();
     this.unsubscribeResize();
+    window.removeEventListener('keydown', this.onKey);
     this.root.remove();
   }
 
@@ -742,6 +744,27 @@ export class HeartsTable {
     return box;
   }
 
+  /**
+   * Esc (spec 12 §4, D-058): opens the pause menu like ☰. While paused it resumes, or, if Sound or
+   * Settings is open on top, closes that panel (as its Done button would). Ignored on other dialogs.
+   */
+  private readonly onKey = (e: KeyboardEvent): void => {
+    if (e.key !== 'Escape' || e.repeat) return;
+    e.preventDefault();
+    const nested = this.overlay?.querySelector<HTMLElement>('.overlay');
+    if (nested) nested.querySelector<HTMLElement>('[data-escape]')?.dispatchEvent(new PointerEvent('pointerup', { button: 0 }));
+    else if (this.paused) this.resume();
+    else this.openMenu();
+  };
+
+  private resume(): void {
+    this.closeOverlay();
+    this.paused = false;
+    const w = this.resumeWaiters;
+    this.resumeWaiters = [];
+    for (const fn of w) fn();
+  }
+
   private openMenu(): void {
     if (this.overlay) return;
     this.paused = true;
@@ -770,13 +793,7 @@ export class HeartsTable {
     });
     const restart = h('button', 'big-button secondary', 'New game');
     const menu = h('button', 'big-button secondary', 'Main menu');
-    onTap(resume, () => {
-      this.closeOverlay();
-      this.paused = false;
-      const w = this.resumeWaiters;
-      this.resumeWaiters = [];
-      for (const fn of w) fn();
-    });
+    onTap(resume, () => this.resume());
     onTap(restart, () => this.opts.onExit('again'));
     onTap(menu, () => this.opts.onExit('menu'));
     col.append(resume, sound, prefs, restart, menu);

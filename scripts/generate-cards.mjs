@@ -6,14 +6,21 @@
  * and the card backs to assets/themes/classic-casino/cards/backs/. All artwork is drawn from
  * geometry in this file and is original work of The FreeKards Contributors (MIT).
  *
+ * All lettering (corner indices, the A♠ legend) is converted to vector outlines from
+ * Fira Sans Condensed Bold (OFL-1.1, assets/fonts/fira-sans-condensed) with opentype.js, so the cards
+ * look the same everywhere and need no font at run time (D-060).
+ *
  * Usage: node scripts/generate-cards.mjs     (output is deterministic; commit the results)
  */
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import opentype from 'opentype.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = join(root, 'assets', 'themes', 'classic-casino', 'cards');
+const fontFile = readFileSync(join(root, 'assets', 'fonts', 'fira-sans-condensed', 'FiraSansCondensed-Bold.ttf'));
+const FONT = opentype.parse(fontFile.buffer.slice(fontFile.byteOffset, fontFile.byteOffset + fontFile.byteLength));
 
 // ---------------------------------------------------------------- geometry & palette
 
@@ -26,7 +33,6 @@ const PAPER = '#fdfdf8';
 const GOLD = '#d9a82b';
 const BLUE = '#1f4e9c';
 const SKIN = '#f3d6b8';
-const FONT = "'DejaVu Serif', Georgia, 'Times New Roman', serif";
 
 const SUITS = { C: 'club', D: 'diamond', S: 'spade', H: 'heart' };
 const RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
@@ -48,6 +54,34 @@ function pip(suit, cx, cy, size, rotate = false, fill = suitColor(suit)) {
   return `<path d="${SUIT_PATH[suit]}" fill="${fill}" transform="translate(${(cx - size / 2).toFixed(2)} ${(cy - size / 2).toFixed(2)}) scale(${s})${rot}"/>`;
 }
 
+// ---------------------------------------------------------------- lettering
+
+/**
+ * A line of text as one SVG path, centered on `cx` with its baseline at `y`.
+ * `tracking` adds space between letters (font units per 1000 em); `squeeze` narrows the glyphs horizontally.
+ */
+function lettering(text, cx, y, size, fill, { tracking = 0, squeeze = 1 } = {}) {
+  const glyphs = FONT.stringToGlyphs(text);
+  const unit = size / FONT.unitsPerEm;
+  let advance = 0;
+  const parts = glyphs.map((g, i) => {
+    const x = advance;
+    advance += g.advanceWidth * unit + (i < glyphs.length - 1 ? (tracking * size) / 1000 : 0);
+    return { g, x };
+  });
+  // Center on the ink, not the advance box, so a glyph's side bearings don't shift it.
+  let x1 = Infinity;
+  let x2 = -Infinity;
+  for (const { g, x } of parts) {
+    const b = g.getPath(x, 0, size).getBoundingBox();
+    x1 = Math.min(x1, b.x1);
+    x2 = Math.max(x2, b.x2);
+  }
+  const shift = -(x1 + x2) / 2;
+  const d = parts.map(({ g, x }) => g.getPath(x + shift, 0, size).toPathData(2)).join('');
+  return `<path d="${d}" fill="${fill}" transform="translate(${cx} ${y})${squeeze === 1 ? '' : ` scale(${squeeze} 1)`}"/>`;
+}
+
 // ---------------------------------------------------------------- card frame & indices
 
 function frame(inner) {
@@ -60,18 +94,36 @@ ${inner}
 `;
 }
 
+/**
+ * Jumbo corner index (D-060): the rank's capital height is about 17% of the card height, with a large
+ * suit symbol under it, in a column at the left edge so a tightly fanned hand still shows it.
+ */
+const INDEX = {
+  x: 36, // center of the index column
+  top: 16, // top of the rank
+  rankHeight: 60, // capital height of the rank
+  gap: 13, // between the rank and the suit symbol (J and Q descend into it)
+  pip: 40, // suit symbol size
+};
+const RANK_SIZE = (INDEX.rankHeight * FONT.unitsPerEm) / FONT.tables.os2.sCapHeight;
+
 function index(rank, suit) {
   const label = RANK_LABEL[rank] ?? rank;
   const color = suitColor(suit);
-  const fontSize = label.length > 1 ? 34 : 40;
-  const spacing = label.length > 1 ? ' letter-spacing="-3"' : '';
-  const one = `<text x="24" y="46" font-family="${FONT}" font-size="${fontSize}" font-weight="bold" fill="${color}" text-anchor="middle"${spacing}>${label}</text>${pip(suit, 24, 66, 26)}`;
+  const base = INDEX.top + INDEX.rankHeight;
+  // "10" is two figures wide, so it is set tight and slightly narrowed to keep the column slim.
+  const opts = label.length > 1 ? { tracking: -50, squeeze: 0.84 } : {};
+  const one = lettering(label, INDEX.x, base, RANK_SIZE, color, opts) + pip(suit, INDEX.x, base + INDEX.gap + INDEX.pip / 2, INDEX.pip);
   return `<g>${one}</g><g transform="rotate(180 ${W / 2} ${H / 2})">${one}</g>`;
 }
 
 // ---------------------------------------------------------------- number cards
 
-const COL = { L: 0.32, C: 0.5, R: 0.68 };
+/** Pip columns, pulled toward the middle so they clear the jumbo indices (D-060). */
+const COL = { L: 0.392, C: 0.5, R: 0.608 };
+/** Rows are spread over this fraction of the traditional layout's height, around the middle. */
+const ROW_SPREAD = 0.92;
+const PIP_SIZE = 40;
 const ROWS4 = [0.2, 0.4, 0.6, 0.8];
 /** Pip positions as [column, row] fractions; rows below 0.5 are upright, above 0.5 are rotated. */
 const LAYOUT = {
@@ -88,9 +140,8 @@ const LAYOUT = {
 
 function numberCard(rank, suit) {
   const n = rank === 'T' ? 10 : Number(rank);
-  const size = 46;
   const pips = LAYOUT[n]
-    .map(([c, r]) => pip(suit, COL[c] * W, r * H, size, r > 0.5))
+    .map(([c, r]) => pip(suit, COL[c] * W, (0.5 + (r - 0.5) * ROW_SPREAD) * H, PIP_SIZE, r > 0.5))
     .join('');
   return frame(index(rank, suit) + pips);
 }
@@ -99,11 +150,12 @@ function aceCard(suit) {
   let center;
   if (suit === 'S') {
     // Decorative (original) ace of spades: large spade inside a double gold ring with small pips.
-    center = `<circle cx="125" cy="175" r="86" fill="none" stroke="${GOLD}" stroke-width="4"/>
-<circle cx="125" cy="175" r="78" fill="none" stroke="${BLACK}" stroke-width="1.5"/>
-${[0, 90, 180, 270].map((a) => `<g transform="rotate(${a} 125 175)">${pip('S', 125, 82, 14)}</g>`).join('')}
-${pip('S', 125, 172, 112)}
-<text x="125" y="292" font-family="${FONT}" font-size="13" fill="${BLACK}" text-anchor="middle" letter-spacing="3">FREEKARDS</text>`;
+    // Sized to stay clear of the jumbo indices in the corners.
+    center = `<circle cx="125" cy="175" r="70" fill="none" stroke="${GOLD}" stroke-width="4"/>
+<circle cx="125" cy="175" r="63" fill="none" stroke="${BLACK}" stroke-width="1.5"/>
+${[0, 90, 180, 270].map((a) => `<g transform="rotate(${a} 125 175)">${pip('S', 125, 96, 12)}</g>`).join('')}
+${pip('S', 125, 172, 90)}
+${lettering('FREEKARDS', 125, 283, 15, BLACK, { tracking: 200 })}`;
   } else {
     center = pip(suit, 125, 175, 92);
   }
@@ -167,15 +219,18 @@ function courtHalf(kind, suit) {
   return shoulders + prop + face(kind) + headwear(kind, robe) + emblem;
 }
 
+/** The court picture is drawn on a 154×274 panel, then scaled down to sit between the jumbo indices. */
+const COURT_SCALE = 0.8;
+
 function courtCard(kind, suit) {
   const robe = ROBE[suit];
   const half = courtHalf(kind, suit);
-  const panel = `<rect x="48" y="38" width="154" height="274" rx="6" fill="#fbf6e6" stroke="${robe.accent}" stroke-width="3"/>
-<clipPath id="p"><rect x="49.5" y="39.5" width="151" height="271" rx="5"/></clipPath>
+  const panel = `<rect x="48" y="38" width="154" height="274" rx="8" fill="#fbf6e6" stroke="${robe.accent}" stroke-width="4"/>
+<clipPath id="p"><rect x="50" y="40" width="150" height="270" rx="6"/></clipPath>
 <g clip-path="url(#p)">${half}<g transform="rotate(180 125 175)">${half}</g></g>
-<line x1="48" y1="175" x2="202" y2="175" stroke="${robe.accent}" stroke-width="2"/>`;
-  const letter = `<text x="60" y="64" font-family="${FONT}" font-size="20" font-weight="bold" fill="${suitColor(suit)}" text-anchor="middle">${kind}</text>`;
-  return frame(index(kind, suit) + panel + letter + `<g transform="rotate(180 125 175)">${letter}</g>`);
+<line x1="48" y1="175" x2="202" y2="175" stroke="${robe.accent}" stroke-width="2.5"/>`;
+  const s = COURT_SCALE;
+  return frame(index(kind, suit) + `<g transform="translate(${125 - 125 * s} ${175 - 175 * s}) scale(${s})">${panel}</g>`);
 }
 
 // ---------------------------------------------------------------- backs

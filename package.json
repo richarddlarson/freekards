@@ -29,6 +29,7 @@
     "@types/node": "26.6.6",
     "electron": "45.4.1",
     "electron-builder": "26.18.0",
+    "opentype.js": "2.0.0",
     "typescript": "7.0.2",
     "vite": "8.3.8",
     "vitest": "5.1.1"
