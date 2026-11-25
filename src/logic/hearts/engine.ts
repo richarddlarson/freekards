@@ -32,9 +32,8 @@ type Four<T> = [T, T, T, T];
 
 // ---------------------------------------------------------------- helpers
 
-export function nextSeat(seat: Seat, steps = 1): Seat {
-  return ((seat + steps) % 4) as Seat;
-}
+export { nextSeat } from '../core/seats.js';
+import { nextSeat } from '../core/seats.js';
 
 /** Pass direction for a 1-based hand number: left, right, across, none, repeating. */
 export function passDirectionFor(handNumber: number): PassDirection {

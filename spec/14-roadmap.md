@@ -109,8 +109,8 @@ pre-release with a download guide in the release notes (D-069). Waiting on the o
   ExtraBold). Deck names Classic and Rounded.
 
 ## R-002 — Remaining games
-- **Status:** Planned (order to be decided)
-- **Games:** Spades, Rummy 500, Gin Rummy, Blackjack, Poker, Solitaire. Open questions Q6–Q8 cover
+- **Status:** In progress. **Spades** built 2026-11-25 (spec 17, D-070 to D-074).
+- **Games:** ~~Spades~~, Rummy 500, Gin Rummy, Blackjack, Poker, Solitaire. Open questions Q6–Q8 cover
   rules and variants.
 
 ## R-004 — More natural-sounding character voices

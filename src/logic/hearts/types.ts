@@ -1,15 +1,8 @@
 import type { Card } from '../core/cards.js';
 
-/** Seats in clockwise play order. South is always the human player. */
-export const SEATS = [0, 1, 2, 3] as const;
-export type Seat = (typeof SEATS)[number];
-export const SEAT_NAMES: Readonly<Record<Seat, 'south' | 'west' | 'north' | 'east'>> = {
-  0: 'south',
-  1: 'west',
-  2: 'north',
-  3: 'east',
-};
-export const HUMAN_SEAT: Seat = 0;
+/** Seats in clockwise play order (spec 10 §2); shared by every 4-player game. */
+export { SEATS, SEAT_NAMES, HUMAN_SEAT, type Seat } from '../core/seats.js';
+import type { Seat } from '../core/seats.js';
 
 export type HeartsRuleSet = 'standard' | 'jack-of-diamonds';
 

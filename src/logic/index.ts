@@ -2,7 +2,9 @@
 export * from './core/cards.js';
 export * from './core/rng.js';
 export * from './core/skill.js';
+export * from './core/seats.js';
 export * as hearts from './hearts/index.js';
+export * as spades from './spades/index.js';
 export * as dialogue from './dialogue/index.js';
 export * as layout from './layout/hearts-table.js';
 export * as profile from './profile/profile.js';

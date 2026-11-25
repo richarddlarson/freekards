@@ -54,9 +54,13 @@ src/logic/                  ENGINE-NEUTRAL game logic (spec 05, 10). No DOM/Node
   core/cards.ts             Card ids, deck, sorting
   core/rng.ts               Mulberry32 generator + Fisher–Yates shuffle
   core/skill.ts             Difficulty model (spec 08)
+  core/seats.ts             Seats, clockwise order, nextSeat (spec 10 §2); shared by Hearts and Spades
   hearts/types.ts           State, actions, events
   hearts/engine.ts          Rules engine (spec 06 §1–4)
   hearts/ai.ts              Computer player (spec 06 §5)
+  spades/types.ts           Spades state, actions, events (spec 17)
+  spades/engine.ts          Rules engine and scoring (spec 17 §1–6)
+  spades/ai.ts              Computer player: bid estimate, Nil, card scoring (spec 17 §7)
   dialogue/                 Character types, dialogue director, Hearts event→trigger mapping (spec 08, D-036)
   layout/hearts-table.ts    Viewport fitting, table positions, timing, Card response / Game speed tables (spec 11, 12, 16)
   settings/                 Per-player settings: types, defaults, repair (spec 16)

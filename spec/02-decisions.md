@@ -789,3 +789,33 @@ Template:
 - Why: Owner's choice. A pre-release tells visitors the game is still being play-tested. The tag
   check stops an installer from carrying the wrong version number.
 
+## D-070 — Spades rules (first version)
+- Date: 2026-11-25
+- Status: Accepted (made by the assistant while the owner was away, at his request; **owner to review**)
+- Decision: Partnership Spades as in spec 17: the player and North against West and East, spades
+  always trump and not led until broken, bids 0 (Nil) to 13 taken clockwise from the dealer's left,
+  10 per bid trick when made, −10 per bid trick when set, +1 per overtrick, every 10 bags −100, Nil
+  ±100 with the Nil bidder's tricks counting as bags rather than toward the partner's bid. Game to
+  **300** (default) or 500, and a team at −200 or below ends the game. South deals hand 1, so the
+  player sees the other three bids before her first bid. No blind Nil and no minimum team bid in this
+  version.
+- Why: The owner asked for Spades next ("make any decisions on it that you would ask me"). These
+  are the most widely played partnership rules (as described on pagat.com and in common apps),
+  kept simple for a first version. 300 is the default because a 500-point game between Medium
+  players takes about 14 hands, twice a typical Hearts game (D-071). This answers the Spades part of
+  Q8 for now.
+
+## D-071 — Spades computer players
+- Date: 2026-11-25
+- Status: Accepted (tuning expected)
+- Decision: The Spades AI estimates tricks from high cards, spade length, and ruffing chances, then
+  bids that estimate **minus 0.5** (plus skill noise), and bids Nil on weak hands with no
+  dangerous cards depending on its risk trait. In play it scores each legal card with a fixed
+  priority list: protect its own Nil, cover its partner's Nil, try to break an opponent's Nil, then
+  win tricks while its team (or a chance to set the opponents) needs them and duck once the contract
+  is made. It uses the same skill roll and "memory" model as Hearts. Full rules and the measured
+  results are in spec 17 §7.
+- Why: The same proven structure as the Hearts AI (D-025) keeps difficulty consistent across games.
+  The −0.5 hedge was chosen by simulation: it raised Hard-skill contracts made from 74% to 91% and
+  shortened games, while larger hedges caused more bag penalties.
+
