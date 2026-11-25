@@ -32,7 +32,7 @@ a default, and a repair rule.
 field's default. Profiles saved before settings existed simply get all the defaults.
 
 ## 2. Card order (D-054, D-064)
-- How the player's own hand is arranged. Suits are always grouped ♣ ♦ ♠ ♥ (spec 10 §1). Within each
+- How the player's own hand is arranged. Suits are always grouped ♥ ♠ ♦ ♣ (spec 10 §1, D-065). Within each
   suit, **low-left** puts 2 on the left and Ace on the right, and **low-right** is the reverse.
 - **The suit groups never move**, in any game: both choices show the suits in the same
   left-to-right order. This holds for future games that rank suits as well (D-064 replaced the

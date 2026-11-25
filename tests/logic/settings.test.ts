@@ -7,20 +7,20 @@ import { CARD_DECKS, DEFAULT_PLAYER_SETTINGS, normalizePlayerSettings } from '..
 
 const NOW = '2026-11-24T12:00:00.000Z';
 
-describe('card order (D-054, D-064)', () => {
+describe('card order (D-054, D-064, D-065)', () => {
   const hand = ['AH', '2C', 'KS', '3C', 'TD', '4H'] as const;
-  it('low cards on the left is the default', () => {
-    expect(sortHand(hand)).toEqual(['2C', '3C', 'TD', 'KS', '4H', 'AH']);
+  it('low cards on the left is the default, with suits hearts, spades, diamonds, clubs (D-065)', () => {
+    expect(sortHand(hand)).toEqual(['4H', 'AH', 'KS', 'TD', '2C', '3C']);
     expect(sortHand(hand, 'low-left')).toEqual(sortHand(hand));
   });
   it('low cards on the right reverses ranks but keeps the suit groups in place', () => {
-    expect(sortHand(hand, 'low-right')).toEqual(['3C', '2C', 'TD', 'KS', 'AH', '4H']);
+    expect(sortHand(hand, 'low-right')).toEqual(['AH', '4H', 'KS', 'TD', '3C', '2C']);
   });
   it('never reverses the suits: both orders show the same suit sequence', () => {
     const full = ['AS', '2H', 'KC', '9D', '5S', 'QH', '3C', 'JD', 'TS', '7H', '4C', '8D'] as const;
     const suits = (cards: readonly string[]) => [...new Set(cards.map((c) => c[1]))];
     expect(suits(sortHand(full, 'low-right'))).toEqual(suits(sortHand(full, 'low-left')));
-    expect(suits(sortHand(full, 'low-left'))).toEqual(['C', 'D', 'S', 'H']);
+    expect(suits(sortHand(full, 'low-left'))).toEqual(['H', 'S', 'D', 'C']);
   });
 });
 

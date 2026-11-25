@@ -706,3 +706,16 @@ Template:
   added, but my assumption that we needed to also reverse the suits was incorrect. We need to keep
   the suits in the same order they are on the default "low cards on the left"."
 
+## D-065 — Face-up hands show hearts, spades, diamonds, clubs
+- Date: 2026-11-25
+- Status: Accepted (replaces the C, D, S, H display sort that spec 10 §1 described; the deck order of D-022 is unchanged)
+- Decision: The player's face-up hand is grouped by suit in the order ♥ ♠ ♦ ♣, left to right, in
+  both Card order choices (only the ranks within a suit flip, D-064). The colors still alternate. The
+  canonical deck order (C, D, S, H) used for dealing is unchanged, so seeded games deal the same
+  cards. The order is fixed for now; a per-player suit-order setting may come later.
+- Why: Owner, passing on his wife's play-testing: there is no official suit order for trick-taking
+  games, and she wants "this order (left to right): hearts, spades, diamonds, clubs. This may be
+  specific to Hearts since hearts and spades are important. For now let's just make that the default
+  order when showing a hand face-up on the screen. Later we may add a user-setting to allow the user
+  to choose which suit-order they prefer, but not yet."
+

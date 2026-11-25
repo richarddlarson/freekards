@@ -47,7 +47,14 @@ export function isCard(value: string): value is Card {
 }
 
 /**
- * Display order of the player's hand (D-054, D-064): suits always grouped C, D, S, H (spec 10);
+ * Suit order of a face-up hand, left to right (D-065, spec 10): hearts, spades, diamonds, clubs.
+ * Colors alternate, and the suits that matter most in Hearts come first. This is display only;
+ * the canonical deck order (SUITS) is unchanged.
+ */
+export const DISPLAY_SUIT_ORDER: readonly Suit[] = ['H', 'S', 'D', 'C'];
+
+/**
+ * Display order of the player's hand (D-054, D-064, D-065): suits grouped in DISPLAY_SUIT_ORDER;
  * within a suit, low cards on the left (the default) or on the right. The suit groups never move,
  * whichever order is chosen.
  */
@@ -56,7 +63,7 @@ export type CardOrder = 'low-left' | 'low-right';
 export function sortHand(cards: readonly Card[], order: CardOrder = 'low-left'): Card[] {
   const dir = order === 'low-right' ? -1 : 1;
   return [...cards].sort((a, b) => {
-    const s = SUITS.indexOf(suitOf(a)) - SUITS.indexOf(suitOf(b));
+    const s = DISPLAY_SUIT_ORDER.indexOf(suitOf(a)) - DISPLAY_SUIT_ORDER.indexOf(suitOf(b));
     return s !== 0 ? s : dir * (rankOf(a) - rankOf(b));
   });
 }
