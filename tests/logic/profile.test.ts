@@ -92,3 +92,34 @@ describe('loading profiles from disk', () => {
     expect(f.profiles[1]!.stats.hearts.gamesPlayed).toBe(0);
   });
 });
+
+describe('Spades stats and payout (D-073)', () => {
+  it('pays win or loss × difficulty plus Nil bonuses', async () => {
+    const { spadesPayout } = await import('../../src/logic/profile/profile.js');
+    expect(spadesPayout(true, 'easy', 0).total).toBe(80);
+    expect(spadesPayout(true, 'medium', 1).total).toBe(145);
+    expect(spadesPayout(false, 'hard', 0).total).toBe(20);
+  });
+
+  it('records a game, streaks, and a ledger entry', async () => {
+    const { recordSpadesGame } = await import('../../src/logic/profile/profile.js');
+    const p0 = createProfile('Ann', 'a', NOW);
+    const g = { won: true, teamScore: 312, handsPlayed: 8, contractsBid: 8, contractsMade: 7, nilsBid: 1, nilsMade: 1, difficulty: 'medium' as const };
+    const r1 = recordSpadesGame(p0, g, NOW);
+    expect(r1.profile.stats.spades).toMatchObject({ gamesPlayed: 1, gamesWon: 1, currentWinStreak: 1, bestScore: 312, nilsMade: 1, coinsEarned: 145 });
+    expect(r1.profile.coins).toBe(WELCOME_COINS + 145);
+    expect(r1.profile.ledger[0]!.reason).toBe('Spades: won (Medium) + 1 Nil');
+    const r2 = recordSpadesGame(r1.profile, { ...g, won: false, teamScore: 150, nilsMade: 0 }, NOW);
+    expect(r2.profile.stats.spades).toMatchObject({ gamesPlayed: 2, gamesWon: 1, currentWinStreak: 0, bestWinStreak: 1, bestScore: 312 });
+    expect(r2.profile.stats.hearts.gamesPlayed).toBe(0);
+  });
+
+  it('repairs profiles saved before Spades existed', () => {
+    const p = createProfile('Old', 'o', NOW) as unknown as Record<string, unknown>;
+    const old = { ...p, stats: { hearts: (p as { stats: { hearts: unknown } }).stats.hearts }, prefs: { hearts: { difficulty: 'hard' } } };
+    const f = normalizeProfilesFile({ schemaVersion: 1, activeProfileId: 'o', profiles: [old] });
+    expect(f.profiles[0]!.stats.spades.gamesPlayed).toBe(0);
+    expect(f.profiles[0]!.prefs.spades).toEqual({ difficulty: 'medium', targetScore: 300, players: null });
+    expect(f.profiles[0]!.prefs.hearts.difficulty).toBe('hard');
+  });
+});

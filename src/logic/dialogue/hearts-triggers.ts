@@ -22,7 +22,7 @@ export const TRIGGER_WEIGHTS: Readonly<Record<string, number>> = {
   'hearts.pass.received': 0.2,
 };
 
-/** Every trigger name a character file may use (validated by tests). */
+/** The shared and Hearts trigger names (all games together: ALL_TRIGGERS in dialogue/index.ts). */
 export const KNOWN_TRIGGERS: readonly string[] = [
   'game.start',
   'game.won.self', 'game.won.human', 'game.won.other',

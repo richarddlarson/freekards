@@ -819,3 +819,28 @@ Template:
   The −0.5 hedge was chosen by simulation: it raised Hard-skill contracts made from 74% to 91% and
   shortened games, while larger hedges caused more bag penalties.
 
+## D-073 — Spades statistics and KardCoins
+- Date: 2026-11-25
+- Status: Accepted (**owner to review**: the amounts)
+- Decision: Each profile also keeps Spades statistics (spec 15 §2) and Spades preferences
+  (difficulty, game length, and the partner and opponents, or Random). A finished Spades game pays
+  **80 KardCoins for a win or 10 for a loss**, × the difficulty multiplier (Easy 1, Medium 1.5,
+  Hard 2), plus **+25 for each Nil the player made** (not multiplied). The history reason reads, for
+  example, "Spades: won (Medium) + 1 Nil". Profiles saved before Spades existed get empty Spades
+  statistics and default preferences when loaded.
+- Why: The Hearts table pays 40 coins per game on average at Easy (100/40/15/5 for the four places).
+  A Spades game is won or lost by a team, so about half the time, and 80/10 gives a similar average
+  (45) while still rewarding the win. The Nil bonus mirrors the Hearts moon bonus.
+
+## D-074 — Spades dialogue
+- Date: 2026-11-25
+- Status: Accepted
+- Decision: Spades adds partnership triggers (spec 08 §Triggers): `spades.bid_nil`,
+  `spades.nil_made`, `spades.nil_failed`, and `spades.trumped`, seen as `self`, `partner`, or
+  `opponent`, and `spades.set` and `spades.bags`, seen as `us` or `them`. The shared `game.*`, `hand.*`, and
+  `idle.human` triggers are reused with Spades meanings: a hand is "good" for the team that scored
+  more that hand. All six characters got 26 new lines (156 in total), written in character with
+  their running jokes, and voiced with their existing Piper voices (D-048).
+- Why: Spades is played with a partner, so reactions to a partner's Nil or a well-timed trump are
+  what make the table feel alive. Reusing the shared triggers keeps every existing line useful.
+

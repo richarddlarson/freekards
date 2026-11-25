@@ -217,6 +217,138 @@
         "id": "marguerite.hearts.pass.received.2",
         "text": "Hmm. These tell me a great deal about your hand."
       }
+    ],
+    "spades.bid_nil.self": [
+      {
+        "id": "marguerite.spades.bid_nil.self.1",
+        "text": "Nil. By my calculations, I hold nothing of value. Rather like my desk."
+      },
+      {
+        "id": "marguerite.spades.bid_nil.self.2",
+        "text": "I'll bid nil. The probability is favorable. Roughly."
+      }
+    ],
+    "spades.bid_nil.partner": [
+      {
+        "id": "marguerite.spades.bid_nil.partner.1",
+        "text": "Nil! Splendid. I shall endeavor to win everything else."
+      },
+      {
+        "id": "marguerite.spades.bid_nil.partner.2",
+        "text": "A nil! Fascinating. I'll keep the high cards busy."
+      }
+    ],
+    "spades.nil_made.self": [
+      {
+        "id": "marguerite.spades.nil_made.self.1",
+        "text": "Zero tricks! Exactly as predicted. Within error bars."
+      },
+      {
+        "id": "marguerite.spades.nil_made.self.2",
+        "text": "A successful nil. I'll be writing a paper."
+      }
+    ],
+    "spades.nil_made.partner": [
+      {
+        "id": "marguerite.spades.nil_made.partner.1",
+        "text": "Bravo! A flawless nil. I'd give that an A-plus."
+      },
+      {
+        "id": "marguerite.spades.nil_made.partner.2",
+        "text": "Magnificent nil, partner. Textbook."
+      }
+    ],
+    "spades.nil_made.opponent": [
+      {
+        "id": "marguerite.spades.nil_made.opponent.1",
+        "text": "Their nil held. Statistically irritating."
+      }
+    ],
+    "spades.nil_failed.self": [
+      {
+        "id": "marguerite.spades.nil_failed.self.1",
+        "text": "Ah. I appear to have taken a trick. How improbable."
+      },
+      {
+        "id": "marguerite.spades.nil_failed.self.2",
+        "text": "There goes my nil. I blame my glasses. Where are they?"
+      }
+    ],
+    "spades.nil_failed.partner": [
+      {
+        "id": "marguerite.spades.nil_failed.partner.1",
+        "text": "Don't fret. Variance, my dear. Pure variance."
+      },
+      {
+        "id": "marguerite.spades.nil_failed.partner.2",
+        "text": "Unlucky, partner. The math was sound."
+      }
+    ],
+    "spades.nil_failed.opponent": [
+      {
+        "id": "marguerite.spades.nil_failed.opponent.1",
+        "text": "Their nil has failed. I did calculate that."
+      },
+      {
+        "id": "marguerite.spades.nil_failed.opponent.2",
+        "text": "Ah, a broken nil. Rather elegant, from here."
+      }
+    ],
+    "spades.set.us": [
+      {
+        "id": "marguerite.spades.set.us.1",
+        "text": "We were set. I must have carried a one somewhere."
+      },
+      {
+        "id": "marguerite.spades.set.us.2",
+        "text": "Hmm. Our bid exceeded our evidence."
+      }
+    ],
+    "spades.set.them": [
+      {
+        "id": "marguerite.spades.set.them.1",
+        "text": "Set! Their estimate was optimistic."
+      },
+      {
+        "id": "marguerite.spades.set.them.2",
+        "text": "You were set. A useful lesson in overconfidence."
+      }
+    ],
+    "spades.bags.us": [
+      {
+        "id": "marguerite.spades.bags.us.1",
+        "text": "A bag penalty. Too many tricks. An embarrassment of riches."
+      },
+      {
+        "id": "marguerite.spades.bags.us.2",
+        "text": "Ten bags! I was counting. Just the wrong thing."
+      }
+    ],
+    "spades.bags.them": [
+      {
+        "id": "marguerite.spades.bags.them.1",
+        "text": "Ten bags. Compound interest catches everyone."
+      }
+    ],
+    "spades.trumped.self": [
+      {
+        "id": "marguerite.spades.trumped.self.1",
+        "text": "A spade! Trump is simply applied probability."
+      },
+      {
+        "id": "marguerite.spades.trumped.self.2",
+        "text": "Ruffed! Oh, I do love that word."
+      }
+    ],
+    "spades.trumped.partner": [
+      {
+        "id": "marguerite.spades.trumped.partner.1",
+        "text": "Excellent ruff, partner!"
+      },
+      {
+        "id": "marguerite.spades.trumped.partner.2",
+        "text": "Lovely trump. Very well reasoned."
+      }
     ]
   }
 }

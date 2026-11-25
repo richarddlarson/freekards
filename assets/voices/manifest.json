@@ -151,6 +151,110 @@
   "key": "dc0b53418b827a8e853884400cc342ab8fd86968450231eeef1a1b8c31130c12",
   "text": "No rush, sugar. Want me to top off your coffee?"
  },
+ "bernie.spades.bags.them.1": {
+  "key": "022af8e57c19f10ed5e69ebde6628095969d6c1233ad453f92f9427598adf4ea",
+  "text": "Ooh, too many bags, sugar. That'll cost ya."
+ },
+ "bernie.spades.bags.us.1": {
+  "key": "799c024964c0b1b9b9a77038ce9e1da42c36820a5bcc0a1156bd67647067cf53",
+  "text": "Too many bags! I'm a waitress, not a grocery store!"
+ },
+ "bernie.spades.bags.us.2": {
+  "key": "ca14bb26a45bf9a5903489ab4e35263c08ee3f49c132e89cff139e20289dde0c",
+  "text": "A bag penalty. Darlene does that every game."
+ },
+ "bernie.spades.bid_nil.partner.1": {
+  "key": "68b1ca07982da4a2b870e093cb95d1f3ac347b5e0184b71cb8b82a68c11c216b",
+  "text": "Nil? Ooh, brave! Don't worry, sugar, I've got you."
+ },
+ "bernie.spades.bid_nil.partner.2": {
+  "key": "f13aadd3c2db7be9df2b670ccfcedb7230582c5d7d120efef8ce3baffc01633a",
+  "text": "Okay hon, you sit pretty. I'll take the tricks."
+ },
+ "bernie.spades.bid_nil.self.1": {
+  "key": "3f1bdf803621c54361fc82cde5c1722932da1ab17cc45047761ddb1b1da0a976",
+  "text": "Nil for me, hon. I'm on my break."
+ },
+ "bernie.spades.bid_nil.self.2": {
+  "key": "7f64f23aff7b77a61b2b941408a37543aa2b6726c6a4547809a2156778738d11",
+  "text": "Goin' nil! Darlene says I can't do it. Watch me."
+ },
+ "bernie.spades.nil_failed.opponent.1": {
+  "key": "f90db0a1fdcb577c8b45b2d9916884a26ff3f136213e3b5efcfb11d023d8d164",
+  "text": "Ooh, there goes your nil, hon! Sorry! Not sorry!"
+ },
+ "bernie.spades.nil_failed.opponent.2": {
+  "key": "a32705d23f2a296f17a340b6b67e40b2c74a12738973c9547cfaf108306edb50",
+  "text": "Nil's broken! Sending that one back to the kitchen."
+ },
+ "bernie.spades.nil_failed.partner.1": {
+  "key": "636fd5f8747961bdb07aa3f8c7447000681e98efe074fe6c83f09e9372c4ea64",
+  "text": "Aw, sugar. Don't you worry about it."
+ },
+ "bernie.spades.nil_failed.partner.2": {
+  "key": "012806b766ce0803d43af3d36e91b34710f7e44e22198181958a141943141c41",
+  "text": "Happens to the best of us, hon. Happens to Darlene weekly."
+ },
+ "bernie.spades.nil_failed.self.1": {
+  "key": "4e0029bb2b8c5331c3fc4cabe5155b77fc7bbc6df585486df191c4b896c465a4",
+  "text": "Oops! Took a trick. Like dropping a full tray."
+ },
+ "bernie.spades.nil_failed.self.2": {
+  "key": "600b522fe2c1a706ae1aafed1da7e914dc0e75fd3650a8d4b031bb16d4e93022",
+  "text": "There goes my nil. Darlene's gonna laugh."
+ },
+ "bernie.spades.nil_made.opponent.1": {
+  "key": "be78093889d45a6f337c9b127961bbaccd8d121ddf5f738ba5b4206a004fd265",
+  "text": "Well, good for you, hon. Credit where it's due."
+ },
+ "bernie.spades.nil_made.partner.1": {
+  "key": "2ee6025b8320e82b1a1525bb107330a9afcc11c8fa91534f2b33ba603142a9d4",
+  "text": "You did it, hon! Pie's on me!"
+ },
+ "bernie.spades.nil_made.partner.2": {
+  "key": "9428534e9b4c16e72e18d70c5f3f31166fa05dee3a20f266b19955a920dbf285",
+  "text": "Look at you, sugar! A perfect nil!"
+ },
+ "bernie.spades.nil_made.self.1": {
+  "key": "ca7ad4ec0752808bfc2f3eaa9304143549e949cc12bb61d73eaa1fd69eeb4f13",
+  "text": "Not one trick! Wait'll I tell Darlene!"
+ },
+ "bernie.spades.nil_made.self.2": {
+  "key": "fc1a317ac1e61edb10bb8e28c918060796a684e1efd04ff8e1f024b6d69a2138",
+  "text": "Order up! One perfect nil!"
+ },
+ "bernie.spades.set.them.1": {
+  "key": "702917a12ecc5366c486349a05ba107d733d6b79a753f06e0b9148cd12b48b91",
+  "text": "You got set, hon! Want some pie to feel better?"
+ },
+ "bernie.spades.set.them.2": {
+  "key": "41b86a8747a6e3bedfabada56ba3999f0d4de24028bcd828d0021b216c6fd487",
+  "text": "Set! Bless your hearts."
+ },
+ "bernie.spades.set.us.1": {
+  "key": "25f85e26078a28d212d7d94e5682795872053495fd2c9d037ca2f62747e43265",
+  "text": "We got set, hon. Like a Monday double shift."
+ },
+ "bernie.spades.set.us.2": {
+  "key": "fa28abfcc483df25aeaf4dde0ce55bb6e4bafe7b25a517df71f47f081e80d232",
+  "text": "Oof. That went over like cold coffee."
+ },
+ "bernie.spades.trumped.partner.1": {
+  "key": "57b5d983cb1d01ec97c167c568ed1a80969af0ebae620b91c5d5ad22ee91e7f7",
+  "text": "Ooh, nice spade, sugar!"
+ },
+ "bernie.spades.trumped.partner.2": {
+  "key": "24e9c12ff75cc7b9b386497e1de4f0147529778cefb236ade0ec6fd27a364d93",
+  "text": "That's my partner! Big tip for you!"
+ },
+ "bernie.spades.trumped.self.1": {
+  "key": "0d4119f8187586ce30d48dde8c6c3a786f504ed143a149ad30ef80f152f22806",
+  "text": "Spade! Comin' through, hot plate!"
+ },
+ "bernie.spades.trumped.self.2": {
+  "key": "94b2ca4fd89eb61e24334cb807fedf69cb2db427169d51946b8433aa88cc0113",
+  "text": "Trumped it, hon! Order up!"
+ },
  "chad.game.start.1": {
   "key": "fedd20eb448c4d6f7c9341e82761748af7f83a72968d8ed833626e07d1608490",
   "text": "Let's GO! Game face: ON."
@@ -310,6 +414,110 @@
  "chad.idle.human.2": {
   "key": "dda009c60573aab3cdf60ec66307d04b1d76992f6c085254a14daf2475a3fd96",
   "text": "Deep breaths. Visualize the card. Become the card."
+ },
+ "chad.spades.bags.them.1": {
+  "key": "01fd5f914841f5d0a7a51079966c7ef2e98d5f945ad32f31312cfa5b9e8649a6",
+  "text": "Bag penalty! Gotta respect the fundamentals!"
+ },
+ "chad.spades.bags.us.1": {
+  "key": "6c1aa35481e2d3b9aaeedd075bd2c6a5b17ceb5171f6a36a20963e303ce1905a",
+  "text": "Bag penalty?! Nobody told me bags were bad!"
+ },
+ "chad.spades.bags.us.2": {
+  "key": "52dbd502f31ad97d59b399217ea74a62c9618f135d10a2073913759a28c09a9f",
+  "text": "Too many bags. I over-performed. Classic Chad."
+ },
+ "chad.spades.bid_nil.partner.1": {
+  "key": "a178b43f9552e86b23819d24cc77258dd72565e71931f85bfcb6de4020d61eb1",
+  "text": "Nil?! Bold move! I've got your back, teammate!"
+ },
+ "chad.spades.bid_nil.partner.2": {
+  "key": "a4f3b73996d8fb62cac698a8942e3613adf295416bfadbea5c00a03cd83976af",
+  "text": "You go nil, I go beast mode. Team synergy!"
+ },
+ "chad.spades.bid_nil.self.1": {
+  "key": "f730f5324281a5801cd01a486e2ed881304a2a55491c0aa96fd8cc93d695fe8d",
+  "text": "Going NIL! Zero tricks, maximum confidence!"
+ },
+ "chad.spades.bid_nil.self.2": {
+  "key": "cbb750b0d73da665c79f7d87605c8e035f9c39c3b9afc9f19e78aafe32efce37",
+  "text": "Nil! This is my comeback story, people!"
+ },
+ "chad.spades.nil_failed.opponent.1": {
+  "key": "31432f3a27342ccf386a856343039d8ec98c8ca89c8995f2b347342f6a977025",
+  "text": "And the nil goes DOWN! What a play!"
+ },
+ "chad.spades.nil_failed.opponent.2": {
+  "key": "438fcb0672c04076a55bb64a1876bf68e9af9aae38da10e6e4aa73f43e5595f2",
+  "text": "The crowd goes wild! The nil is broken!"
+ },
+ "chad.spades.nil_failed.partner.1": {
+  "key": "e27a309855e83f437a98c5d8c2849318afa3d147bde5f124b203c7184c8e61e3",
+  "text": "Shake it off, teammate! Fresh rep next hand!"
+ },
+ "chad.spades.nil_failed.partner.2": {
+  "key": "186964a9c35b277f0af4b019a2a955513abc68022538f897d0823edd6ecf69dc",
+  "text": "Hey, failure is just data! Mostly bad data."
+ },
+ "chad.spades.nil_failed.self.1": {
+  "key": "dabbe0cee0052ee35147453153ed3e21b8e69405df549a4a75d4d3acbc2dbbfd",
+  "text": "Okay, that trick was a learning opportunity."
+ },
+ "chad.spades.nil_failed.self.2": {
+  "key": "d37dea8a909f4d858e4ec6c9b1505a80ef194704d40aeec7e96717918f2ea4b6",
+  "text": "Nil's gone. But my spirit? Undefeated."
+ },
+ "chad.spades.nil_made.opponent.1": {
+  "key": "a16ad0b9beed41d175092ae0fd4d52312b0b78066f74734a976600fe6a945df0",
+  "text": "Respect. That was a clean nil. I'm taking notes."
+ },
+ "chad.spades.nil_made.partner.1": {
+  "key": "1b8728d01dcfb55f454c0f376dfa83fbe8b9ab41a82dee9782fd99c10b3fc3e6",
+  "text": "NIL MADE! Up top, partner! ...Virtual up top!"
+ },
+ "chad.spades.nil_made.partner.2": {
+  "key": "3b0bcc13c0830623182923b0870fec2f686aa7e6ec2a6d210aa7f64d85e44e04",
+  "text": "That's what I call executing the game plan!"
+ },
+ "chad.spades.nil_made.self.1": {
+  "key": "9a7ff0e42a5cf66a0bca2edc997d339530541ed3e8d69bafbd6ca9e884600a08",
+  "text": "ZERO tricks! That's elite avoidance!"
+ },
+ "chad.spades.nil_made.self.2": {
+  "key": "079a9084870ec7cffffcee6ce956196d1764cbe7750a7fea93ebc73d12f56871",
+  "text": "Perfect nil! I'd like to thank my smoothie."
+ },
+ "chad.spades.set.them.1": {
+  "key": "ce066a90c60310af7251d00b344bdc803eb9d7917251aed8918162f86d4df73d",
+  "text": "SET! That's a defensive masterclass, folks!"
+ },
+ "chad.spades.set.them.2": {
+  "key": "2575da37e23441bc148d20ce9c361f4587f41ee5fa79583f95f6160568823c2a",
+  "text": "Boom! Defense wins championships!"
+ },
+ "chad.spades.set.us.1": {
+  "key": "3ccdddd48f6a3736b94e210fb100c414d153d76443a4a1c2b0b5ce30a758e205",
+  "text": "We got set. That's fine. That's FINE."
+ },
+ "chad.spades.set.us.2": {
+  "key": "f29624716149a0cbb27f42f5dfe62ecc3f6b96b8a8d58479d9bc65836c8ea8fa",
+  "text": "Not a loss. A setback. A set... back."
+ },
+ "chad.spades.trumped.partner.1": {
+  "key": "1e3bcd2a0666a873685d10433bf6a23ac26ff5358bc77249028beca2cce0b798",
+  "text": "Huge spade, partner! Huge!"
+ },
+ "chad.spades.trumped.partner.2": {
+  "key": "40d69bb932dc02277871c6446ba340d2a63b0854f921dc5a1617541812c71e57",
+  "text": "That's my teammate! Big-time trump!"
+ },
+ "chad.spades.trumped.self.1": {
+  "key": "5bb85ac33d2fedc52b61ae2837c1e20e3f55e9514629e246a0366614d39a7186",
+  "text": "Spade! Slam dunk!"
+ },
+ "chad.spades.trumped.self.2": {
+  "key": "849660ff9c336020f86b38e048a3d9fcddc17c1e09d382c3f85cf363260cdcee",
+  "text": "Trumped it! And the crowd goes wild!"
  },
  "dot.game.start.1": {
   "key": "864f2434096b16715a038dbde794c15b8519000da8f4b4a3cff2e71be25d0dab",
@@ -478,6 +686,110 @@
  "dot.idle.human.2": {
   "key": "3f88f10111474272c0cc4cbbb53fe6f28ccaf2f1daea8bf4de9e4faefea8c815",
   "text": "No rush, sweetheart. I've got a scarf to finish."
+ },
+ "dot.spades.bags.them.1": {
+  "key": "f2ff1d70757c2320e7c18299b7b54489056f10aea73f23f00a7ad37df8382eb9",
+  "text": "All those bags, dear. Tsk, tsk."
+ },
+ "dot.spades.bags.us.1": {
+  "key": "f62e6229d0843158f5b368abad9100f4590d832b3160f0cc2abb6b2b1f875f8f",
+  "text": "Too many bags. I really must tidy up."
+ },
+ "dot.spades.bags.us.2": {
+  "key": "f6165cb2ab5a3db533990b807b263c800fd85994442ca5949ea5b5ebf65ea40c",
+  "text": "Oh, a hundred points for bags. That's my own fault."
+ },
+ "dot.spades.bid_nil.partner.1": {
+  "key": "42fa2e46997e9786f4e125dd54d1b9be2caa5c4a7501ca89dc823b66406f7b72",
+  "text": "Nil? Don't you worry, sweetie. Grandma's got you."
+ },
+ "dot.spades.bid_nil.partner.2": {
+  "key": "18a5cee60efc7898ae9e78362375ed3a01e9bd498f95a81c98d41514aa9242b2",
+  "text": "Oh, how brave! I'll take the tricks, dear. You just relax."
+ },
+ "dot.spades.bid_nil.self.1": {
+  "key": "83119f60a944aa1382a661def173c9dd7d69e10b7bd48529ed5a57249728086a",
+  "text": "Nil for me, dears. I'll just sit quietly and knit."
+ },
+ "dot.spades.bid_nil.self.2": {
+  "key": "30ee7ae4052746fa4a0513ff40316b56cc042fee8b33b9ea530e1ce503c59007",
+  "text": "I'll bid nothing at all. Grandma's being modest."
+ },
+ "dot.spades.nil_failed.opponent.1": {
+  "key": "cdda72177b32c14d1efa46933fb73f575bf4c52ec8dc8274583033a4fa8fe626",
+  "text": "Oh, what a shame, dear. Was that my card? How awful."
+ },
+ "dot.spades.nil_failed.opponent.2": {
+  "key": "a52fcb791347568b46cfc4c31672a667117a60c160ae75fee4368623c784ae66",
+  "text": "There goes your nil. Bless your heart."
+ },
+ "dot.spades.nil_failed.partner.1": {
+  "key": "3e3aa2131d493ca5f41ce27b57adf7fd4df31a067dd101a855e04eb0a2f937fb",
+  "text": "Oh, sweetie. It happens to the best of us."
+ },
+ "dot.spades.nil_failed.partner.2": {
+  "key": "3524662bff0578e6e7d5579cce08cdb4f29f65c85b7375074cc734db10963885",
+  "text": "Never mind, dear. We'll knit it back together."
+ },
+ "dot.spades.nil_failed.self.1": {
+  "key": "c0bd4c497dfba702912fc550456ee9081896b02cb48470efbc4830b05154b023",
+  "text": "Oh, fiddlesticks. There goes my nil."
+ },
+ "dot.spades.nil_failed.self.2": {
+  "key": "7ba3ef45876fec81ca7c46ad0514326834c2a846f09f2623e0cbc51f9213a7bb",
+  "text": "Oops! Grandma dropped a stitch."
+ },
+ "dot.spades.nil_made.opponent.1": {
+  "key": "c319f287565f1d6c00fc94e2d61ce506571ecfe959f610016333345241e578d3",
+  "text": "Well done, dear. I'll get you next time. Sweetly."
+ },
+ "dot.spades.nil_made.partner.1": {
+  "key": "10caff6c1e039f81088169da9bade6f5eed8576ee474d551bda02c25f64d7f44",
+  "text": "You did it, sweetheart! I'm so proud of you."
+ },
+ "dot.spades.nil_made.partner.2": {
+  "key": "e1b6b5e6913ac779ae0399ac5da75def8a10f8b00ec0aee50d85d6aba8e257fe",
+  "text": "A perfect nil! You get two lemon bars."
+ },
+ "dot.spades.nil_made.self.1": {
+  "key": "f34456247cf2ff8d0acdf4add52b28ff80b9a408b24356f30daf7b77ef3018f0",
+  "text": "Not one trick! Sixty years of practice, dears."
+ },
+ "dot.spades.nil_made.self.2": {
+  "key": "483b3f3a4fdf28de5f50be9f0ffbc087474505364903ba78a594d4e89e935b53",
+  "text": "Oh my, a perfect nil. Lemon bars all around."
+ },
+ "dot.spades.set.them.1": {
+  "key": "2f03ef2c9cf4b11588f5e76b4442846b0c88c8b9f79734b439a82e8b5e831933",
+  "text": "Oh no, you didn't make it? Well, next time, dear."
+ },
+ "dot.spades.set.them.2": {
+  "key": "3833e2e069f7eb3ff0bea79b967700ec4bc406b869828d98c513b3d9ba6b5fd0",
+  "text": "Set! Such a pity. More tea, anyone?"
+ },
+ "dot.spades.set.us.1": {
+  "key": "58bc6b4e2b8f5a77b3050ba97d35de3cb49c0a76064efe9c61d0adb136aa9ff7",
+  "text": "Oh dear. We came up a little short."
+ },
+ "dot.spades.set.us.2": {
+  "key": "58ef19d4d7f77f2e570741e48d415cca586134bc7ff659dfb8bc60a9dce1a600",
+  "text": "Hmm. Grandma will have to pay closer attention."
+ },
+ "dot.spades.trumped.partner.1": {
+  "key": "126bb0a250de7d8975bbfd250fb2d22d979216004dc89a34fe4888ddda501ca6",
+  "text": "Lovely spade, sweetheart!"
+ },
+ "dot.spades.trumped.partner.2": {
+  "key": "fac320a4ea72e346c0794f7c6d5d7ead1ebee2d4948bd8d06fa2e37f6f18d752",
+  "text": "Ooh, nicely done. You're a natural."
+ },
+ "dot.spades.trumped.self.1": {
+  "key": "0d44b5a34d1eec2d873df85a8da429cb29f1a0acbf7f8aa6b1c4888cf966a52c",
+  "text": "Oh, was that a spade? Silly me."
+ },
+ "dot.spades.trumped.self.2": {
+  "key": "d7f4a57cef11bcf516e5722b481563345687a6e8547ffb23f3750ff313cf2125",
+  "text": "A little spade for Grandma. Thank you, dears."
  },
  "gus.game.start.1": {
   "key": "d02b9482a6246d496e9beedde3798065c49f8b1d133a982ed7f8a5f70bda0d14",
@@ -675,6 +987,110 @@
   "key": "e2e1076f14cded5dc065241ab32680f61a54e8c9d687481ea781f50b62a710da",
   "text": "I delivered mail faster than this. Uphill. In the snow."
  },
+ "gus.spades.bags.them.1": {
+  "key": "221a38fd0dec65c8d445aa1dda5dedd60e302d0a870b0a09d773e0807c6c0e62",
+  "text": "Too many bags. I know the feeling."
+ },
+ "gus.spades.bags.us.1": {
+  "key": "7531688fdb0715b05e3b258e23108e6b175583cc0435d101e6554c70bf04f2a3",
+  "text": "A hundred points for too many bags. Like my closet."
+ },
+ "gus.spades.bags.us.2": {
+  "key": "81dcbf42e695835fcc3a6dc9b0344bdb6ef38076129f91385709f4a536930f34",
+  "text": "Bags. I hate bags. Ask my grocery store."
+ },
+ "gus.spades.bid_nil.partner.1": {
+  "key": "4e7a11055600af2742afdfb2854290de12b702b117c03303b5f6750320a72fc0",
+  "text": "Nil? Fine. I'll cover you. I covered Route Nine for thirty years."
+ },
+ "gus.spades.bid_nil.partner.2": {
+  "key": "e31c5ffd241e4c5647fd08b3737e83d21498b5ca02ded6b79d0f8d83370856ad",
+  "text": "Alright, partner. You duck. I'll do the heavy lifting."
+ },
+ "gus.spades.bid_nil.self.1": {
+  "key": "66aa06702c97aa44808daaf6a059302e43d74ba879b34c67e0bc82ae48bc5d73",
+  "text": "Nil. Zero. Same as my pension raise."
+ },
+ "gus.spades.bid_nil.self.2": {
+  "key": "38200f5a22f54600b362fc8b3804449e55ef43fc6baa3f43d215e4e3c2c0a608",
+  "text": "I'm bidding nothing. Finally, something I'm good at."
+ },
+ "gus.spades.nil_failed.opponent.1": {
+  "key": "ca1e89a6345ed0009d632052188253954113dc939fcd4c7352001501f0c3edd7",
+  "text": "Ha! That nil just got returned to sender."
+ },
+ "gus.spades.nil_failed.opponent.2": {
+  "key": "83a6be2a5b3fc7f890ffd461c1f23aebb9e37449fac954f50a6f914231450aed",
+  "text": "Nil busted. Postage due."
+ },
+ "gus.spades.nil_failed.partner.1": {
+  "key": "c68d01240f335834f4c2344c7e98e457596b6b96b642c90951eae0bec816e924",
+  "text": "Oof. Well, I'll still split my peppermints with you."
+ },
+ "gus.spades.nil_failed.partner.2": {
+  "key": "08dad569e5c0cd4926a1e5cfe5096dd42ef7a68e1446ff91fa8360dfceab7d73",
+  "text": "Close one, partner. Close one."
+ },
+ "gus.spades.nil_failed.self.1": {
+  "key": "70d96af53f5de9ee3b4927b04ecd836c9d55ca4fd448b83b88b13f2dc7cfca90",
+  "text": "There goes my nil. Deck's rigged."
+ },
+ "gus.spades.nil_failed.self.2": {
+  "key": "b2d5d2af862ecfd2307a6ffb530f3bcb2a7b98dcdf30790a883d4af733c8a161",
+  "text": "Took a trick. Of course I did."
+ },
+ "gus.spades.nil_made.opponent.1": {
+  "key": "10012b46aa324d7ea25c6f41c4655c7878922bbf4024c19912caf3bf6c850d8e",
+  "text": "Their nil held. Rigged, I tell you."
+ },
+ "gus.spades.nil_made.partner.1": {
+  "key": "b8df762d8ceeb02924dce53a534058079bcdb29a94704270af0462c06456e459",
+  "text": "You did it, partner! ...Don't tell anyone I cheered."
+ },
+ "gus.spades.nil_made.partner.2": {
+  "key": "aadca9abbd3eed9d17c3b35b52ccb8ecf8a6c844046f68c530b92bf7e3b023b7",
+  "text": "Nil made. Have a peppermint. You earned it."
+ },
+ "gus.spades.nil_made.self.1": {
+  "key": "1bcd00a9a25051136f4f8e3d6c6522c603270b1f594f16b55f4475b65bf78e74",
+  "text": "Not a single trick. That's called discipline."
+ },
+ "gus.spades.nil_made.self.2": {
+  "key": "3c0dc470cedf629afab2dd5937aaecc4a1928e72aad2dedf3e47b6792f1bfce2",
+  "text": "Zero tricks. The goose on Elm Street couldn't have done better."
+ },
+ "gus.spades.set.them.1": {
+  "key": "dc675097f248694e8afc97932aca60136611c13e654a380180aa879493c33394",
+  "text": "Didn't make it, did you? Shame. Not really."
+ },
+ "gus.spades.set.them.2": {
+  "key": "086a4868a5ff873fa5d09d2a903e42a2879cef762eb0f69f1a937766dc6f5f65",
+  "text": "Set! I'd say sorry, but I'm retired."
+ },
+ "gus.spades.set.us.1": {
+  "key": "a30e68801c9031ad776f1acdcfcfc6d436ef48168d8018796c85dee9f7c11a8b",
+  "text": "Set. Like a mailbox in wet cement."
+ },
+ "gus.spades.set.us.2": {
+  "key": "75adc12f7f36928cc48841fc9739d71c819d290d3dc800f446ab7db6c46d8b62",
+  "text": "We came up short. Story of my life."
+ },
+ "gus.spades.trumped.partner.1": {
+  "key": "0a11bb90d3f5ab7d57475fb2231d7e7391d3931b19cbdf09fbd3b906d57cd833",
+  "text": "Nice spade, partner. Don't let it go to your head."
+ },
+ "gus.spades.trumped.partner.2": {
+  "key": "a1d6a676fb883923688cec0aecbdc664e36c5b587f074523e9b975f05f275c03",
+  "text": "Good trump. Real good. I'm smiling on the inside."
+ },
+ "gus.spades.trumped.self.1": {
+  "key": "f48e1c3f10a488828101b97857e899df9b797fb2a93f099fb95a7a3a0a09d30b",
+  "text": "Spade. Special delivery."
+ },
+ "gus.spades.trumped.self.2": {
+  "key": "fd25c31831575229746b98b109c1d52f7b3d600e62c478147bc9917ce7b164d3",
+  "text": "Trumped it. Sign here, please."
+ },
  "marguerite.game.start.1": {
   "key": "9fc3824e4c6e54a085c0fa53f2b83bda57aff4b0427a75a2ffdacab98a9137c0",
   "text": "Splendid! Four players, fifty-two cards. The possibilities are astronomical. Literally."
@@ -818,6 +1234,110 @@
  "marguerite.idle.human.2": {
   "key": "52ab407d1ab0057505f3a95ec1f4ca57e05f8b125976cbe6f3444651ba405188",
   "text": "Thinking deeply, I see. I approve."
+ },
+ "marguerite.spades.bags.them.1": {
+  "key": "ac0adc073afaf2de4fe5e69833f9ec47bae139fdf6ea785402e4aea48bb3d6fe",
+  "text": "Ten bags. Compound interest catches everyone."
+ },
+ "marguerite.spades.bags.us.1": {
+  "key": "2bca1d2d4058b9b062051f9f7e695b655d35406176a5d34f477f3129bf565b4c",
+  "text": "A bag penalty. Too many tricks. An embarrassment of riches."
+ },
+ "marguerite.spades.bags.us.2": {
+  "key": "01ccad0ced2028f96403f284a09151bcf937332701fd72a401ed20b56b9fbd9d",
+  "text": "Ten bags! I was counting. Just the wrong thing."
+ },
+ "marguerite.spades.bid_nil.partner.1": {
+  "key": "60042255aa44da1bede888ba1e03b9b8f8c1b44333e33c78543739e7d6b888c6",
+  "text": "Nil! Splendid. I shall endeavor to win everything else."
+ },
+ "marguerite.spades.bid_nil.partner.2": {
+  "key": "a3be177a142e5bae08ab367f4b986cc9b5aac88ce00714ca7ef67303266c5746",
+  "text": "A nil! Fascinating. I'll keep the high cards busy."
+ },
+ "marguerite.spades.bid_nil.self.1": {
+  "key": "d9d20bc63db9e9951edc5ba3f833b4316c930bc440a84e72bb7e4340454ee91f",
+  "text": "Nil. By my calculations, I hold nothing of value. Rather like my desk."
+ },
+ "marguerite.spades.bid_nil.self.2": {
+  "key": "de8afe666cc226049436079524f7f663fed23afb0ff33dc989297937bb3e2889",
+  "text": "I'll bid nil. The probability is favorable. Roughly."
+ },
+ "marguerite.spades.nil_failed.opponent.1": {
+  "key": "78feec43e41c7e23748f4dd5ba85fdb9ce02a61b4a72db43f5029508d5984ea7",
+  "text": "Their nil has failed. I did calculate that."
+ },
+ "marguerite.spades.nil_failed.opponent.2": {
+  "key": "72e302c5f7c87d09a222ce0a01a89f90c8a048178ae67e80b2a1a40171c26c2c",
+  "text": "Ah, a broken nil. Rather elegant, from here."
+ },
+ "marguerite.spades.nil_failed.partner.1": {
+  "key": "e527c3ba58a5f784310b60a2d1e17f292bab8893a9888b0063ee98f12b402740",
+  "text": "Don't fret. Variance, my dear. Pure variance."
+ },
+ "marguerite.spades.nil_failed.partner.2": {
+  "key": "276c5b473b788809bc1cf7df791ecd7e70e5b12e419287dd517186a204d88d04",
+  "text": "Unlucky, partner. The math was sound."
+ },
+ "marguerite.spades.nil_failed.self.1": {
+  "key": "c29ab958a74d20a7b2f76f330ab2d6056e6551626b87f17881cbb56fd180fd41",
+  "text": "Ah. I appear to have taken a trick. How improbable."
+ },
+ "marguerite.spades.nil_failed.self.2": {
+  "key": "b4bbd134e45848d2fd6363b8b05a3751bf0fcd561d1dd7ab2d36eff5eaf9bd22",
+  "text": "There goes my nil. I blame my glasses. Where are they?"
+ },
+ "marguerite.spades.nil_made.opponent.1": {
+  "key": "879958ce66ceec637ec0b62dba312a34bad6d87a6ef5ec2e3f01fec4fd181f5d",
+  "text": "Their nil held. Statistically irritating."
+ },
+ "marguerite.spades.nil_made.partner.1": {
+  "key": "3cba5557cfc4e611c2c2b26f31db2eed8d8098b77cb99487f956950ab3285644",
+  "text": "Bravo! A flawless nil. I'd give that an A-plus."
+ },
+ "marguerite.spades.nil_made.partner.2": {
+  "key": "7cba521e1c493239d29d6fa8381f2d72f88ce1216296b70e0b0b7f1bcd2a7bef",
+  "text": "Magnificent nil, partner. Textbook."
+ },
+ "marguerite.spades.nil_made.self.1": {
+  "key": "b7e2cac594bb9a1962d65c5e91f9cf38c1390833f36b97c47d3a75b8d5cbec95",
+  "text": "Zero tricks! Exactly as predicted. Within error bars."
+ },
+ "marguerite.spades.nil_made.self.2": {
+  "key": "164467e4b09ba3defb820d68ca47a3421f50111dcdef8d070adf3f182cc52b5e",
+  "text": "A successful nil. I'll be writing a paper."
+ },
+ "marguerite.spades.set.them.1": {
+  "key": "a6202e0956e9dfcd576ee1e5851f7829aa464e438bb41cf1af8bdaa88e525161",
+  "text": "Set! Their estimate was optimistic."
+ },
+ "marguerite.spades.set.them.2": {
+  "key": "dc791236747dbc6f39af6f73d5109adb374199b755751a34df4c04f7bc556d75",
+  "text": "You were set. A useful lesson in overconfidence."
+ },
+ "marguerite.spades.set.us.1": {
+  "key": "a5bde1c6bdbfb63f1490f117afbde478f35cbc4ccb8038c863fcf4d08995d200",
+  "text": "We were set. I must have carried a one somewhere."
+ },
+ "marguerite.spades.set.us.2": {
+  "key": "2406eb4b8c3d832f3d44e3f7f1319818be39b69dce807862d60f05ed47b72cc0",
+  "text": "Hmm. Our bid exceeded our evidence."
+ },
+ "marguerite.spades.trumped.partner.1": {
+  "key": "09cbf939f59c7328fc36bbf6155c08e879a025ff1a43c6661ba2d19e6e4e946f",
+  "text": "Excellent ruff, partner!"
+ },
+ "marguerite.spades.trumped.partner.2": {
+  "key": "82f8dcc2b15dd1eb72f17d6362c6e88ed8b9e644f03837402d022c3afb698d39",
+  "text": "Lovely trump. Very well reasoned."
+ },
+ "marguerite.spades.trumped.self.1": {
+  "key": "c6eb21e0cca5bce46acbd9366f27632b28417aa8f36cc1eed739827528d6bb8e",
+  "text": "A spade! Trump is simply applied probability."
+ },
+ "marguerite.spades.trumped.self.2": {
+  "key": "ef2859e969eacd8e05353a244f97967530108d42da647c2bb68b7431c528e2eb",
+  "text": "Ruffed! Oh, I do love that word."
  },
  "reginald.game.start.1": {
   "key": "f6c7151df31ad53329c450de8518c42bed91f32c2ffc1b296913b258120262e2",
@@ -966,5 +1486,109 @@
  "reginald.idle.human.2": {
   "key": "681d921850a81b77df4675895755bd395ab2c6e8087cfa838950ceeb3e79a69e",
   "text": "Ahem. The Fairweathers are a patient people. Until now."
+ },
+ "reginald.spades.bags.them.1": {
+  "key": "9657ee24f87c3c26d20610c8015edd95de8fcc53324ed8eb34e4b07a736cecb7",
+  "text": "Too many bags. Common. Very common."
+ },
+ "reginald.spades.bags.us.1": {
+  "key": "aebf32065b6207be5707d236494e297e412c0164fed25d8a29e5b0cf12d9e754",
+  "text": "A bag penalty? Fairweathers do not carry bags. We have people for that."
+ },
+ "reginald.spades.bags.us.2": {
+  "key": "61ac9618e7075ac581c3018acc282f800bdfb19e94cf12e5c830b988764831f3",
+  "text": "One hundred points for bags! Preposterous!"
+ },
+ "reginald.spades.bid_nil.partner.1": {
+  "key": "2de5ade6fa47d5fc2a0f5202528ac86feb84ab6ea04a08a33a362a39d4d2bd99",
+  "text": "Nil? Very well. I shall carry this partnership. As usual."
+ },
+ "reginald.spades.bid_nil.partner.2": {
+  "key": "6bd9cc71d4a9a74329340bb31a3f5baecf799d1bcf60e5e4317a24f7a6cc7875",
+  "text": "A nil! Splendid. Leave the heavy lifting to the gentry."
+ },
+ "reginald.spades.bid_nil.self.1": {
+  "key": "470fba391e20e46ff04e51a65f949e87963b110cb244b5bdd78c2209b3f0e37e",
+  "text": "Nil. A Fairweather needs no tricks. We have breeding."
+ },
+ "reginald.spades.bid_nil.self.2": {
+  "key": "fe89d677725e01ba1e15456569056060e2857a184c58bb1b15fb1488ff13ab4f",
+  "text": "I bid nil. Modesty is a family tradition. A recent one."
+ },
+ "reginald.spades.nil_failed.opponent.1": {
+  "key": "6b522cacd8cfb4b8ce81c0e7a5c5e43fb5adfa8f0d4623803c211afcadced21c",
+  "text": "Your nil is broken. How terribly sad. Ha!"
+ },
+ "reginald.spades.nil_failed.opponent.2": {
+  "key": "71e9785edd0f9a05136756c9490bc2978f7880963f6cafc7541be03542cdfaf0",
+  "text": "Ah, a broken nil. Delightful. For me."
+ },
+ "reginald.spades.nil_failed.partner.1": {
+  "key": "081f46ea66e7cd83adc7657e1d7e81fb5550bcf68732b10a503202802ef3fe44",
+  "text": "Chin up. We Fairweathers never sulk. Publicly."
+ },
+ "reginald.spades.nil_failed.partner.2": {
+  "key": "a3a36099fe27b9a80944a0ca53d0076fa234863b41939994f09b9b0dbd717cff",
+  "text": "A broken nil. We shall speak no more of it."
+ },
+ "reginald.spades.nil_failed.self.1": {
+  "key": "6834a59d0968141ffc56008abc56b54a30005b395cc133042af20dcb2e7cdc4b",
+  "text": "Outrageous! That trick was forced upon me!"
+ },
+ "reginald.spades.nil_failed.self.2": {
+  "key": "6daa7af5628ea98caa20472bd97722a7e670fd3e1aa987297b32db4206fca952",
+  "text": "My nil, broken? My ancestors are spinning."
+ },
+ "reginald.spades.nil_made.opponent.1": {
+  "key": "c0b8146eea731b6741c77f16e9b70bc461f0206c5d7b2b1189cfdb16cb623782",
+  "text": "Hmph. Their nil held. Most irregular."
+ },
+ "reginald.spades.nil_made.partner.1": {
+  "key": "436c1a58a1c9bd96e2883792d454aadcb7e474235beadc7f7082af77ddb0c27b",
+  "text": "Bravo, partner! Almost Fairweather-like."
+ },
+ "reginald.spades.nil_made.partner.2": {
+  "key": "e41a3f19dab077c14e2befeaf4ceb481e68f973c32c3e6ce94cc5217703a331a",
+  "text": "A perfect nil. I may mention you in my memoirs."
+ },
+ "reginald.spades.nil_made.self.1": {
+  "key": "608cee91c145cc629783e7cca7600a9ff879eb553e5496f1b3fa149b9642ad0a",
+  "text": "Not a single trick. Impeccable restraint, as befits my lineage."
+ },
+ "reginald.spades.nil_made.self.2": {
+  "key": "683c0dda361b93fc4b040d6e237de3ad4db17728f5a6ccd7b84217bbdfdc276b",
+  "text": "A flawless nil. Fetch the family crest!"
+ },
+ "reginald.spades.set.them.1": {
+  "key": "5b464b745bc430f80b70e86fb453dee28d1b4199a38c8d1f4bdb4e761aaf6259",
+  "text": "Set! Know your limits, I always say."
+ },
+ "reginald.spades.set.them.2": {
+  "key": "a4344a2963d6a7b106152c69ac0ee26e2b8e38056ed32891efbad104977b7930",
+  "text": "Your contract has failed. Splendid. Simply splendid."
+ },
+ "reginald.spades.set.us.1": {
+  "key": "cffc03fc94643ab36bcda5adf2545261252faa406c8a67443033b1675a554f6a",
+  "text": "Set? This is an outrage! An absolute outrage!"
+ },
+ "reginald.spades.set.us.2": {
+  "key": "3accff7385ef11db66a990b84f38f541d95199a120bac9c68316fc1e3ab8da62",
+  "text": "We were set. I shall be writing a strongly worded letter."
+ },
+ "reginald.spades.trumped.partner.1": {
+  "key": "8aa7b62e4eceafd97831bf3de07cfc204f3f2028a0db38f1a700fd5e4c3e1d4d",
+  "text": "Well trumped, partner. Quite right."
+ },
+ "reginald.spades.trumped.partner.2": {
+  "key": "9b88fa5a41fb26bafe9d6093e3ea8c7908b9328fdfe87b4aa2404eddd72485e0",
+  "text": "A fine spade! You're learning from me."
+ },
+ "reginald.spades.trumped.self.1": {
+  "key": "9dbd17e0348b80fffb4a4279f2a09be2c511b558dbe7d11968e0aec062a2d508",
+  "text": "Trumped. With a spade, naturally. The aristocrat of suits."
+ },
+ "reginald.spades.trumped.self.2": {
+  "key": "a3c467f731582375f9ba0de9f93cd477be22570989146ab5a3ee30cc01d3ecb8",
+  "text": "A spade, if you please. Rank has its privileges."
  }
 }

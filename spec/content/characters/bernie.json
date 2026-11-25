@@ -226,6 +226,138 @@
         "id": "bernie.hearts.pass.received.2",
         "text": "Ooh, what did you send me? Oh. Oh, sugar, no."
       }
+    ],
+    "spades.bid_nil.self": [
+      {
+        "id": "bernie.spades.bid_nil.self.1",
+        "text": "Nil for me, hon. I'm on my break."
+      },
+      {
+        "id": "bernie.spades.bid_nil.self.2",
+        "text": "Goin' nil! Darlene says I can't do it. Watch me."
+      }
+    ],
+    "spades.bid_nil.partner": [
+      {
+        "id": "bernie.spades.bid_nil.partner.1",
+        "text": "Nil? Ooh, brave! Don't worry, sugar, I've got you."
+      },
+      {
+        "id": "bernie.spades.bid_nil.partner.2",
+        "text": "Okay hon, you sit pretty. I'll take the tricks."
+      }
+    ],
+    "spades.nil_made.self": [
+      {
+        "id": "bernie.spades.nil_made.self.1",
+        "text": "Not one trick! Wait'll I tell Darlene!"
+      },
+      {
+        "id": "bernie.spades.nil_made.self.2",
+        "text": "Order up! One perfect nil!"
+      }
+    ],
+    "spades.nil_made.partner": [
+      {
+        "id": "bernie.spades.nil_made.partner.1",
+        "text": "You did it, hon! Pie's on me!"
+      },
+      {
+        "id": "bernie.spades.nil_made.partner.2",
+        "text": "Look at you, sugar! A perfect nil!"
+      }
+    ],
+    "spades.nil_made.opponent": [
+      {
+        "id": "bernie.spades.nil_made.opponent.1",
+        "text": "Well, good for you, hon. Credit where it's due."
+      }
+    ],
+    "spades.nil_failed.self": [
+      {
+        "id": "bernie.spades.nil_failed.self.1",
+        "text": "Oops! Took a trick. Like dropping a full tray."
+      },
+      {
+        "id": "bernie.spades.nil_failed.self.2",
+        "text": "There goes my nil. Darlene's gonna laugh."
+      }
+    ],
+    "spades.nil_failed.partner": [
+      {
+        "id": "bernie.spades.nil_failed.partner.1",
+        "text": "Aw, sugar. Don't you worry about it."
+      },
+      {
+        "id": "bernie.spades.nil_failed.partner.2",
+        "text": "Happens to the best of us, hon. Happens to Darlene weekly."
+      }
+    ],
+    "spades.nil_failed.opponent": [
+      {
+        "id": "bernie.spades.nil_failed.opponent.1",
+        "text": "Ooh, there goes your nil, hon! Sorry! Not sorry!"
+      },
+      {
+        "id": "bernie.spades.nil_failed.opponent.2",
+        "text": "Nil's broken! Sending that one back to the kitchen."
+      }
+    ],
+    "spades.set.us": [
+      {
+        "id": "bernie.spades.set.us.1",
+        "text": "We got set, hon. Like a Monday double shift."
+      },
+      {
+        "id": "bernie.spades.set.us.2",
+        "text": "Oof. That went over like cold coffee."
+      }
+    ],
+    "spades.set.them": [
+      {
+        "id": "bernie.spades.set.them.1",
+        "text": "You got set, hon! Want some pie to feel better?"
+      },
+      {
+        "id": "bernie.spades.set.them.2",
+        "text": "Set! Bless your hearts."
+      }
+    ],
+    "spades.bags.us": [
+      {
+        "id": "bernie.spades.bags.us.1",
+        "text": "Too many bags! I'm a waitress, not a grocery store!"
+      },
+      {
+        "id": "bernie.spades.bags.us.2",
+        "text": "A bag penalty. Darlene does that every game."
+      }
+    ],
+    "spades.bags.them": [
+      {
+        "id": "bernie.spades.bags.them.1",
+        "text": "Ooh, too many bags, sugar. That'll cost ya."
+      }
+    ],
+    "spades.trumped.self": [
+      {
+        "id": "bernie.spades.trumped.self.1",
+        "text": "Spade! Comin' through, hot plate!"
+      },
+      {
+        "id": "bernie.spades.trumped.self.2",
+        "text": "Trumped it, hon! Order up!"
+      }
+    ],
+    "spades.trumped.partner": [
+      {
+        "id": "bernie.spades.trumped.partner.1",
+        "text": "Ooh, nice spade, sugar!"
+      },
+      {
+        "id": "bernie.spades.trumped.partner.2",
+        "text": "That's my partner! Big tip for you!"
+      }
     ]
   }
 }

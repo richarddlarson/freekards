@@ -222,6 +222,138 @@
         "id": "reginald.hearts.pass.received.2",
         "text": "How kind. I shall have these framed. Or burned."
       }
+    ],
+    "spades.bid_nil.self": [
+      {
+        "id": "reginald.spades.bid_nil.self.1",
+        "text": "Nil. A Fairweather needs no tricks. We have breeding."
+      },
+      {
+        "id": "reginald.spades.bid_nil.self.2",
+        "text": "I bid nil. Modesty is a family tradition. A recent one."
+      }
+    ],
+    "spades.bid_nil.partner": [
+      {
+        "id": "reginald.spades.bid_nil.partner.1",
+        "text": "Nil? Very well. I shall carry this partnership. As usual."
+      },
+      {
+        "id": "reginald.spades.bid_nil.partner.2",
+        "text": "A nil! Splendid. Leave the heavy lifting to the gentry."
+      }
+    ],
+    "spades.nil_made.self": [
+      {
+        "id": "reginald.spades.nil_made.self.1",
+        "text": "Not a single trick. Impeccable restraint, as befits my lineage."
+      },
+      {
+        "id": "reginald.spades.nil_made.self.2",
+        "text": "A flawless nil. Fetch the family crest!"
+      }
+    ],
+    "spades.nil_made.partner": [
+      {
+        "id": "reginald.spades.nil_made.partner.1",
+        "text": "Bravo, partner! Almost Fairweather-like."
+      },
+      {
+        "id": "reginald.spades.nil_made.partner.2",
+        "text": "A perfect nil. I may mention you in my memoirs."
+      }
+    ],
+    "spades.nil_made.opponent": [
+      {
+        "id": "reginald.spades.nil_made.opponent.1",
+        "text": "Hmph. Their nil held. Most irregular."
+      }
+    ],
+    "spades.nil_failed.self": [
+      {
+        "id": "reginald.spades.nil_failed.self.1",
+        "text": "Outrageous! That trick was forced upon me!"
+      },
+      {
+        "id": "reginald.spades.nil_failed.self.2",
+        "text": "My nil, broken? My ancestors are spinning."
+      }
+    ],
+    "spades.nil_failed.partner": [
+      {
+        "id": "reginald.spades.nil_failed.partner.1",
+        "text": "Chin up. We Fairweathers never sulk. Publicly."
+      },
+      {
+        "id": "reginald.spades.nil_failed.partner.2",
+        "text": "A broken nil. We shall speak no more of it."
+      }
+    ],
+    "spades.nil_failed.opponent": [
+      {
+        "id": "reginald.spades.nil_failed.opponent.1",
+        "text": "Your nil is broken. How terribly sad. Ha!"
+      },
+      {
+        "id": "reginald.spades.nil_failed.opponent.2",
+        "text": "Ah, a broken nil. Delightful. For me."
+      }
+    ],
+    "spades.set.us": [
+      {
+        "id": "reginald.spades.set.us.1",
+        "text": "Set? This is an outrage! An absolute outrage!"
+      },
+      {
+        "id": "reginald.spades.set.us.2",
+        "text": "We were set. I shall be writing a strongly worded letter."
+      }
+    ],
+    "spades.set.them": [
+      {
+        "id": "reginald.spades.set.them.1",
+        "text": "Set! Know your limits, I always say."
+      },
+      {
+        "id": "reginald.spades.set.them.2",
+        "text": "Your contract has failed. Splendid. Simply splendid."
+      }
+    ],
+    "spades.bags.us": [
+      {
+        "id": "reginald.spades.bags.us.1",
+        "text": "A bag penalty? Fairweathers do not carry bags. We have people for that."
+      },
+      {
+        "id": "reginald.spades.bags.us.2",
+        "text": "One hundred points for bags! Preposterous!"
+      }
+    ],
+    "spades.bags.them": [
+      {
+        "id": "reginald.spades.bags.them.1",
+        "text": "Too many bags. Common. Very common."
+      }
+    ],
+    "spades.trumped.self": [
+      {
+        "id": "reginald.spades.trumped.self.1",
+        "text": "Trumped. With a spade, naturally. The aristocrat of suits."
+      },
+      {
+        "id": "reginald.spades.trumped.self.2",
+        "text": "A spade, if you please. Rank has its privileges."
+      }
+    ],
+    "spades.trumped.partner": [
+      {
+        "id": "reginald.spades.trumped.partner.1",
+        "text": "Well trumped, partner. Quite right."
+      },
+      {
+        "id": "reginald.spades.trumped.partner.2",
+        "text": "A fine spade! You're learning from me."
+      }
     ]
   }
 }

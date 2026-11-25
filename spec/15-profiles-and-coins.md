@@ -26,10 +26,18 @@ and spending are later parts of R-001.
   across launches.
 
 ## 2. Statistics
-Hearts statistics per profile; only **finished** games count (abandoned games are not recorded):
-games played, games won, finishes by place (1st–4th), current and best win streak, best and worst
-final score, hands played, moons shot, Queens of Spades taken, and KardCoins earned in Hearts.
-Place is standard competition ranking on final score (lower is better; ties share the better place).
+Statistics per profile and game; only **finished** games count (abandoned games are not recorded).
+- **Hearts:** games played, games won, finishes by place (1st–4th), current and best win streak,
+  best and worst final score, hands played, moons shot, Queens of Spades taken, and KardCoins earned
+  in Hearts. Place is standard competition ranking on final score (lower is better; ties share the
+  better place).
+- **Spades** (D-073): games played, games won (by the player's team), current and best win streak,
+  best final team score, hands played, contracts made out of contracts bid (the player's team, hands
+  where its contract was above 0), the player's own Nils made out of Nils bid, and KardCoins earned
+  in Spades.
+- A profile also stores the **Spades preferences**: difficulty, game length (300 or 500), and the
+  partner, West, and East character ids (or Random). Profiles saved before Spades get empty Spades
+  statistics and default preferences (Medium, 300, Random) when loaded.
 
 ## 3. KardCoins (D-050)
 - **Welcome bonus:** 500 KardCoins when a profile is created.
@@ -42,8 +50,11 @@ Place is standard competition ranking on final score (lower is better; ties shar
   | 3rd | 15 | 15 | 23 | 30 |
   | 4th | 5 | 5 | 8 | 10 |
   Plus **+25 per moon the player shot** in that game (not multiplied).
+- **Spades payout** (D-073): **80** for a win or **10** for a loss, × the same difficulty multiplier
+  (Easy 80/10, Medium 120/15, Hard 160/20), plus **+25 per Nil the player made** (not multiplied).
+  The breakdown reads, e.g., "Won: 80 × 1.5 (Medium) · Nil bonus +25".
 - Every change to the balance adds a history entry (time, amount, reason such as
-  "Hearts: 2nd place (Medium) + 1 moon").
+  "Hearts: 2nd place (Medium) + 1 moon" or "Spades: won (Medium) + 1 Nil").
 - **Game-over award:** below the final standings, a box shows the coin icon and "+N KardCoins",
   counting up from 0 over 1.2 s (ease-out cubic) with the `coins.award` sound (chip stack). Under it is
   the breakdown, e.g. "2nd place: 40 × 1.5 (Medium) · Moon bonus +25", and the new balance.
