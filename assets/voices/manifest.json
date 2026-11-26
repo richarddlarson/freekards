@@ -31,6 +31,70 @@
   "key": "43f077ae38eb57a5348f61bc58408b99897adbbedcfde429adb4696ed420f8c5",
   "text": "I won! Wait'll I tell Darlene. She's gonna be so jealous."
  },
+ "bernie.gin.dead_hand.1": {
+  "key": "b0580d536ac370ce41ed7479decb744b8b28fcc4fe320025333357757ef3db3b",
+  "text": "Nobody wins, hon. Like a slow Tuesday."
+ },
+ "bernie.gin.dead_hand.2": {
+  "key": "483d25c468253286f135c6279a02271d25ba8a245a42ae4eb359eaa81fc010dc",
+  "text": "A dead hand. Let's call it a coffee break."
+ },
+ "bernie.gin.gin.human.1": {
+  "key": "758ab91a1689db3f004bf232d1a214b39ca098dfe9091c4d61c71066ce668380",
+  "text": "Gin! Look at you, sugar! Pie's on the house."
+ },
+ "bernie.gin.gin.human.2": {
+  "key": "c99e383c04269c99d89f9d01c349e8cfe3adbe027bf3f28113b74c8074fcfa40",
+  "text": "Gin?! Hon, you're a natural."
+ },
+ "bernie.gin.gin.self.1": {
+  "key": "bc5a1e55b42f09f941429ea5b852e82ab5abe2f3cbea2522e35bab712d0c88ed",
+  "text": "Gin, hon! Order up!"
+ },
+ "bernie.gin.gin.self.2": {
+  "key": "9e085c6aef5e35bbfd6a14bf29e966c4961d85c534d8693921750432bbff15c9",
+  "text": "Gin! My cousin Darlene would be so proud. Or jealous."
+ },
+ "bernie.gin.knock.human.1": {
+  "key": "4fc302a6ba761c275562bcc5cc5e5a50a26cdda5f530b53574ad61da5cf0d39f",
+  "text": "Knockin' already, hon? Let's see the check."
+ },
+ "bernie.gin.knock.human.2": {
+  "key": "85cfbb9d96fdbe1a90654be029d495284a01c4b5c4525cbc8478a5020e799bc2",
+  "text": "Ooh, a knock. Let's see what you cooked up."
+ },
+ "bernie.gin.knock.self.1": {
+  "key": "7376894d471e8afb095814356faaad44ac64b47a65d146611da9e746e241c94a",
+  "text": "I'm knockin', hon. Like the health inspector."
+ },
+ "bernie.gin.knock.self.2": {
+  "key": "ebcf8b3bd93b160c9ceb6315ee56a12c1d30b8d21c3c2c6fb7882e0d52f023df",
+  "text": "Knock knock! Kitchen's closing!"
+ },
+ "bernie.gin.took_discard.human.1": {
+  "key": "6879e9d50eb3ea5c9254b513e05bed139a618a7361fb1354196911eaa88fed7a",
+  "text": "Oh, you wanted that one? It's all yours, sugar."
+ },
+ "bernie.gin.took_discard.human.2": {
+  "key": "bf503de560cbef32d6101b24705c456e43588c4fe3c984c4ef14fd86996e6b7a",
+  "text": "Takin' my leftovers, hon? There's plenty."
+ },
+ "bernie.gin.undercut.human.1": {
+  "key": "29b71863e7f8a836dc4f842ba636d2cfdf1b1052a5cbf45b4c6913184950dcb6",
+  "text": "Undercut! You got me good, sugar."
+ },
+ "bernie.gin.undercut.human.2": {
+  "key": "c523998942cfc5ad23e0e17ada51efd435d0cb1ae2e2ce4a3db4b495cc6f868a",
+  "text": "Oof. Sent back to the kitchen."
+ },
+ "bernie.gin.undercut.self.1": {
+  "key": "90808ba8be71cb7a5706801a07f443b7e8e4a3cabd0e1308d96e2dbfef0d8194",
+  "text": "Undercut, hon! Sorry, not sorry."
+ },
+ "bernie.gin.undercut.self.2": {
+  "key": "2218dde025dd55e03944386058884c3c8ad3e12eae7cf72dc6b4f4219c0670e0",
+  "text": "Ha! Darlene taught me that one. She cheats, but still."
+ },
  "bernie.hand.bad.human.1": {
   "key": "a698fc6f5e6a465ba2a7df2180286801aa85784a2a64309e0c2515055a050007",
   "text": "Aw, sugar. Happens to the best of us. Happens to Darlene a lot."
@@ -150,6 +214,78 @@
  "bernie.idle.human.2": {
   "key": "dc0b53418b827a8e853884400cc342ab8fd86968450231eeef1a1b8c31130c12",
   "text": "No rush, sugar. Want me to top off your coffee?"
+ },
+ "bernie.rummy.big_meld.human.1": {
+  "key": "d28f281423e58806291336b8c07b45a954aed00ceb93142d04b0985fa1bd7fca",
+  "text": "Ooh, look at that meld, sugar!"
+ },
+ "bernie.rummy.big_meld.human.2": {
+  "key": "e2eae10200b8acc7aced1141b0d3db81e8aa70437cf42dc1a75b7edf8c9a4b54",
+  "text": "Now that's a full order, hon!"
+ },
+ "bernie.rummy.big_meld.self.1": {
+  "key": "87a66817ab9a4fa1383d69f515b8f12f50b7b31d1ac082ae5190a65f28d93812",
+  "text": "Look at that, hon! Blue plate special!"
+ },
+ "bernie.rummy.big_meld.self.2": {
+  "key": "5b48232ebf8921a9cb2dd0b245741b146b2f5ffb3145104118e9fbd3e5c97394",
+  "text": "That's a big one! Like Darlene's hair in '88."
+ },
+ "bernie.rummy.caught.human.1": {
+  "key": "d1b8eaf2010c098aa000e0a8fa7ed30aed7afaa56f69350ac34fd208dc76573e",
+  "text": "Oof, caught with a full hand, sugar."
+ },
+ "bernie.rummy.caught.human.2": {
+  "key": "9287296890a1d7e2199896d875f5aec61bdf481be9d58f60c56ab34c4515038b",
+  "text": "That's a heavy tray, hon. Happens to everybody."
+ },
+ "bernie.rummy.caught.self.1": {
+  "key": "89b4d59e13c3824862332cbdad9a7f135fd0fc33f121e4aac78f7ded50c9e909",
+  "text": "Caught with a full tray, hon. Story of my life."
+ },
+ "bernie.rummy.caught.self.2": {
+  "key": "d4608ec121c45bd2fbb81a81a050c30d7a5fa7b4779cfc98bbceee93af213a56",
+  "text": "All these cards! I'm holdin' more than the lunch rush."
+ },
+ "bernie.rummy.layoff.human.1": {
+  "key": "2621d071f3797a825970836d1c1ceb2e22c065b42403cb0d812ca79289195ca2",
+  "text": "Sure, hon, add it to my meld. Make yourself at home."
+ },
+ "bernie.rummy.layoff.human.2": {
+  "key": "2910abb4d8810a80eaf4f94cb951d0ae54cffd70857ba02369fe132d288ea87e",
+  "text": "Puttin' your card on my meld? That's family-style."
+ },
+ "bernie.rummy.took_pile.human.1": {
+  "key": "67b397bec3ce881f9fc2bf25fe19ea140a675ef0b2dadb129879aa98aff428d7",
+  "text": "The whole pile, hon? Somebody's hungry!"
+ },
+ "bernie.rummy.took_pile.human.2": {
+  "key": "d5171e3a8419a32f2390ca5d7a33d25e3c6faf04cb580998913335927d078e8b",
+  "text": "Takin' it all! Darlene does that at buffets."
+ },
+ "bernie.rummy.took_pile.self.1": {
+  "key": "cbf050743f64c2cf996a9a55dbcc595293b8779387aa65ec824d713cfa589f1e",
+  "text": "I'll take the whole pile, hon. Family size."
+ },
+ "bernie.rummy.took_pile.self.2": {
+  "key": "1921d26df13d095d4669de1da62a770ab9a0e4cdadecbb517e0b7e27b0c065f4",
+  "text": "Gimme all of it. I've carried twelve plates at once."
+ },
+ "bernie.rummy.went_out.human.1": {
+  "key": "14bf708950b5b5a065778a7e107ac3ab9616d67495ab8caa75dcf295da9e2376",
+  "text": "You're out already, hon? I barely wiped the counter."
+ },
+ "bernie.rummy.went_out.human.2": {
+  "key": "54db97bd3ca1233a13cc66bce3906f4383b7267453b2d716bab7f96b15401d33",
+  "text": "Look at you, out already! Somebody get this one a pie."
+ },
+ "bernie.rummy.went_out.self.1": {
+  "key": "bee7dbdf93db438ef446c84367cf628b54e8967099785d02b9e5204b9177149b",
+  "text": "I'm out, hon! Shift's over!"
+ },
+ "bernie.rummy.went_out.self.2": {
+  "key": "346d632a1ef5b781a5d8fc667b09ab3d4855786dc92dbeb62bd32358d09c441c",
+  "text": "Out! Clockin' out early, sweetie."
  },
  "bernie.spades.bags.them.1": {
   "key": "022af8e57c19f10ed5e69ebde6628095969d6c1233ad453f92f9427598adf4ea",
@@ -295,6 +431,70 @@
   "key": "24adfad3d94badf12e21e637762738fc64796f990b29361ff5335d279f9c66fc",
   "text": "I'd like to thank my smoothie."
  },
+ "chad.gin.dead_hand.1": {
+  "key": "1985d0f98f07290c39cd49a9957140c1997ea9e2a82fcb72b241e5e3d140a7c5",
+  "text": "A dead hand. A tie. Basically a win for both of us!"
+ },
+ "chad.gin.dead_hand.2": {
+  "key": "e8abc8230f471a1f3a06a3f37caa5984c17449941fbeecd3348bfd865964c215",
+  "text": "Nobody won. That's just a rest day, people."
+ },
+ "chad.gin.gin.human.1": {
+  "key": "22d2f2b727f4fdaebd5a43b39a14ca8d71c61f3106e57a4407132a9f9418abf6",
+  "text": "Gin?! Okay. Respect. Huge respect. I'm fine."
+ },
+ "chad.gin.gin.human.2": {
+  "key": "91c8f368626a3c53330e7e9cc851b1a118161b309c404e04c637afd56759a656",
+  "text": "Wow. Gin. You're coaching ME now."
+ },
+ "chad.gin.gin.self.1": {
+  "key": "2ceed8e6694b168e77a1ca26f240098ebbb8b8fca65bc5655c5c48dd6cb60215",
+  "text": "GIN! And the crowd goes WILD!"
+ },
+ "chad.gin.gin.self.2": {
+  "key": "bf433e275fb91daf4497cec0c4eaa59055b596f5b43a772c058f19676f7e8566",
+  "text": "Gin! That's called execution, people!"
+ },
+ "chad.gin.knock.human.1": {
+  "key": "1ac0b7f2dc43e5aa48466a8301a833b39a1dfe26bf8868dc7aefefad3c8de4c4",
+  "text": "Bold move! I love the energy!"
+ },
+ "chad.gin.knock.human.2": {
+  "key": "5f183b3ad3226f3e52152024ed40442eeed3a76457d629df37096d668f04f41a",
+  "text": "A knock! Let's see the tape on this one."
+ },
+ "chad.gin.knock.self.1": {
+  "key": "13e67b8c51f44efb19cc856ca768ed087fc1c19cf943f207e4f715d26c57af7d",
+  "text": "Knocking! Calculated risk! Mostly calculated!"
+ },
+ "chad.gin.knock.self.2": {
+  "key": "c954bf5db9c47f18f56c4b1f4175e7da40c570ba2ef41db7474d00e874bdb190",
+  "text": "Knock knock! Who's there? VICTORY."
+ },
+ "chad.gin.took_discard.human.1": {
+  "key": "166d29cb22fb461240c6dc6561be14f131cabc326db0179fabc8b4e70a3a0ccf",
+  "text": "You want my discard? Smart! I taught you that!"
+ },
+ "chad.gin.took_discard.human.2": {
+  "key": "600c3b369a77fc100f61a31cc794923c5a587feea930297b06170a5dce501d34",
+  "text": "Taking my card! That's called scouting the competition!"
+ },
+ "chad.gin.undercut.human.1": {
+  "key": "bcc4ce69990ffd9e0d0b6ace0e952a64168684404ce139c2e056e27765c3831b",
+  "text": "Undercut. That's fine. That's a learning moment."
+ },
+ "chad.gin.undercut.human.2": {
+  "key": "fcbcb1840966044a0309dc641cfa625a8fbd64c8c2bc7869ad41fc6670115212",
+  "text": "Ooh, the knock backfired. Nobody saw that coming. Especially me."
+ },
+ "chad.gin.undercut.self.1": {
+  "key": "e7ee2295ffe1059c7275b5e6d3bb6896977836fd8c9536767499ffc641ad66fc",
+  "text": "UNDERCUT! Comeback of the season!"
+ },
+ "chad.gin.undercut.self.2": {
+  "key": "0052071345ce6a850fa98692996cbc0e5b83181f472c4383eb77a5b8b4436d24",
+  "text": "Undercut! That's what we call a reversal, folks!"
+ },
  "chad.hand.bad.human.1": {
   "key": "0d24b0d79e8ed325deb161aaae13440cfde49d7658d0c308b4f4b5c346e37cdc",
   "text": "Shake it off! Next hand is a fresh rep!"
@@ -414,6 +614,78 @@
  "chad.idle.human.2": {
   "key": "dda009c60573aab3cdf60ec66307d04b1d76992f6c085254a14daf2475a3fd96",
   "text": "Deep breaths. Visualize the card. Become the card."
+ },
+ "chad.rummy.big_meld.human.1": {
+  "key": "ad2bb6ef1fcce80360372506e0816314f7f73b27355b7ec400dd2cc178f8a40e",
+  "text": "Big meld! Big energy! I respect it!"
+ },
+ "chad.rummy.big_meld.human.2": {
+  "key": "c1e367e76887f10d1feb8a45829fea15f0955801fb8bd395edbc3c6014ed0587",
+  "text": "Whoa! That's a highlight right there!"
+ },
+ "chad.rummy.big_meld.self.1": {
+  "key": "da3ea55a770b2a71379be129928d658a354ada8091756f96054ba5a95cfdc40e",
+  "text": "Look at that meld! Highlight reel!"
+ },
+ "chad.rummy.big_meld.self.2": {
+  "key": "17ad65c5798ebf0c165b39c955f68fa5ce90522c08f73e874325c517fbd64b7b",
+  "text": "BOOM. That's a power move."
+ },
+ "chad.rummy.caught.human.1": {
+  "key": "27a4b9a719d3d5ee2deacb4c694780acab5151478fe642bad898a49ee8596a67",
+  "text": "Caught with cards! Happens to the best. Mostly to me."
+ },
+ "chad.rummy.caught.human.2": {
+  "key": "faac1869a10807d54e7a8ce41310ab71c1c0ac15f933e9832142566ea267cdb1",
+  "text": "Tough break! Shake it off, champ!"
+ },
+ "chad.rummy.caught.self.1": {
+  "key": "03ee41f93f209c9a55e4b3d1910a1aa25ce1e5b1afc18984766ed4c209160179",
+  "text": "Caught holding cards. Totally part of the plan."
+ },
+ "chad.rummy.caught.self.2": {
+  "key": "fafdb299c60552257aaafb5a2bcbd33a4950fd8eb939ceb7c0d7984eefa39f82",
+  "text": "All these points in my hand. That's just potential energy."
+ },
+ "chad.rummy.layoff.human.1": {
+  "key": "e1a5a71ab6f852bba391aca381735d3f097fbd1b243a96d714f8b84693380567",
+  "text": "Using my meld? Teamwork! Kind of!"
+ },
+ "chad.rummy.layoff.human.2": {
+  "key": "44205ed32c1ab6b5ad0f66367fc4b50e15fb555c265e7456c084cda22247b064",
+  "text": "Hey, that's my play! ...Great assist though."
+ },
+ "chad.rummy.took_pile.human.1": {
+  "key": "9fe7443e0f3ef53696ac828cc09129688067b38ac5648f909729dc942588a2f6",
+  "text": "The whole pile? Now THAT is commitment!"
+ },
+ "chad.rummy.took_pile.human.2": {
+  "key": "662e92a2d33215fbecd38455b9ae514b5d78955c093973f0e5e43d68420777bb",
+  "text": "Taking everything! I love the ambition!"
+ },
+ "chad.rummy.took_pile.self.1": {
+  "key": "6a0c152b21691ae1892fdda44f68739c1b5ca203df3d4334cc26f44251d43b30",
+  "text": "I'm taking the WHOLE pile! Go big or go home!"
+ },
+ "chad.rummy.took_pile.self.2": {
+  "key": "04312a38764f385509cd4c7d452985eec6071771e0163492bbf94f3fe0cf47d4",
+  "text": "All of it! I'm bulking!"
+ },
+ "chad.rummy.went_out.human.1": {
+  "key": "2f850d5b9b6c61e7f5e9279684e6e382d57e68252e0d89f5362ee794183004dd",
+  "text": "You're out?! I wasn't done strategizing!"
+ },
+ "chad.rummy.went_out.human.2": {
+  "key": "47e16a4ccc2510407cee6088fcbcc99b7acf403bb10752e26acc10de8457d751",
+  "text": "Wow, out already. I'm calling a timeout. Retroactively."
+ },
+ "chad.rummy.went_out.self.1": {
+  "key": "bad9d441f22e2eb8b0cd3528895c9de106dc8f26f1db5a51105ad6bfcf87dea3",
+  "text": "I'm OUT! Touchdown! Spike the cards!"
+ },
+ "chad.rummy.went_out.self.2": {
+  "key": "cc1f0e0360a49cfbaca650501c0198db081055f27d26caa645185606c4ac60b9",
+  "text": "Out! Clock management, baby!"
  },
  "chad.spades.bags.them.1": {
   "key": "01fd5f914841f5d0a7a51079966c7ef2e98d5f945ad32f31312cfa5b9e8649a6",
@@ -559,6 +831,70 @@
   "key": "da4c63378d6bbedcc5f9ab3bde5bdc3b9629bbea55e2a45f52c9ff7033171908",
   "text": "Grandma's still got it, sweeties."
  },
+ "dot.gin.dead_hand.1": {
+  "key": "dabeb1e9c7aafb83f13aa7f3c38f59175bec64ae000c563df54416cda0e95e1a",
+  "text": "Nobody won? Well, more time for tea."
+ },
+ "dot.gin.dead_hand.2": {
+  "key": "fe718a79f49b9a77f21c15043199183df116faf4af9c5912bd78fc1c984cbc95",
+  "text": "A draw. How very polite of us both."
+ },
+ "dot.gin.gin.human.1": {
+  "key": "3a15d6bcec1a9c6947d2b7d38c0b312176b069cd7cb454f248b99263476949c9",
+  "text": "Gin! Good for you, sweetheart. Grandma's watching now."
+ },
+ "dot.gin.gin.human.2": {
+  "key": "fe221bccecf50c8d51e2746264f652998f592a4cad58f3b6f7f1df601e28cb8a",
+  "text": "Oh my. Well done, dear. Have a lemon bar."
+ },
+ "dot.gin.gin.self.1": {
+  "key": "772f0eda55bbb712ffcccd8c08655eca6687b953d48535a924cf6198a7d755ca",
+  "text": "Gin! Oh, isn't that nice? For me, I mean."
+ },
+ "dot.gin.gin.self.2": {
+  "key": "c510c58b6218d17fa153b3ec324533d142cf18ff5133a4b941a5dde40b2061cf",
+  "text": "All tidy, like a basket of yarn. Gin, dear."
+ },
+ "dot.gin.knock.human.1": {
+  "key": "ddd4a96dab0d11c5d1374841104acfae86ff7eb4af63a7276c603d31db292f2c",
+  "text": "Oh! Knocking already? Let's have a look."
+ },
+ "dot.gin.knock.human.2": {
+  "key": "a0e8050f152bac90bb0c9a5933e4c6748984e7af37cf1d523642f5a815b617ca",
+  "text": "Goodness, you're quick today."
+ },
+ "dot.gin.knock.self.1": {
+  "key": "e24972ef08c5811371026644ac011ccfcb58b356d822b809f9ba2c72ce9af5b2",
+  "text": "I think I'll knock now, dear. Just a little tap."
+ },
+ "dot.gin.knock.self.2": {
+  "key": "3787e4c36d86ce7ee10d7a29fe703c4ef30061c0ff70278dd5133626965744e9",
+  "text": "Knock knock! Don't worry, it won't hurt. Much."
+ },
+ "dot.gin.took_discard.human.1": {
+  "key": "6b993826e6fe243cfca9b8f3d92122519fec54a78218e1d01d42cd1bcfa7dc0b",
+  "text": "Oh, you wanted that? You only had to ask, dear."
+ },
+ "dot.gin.took_discard.human.2": {
+  "key": "602be159f56983942aae2dba1c835cfcdcdeff1731b783cfc939fe926bc241ac",
+  "text": "Picking up Grandma's leftovers? Help yourself."
+ },
+ "dot.gin.undercut.human.1": {
+  "key": "56d433a32b2314ff463edf90af3b853b638465eaa2f955aedc50b4c818332eca",
+  "text": "Undercut! Well, aren't you clever. I'll remember that."
+ },
+ "dot.gin.undercut.human.2": {
+  "key": "bd9e4d061b1bfd76af9710d201e1aed1329c455ee20d5dffb8a755a612113668",
+  "text": "Oh my. You got me fair and square. This time."
+ },
+ "dot.gin.undercut.self.1": {
+  "key": "7e6b5be3f8a358680a0121bf8432bae42201d42c4bc9ff50684e204724baf694",
+  "text": "Oh dear, I undercut you. Was that rude? It felt lovely."
+ },
+ "dot.gin.undercut.self.2": {
+  "key": "b7b5e97e30f485e0c9823ec1afd0dbcafb36fcef1587a2521ba9930f1b921aae",
+  "text": "Grandma had a few low cards tucked away. Undercut!"
+ },
  "dot.hand.bad.human.1": {
   "key": "56ad46ac185b9ca06b56900631b803ba346e71e2fc5319c90ced14058536444a",
   "text": "Oh, bless your heart."
@@ -686,6 +1022,78 @@
  "dot.idle.human.2": {
   "key": "3f88f10111474272c0cc4cbbb53fe6f28ccaf2f1daea8bf4de9e4faefea8c815",
   "text": "No rush, sweetheart. I've got a scarf to finish."
+ },
+ "dot.rummy.big_meld.human.1": {
+  "key": "9c09aaad5a98f556bf0c64ceb6cbc1dced321538ee23a623a96d8d3cf102513a",
+  "text": "Oh, that's a lovely meld, dear."
+ },
+ "dot.rummy.big_meld.human.2": {
+  "key": "a4fccc0b6fe76e16ef222cdb9b7bd8fabbeb56b13532049141e6ba087c7217d0",
+  "text": "My goodness, look at all those. Very nice."
+ },
+ "dot.rummy.big_meld.self.1": {
+  "key": "37c191e7774670ef50ea9d82a4a9530d18a32335db83d76e5d2800849cf1091e",
+  "text": "Look at that. Neat as a sweater."
+ },
+ "dot.rummy.big_meld.self.2": {
+  "key": "03de1775055a2cf642b2bffe8c12ab9d26e834febd28a0a53a2b809e072cefbe",
+  "text": "A lovely big meld. I knit it myself."
+ },
+ "dot.rummy.caught.human.1": {
+  "key": "5c373c49b6720bfbffca27683ce7a1134153475762cdac2bd227722d23d60270",
+  "text": "Oh, sweetheart, that's a lot of cards to be holding."
+ },
+ "dot.rummy.caught.human.2": {
+  "key": "cdb7266a01d18fe4d733836b2aacb2e0967ea53c2244cf0125bbc1e68635c506",
+  "text": "Caught with your hands full. It happens to the best of us."
+ },
+ "dot.rummy.caught.self.1": {
+  "key": "6a86b1ddcfa9052a75dd80f50d4d4ba4421c63b4391c32e94b5819590347e922",
+  "text": "Oh dear. I was holding onto those for a reason."
+ },
+ "dot.rummy.caught.self.2": {
+  "key": "fcaa6210a0ff473d3fca411dbf45f2e8abe6bc360e179009322c5965de1f1919",
+  "text": "Caught with all these cards. How embarrassing."
+ },
+ "dot.rummy.layoff.human.1": {
+  "key": "4c96873a5b4349396dd8b3dd1924653f5eee2655cc09979deb34960ca4db3d80",
+  "text": "Oh, adding to Grandma's meld? How thoughtful."
+ },
+ "dot.rummy.layoff.human.2": {
+  "key": "663c3beaffe8f7af6a155370ed24dc030ee9b413d1d307edd059a2aa83054693",
+  "text": "You're welcome to my cards, dear. This once."
+ },
+ "dot.rummy.took_pile.human.1": {
+  "key": "e756df6d6efe97270e2d68a45f19e9ef197e186253bc4717d2d2e157a802cc9b",
+  "text": "My, that's quite a handful, dear."
+ },
+ "dot.rummy.took_pile.human.2": {
+  "key": "6c3f391177756e0c313ead003ff5b609eea01822e02db84e9534266aa4f440af",
+  "text": "Taking the whole pile? Very bold. I approve."
+ },
+ "dot.rummy.took_pile.self.1": {
+  "key": "707c67ef7d64fa0a93d3346fffeb19cf81fbdeed73f4a41abf8f569f493f10c7",
+  "text": "I'll just take all of these, if nobody minds."
+ },
+ "dot.rummy.took_pile.self.2": {
+  "key": "b980d0a80d12aab38a6a89fd8b68a97c014bac0aea89e0963be77410475f6701",
+  "text": "The whole pile? Oh, why not. Grandma likes a project."
+ },
+ "dot.rummy.went_out.human.1": {
+  "key": "a2dfda8133ffe0685e2db2fef733cd6869d43413c480d2949b68518c75f4f019",
+  "text": "You're out already? My, my."
+ },
+ "dot.rummy.went_out.human.2": {
+  "key": "d396af4270f700c9f1673a058b57cbf389a23ecce304148690cecf7ce93c5056",
+  "text": "Oh, well played, dear. Grandma wasn't quite ready."
+ },
+ "dot.rummy.went_out.self.1": {
+  "key": "abc5f553e13b9783e7ad3e972267057cada7cb22e7c96f437b769316c4d96319",
+  "text": "I'm all out, dear. Like my good yarn."
+ },
+ "dot.rummy.went_out.self.2": {
+  "key": "66fe5e93e5a0490f4f3296349524cc78c2c3d6b95ba0426314d8d4d12be1982f",
+  "text": "Out! Sorry, sweetheart. Not very sorry."
  },
  "dot.spades.bags.them.1": {
   "key": "f2ff1d70757c2320e7c18299b7b54489056f10aea73f23f00a7ad37df8382eb9",
@@ -835,6 +1243,70 @@
   "key": "23856ea2d2803a35ad9909d594fcbe4d7a6c68b6991b27a01d6aca81c0efd6e0",
   "text": "Don't get used to this. I'm not."
  },
+ "gus.gin.dead_hand.1": {
+  "key": "cb33970150d4b77cfa19d1ae3f809d8d5f5aaf480802d4f07bb1af50dc4de47c",
+  "text": "Nobody wins. Feels like most Tuesdays."
+ },
+ "gus.gin.dead_hand.2": {
+  "key": "a3d447f555b0fd2d78f8ed4c9f6cb0b89b2ca2536b4be2a7b341987615e83d0b",
+  "text": "A dead hand. Deliver it to the dead letter office."
+ },
+ "gus.gin.gin.human.1": {
+  "key": "17f48904c3d237dad7d659937ad19570404e4d6d65992c2d14b8a29fc8444298",
+  "text": "Gin? Of course it is. The deck's rigged."
+ },
+ "gus.gin.gin.human.2": {
+  "key": "193317d4cb8e2e68cc1227de9e82b8bbdcc710b53c75253b1f7b6e86356028c7",
+  "text": "Gin. I'm going to need a peppermint for this one."
+ },
+ "gus.gin.gin.self.1": {
+  "key": "2405e56e01e29bffe7c3ebb50cd71692fa00703b27ec37c5bb73476c88fee102",
+  "text": "Gin. Don't make a fuss. Okay, a small fuss."
+ },
+ "gus.gin.gin.self.2": {
+  "key": "eb205221967025cc646204f67179f2238382417ac2fc2e40725c695b0b8a3708",
+  "text": "Gin! Every card delivered to the right address."
+ },
+ "gus.gin.knock.human.1": {
+  "key": "2b22ffc4636e3bfd467a7eb41f3479daf2d5024d85230e637c5c4dda588eaeb5",
+  "text": "Knocking already? I just sat down."
+ },
+ "gus.gin.knock.human.2": {
+  "key": "b5f4c7f131de9cf690e3bee073109a2d87521f5f010191c1f1b123d446dea67b",
+  "text": "Alright, alright. Let's see what you've got."
+ },
+ "gus.gin.knock.self.1": {
+  "key": "f65e5f70d07c6c4eab30ea9f789a442b3947bb380a0fa00755644df426fcff2b",
+  "text": "Knock knock. It's the mailman."
+ },
+ "gus.gin.knock.self.2": {
+  "key": "cbb3045e41398f6fc15badc322046dae042843bd3ef2b741396d2c6741858a26",
+  "text": "I'm knocking. Brace yourself. Or don't. I'm not your boss."
+ },
+ "gus.gin.took_discard.human.1": {
+  "key": "e9f75e5b746da5ec12c58d26cb58ac18fbf2c67d1ecf3bd3146b130872dc9443",
+  "text": "Hey, I threw that away on purpose."
+ },
+ "gus.gin.took_discard.human.2": {
+  "key": "e90c873c65b4d67bb868eb330d7a3c2aee9e1bae915aedc1344b2e31e445acda",
+  "text": "Taking my junk mail? Be my guest."
+ },
+ "gus.gin.undercut.human.1": {
+  "key": "5113c1137f5f86db89f0e4e633a785dcffdce49805038f7db481321fcbd94683",
+  "text": "Undercut. By you. I need to sit down. I am sitting down."
+ },
+ "gus.gin.undercut.human.2": {
+  "key": "77103831c836c86553021ebfce9093097ec55756a85e2207fee1b14b302ea0ed",
+  "text": "Well, that backfired. Like my old mail truck."
+ },
+ "gus.gin.undercut.self.1": {
+  "key": "be58c7a47b23d714470b2c084aeec5c7b30bc43263bb4f9e1616a0fe6d46d764",
+  "text": "Undercut! Return to sender, postage due."
+ },
+ "gus.gin.undercut.self.2": {
+  "key": "7ae6f9afc2c46429c045548c0ec763dc646699bb3f616b0d61a055444c1c9b5b",
+  "text": "Thought you had me. Nobody has Gus. Except that goose."
+ },
  "gus.hand.bad.human.1": {
   "key": "31521f5b47f4289d9e910df4915182244bfdf6216e02187f6f5c459d435bf705",
   "text": "Join the club. We have jackets."
@@ -856,8 +1328,8 @@
   "text": "That hand was worse than the goose on Elm Street."
  },
  "gus.hand.good.human.1": {
-  "key": "c9620e9d1fa055085ac39f6f97432f4c4f4f264b5422c9823ec43edf57a62d4c",
-  "text": "You're making the rest of us look bad. Mostly me."
+  "key": "a14cfee8e810e7bb8f35d5cf462174b6a0ce62d1c7b1fb0d050efbacb53864a5",
+  "text": "You're making me look bad. Not that I needed the help."
  },
  "gus.hand.good.human.2": {
   "key": "3d2158c2f257abc061c47bb9d7933507e9d2b2580c25fefeb3b38c3e3533c07c",
@@ -987,6 +1459,78 @@
   "key": "e2e1076f14cded5dc065241ab32680f61a54e8c9d687481ea781f50b62a710da",
   "text": "I delivered mail faster than this. Uphill. In the snow."
  },
+ "gus.rummy.big_meld.human.1": {
+  "key": "059067bb7bbb9c09d2616e903071416cba1eb85c5d6dbca4ebd83cb2402ab1fc",
+  "text": "Showing off now, are we?"
+ },
+ "gus.rummy.big_meld.human.2": {
+  "key": "4de2472cf19081c479ffd718970b1e8d2d5985542db55023f9bbd9925b6a6f06",
+  "text": "That's a lot of cards. I'm impressed. Don't tell anyone."
+ },
+ "gus.rummy.big_meld.self.1": {
+  "key": "1798cbf7fa795f0123412873a8289e99ce88b94c7ce193cea4fb4559fb56a023",
+  "text": "Look at that. Organized. Like a mail sorter."
+ },
+ "gus.rummy.big_meld.self.2": {
+  "key": "7e1ca07727d736a4d470fd183175cc0cc549878da98e6f4151377a10349d9c19",
+  "text": "A big one. Don't tell anyone I smiled."
+ },
+ "gus.rummy.caught.human.1": {
+  "key": "fdcb4ac38a7f01495aeec81abdd59c1eb848093efbfcab1c03c0474bc5fa9fe5",
+  "text": "Caught with a full hand. Welcome to my world."
+ },
+ "gus.rummy.caught.human.2": {
+  "key": "703655d262dfb77642adde2d9fcb9a36e66fe74a6351367a584ebf4aa76b4767",
+  "text": "Ooh, that's a heavy bag to carry. Trust me, I know."
+ },
+ "gus.rummy.caught.self.1": {
+  "key": "ab2de512c8322d0001c2e5cc2478fa1da7b4e2eb443a4afc5d1199de347d73a4",
+  "text": "Caught holding the bag. Again."
+ },
+ "gus.rummy.caught.self.2": {
+  "key": "6131188dc4c5008e1fe6ddc156b8c4569ee39b8863c13428a9e530eba520ccf6",
+  "text": "All these points, stuck in my hand. Like my pension."
+ },
+ "gus.rummy.layoff.human.1": {
+  "key": "ab6d5540af6cfff6a56d3c9b012378c4f29d625e9616e5fe4846fcbe35dc31bd",
+  "text": "Sure, use my meld. Everybody does."
+ },
+ "gus.rummy.layoff.human.2": {
+  "key": "d639a786a62f18d067a97927594105355679b7ec372a2ee3e1f840f84dbba5f8",
+  "text": "Hey, that's my meld. ...Fine. Peppermint?"
+ },
+ "gus.rummy.took_pile.human.1": {
+  "key": "dd114bcea5c8d609d86aca79cee562cfe986e0b0953573a4b89e832976f85603",
+  "text": "Taking the whole pile? Hope your arms are strong."
+ },
+ "gus.rummy.took_pile.human.2": {
+  "key": "a4153602892cd9dcf65611c02b55ad02b6a2918a11a1730ef237cc0d54cf0f23",
+  "text": "That's a lot of mail. Sign here."
+ },
+ "gus.rummy.took_pile.self.1": {
+  "key": "2d380f0cc386e14230db23574fbf76896931483b8760245598f41cc8ed49435b",
+  "text": "I'll take the whole pile. Bulk mail rate."
+ },
+ "gus.rummy.took_pile.self.2": {
+  "key": "f32f956015e95b86da119f2a81aab3e3198e061f0dcb3b804a1fe12e2d8c4def",
+  "text": "Give me all of it. I've carried heavier."
+ },
+ "gus.rummy.went_out.human.1": {
+  "key": "c9ef882fd0f18ae6c3af603e4054866d9f71c2f2689efc1548fc60cabac86816",
+  "text": "Out already? I had plans for these cards."
+ },
+ "gus.rummy.went_out.human.2": {
+  "key": "89df96b58f6a3d957cc5b5600186baf530cf3724bfe869f496c17f12dd89fb49",
+  "text": "You're out. Great. I'm holding a whole mailbag here."
+ },
+ "gus.rummy.went_out.self.1": {
+  "key": "3d6a7199548bd331a15298220add56b98f7adc7e01c7a4d1a2458ffac8dd0f02",
+  "text": "I'm out. Route finished. Time for coffee."
+ },
+ "gus.rummy.went_out.self.2": {
+  "key": "3f479b7934cce772ddac6260ab989f0c552b1af4124f2b5ad0235a66a292256e",
+  "text": "Out! Thirty-one years and I still finish my route early."
+ },
  "gus.spades.bags.them.1": {
   "key": "221a38fd0dec65c8d445aa1dda5dedd60e302d0a870b0a09d773e0807c6c0e62",
   "text": "Too many bags. I know the feeling."
@@ -1092,8 +1636,8 @@
   "text": "Trumped it. Sign here, please."
  },
  "marguerite.game.start.1": {
-  "key": "9fc3824e4c6e54a085c0fa53f2b83bda57aff4b0427a75a2ffdacab98a9137c0",
-  "text": "Splendid! Four players, fifty-two cards. The possibilities are astronomical. Literally."
+  "key": "a106b3260cdbdcee30d141aa493976b51d764f5d0bfde7476caa07049576d5dc",
+  "text": "Splendid! Fifty-two cards. The possibilities are astronomical. Literally."
  },
  "marguerite.game.start.2": {
   "key": "4c9488fc7c8d7121ecb966241ea34f1bdcc3378ae31c8d5cc1d2a42253ce71ca",
@@ -1122,6 +1666,70 @@
  "marguerite.game.won.self.2": {
   "key": "694bc5af271d235afa55212c1849c2b5655c72ee54b10bd2984427c870f64d22",
   "text": "Ha! The math works! I'll be mentioning this in Monday's lecture."
+ },
+ "marguerite.gin.dead_hand.1": {
+  "key": "c21fde02513211bf0c78e0c80d895cf4b036bfdafa4d12b614aefe2420e24cbb",
+  "text": "A dead hand. Statistically, it was bound to happen."
+ },
+ "marguerite.gin.dead_hand.2": {
+  "key": "aac2830f0cdb5be8ff16fc96cce80dd8044a6b96f4468ffab0e1ba5bf7fa55a6",
+  "text": "No result. A perfectly valid null hypothesis."
+ },
+ "marguerite.gin.gin.human.1": {
+  "key": "d95c3660eb8ddadcde0425041ea6ada07f9b12a5f89d184915c0d607dc81f4ff",
+  "text": "Gin! Remarkable. I must revise my estimates."
+ },
+ "marguerite.gin.gin.human.2": {
+  "key": "f30b5a59c4f6d8c05e28e5165707f46a7743a0acd8ab589f89b4ec06c103609e",
+  "text": "Gin. Fascinating. Has anyone seen my glasses? I want a closer look."
+ },
+ "marguerite.gin.gin.self.1": {
+  "key": "5818e8331649ef446baf23e98917cee7b95bc56ef3aba53a5d0f49deb68f8bd2",
+  "text": "Gin! Ten cards, zero deadwood. Mathematically delicious."
+ },
+ "marguerite.gin.gin.self.2": {
+  "key": "2ec1ae0440376efdc932ffa7d2ad632e4fde9e440d8ed8ddf9ea521e29a6e76c",
+  "text": "Gin! The probability was low, but never zero."
+ },
+ "marguerite.gin.knock.human.1": {
+  "key": "81c6e4128c015ed6e79453f23e82b1a84f6b49baef3cf227dd93a9a63b969522",
+  "text": "A knock! Let us examine the evidence."
+ },
+ "marguerite.gin.knock.human.2": {
+  "key": "ce6e5a361e84645a89d48087d4e738b36800cdb096f3e69b8f32fcef32c2fa5e",
+  "text": "Knocking already? Your confidence interval must be narrow."
+ },
+ "marguerite.gin.knock.self.1": {
+  "key": "7f7f4ec2360aa4296d85d9e946338c4199665d04aeacfcdb8b3706a0a61e5a2b",
+  "text": "I shall knock. The expected value is favorable."
+ },
+ "marguerite.gin.knock.self.2": {
+  "key": "138338b7fa5853008e41b2d8f26791fb222381eeec2ca81d26a3177398e9e2c2",
+  "text": "Knocking now. Waiting longer would be statistically unwise."
+ },
+ "marguerite.gin.took_discard.human.1": {
+  "key": "0bf368cc35133e302878ade4089efc5548bba5109c03d3c498e8e72a4984f19f",
+  "text": "You took my discard. Noted. Carefully noted."
+ },
+ "marguerite.gin.took_discard.human.2": {
+  "key": "7c3989a7ce4f444cc3774155b920570a860418839981b4f053066378ef860e8a",
+  "text": "Interesting. That tells me something about your hand."
+ },
+ "marguerite.gin.undercut.human.1": {
+  "key": "ae9610dfffb06762c1329410db2986cd083d56be4956cdf8352d204fa13ea5ca",
+  "text": "Undercut. My model had a flaw. It was me."
+ },
+ "marguerite.gin.undercut.human.2": {
+  "key": "b595a220cb65a4049e4b2d4c66f9bfd30cc35c73cd811b56876659c403f4c312",
+  "text": "Oh dear. I carried a one somewhere. Several, apparently."
+ },
+ "marguerite.gin.undercut.self.1": {
+  "key": "e4a9cd18a7350aaa7e4f7c4097d397469d7663e6b67445334189278e87b43423",
+  "text": "Undercut! The data were on my side."
+ },
+ "marguerite.gin.undercut.self.2": {
+  "key": "f783f83607bc3110cd6d00b69db5e53c35838d36fa8f230453846506c7344e48",
+  "text": "Ah, an undercut. Low cards, high satisfaction."
  },
  "marguerite.hand.bad.human.1": {
   "key": "a5055829951044e87fc1ba06d73812a45f58b717c90d3a2e467e7e3c8657428f",
@@ -1234,6 +1842,78 @@
  "marguerite.idle.human.2": {
   "key": "52ab407d1ab0057505f3a95ec1f4ca57e05f8b125976cbe6f3444651ba405188",
   "text": "Thinking deeply, I see. I approve."
+ },
+ "marguerite.rummy.big_meld.human.1": {
+  "key": "7ebc0bb651a71279ba970fad183707f6d36f4b9533cc044ac2789a072e0369c3",
+  "text": "What a meld! I'd like to publish that."
+ },
+ "marguerite.rummy.big_meld.human.2": {
+  "key": "2eb27d0e1d5c2b5304da0208578a91d9031b51451f6fdb2f3ea67b50d927ec50",
+  "text": "Marvelous. Truly a significant result."
+ },
+ "marguerite.rummy.big_meld.self.1": {
+  "key": "50a819ed70f1be8b26add747399887c0f88d9dbf9cee873d84987328766a0938",
+  "text": "A splendid meld. Elegant, like a good equation."
+ },
+ "marguerite.rummy.big_meld.self.2": {
+  "key": "4789f1783b1346886f5ce7ef5d4f060b04cba7a58f4812ddc27e3bfcb830295e",
+  "text": "Look at that sequence! Arithmetic at its finest."
+ },
+ "marguerite.rummy.caught.human.1": {
+  "key": "253f92892e186029d818fee9eb0e7c25d5d2af49c75a5c6a67d14df0777520d4",
+  "text": "Caught with points in hand. A classic sampling error."
+ },
+ "marguerite.rummy.caught.human.2": {
+  "key": "a1bd24f1471b0426efaea0b4b5f574a8d082944e30190c7622d992424b8edb9a",
+  "text": "Oh dear, that is a heavy hand. Statistically speaking."
+ },
+ "marguerite.rummy.caught.self.1": {
+  "key": "f4032eea0085ec7b2dbff71eb04e53cd2a43c43a9e4bd4900ebc0f4d52221025",
+  "text": "Caught. I was optimizing for the long run. It ended early."
+ },
+ "marguerite.rummy.caught.self.2": {
+  "key": "25704a23e0fe877eb958acb81675bdc200c80f0f782dcfbabba16aa984e5eb57",
+  "text": "All these points. I held too many variables."
+ },
+ "marguerite.rummy.layoff.human.1": {
+  "key": "75984804049d91eab81f4ac7d56d93c02d8f43b039e4525e7c495f3fe72e3635",
+  "text": "You've extended my meld. A collaborative paper, of sorts."
+ },
+ "marguerite.rummy.layoff.human.2": {
+  "key": "d6ea624c351d5d15435fef0adfe4ee23771f67a64d6f005355e6596e29493e45",
+  "text": "Building on my work. Do cite me."
+ },
+ "marguerite.rummy.took_pile.human.1": {
+  "key": "036a4db4448ff8bda0874eff7ff972f14aaa1b1607c5af4b4cc540b30e534b80",
+  "text": "The entire pile! A bold experimental design."
+ },
+ "marguerite.rummy.took_pile.human.2": {
+  "key": "f73b126fc6e4f4578c7364b60874ec7735e76083e7d183554fcc99666579b6fd",
+  "text": "That's a great many cards. I do hope you have a plan."
+ },
+ "marguerite.rummy.took_pile.self.1": {
+  "key": "c0f0a01096c48853fec355862cdaee740e6713912a7ed18c7890001948af51f6",
+  "text": "I'll take the whole pile. More data is always better."
+ },
+ "marguerite.rummy.took_pile.self.2": {
+  "key": "87ed7ce544a65760b985b41f814798197ce7ea4c584922f46782eca1eae8402b",
+  "text": "All of it, please. A larger sample size."
+ },
+ "marguerite.rummy.went_out.human.1": {
+  "key": "134110807fe4461484206ecd480903fad29a066d28a21e6155b01134b84bcba4",
+  "text": "You're out? I hadn't finished my calculations."
+ },
+ "marguerite.rummy.went_out.human.2": {
+  "key": "3ee7944d37d6f655086003831eeb1b3ee2ca37b232e867ee76d59f3860abcc93",
+  "text": "Well done. My estimate of your hand was quite wrong."
+ },
+ "marguerite.rummy.went_out.self.1": {
+  "key": "a3d40d8184caddf07557fa9b73ed90b97ab81750eb9c193431e39ef96813fd1d",
+  "text": "I'm out! The proof is complete."
+ },
+ "marguerite.rummy.went_out.self.2": {
+  "key": "75fb80ef08199606f8fdf7855c7e97835d5a89cc22076c735dfed57ec2d4d6fd",
+  "text": "Out! Quod erat demonstrandum."
  },
  "marguerite.spades.bags.them.1": {
   "key": "ac0adc073afaf2de4fe5e69833f9ec47bae139fdf6ea785402e4aea48bb3d6fe",
@@ -1375,6 +2055,70 @@
   "key": "dc79682e54609f8038dc228941f589301b6ccb352225ac533005434490b9f5c1",
   "text": "As expected. You may all applaud now."
  },
+ "reginald.gin.dead_hand.1": {
+  "key": "988782743257f7ae730b312fb46e2ff2e26ce435042db06197a5aaee6bfeb379",
+  "text": "A draw. Tolerable, I suppose."
+ },
+ "reginald.gin.dead_hand.2": {
+  "key": "d2668b680bbbd979c210c6b7c7de9fce97ae993ffc3f4380258796abef0e33ef",
+  "text": "No winner. A diplomatic outcome."
+ },
+ "reginald.gin.gin.human.1": {
+  "key": "ee9d30101d84de350b03532c4e07eac4e75d91913d8e530431408d4fe6809ee4",
+  "text": "Gin? From you? I demand a recount."
+ },
+ "reginald.gin.gin.human.2": {
+  "key": "cf32e543b93699e2f9dd5cb41fb955aa3248eb157e8e7be51352c583829e5386",
+  "text": "Gin. Well. Even a commoner may have a lucky day."
+ },
+ "reginald.gin.gin.self.1": {
+  "key": "3ed8b311693cbeb48a8feff86e87c01a5c6852c27969d91c5c006fb546806e9e",
+  "text": "Gin. As my ancestors would have wanted."
+ },
+ "reginald.gin.gin.self.2": {
+  "key": "b487af2baad3aeca60329eafd5fba2702889b050b7fc390798e7dfb3d5636999",
+  "text": "Gin! Breeding will tell."
+ },
+ "reginald.gin.knock.human.1": {
+  "key": "9ca4086c10493e41b2f79988e87f6d2187e8cd6e2f32cadd6ba1f594d007e67f",
+  "text": "Knocking? How terribly forward of you."
+ },
+ "reginald.gin.knock.human.2": {
+  "key": "015122fc6ccb0cb1abead49141c7c5f0d34e2f4f36e34e673dff7d0afbc36ca4",
+  "text": "A knock? We shall see about that."
+ },
+ "reginald.gin.knock.self.1": {
+  "key": "f9419d0cfabd2576948f9d5aabea51a4f60b952a96aa0a88288bcc602d8c4085",
+  "text": "I shall knock. Do try to look surprised."
+ },
+ "reginald.gin.knock.self.2": {
+  "key": "ae7f408cd8ea35d2adfab6a58955b07d4d6d8cc40a6940d4c0c4c7dc4c497134",
+  "text": "A knock, delivered with aristocratic precision."
+ },
+ "reginald.gin.took_discard.human.1": {
+  "key": "17cb6795d1c322b66fd24ac3f6d3112c3ea529461830c4ff7d474f8804ff4c0c",
+  "text": "You took my discard? I was finished with that peasant card."
+ },
+ "reginald.gin.took_discard.human.2": {
+  "key": "dc63cfd6cd38d0349837ccf4d6af37f41bb1a573128f6603b84053c88e29152c",
+  "text": "Hand-me-downs. How quaint."
+ },
+ "reginald.gin.undercut.human.1": {
+  "key": "6991b4844bd637e144e8bb6a5a20ed7bcadc8e82842f2a2ba16d44cf8ede9ea3",
+  "text": "Undercut? This is an outrage! An absolute outrage!"
+ },
+ "reginald.gin.undercut.human.2": {
+  "key": "c5470e58f5023464b4447e424ee8072ae92f680719496d9211d4c85cfdaf8a68",
+  "text": "Undercut by you. I shall never speak of this."
+ },
+ "reginald.gin.undercut.self.1": {
+  "key": "e972a7cacc70798c3f17cada87d9909d83834cf2c1f17a4f2c5f0a11bb0c32cb",
+  "text": "Undercut! Rank has its privileges."
+ },
+ "reginald.gin.undercut.self.2": {
+  "key": "089cbf3e9314582d822d3a93584a1a26b1d35ff95549bc8199e46c817e955503",
+  "text": "An undercut. I believe that is what they call class."
+ },
  "reginald.hand.bad.human.1": {
   "key": "17021d6c2b87f1cfcc55a2fe1b7b8ff267ff0ae96d115bd5492e4528f6f19e16",
   "text": "Chin up. Not everyone can be a Fairweather."
@@ -1486,6 +2230,78 @@
  "reginald.idle.human.2": {
   "key": "681d921850a81b77df4675895755bd395ab2c6e8087cfa838950ceeb3e79a69e",
   "text": "Ahem. The Fairweathers are a patient people. Until now."
+ },
+ "reginald.rummy.big_meld.human.1": {
+  "key": "f5bd89a4ccdfc741c6a2567dcf629f42dc7eb82804293b11f14a645111ef116e",
+  "text": "A large meld. Rather vulgar, but effective."
+ },
+ "reginald.rummy.big_meld.human.2": {
+  "key": "9b4cff06c9587e4e93668d3a0d6625a0e59337bc5c040b08366a6410c0db7d98",
+  "text": "Hmph. Impressive. Don't let it go to your head."
+ },
+ "reginald.rummy.big_meld.self.1": {
+  "key": "cd089133f0dfd4e27007e91dd8e30ed1f844de1e6cec938fad7e109260c3736c",
+  "text": "Behold. A meld worthy of the family crest."
+ },
+ "reginald.rummy.big_meld.self.2": {
+  "key": "23ee699d1dd1248452790a0f3d18b9eba9322e5cbf9693fe8ed823913cc105e7",
+  "text": "Magnificent. Like my great-grandfather's mustache."
+ },
+ "reginald.rummy.caught.human.1": {
+  "key": "8aad03c17df7a94129d5e26770455f2e461404c7a39cfe2058d5cd0f7f85d6a7",
+  "text": "Caught holding cards. How unfortunate. For you."
+ },
+ "reginald.rummy.caught.human.2": {
+  "key": "46429ce0d9d42013c1d6f495d642574aac30eac189965ceefb11edc2080a7e45",
+  "text": "A full hand at the bell. Tsk."
+ },
+ "reginald.rummy.caught.self.1": {
+  "key": "e62536975f89b4c52221b682350f56a3ce223434378315db146fcd66ad68b438",
+  "text": "Caught with cards in hand. I was keeping them warm."
+ },
+ "reginald.rummy.caught.self.2": {
+  "key": "1908165ede75ba5d65a9955238d5c41b38eaca5d5209ebc910bec0093553a071",
+  "text": "These points are merely resting. With me."
+ },
+ "reginald.rummy.layoff.human.1": {
+  "key": "3fa53056279c6a80bbfc9dd70cafdb18df1ae8f0fcd192d7fb68d16393d3e200",
+  "text": "You've placed your card on my meld? The impertinence."
+ },
+ "reginald.rummy.layoff.human.2": {
+  "key": "11de635c5173113eb91ad69f9c587198ae4ccce9aeb8b43e84fa53b2d6c8c015",
+  "text": "That is my meld. Do wipe your feet."
+ },
+ "reginald.rummy.took_pile.human.1": {
+  "key": "72bb53747f6cf5fb6b859ab3c38c243a35ca6862a6ffd956935161dec4d31372",
+  "text": "The entire pile? How greedy. I approve."
+ },
+ "reginald.rummy.took_pile.human.2": {
+  "key": "c5c92625243fe7a572ccac490a8f50bca2c3b34cd507052cc5d7e5105855fae3",
+  "text": "Taking all those cards. Ambitious, for a commoner."
+ },
+ "reginald.rummy.took_pile.self.1": {
+  "key": "4546cb4a2bb8327017beb403cb538a6411fe6f23c90c55d397ddd528a675e538",
+  "text": "I shall take the whole pile. The estate is large."
+ },
+ "reginald.rummy.took_pile.self.2": {
+  "key": "7ecf38624aafeef6de8eb4441b8f57066203049a0bc1cc3ad994911526e5fea5",
+  "text": "All of it, please. I collect things."
+ },
+ "reginald.rummy.went_out.human.1": {
+  "key": "a72ceefb4d49dc954609bd8037f702a57da5978598d2a91dddbfe410dc2f812b",
+  "text": "Out already? How very abrupt."
+ },
+ "reginald.rummy.went_out.human.2": {
+  "key": "1f17186e2b0d6ebc2fd6e83da512b5d043a86e020688098359e2a11fbb9f2676",
+  "text": "You're out? I wasn't ready. That doesn't count."
+ },
+ "reginald.rummy.went_out.self.1": {
+  "key": "b54824bedc57c0a59aa7c1dbbb5d4e01530a2bd5b0a62176988f687a7fe2cbd5",
+  "text": "I'm out. Do clear the table, would you?"
+ },
+ "reginald.rummy.went_out.self.2": {
+  "key": "1b0f53ba288a6da73f2c3f66f782d86f37bab5d45fb383d2f33b9d3cd721a61f",
+  "text": "Out! The Fairweathers always leave early."
  },
  "reginald.spades.bags.them.1": {
   "key": "9657ee24f87c3c26d20610c8015edd95de8fcc53324ed8eb34e4b07a736cecb7",

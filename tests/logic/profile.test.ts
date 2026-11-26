@@ -123,3 +123,43 @@ describe('Spades stats and payout (D-073)', () => {
     expect(f.profiles[0]!.prefs.hearts.difficulty).toBe('hard');
   });
 });
+
+describe('Gin Rummy and Rummy 500 stats and payout (D-079)', () => {
+  it('pays win or loss × difficulty, plus a bonus per gin', async () => {
+    const { twoPlayerPayout } = await import('../../src/logic/profile/profile.js');
+    expect(twoPlayerPayout(true, 'easy').total).toBe(80);
+    expect(twoPlayerPayout(true, 'medium', 2).total).toBe(120 + 50);
+    expect(twoPlayerPayout(false, 'hard').total).toBe(20);
+  });
+
+  it('records Gin games', async () => {
+    const { recordGinGame } = await import('../../src/logic/profile/profile.js');
+    const p0 = createProfile('Ann', 'a', NOW);
+    const g = { won: true, finalTotal: 290, handsPlayed: 6, handsWon: 4, gins: 1, undercuts: 1, difficulty: 'hard' as const };
+    const r1 = recordGinGame(p0, g, NOW);
+    expect(r1.profile.stats.gin).toMatchObject({ gamesPlayed: 1, gamesWon: 1, handsWon: 4, gins: 1, undercuts: 1, bestScore: 290, coinsEarned: 185 });
+    expect(r1.profile.ledger[0]!.reason).toBe('Gin Rummy: won (Hard) + 1 gin');
+    const r2 = recordGinGame(r1.profile, { ...g, won: false, finalTotal: 80, gins: 0 }, NOW);
+    expect(r2.profile.stats.gin).toMatchObject({ gamesPlayed: 2, gamesWon: 1, currentWinStreak: 0, bestWinStreak: 1, bestScore: 290 });
+  });
+
+  it('records Rummy 500 games', async () => {
+    const { recordRummy500Game } = await import('../../src/logic/profile/profile.js');
+    const p0 = createProfile('Ann', 'a', NOW);
+    const r1 = recordRummy500Game(p0, { won: false, finalScore: 410, handsPlayed: 5, wentOut: 2, bestHand: 140, difficulty: 'medium' }, NOW);
+    expect(r1.profile.stats.rummy500).toMatchObject({ gamesPlayed: 1, gamesWon: 0, wentOut: 2, bestHand: 140, bestScore: 410, coinsEarned: 15 });
+    expect(r1.profile.ledger[0]!.reason).toBe('Rummy 500: lost (Medium)');
+    const r2 = recordRummy500Game(r1.profile, { won: true, finalScore: 520, handsPlayed: 4, wentOut: 3, bestHand: 90, difficulty: 'medium' }, NOW);
+    expect(r2.profile.stats.rummy500).toMatchObject({ gamesPlayed: 2, gamesWon: 1, bestHand: 140, bestScore: 520, currentWinStreak: 1 });
+  });
+
+  it('repairs profiles saved before these games existed', () => {
+    const p = createProfile('Old', 'o', NOW) as unknown as { stats: Record<string, unknown>; prefs: Record<string, unknown> };
+    const old = { ...p, stats: { hearts: p.stats['hearts'], spades: p.stats['spades'] }, prefs: { hearts: p.prefs['hearts'], spades: p.prefs['spades'] } };
+    const f = normalizeProfilesFile({ schemaVersion: 1, activeProfileId: 'o', profiles: [old] });
+    expect(f.profiles[0]!.stats.gin.gamesPlayed).toBe(0);
+    expect(f.profiles[0]!.stats.rummy500.bestHand).toBeNull();
+    expect(f.profiles[0]!.prefs.gin).toEqual({ difficulty: 'medium', opponent: null });
+    expect(f.profiles[0]!.prefs.rummy500).toEqual({ difficulty: 'medium', opponent: null });
+  });
+});

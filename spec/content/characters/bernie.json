@@ -358,6 +358,176 @@
         "id": "bernie.spades.trumped.partner.2",
         "text": "That's my partner! Big tip for you!"
       }
+    ],
+    "gin.gin.self": [
+      {
+        "id": "bernie.gin.gin.self.1",
+        "text": "Gin, hon! Order up!"
+      },
+      {
+        "id": "bernie.gin.gin.self.2",
+        "text": "Gin! My cousin Darlene would be so proud. Or jealous."
+      }
+    ],
+    "gin.gin.human": [
+      {
+        "id": "bernie.gin.gin.human.1",
+        "text": "Gin! Look at you, sugar! Pie's on the house."
+      },
+      {
+        "id": "bernie.gin.gin.human.2",
+        "text": "Gin?! Hon, you're a natural."
+      }
+    ],
+    "gin.knock.self": [
+      {
+        "id": "bernie.gin.knock.self.1",
+        "text": "I'm knockin', hon. Like the health inspector."
+      },
+      {
+        "id": "bernie.gin.knock.self.2",
+        "text": "Knock knock! Kitchen's closing!"
+      }
+    ],
+    "gin.knock.human": [
+      {
+        "id": "bernie.gin.knock.human.1",
+        "text": "Knockin' already, hon? Let's see the check."
+      },
+      {
+        "id": "bernie.gin.knock.human.2",
+        "text": "Ooh, a knock. Let's see what you cooked up."
+      }
+    ],
+    "gin.undercut.self": [
+      {
+        "id": "bernie.gin.undercut.self.1",
+        "text": "Undercut, hon! Sorry, not sorry."
+      },
+      {
+        "id": "bernie.gin.undercut.self.2",
+        "text": "Ha! Darlene taught me that one. She cheats, but still."
+      }
+    ],
+    "gin.undercut.human": [
+      {
+        "id": "bernie.gin.undercut.human.1",
+        "text": "Undercut! You got me good, sugar."
+      },
+      {
+        "id": "bernie.gin.undercut.human.2",
+        "text": "Oof. Sent back to the kitchen."
+      }
+    ],
+    "gin.dead_hand": [
+      {
+        "id": "bernie.gin.dead_hand.1",
+        "text": "Nobody wins, hon. Like a slow Tuesday."
+      },
+      {
+        "id": "bernie.gin.dead_hand.2",
+        "text": "A dead hand. Let's call it a coffee break."
+      }
+    ],
+    "gin.took_discard.human": [
+      {
+        "id": "bernie.gin.took_discard.human.1",
+        "text": "Oh, you wanted that one? It's all yours, sugar."
+      },
+      {
+        "id": "bernie.gin.took_discard.human.2",
+        "text": "Takin' my leftovers, hon? There's plenty."
+      }
+    ],
+    "rummy.went_out.self": [
+      {
+        "id": "bernie.rummy.went_out.self.1",
+        "text": "I'm out, hon! Shift's over!"
+      },
+      {
+        "id": "bernie.rummy.went_out.self.2",
+        "text": "Out! Clockin' out early, sweetie."
+      }
+    ],
+    "rummy.went_out.human": [
+      {
+        "id": "bernie.rummy.went_out.human.1",
+        "text": "You're out already, hon? I barely wiped the counter."
+      },
+      {
+        "id": "bernie.rummy.went_out.human.2",
+        "text": "Look at you, out already! Somebody get this one a pie."
+      }
+    ],
+    "rummy.caught.self": [
+      {
+        "id": "bernie.rummy.caught.self.1",
+        "text": "Caught with a full tray, hon. Story of my life."
+      },
+      {
+        "id": "bernie.rummy.caught.self.2",
+        "text": "All these cards! I'm holdin' more than the lunch rush."
+      }
+    ],
+    "rummy.caught.human": [
+      {
+        "id": "bernie.rummy.caught.human.1",
+        "text": "Oof, caught with a full hand, sugar."
+      },
+      {
+        "id": "bernie.rummy.caught.human.2",
+        "text": "That's a heavy tray, hon. Happens to everybody."
+      }
+    ],
+    "rummy.took_pile.self": [
+      {
+        "id": "bernie.rummy.took_pile.self.1",
+        "text": "I'll take the whole pile, hon. Family size."
+      },
+      {
+        "id": "bernie.rummy.took_pile.self.2",
+        "text": "Gimme all of it. I've carried twelve plates at once."
+      }
+    ],
+    "rummy.took_pile.human": [
+      {
+        "id": "bernie.rummy.took_pile.human.1",
+        "text": "The whole pile, hon? Somebody's hungry!"
+      },
+      {
+        "id": "bernie.rummy.took_pile.human.2",
+        "text": "Takin' it all! Darlene does that at buffets."
+      }
+    ],
+    "rummy.layoff.human": [
+      {
+        "id": "bernie.rummy.layoff.human.1",
+        "text": "Sure, hon, add it to my meld. Make yourself at home."
+      },
+      {
+        "id": "bernie.rummy.layoff.human.2",
+        "text": "Puttin' your card on my meld? That's family-style."
+      }
+    ],
+    "rummy.big_meld.self": [
+      {
+        "id": "bernie.rummy.big_meld.self.1",
+        "text": "Look at that, hon! Blue plate special!"
+      },
+      {
+        "id": "bernie.rummy.big_meld.self.2",
+        "text": "That's a big one! Like Darlene's hair in '88."
+      }
+    ],
+    "rummy.big_meld.human": [
+      {
+        "id": "bernie.rummy.big_meld.human.1",
+        "text": "Ooh, look at that meld, sugar!"
+      },
+      {
+        "id": "bernie.rummy.big_meld.human.2",
+        "text": "Now that's a full order, hon!"
+      }
     ]
   }
 }

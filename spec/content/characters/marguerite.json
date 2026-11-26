@@ -29,7 +29,7 @@
     "game.start": [
       {
         "id": "marguerite.game.start.1",
-        "text": "Splendid! Four players, fifty-two cards. The possibilities are astronomical. Literally."
+        "text": "Splendid! Fifty-two cards. The possibilities are astronomical. Literally."
       },
       {
         "id": "marguerite.game.start.2",
@@ -348,6 +348,176 @@
       {
         "id": "marguerite.spades.trumped.partner.2",
         "text": "Lovely trump. Very well reasoned."
+      }
+    ],
+    "gin.gin.self": [
+      {
+        "id": "marguerite.gin.gin.self.1",
+        "text": "Gin! Ten cards, zero deadwood. Mathematically delicious."
+      },
+      {
+        "id": "marguerite.gin.gin.self.2",
+        "text": "Gin! The probability was low, but never zero."
+      }
+    ],
+    "gin.gin.human": [
+      {
+        "id": "marguerite.gin.gin.human.1",
+        "text": "Gin! Remarkable. I must revise my estimates."
+      },
+      {
+        "id": "marguerite.gin.gin.human.2",
+        "text": "Gin. Fascinating. Has anyone seen my glasses? I want a closer look."
+      }
+    ],
+    "gin.knock.self": [
+      {
+        "id": "marguerite.gin.knock.self.1",
+        "text": "I shall knock. The expected value is favorable."
+      },
+      {
+        "id": "marguerite.gin.knock.self.2",
+        "text": "Knocking now. Waiting longer would be statistically unwise."
+      }
+    ],
+    "gin.knock.human": [
+      {
+        "id": "marguerite.gin.knock.human.1",
+        "text": "A knock! Let us examine the evidence."
+      },
+      {
+        "id": "marguerite.gin.knock.human.2",
+        "text": "Knocking already? Your confidence interval must be narrow."
+      }
+    ],
+    "gin.undercut.self": [
+      {
+        "id": "marguerite.gin.undercut.self.1",
+        "text": "Undercut! The data were on my side."
+      },
+      {
+        "id": "marguerite.gin.undercut.self.2",
+        "text": "Ah, an undercut. Low cards, high satisfaction."
+      }
+    ],
+    "gin.undercut.human": [
+      {
+        "id": "marguerite.gin.undercut.human.1",
+        "text": "Undercut. My model had a flaw. It was me."
+      },
+      {
+        "id": "marguerite.gin.undercut.human.2",
+        "text": "Oh dear. I carried a one somewhere. Several, apparently."
+      }
+    ],
+    "gin.dead_hand": [
+      {
+        "id": "marguerite.gin.dead_hand.1",
+        "text": "A dead hand. Statistically, it was bound to happen."
+      },
+      {
+        "id": "marguerite.gin.dead_hand.2",
+        "text": "No result. A perfectly valid null hypothesis."
+      }
+    ],
+    "gin.took_discard.human": [
+      {
+        "id": "marguerite.gin.took_discard.human.1",
+        "text": "You took my discard. Noted. Carefully noted."
+      },
+      {
+        "id": "marguerite.gin.took_discard.human.2",
+        "text": "Interesting. That tells me something about your hand."
+      }
+    ],
+    "rummy.went_out.self": [
+      {
+        "id": "marguerite.rummy.went_out.self.1",
+        "text": "I'm out! The proof is complete."
+      },
+      {
+        "id": "marguerite.rummy.went_out.self.2",
+        "text": "Out! Quod erat demonstrandum."
+      }
+    ],
+    "rummy.went_out.human": [
+      {
+        "id": "marguerite.rummy.went_out.human.1",
+        "text": "You're out? I hadn't finished my calculations."
+      },
+      {
+        "id": "marguerite.rummy.went_out.human.2",
+        "text": "Well done. My estimate of your hand was quite wrong."
+      }
+    ],
+    "rummy.caught.self": [
+      {
+        "id": "marguerite.rummy.caught.self.1",
+        "text": "Caught. I was optimizing for the long run. It ended early."
+      },
+      {
+        "id": "marguerite.rummy.caught.self.2",
+        "text": "All these points. I held too many variables."
+      }
+    ],
+    "rummy.caught.human": [
+      {
+        "id": "marguerite.rummy.caught.human.1",
+        "text": "Caught with points in hand. A classic sampling error."
+      },
+      {
+        "id": "marguerite.rummy.caught.human.2",
+        "text": "Oh dear, that is a heavy hand. Statistically speaking."
+      }
+    ],
+    "rummy.took_pile.self": [
+      {
+        "id": "marguerite.rummy.took_pile.self.1",
+        "text": "I'll take the whole pile. More data is always better."
+      },
+      {
+        "id": "marguerite.rummy.took_pile.self.2",
+        "text": "All of it, please. A larger sample size."
+      }
+    ],
+    "rummy.took_pile.human": [
+      {
+        "id": "marguerite.rummy.took_pile.human.1",
+        "text": "The entire pile! A bold experimental design."
+      },
+      {
+        "id": "marguerite.rummy.took_pile.human.2",
+        "text": "That's a great many cards. I do hope you have a plan."
+      }
+    ],
+    "rummy.layoff.human": [
+      {
+        "id": "marguerite.rummy.layoff.human.1",
+        "text": "You've extended my meld. A collaborative paper, of sorts."
+      },
+      {
+        "id": "marguerite.rummy.layoff.human.2",
+        "text": "Building on my work. Do cite me."
+      }
+    ],
+    "rummy.big_meld.self": [
+      {
+        "id": "marguerite.rummy.big_meld.self.1",
+        "text": "A splendid meld. Elegant, like a good equation."
+      },
+      {
+        "id": "marguerite.rummy.big_meld.self.2",
+        "text": "Look at that sequence! Arithmetic at its finest."
+      }
+    ],
+    "rummy.big_meld.human": [
+      {
+        "id": "marguerite.rummy.big_meld.human.1",
+        "text": "What a meld! I'd like to publish that."
+      },
+      {
+        "id": "marguerite.rummy.big_meld.human.2",
+        "text": "Marvelous. Truly a significant result."
       }
     ]
   }

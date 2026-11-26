@@ -1,6 +1,6 @@
 # 15 — Player Profiles, Statistics, and KardCoins (core spec, engine-neutral)
 
-Status: **[Confirmed]** first version (D-049 to D-052), covering roadmap R-001 parts 1–3. Avatars
+Status: **[Confirmed]** first version (D-049 to D-052; Spades D-073; Gin Rummy and Rummy 500 D-079), covering roadmap R-001 parts 1–3. Avatars
 and spending are later parts of R-001.
 
 ## 1. Profiles (D-049)
@@ -35,6 +35,14 @@ Statistics per profile and game; only **finished** games count (abandoned games 
   best final team score, hands played, contracts made out of contracts bid (the player's team, hands
   where its contract was above 0), the player's own Nils made out of Nils bid, and KardCoins earned
   in Spades.
+- **Gin Rummy** (D-079): games played, games won, current and best win streak, hands played, hands
+  won, gins, undercuts (the player undercutting the computer's knock), best final total in a won game
+  (with bonuses), and KardCoins earned in Gin.
+- **Rummy 500** (D-079): games played, games won, current and best win streak, hands played, hands
+  the player went out, best hand score, best final score, and KardCoins earned in Rummy 500.
+- A profile also stores the **Gin Rummy and Rummy 500 preferences** (each: difficulty and the
+  opponent's character id, or Random). Profiles saved before these games get empty statistics and
+  the defaults (Medium, Random) when loaded.
 - A profile also stores the **Spades preferences**: difficulty, game length (300 or 500), and the
   partner, West, and East character ids (or Random). Profiles saved before Spades get empty Spades
   statistics and default preferences (Medium, 300, Random) when loaded.
@@ -53,8 +61,12 @@ Statistics per profile and game; only **finished** games count (abandoned games 
 - **Spades payout** (D-073): **80** for a win or **10** for a loss, × the same difficulty multiplier
   (Easy 80/10, Medium 120/15, Hard 160/20), plus **+25 per Nil the player made** (not multiplied).
   The breakdown reads, e.g., "Won: 80 × 1.5 (Medium) · Nil bonus +25".
+- **Gin Rummy and Rummy 500 payout** (D-079): **80** for a win or **10** for a loss, × the
+  difficulty multiplier, as in Spades. Gin adds **+25 per gin the player went** (not multiplied):
+  "Won: 80 × 2 (Hard) · Gin bonus +25".
 - Every change to the balance adds a history entry (time, amount, reason such as
-  "Hearts: 2nd place (Medium) + 1 moon" or "Spades: won (Medium) + 1 Nil").
+  "Hearts: 2nd place (Medium) + 1 moon", "Spades: won (Medium) + 1 Nil", "Gin Rummy: won (Hard) + 1 gin",
+  or "Rummy 500: lost (Easy)").
 - **Game-over award:** below the final standings, a box shows the coin icon and "+N KardCoins",
   counting up from 0 over 1.2 s (ease-out cubic) with the `coins.award` sound (chip stack). Under it is
   the breakdown, e.g. "2nd place: 40 × 1.5 (Medium) · Moon bonus +25", and the new balance.
@@ -67,9 +79,11 @@ Statistics per profile and game; only **finished** games count (abandoned games 
 
 ## 4. Stats page ("My stats")
 Header: initial, name, and a **Rename** button (inline field; Enter or leaving the field saves).
-Below that is the balance in large type. Two columns follow, **Hearts** and **Spades** statistics,
-and below them, full width, **Recent KardCoins** (the 6 latest history entries: date, reason, signed
-amount in green or red). Spades shows ratios as "6 of 7" ("—" before the first one). Buttons:
+Below that is the balance in large type. Two columns follow. On the left, one game's statistics, with
+a tab per game above them: **Hearts | Spades | Rummy 500 | Gin Rummy** (D-081; the last tab shown is
+remembered while the app runs, starting with Hearts). On the right, **Recent KardCoins** (the 6 latest
+history entries: date, reason, signed amount in green or red). Ratios read "6 of 7" ("—" before the
+first one); Gin shows "Hands won" as a ratio of hands played. Buttons:
 **Delete player** (with a confirmation that names the coins that will be lost) and **Back**.
 Deleting the last profile returns to the Welcome screen.
 

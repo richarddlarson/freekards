@@ -1,5 +1,5 @@
 /** Main menu and game setup screens (spec 12 §1). */
-import type { Difficulty, dialogue, hearts } from '../logic/index.js';
+import type { Difficulty, dialogue, hearts, rules } from '../logic/index.js';
 import { CHARACTERS, portraitColors } from './content.js';
 import type { Settings } from './settings.js';
 import { soundSettingsPanel } from './sound-settings.js';
@@ -7,12 +7,13 @@ import { coinBadge, playerBadge } from './profile-screens.js';
 import type { profile } from '../logic/index.js';
 import { choiceRow, h, onTap, type Stage } from './stage.js';
 import { settingsPanel } from './settings-panel.js';
+import { openRules } from './rules-panel.js';
 
 type CharacterDef = dialogue.CharacterDef;
 
 export function showMainMenu(
   stage: Stage,
-  actions: { playHearts(): void; playSpades(): void; quit(): void; stats(): void; switchPlayer(): void; about(): void },
+  actions: { playHearts(): void; playSpades(): void; playRummy500(): void; playGin(): void; quit(): void; stats(): void; switchPlayer(): void; about(): void },
   player: profile.Profile | null,
 ): void {
   stage.clear();
@@ -35,8 +36,12 @@ export function showMainMenu(
   onTap(hearts, actions.playHearts);
   const spadesBtn = h('button', 'big-button play', 'Play Spades');
   onTap(spadesBtn, actions.playSpades);
-  list.append(hearts, spadesBtn);
-  for (const name of ['Rummy 500', 'Gin Rummy', 'Blackjack', 'Poker', 'Solitaire']) {
+  const rummy500Btn = h('button', 'big-button play', 'Play Rummy 500');
+  onTap(rummy500Btn, actions.playRummy500);
+  const ginBtn = h('button', 'big-button play', 'Play Gin Rummy');
+  onTap(ginBtn, actions.playGin);
+  list.append(hearts, spadesBtn, rummy500Btn, ginBtn);
+  for (const name of ['Blackjack', 'Poker', 'Solitaire']) {
     const b = h('button', 'big-button secondary soon');
     b.append(h('span', 'soon-name', name), h('span', 'soon-note', 'coming soon'));
     b.disabled = true;
@@ -70,6 +75,13 @@ export function portraitBadge(c: CharacterDef, className = 'portrait-face'): HTM
   const [light, dark] = portraitColors(c.id);
   face.style.background = `radial-gradient(circle at 35% 30%, ${light}, ${dark})`;
   return face;
+}
+
+/** The Rules button on a setup screen (spec 12 §10): opens that game's rules over the screen. */
+function rulesButton(screen: HTMLElement, game: rules.RulesGame): HTMLElement {
+  const b = h('button', 'big-button secondary', 'Rules');
+  onTap(b, () => openRules(screen, game));
+  return b;
 }
 
 const SEAT_LABELS = ['West', 'North', 'East'];
@@ -128,7 +140,7 @@ export function showHeartsSetup(
   onTap(start, () => {
     if (s.opponents === null || s.opponents.length === 3) actions.start(s);
   });
-  buttons.append(back, start);
+  buttons.append(back, rulesButton(screen, 'hearts'), start);
   panel.append(buttons);
 
   function refresh(): void {
@@ -203,7 +215,7 @@ export function showSpadesSetup(
   onTap(start, () => {
     if (s.players === null || s.players.length === 3) actions.start(s);
   });
-  buttons.append(back, start);
+  buttons.append(back, rulesButton(screen, 'spades'), start);
   panel.append(buttons);
 
   function refresh(): void {
@@ -217,6 +229,67 @@ export function showSpadesSetup(
     const next = SPADES_SEAT_LABELS[chosen.length];
     hint.textContent = s.players === null ? 'A random partner and opponents' : chosen.length === 3 ? 'Ready!' : `Pick your ${next === 'Partner' ? 'partner' : `${next} opponent`}`;
     start.disabled = s.players !== null && chosen.length !== 3;
+  }
+  refresh();
+  screen.append(panel);
+  stage.el.append(screen);
+}
+
+/** Setup for a 2-player game (Gin Rummy, Rummy 500; spec 18 §4.1): difficulty and one opponent (or Random). */
+export function showTwoPlayerSetup(
+  stage: Stage,
+  game: 'gin' | 'rummy500',
+  initial: profile.TwoPlayerPrefs,
+  actions: { start(s: profile.TwoPlayerPrefs): void; back(): void },
+): void {
+  stage.clear();
+  const s: profile.TwoPlayerPrefs = { ...initial };
+  const screen = h('div', 'screen setup-screen');
+  const panel = h('div', 'setup-panel');
+  panel.append(h('h2', 'setup-title', game === 'gin' ? 'Gin Rummy' : 'Rummy 500'));
+  panel.append(choiceRow<Difficulty>('Difficulty', [['easy', 'Easy'], ['medium', 'Medium'], ['hard', 'Hard']], s.difficulty, (v) => (s.difficulty = v)));
+
+  const row = h('div', 'setup-row');
+  const random = h('button', 'choice', 'Random');
+  const hint = h('span', 'setup-hint', '');
+  const head = h('div', 'opponents-head');
+  head.append(h('div', 'setup-label', 'Opponent'), random, hint);
+  const grid = h('div', 'opponent-grid');
+  const tiles = new Map<string, HTMLElement>();
+  for (const c of CHARACTERS) {
+    const tile = h('button', 'opponent-tile');
+    const text = h('div', 'opponent-text');
+    text.append(h('div', 'opponent-name', c.nickname), h('div', 'opponent-full', c.name), h('div', 'opponent-tagline', c.tagline));
+    tile.append(portraitBadge(c, 'portrait-face small'), text, h('div', 'seat-badge'));
+    onTap(tile, () => {
+      s.opponent = s.opponent === c.id ? null : c.id;
+      refresh();
+    });
+    tiles.set(c.id, tile);
+    grid.append(tile);
+  }
+  onTap(random, () => {
+    s.opponent = null;
+    refresh();
+  });
+  row.append(head, grid);
+  panel.append(row);
+
+  const buttons = h('div', 'dialog-buttons');
+  const back = h('button', 'big-button secondary', 'Back');
+  const start = h('button', 'big-button', 'Deal!');
+  onTap(back, actions.back);
+  onTap(start, () => actions.start(s));
+  buttons.append(back, rulesButton(screen, game), start);
+  panel.append(buttons);
+
+  function refresh(): void {
+    random.classList.toggle('selected', s.opponent === null);
+    for (const [id, tile] of tiles) {
+      tile.classList.toggle('selected', id === s.opponent);
+      tile.querySelector('.seat-badge')!.textContent = id === s.opponent ? 'Opponent' : '';
+    }
+    hint.textContent = s.opponent === null ? 'A random opponent' : 'Ready!';
   }
   refresh();
   screen.append(panel);

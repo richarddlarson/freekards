@@ -37,6 +37,9 @@ field's default. Profiles saved before settings existed simply get all the defau
 - **The suit groups never move**, in any game: both choices show the suits in the same
   left-to-right order. This holds for future games that rank suits as well (D-064 replaced the
   earlier rule that those games would reverse the suits too).
+- In Gin Rummy and Rummy 500 the Ace sorts low (next to the 2), and the table's **Arrange** button can
+  also show the hand grouped into melds or by rank (spec 18 §4.3). Card order still decides whether
+  each group runs low-to-high or high-to-low.
 - Under the row, a preview shows a sample hand (2♣ 9♣ K♣ 4♦ J♦ 5♠ Q♠ A♠ 3♥ 10♥) as small
   overlapping card faces (80 × 112, 44 apart) in the chosen order, drawn in the chosen deck.
 

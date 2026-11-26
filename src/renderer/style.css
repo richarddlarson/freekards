@@ -1078,9 +1078,17 @@ button:disabled {
   gap: 0 60px;
 }
 
-/* Hearts and Spades side by side; Recent KardCoins full width below. */
-.profile-columns > .stats-section:nth-child(3) {
-  grid-column: span 2;
+/* A game's statistics (one tab per game) beside Recent KardCoins (spec 15 §4). */
+.stats-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0 22px;
+}
+
+.stats-tabs .choice {
+  min-width: 0;
+  padding: 0 22px;
 }
 
 .stats-title {
@@ -1425,4 +1433,195 @@ button:disabled {
 .spades-results .total {
   font-weight: bold;
   color: #ffe98a;
+}
+
+/* ------------------------------------------------------------ Gin Rummy and Rummy 500 (spec 18 §4) */
+
+.rummy-actions {
+  position: absolute;
+  z-index: 500;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  white-space: nowrap;
+}
+
+.rummy-prompt {
+  padding: 14px 28px;
+  border-radius: 22px;
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  font-size: 28px;
+}
+
+.rummy-actions .action-button {
+  position: static;
+  transform: none;
+  min-width: 190px;
+  min-height: 72px;
+  padding: 0 28px;
+  font-size: 30px;
+}
+
+.rummy-actions .action-button.secondary {
+  background: var(--panel);
+  color: var(--text);
+  border: 2px solid var(--panel-border);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.arrange-button {
+  position: absolute;
+  z-index: 400;
+  transform: translate(-50%, -50%);
+  min-height: 52px;
+  padding: 0 18px;
+  font-size: 22px;
+  background: var(--panel);
+  white-space: nowrap;
+}
+
+/* The card picked up from below the top of a Rummy 500 discard pile, which must be used first. */
+.card.must-use {
+  box-shadow: 0 0 0 5px #ffe98a, 0 0 28px rgba(255, 220, 100, 0.9);
+}
+
+.rummy-result .dialog-note {
+  max-width: 900px;
+  margin: 0 auto 22px;
+  white-space: normal;
+}
+
+.results-small {
+  margin: 18px 0 0;
+  font-size: 24px;
+  opacity: 0.85;
+}
+
+.rummy-final .results-head {
+  text-align: right;
+}
+
+.rummy-final .total {
+  font-weight: bold;
+  color: #ffe98a;
+}
+
+/* ------------------------------------------------------------ Rules panel (spec 12 §10, D-082) */
+
+.rules-button {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+/* Speech bubbles stay hidden while the rules are open, so they never cover the text. */
+.rules-open .bubble {
+  visibility: hidden;
+}
+
+.rules-panel {
+  width: 1600px;
+  height: 1180px;
+  max-height: calc(100% - 40px);
+  display: flex;
+  flex-direction: column;
+  padding: 34px 50px 30px;
+  /* Opaque, so the table or screen behind never shows through the text. */
+  background: rgb(8, 28, 16);
+  text-align: left;
+}
+
+.rules-panel h2 {
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.rules-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 40px;
+}
+
+.rules-contents {
+  width: 360px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+}
+
+.rules-link {
+  min-height: 60px;
+  padding: 8px 20px;
+  border: none;
+  border-left: 5px solid transparent;
+  border-radius: 0 14px 14px 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 26px;
+  text-align: left;
+}
+
+.rules-link.current {
+  border-left-color: var(--brass);
+  background: rgba(217, 168, 43, 0.16);
+  color: #ffe98a;
+  font-weight: bold;
+}
+
+.rules-scroll {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 24px 0 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brass) rgba(255, 255, 255, 0.08);
+  touch-action: pan-y;
+  font-size: 28px;
+  line-height: 1.45;
+}
+
+.rules-scroll p {
+  margin: 0 0 16px;
+}
+
+.rules-scroll .rules-intro {
+  font-size: 30px;
+  font-style: italic;
+  opacity: 0.95;
+}
+
+.rules-scroll ul,
+.rules-scroll ol {
+  margin: 0 0 16px;
+  padding-left: 40px;
+}
+
+.rules-scroll li {
+  margin-bottom: 10px;
+}
+
+.rules-scroll strong {
+  color: #ffe98a;
+}
+
+.rules-section {
+  padding-top: 10px;
+  border-top: 1px solid rgba(217, 168, 43, 0.25);
+  margin-top: 14px;
+}
+
+.rules-section h3 {
+  margin: 6px 0 12px;
+  font-size: 36px;
+  color: var(--brass);
+}
+
+.rules-panel .dialog-buttons {
+  margin-top: 20px;
+  justify-content: center;
 }

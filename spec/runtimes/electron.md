@@ -61,15 +61,21 @@ src/logic/                  ENGINE-NEUTRAL game logic (spec 05, 10). No DOM/Node
   spades/types.ts           Spades state, actions, events (spec 17)
   spades/engine.ts          Rules engine and scoring (spec 17 §1–6)
   spades/ai.ts              Computer player: bid estimate, Nil, card scoring (spec 17 §7)
-  dialogue/                 Character types, dialogue director, Hearts and Spades event→trigger mappings (spec 08, D-036, D-074)
+  rummy/melds.ts            Sets, runs, lay-offs, best arrangement, Gin defender's lay-offs (spec 18 §1)
+  gin/                      Gin Rummy types, engine, computer player (spec 18 §2)
+  rummy500/                 Rummy 500 types, engine, computer player (spec 18 §3)
+  dialogue/                 Character types, dialogue director, event→trigger mappings for every game (spec 08, D-036, D-074, D-080)
   layout/hearts-table.ts    Viewport fitting, table positions, timing, Card response / Game speed tables (spec 11, 12, 16)
+  layout/rummy-table.ts     2-player table: stock, discard pile (stacked or spread), meld rows, grouped hand (spec 18 §4.2)
   settings/                 Per-player settings: types, defaults, repair (spec 16)
+  rules/rules-text.ts       Parses the rules Markdown subset into plain blocks (spec 12 §10)
   index.ts                  Public entry point
 src/main/main.cts           Electron main process
 src/main/preload.cts        Preload bridge (window.freekards)
 src/renderer/               Presentation (DOM + CSS):
   main.ts                   Screen flow and demo hashes (#setup, #settings, #about[&licenses], #hearts&seed=N&autoplay&speed=N,
-                            #spades-setup, #spades&seed=N&autoplay&speed=N[&target=500])
+                            #spades-setup, #spades&seed=N&autoplay&speed=N[&target=500], #gin-setup, #rummy500-setup,
+                            #gin&seed=N&autoplay&speed=N, #rummy500&seed=N&autoplay&speed=N)
   stage.ts                  Stage scaled to the window (spec 11 §2), DOM helpers, tap handling, choice rows
   content.ts                Loads spec/content characters and assets/themes images via import.meta.glob
   settings.ts               Device-wide preferences in localStorage (sound levels, music choice)
@@ -81,10 +87,17 @@ src/renderer/               Presentation (DOM + CSS):
   audio.ts                  Web Audio engine: channels, cues, playlist (spec 13)
   sound-settings.ts         Sound panel (sliders, Mute all)
   settings-panel.ts         Per-player Settings panel (spec 16)
-  screens.ts                Main menu, Hearts setup, and Spades setup
+  rules-panel.ts            Rules panel (spec 12 §10, D-082): bundles spec/content/rules/*.md (?raw), contents list + scrolling text
+  screens.ts                Main menu, Hearts setup, Spades setup, and the 2-player setup (Gin Rummy, Rummy 500)
   table/card-sprite.ts      One element per card, moved with the Web Animations API
-  table/trick-table.ts      Shared trick-taking table (D-072): portraits, bubbles, sprites, dealing, pointer gestures
-                            (tap, press, drag; spec 16 §3), trick play, overlays, pause menu, coin award
+  table/table-base.ts       What every table shares (D-081): portraits, bubbles, score panel, menu button, toasts,
+                            pacing and pause, idle comments, dialogs, game-over dialog with coin award, pause menu
+  table/trick-table.ts      Trick-taking table (D-072), extends TableBase: sprites, dealing, pointer gestures
+                            (tap, press, drag; spec 16 §3), trick play and collection
+  table/rummy-table.ts      2-player rummy table (spec 18 §4), extends TableBase: every card's sprite laid out from the
+                            state after each action, grouped hand with Arrange, action bar, tap and drag-to-discard
+  table/gin-table.ts        Gin Rummy table: upcard, draw, discard / knock, reveal with lay-offs, results, game over
+  table/rummy500-table.ts   Rummy 500 table: spread pile with deep pick-up, meld / lay off / discard, results, game over
   table/hearts-table.ts     Hearts table (spec 12): extends TrickTable with passing, score panel, dialogs
   table/spades-table.ts     Spades table (spec 17 §8, spec 12 §8): bidding panel, bid badges, team score panel, dialogs
   style.css                 Classic Casino styles, in logical px
@@ -94,7 +107,9 @@ scripts/build-voices.py     Voice clips: Piper synthesis → Opus, incremental (
 scripts/build-music.mjs     Music: fetch originals, verify SHA-256, encode to Opus (D-045)
 scripts/generate-icon.mjs   App icon generator → build/icon.svg (spec 07 §App icon, D-067); --drafts <dir> writes all designs
 scripts/render-icon.cjs     Renders build/icon.svg to build/icon.png (1024×1024, transparent) in an offscreen Electron window,
-                            and build/icons/<n>x<n>.png for n = 16, 24, 32, 48, 64, 128, 256, 512 (Linux)
+                            and build/icons/<n>x<n>.png for n = 16, 24, 32, 48, 64, 128, 256, 512 (Linux). The SVG is
+                            shown as a block on a page that can't scroll, so no scrollbar gets into the capture (D-083);
+                            tests/logic/app-icon.test.ts checks that the icon's border is transparent
 scripts/generate-cards.mjs  Classic Casino deck generator → assets/themes/classic-casino/decks/<deck> (D-027, D-062);
                             outlines each deck's index font from assets/fonts with opentype.js (D-060); near-zero
                             coordinates are snapped to 0 because opentype.js 2.0.0 writes values like 3.5e-15 as "NaN" (D-075).

@@ -40,6 +40,8 @@ Status key: **[Confirmed]** = stated by the owner or settled in `02-decisions.md
 - **[Confirmed]** Comments appear in speech bubbles next to the character **and** are spoken aloud.
 - **[Confirmed]** Each player has their own settings for how the game looks and responds (card order,
   card response, game speed), so the game can suit different people on one device (spec 16, D-053).
+- **[Confirmed]** Every game has a rules screen, reachable from its setup screen and from the table,
+  explaining the basic rules, the order of play, and any special rules (R-008, spec 12 §10, D-082).
 - **[Confirmed]** Sound effects for shuffling and dealing, plus other basic card sounds.
 - **[Confirmed]** A simple, upbeat background music track.
 - **[Proposed]** Separate volume controls (or mute) for music, sound effects, and character voices.

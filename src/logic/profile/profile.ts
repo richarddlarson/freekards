@@ -18,6 +18,9 @@ export const MOON_BONUS = 25;
 /** Spades payout (D-073): win or loss, × difficulty multiplier, plus a flat bonus per Nil the player made. */
 export const SPADES_RESULT_COINS = { win: 80, loss: 10 } as const;
 export const NIL_BONUS = 25;
+/** Gin Rummy and Rummy 500 payouts (D-079): win or loss × difficulty; Gin adds a bonus per gin the player went. */
+export const TWO_PLAYER_RESULT_COINS = { win: 80, loss: 10 } as const;
+export const GIN_BONUS_COINS = 25;
 
 export interface CoinEntry {
   /** ISO 8601 timestamp. */
@@ -60,6 +63,43 @@ export interface SpadesStats {
   coinsEarned: number;
 }
 
+export interface GinStats {
+  gamesPlayed: number;
+  gamesWon: number;
+  handsPlayed: number;
+  /** Hands the player won (by knocking, gin, or undercutting). */
+  handsWon: number;
+  gins: number;
+  /** Times the player undercut the computer's knock. */
+  undercuts: number;
+  /** Highest final total (with bonuses) in a game the player won, or null. */
+  bestScore: number | null;
+  currentWinStreak: number;
+  bestWinStreak: number;
+  coinsEarned: number;
+}
+
+export interface Rummy500Stats {
+  gamesPlayed: number;
+  gamesWon: number;
+  handsPlayed: number;
+  /** Hands the player ended by going out. */
+  wentOut: number;
+  /** Highest score in one hand, or null. */
+  bestHand: number | null;
+  /** Highest final score, or null. */
+  bestScore: number | null;
+  currentWinStreak: number;
+  bestWinStreak: number;
+  coinsEarned: number;
+}
+
+/** Preferences for a 2-player game: difficulty and the opponent's character id (or null for Random). */
+export interface TwoPlayerPrefs {
+  difficulty: Difficulty;
+  opponent: string | null;
+}
+
 export interface SpadesPrefs {
   difficulty: Difficulty;
   targetScore: 300 | 500;
@@ -81,8 +121,8 @@ export interface Profile {
   createdAt: string;
   coins: number;
   ledger: CoinEntry[];
-  stats: { hearts: HeartsStats; spades: SpadesStats };
-  prefs: { hearts: HeartsPrefs; spades: SpadesPrefs };
+  stats: { hearts: HeartsStats; spades: SpadesStats; gin: GinStats; rummy500: Rummy500Stats };
+  prefs: { hearts: HeartsPrefs; spades: SpadesPrefs; gin: TwoPlayerPrefs; rummy500: TwoPlayerPrefs };
   /** The player's settings (spec 16). */
   settings: PlayerSettings;
 }
@@ -129,6 +169,22 @@ export function emptySpadesStats(): SpadesStats {
 
 export const DEFAULT_SPADES_PREFS: SpadesPrefs = { difficulty: 'medium', targetScore: 300, players: null };
 
+export function emptyGinStats(): GinStats {
+  return { gamesPlayed: 0, gamesWon: 0, handsPlayed: 0, handsWon: 0, gins: 0, undercuts: 0, bestScore: null, currentWinStreak: 0, bestWinStreak: 0, coinsEarned: 0 };
+}
+
+export function emptyRummy500Stats(): Rummy500Stats {
+  return { gamesPlayed: 0, gamesWon: 0, handsPlayed: 0, wentOut: 0, bestHand: null, bestScore: null, currentWinStreak: 0, bestWinStreak: 0, coinsEarned: 0 };
+}
+
+export const DEFAULT_TWO_PLAYER_PREFS: TwoPlayerPrefs = { difficulty: 'medium', opponent: null };
+
+function normalizeTwoPlayerPrefs(raw: unknown): TwoPlayerPrefs {
+  const r = (raw && typeof raw === 'object' ? raw : {}) as Partial<TwoPlayerPrefs>;
+  const difficulty = r.difficulty === 'easy' || r.difficulty === 'medium' || r.difficulty === 'hard' ? r.difficulty : 'medium';
+  return { difficulty, opponent: typeof r.opponent === 'string' ? r.opponent : null };
+}
+
 function normalizeSpadesPrefs(raw: unknown): SpadesPrefs {
   const r = (raw && typeof raw === 'object' ? raw : {}) as Partial<SpadesPrefs>;
   const difficulty = r.difficulty === 'easy' || r.difficulty === 'medium' || r.difficulty === 'hard' ? r.difficulty : DEFAULT_SPADES_PREFS.difficulty;
@@ -158,8 +214,13 @@ export function createProfile(name: string, id: string, now: string, prefs: Hear
     createdAt: now,
     coins: 0,
     ledger: [],
-    stats: { hearts: emptyHeartsStats(), spades: emptySpadesStats() },
-    prefs: { hearts: { ...prefs, opponents: prefs.opponents ? [...prefs.opponents] : null }, spades: { ...DEFAULT_SPADES_PREFS } },
+    stats: { hearts: emptyHeartsStats(), spades: emptySpadesStats(), gin: emptyGinStats(), rummy500: emptyRummy500Stats() },
+    prefs: {
+      hearts: { ...prefs, opponents: prefs.opponents ? [...prefs.opponents] : null },
+      spades: { ...DEFAULT_SPADES_PREFS },
+      gin: { ...DEFAULT_TWO_PLAYER_PREFS },
+      rummy500: { ...DEFAULT_TWO_PLAYER_PREFS },
+    },
     settings: { ...DEFAULT_PLAYER_SETTINGS },
   };
   return addCoins(base, WELCOME_COINS, 'Welcome bonus', now);
@@ -279,6 +340,86 @@ export function recordSpadesGame(p: Profile, g: SpadesGameSummary, now: string):
   return { profile: updated, payout };
 }
 
+export interface TwoPlayerPayout {
+  won: boolean;
+  resultCoins: number;
+  multiplier: number;
+  /** Gin Rummy: 25 per gin the player went (not multiplied); 0 in Rummy 500. */
+  bonus: number;
+  total: number;
+}
+
+/** Coins for one finished Gin Rummy or Rummy 500 game (D-079). */
+export function twoPlayerPayout(won: boolean, difficulty: Difficulty, gins = 0): TwoPlayerPayout {
+  const resultCoins = won ? TWO_PLAYER_RESULT_COINS.win : TWO_PLAYER_RESULT_COINS.loss;
+  const multiplier = DIFFICULTY_MULTIPLIER[difficulty];
+  const bonus = GIN_BONUS_COINS * gins;
+  return { won, resultCoins, multiplier, bonus, total: Math.round(resultCoins * multiplier) + bonus };
+}
+
+export interface GinGameSummary {
+  won: boolean;
+  /** The player's final total, with bonuses. */
+  finalTotal: number;
+  handsPlayed: number;
+  handsWon: number;
+  gins: number;
+  undercuts: number;
+  difficulty: Difficulty;
+}
+
+/** Record a finished Gin Rummy game. Abandoned games are never recorded. */
+export function recordGinGame(p: Profile, g: GinGameSummary, now: string): { profile: Profile; payout: TwoPlayerPayout } {
+  const payout = twoPlayerPayout(g.won, g.difficulty, g.gins);
+  const s = p.stats.gin;
+  const streak = g.won ? s.currentWinStreak + 1 : 0;
+  const gin: GinStats = {
+    gamesPlayed: s.gamesPlayed + 1,
+    gamesWon: s.gamesWon + (g.won ? 1 : 0),
+    handsPlayed: s.handsPlayed + g.handsPlayed,
+    handsWon: s.handsWon + g.handsWon,
+    gins: s.gins + g.gins,
+    undercuts: s.undercuts + g.undercuts,
+    bestScore: g.won ? Math.max(s.bestScore ?? 0, g.finalTotal) : s.bestScore,
+    currentWinStreak: streak,
+    bestWinStreak: Math.max(s.bestWinStreak, streak),
+    coinsEarned: s.coinsEarned + payout.total,
+  };
+  const reason = `Gin Rummy: ${g.won ? 'won' : 'lost'} (${DIFFICULTY_NAMES[g.difficulty]})${g.gins ? ` + ${g.gins} gin${g.gins > 1 ? 's' : ''}` : ''}`;
+  return { profile: addCoins({ ...p, stats: { ...p.stats, gin } }, payout.total, reason, now), payout };
+}
+
+export interface Rummy500GameSummary {
+  won: boolean;
+  finalScore: number;
+  handsPlayed: number;
+  wentOut: number;
+  /** The player's best single-hand score this game. */
+  bestHand: number | null;
+  difficulty: Difficulty;
+}
+
+/** Record a finished Rummy 500 game. Abandoned games are never recorded. */
+export function recordRummy500Game(p: Profile, g: Rummy500GameSummary, now: string): { profile: Profile; payout: TwoPlayerPayout } {
+  const payout = twoPlayerPayout(g.won, g.difficulty);
+  const s = p.stats.rummy500;
+  const streak = g.won ? s.currentWinStreak + 1 : 0;
+  const best = (a: number | null, b: number | null): number | null => (a === null ? b : b === null ? a : Math.max(a, b));
+  const rummy500: Rummy500Stats = {
+    gamesPlayed: s.gamesPlayed + 1,
+    gamesWon: s.gamesWon + (g.won ? 1 : 0),
+    handsPlayed: s.handsPlayed + g.handsPlayed,
+    wentOut: s.wentOut + g.wentOut,
+    bestHand: best(s.bestHand, g.bestHand),
+    bestScore: best(s.bestScore, g.finalScore),
+    currentWinStreak: streak,
+    bestWinStreak: Math.max(s.bestWinStreak, streak),
+    coinsEarned: s.coinsEarned + payout.total,
+  };
+  const reason = `Rummy 500: ${g.won ? 'won' : 'lost'} (${DIFFICULTY_NAMES[g.difficulty]})`;
+  return { profile: addCoins({ ...p, stats: { ...p.stats, rummy500 } }, payout.total, reason, now), payout };
+}
+
 export function winRate(s: { gamesPlayed: number; gamesWon: number }): number | null {
   return s.gamesPlayed === 0 ? null : s.gamesWon / s.gamesPlayed;
 }
@@ -300,6 +441,8 @@ export function normalizeProfilesFile(raw: unknown): ProfilesFile {
     const ss = { ...emptySpadesStats(), ...(p.stats?.spades ?? {}) };
     const hp = { ...DEFAULT_HEARTS_PREFS, ...(p.prefs?.hearts ?? {}) };
     const sp = normalizeSpadesPrefs(p.prefs?.spades);
+    const gs = { ...emptyGinStats(), ...(p.stats?.gin ?? {}) };
+    const rs = { ...emptyRummy500Stats(), ...(p.stats?.rummy500 ?? {}) };
     profiles.push({
       schemaVersion: 1,
       id: p.id,
@@ -307,8 +450,8 @@ export function normalizeProfilesFile(raw: unknown): ProfilesFile {
       createdAt: typeof p.createdAt === 'string' ? p.createdAt : new Date(0).toISOString(),
       coins: Number.isFinite(p.coins) ? Math.max(0, Math.floor(p.coins as number)) : 0,
       ledger: Array.isArray(p.ledger) ? p.ledger.slice(0, LEDGER_MAX) : [],
-      stats: { hearts: hs, spades: ss },
-      prefs: { hearts: hp, spades: sp },
+      stats: { hearts: hs, spades: ss, gin: gs, rummy500: rs },
+      prefs: { hearts: hp, spades: sp, gin: normalizeTwoPlayerPrefs(p.prefs?.gin), rummy500: normalizeTwoPlayerPrefs(p.prefs?.rummy500) },
       settings: normalizePlayerSettings(p.settings),
     });
   }

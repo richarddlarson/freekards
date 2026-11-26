@@ -33,6 +33,7 @@ export interface SpadesAward {
 const bidText = (b: number): string => (b === 0 ? 'Nil' : `Bid ${b}`);
 
 export class SpadesTable extends TrickTable<spades.SpadesEvent> {
+  protected readonly rulesGame = 'spades' as const;
   private state: spades.SpadesState;
   private readonly ais: (spades.SpadesAiPlayer | null)[];
   private readonly badges: HTMLDivElement[] = [];

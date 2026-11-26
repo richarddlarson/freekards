@@ -35,6 +35,7 @@ const DIRECTION_TEXT: Record<hearts.PassDirection, string> = {
 const DIRECTION_ARROW: Record<hearts.PassDirection, string> = { left: '←', right: '→', across: '↑', none: '' };
 
 export class HeartsTable extends TrickTable<hearts.HeartsEvent> {
+  protected readonly rulesGame = 'hearts' as const;
   private state: hearts.HeartsState;
   private readonly ais: (hearts.HeartsAiPlayer | null)[];
   private readonly scoreCells: { hand: HTMLElement; total: HTMLElement; row: HTMLElement }[] = [];

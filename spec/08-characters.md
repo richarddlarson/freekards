@@ -80,6 +80,28 @@ The shared triggers keep their weights and mean, in Spades: `game.won.self` = th
 speaker's team scored more / less this hand, and `hand.good.human` / `hand.bad.human` the same for the
 player's team, from an opponent's side.
 
+### Gin Rummy and Rummy 500 triggers [Confirmed] (implemented, D-080)
+Both are 2-player games: the computer opponent is the only speaker, and the perspectives are
+**`self`** (the computer) and **`human`** (the player).
+
+| Trigger | Fires when | Weight |
+|---------|-----------|--------|
+| `gin.gin.self` / `.human` | `gin` | 1.0 |
+| `gin.knock.self` / `.human` | `knocked` | 0.6 |
+| `gin.undercut.self` / `.human` | `undercut`: `self` = the computer undercut the player's knock | 0.9 |
+| `gin.dead_hand` | `hand_dead` | 0.5 |
+| `gin.took_discard.human` | The player drew the computer's discard (not the opening upcard) | 0.3 |
+| `rummy.went_out.self` / `.human` | `went_out` | 0.8 |
+| `rummy.caught.self` / `.human` | `hand_scored`, for a player left holding 30 points or more | 0.8 |
+| `rummy.took_pile.self` / `.human` | `took_discard` of 3 or more cards | 0.5 |
+| `rummy.layoff.human` | The player laid off on one of the computer's melds | 0.4 |
+| `rummy.big_meld.self` / `.human` | `melded` with 4 or more cards, or worth 30 points or more | 0.4 |
+
+The shared triggers keep their weights: `game.won.self` / `.human` by the winner; `hand.good.self`
+and `hand.bad.human` when the computer won the hand (Gin) or scored more (Rummy 500), and
+`hand.good.human` and `hand.bad.self` the other way round. A dead Gin hand or an even Rummy 500 hand
+uses neither.
+
 ### Who speaks [Confirmed] (implemented, D-036)
 1. When a logic event happens, collect every computer character with lines for the matching
    trigger. A character with a `self` trigger is preferred over the others.

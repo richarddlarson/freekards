@@ -373,6 +373,176 @@
         "id": "dot.spades.trumped.partner.2",
         "text": "Ooh, nicely done. You're a natural."
       }
+    ],
+    "gin.gin.self": [
+      {
+        "id": "dot.gin.gin.self.1",
+        "text": "Gin! Oh, isn't that nice? For me, I mean."
+      },
+      {
+        "id": "dot.gin.gin.self.2",
+        "text": "All tidy, like a basket of yarn. Gin, dear."
+      }
+    ],
+    "gin.gin.human": [
+      {
+        "id": "dot.gin.gin.human.1",
+        "text": "Gin! Good for you, sweetheart. Grandma's watching now."
+      },
+      {
+        "id": "dot.gin.gin.human.2",
+        "text": "Oh my. Well done, dear. Have a lemon bar."
+      }
+    ],
+    "gin.knock.self": [
+      {
+        "id": "dot.gin.knock.self.1",
+        "text": "I think I'll knock now, dear. Just a little tap."
+      },
+      {
+        "id": "dot.gin.knock.self.2",
+        "text": "Knock knock! Don't worry, it won't hurt. Much."
+      }
+    ],
+    "gin.knock.human": [
+      {
+        "id": "dot.gin.knock.human.1",
+        "text": "Oh! Knocking already? Let's have a look."
+      },
+      {
+        "id": "dot.gin.knock.human.2",
+        "text": "Goodness, you're quick today."
+      }
+    ],
+    "gin.undercut.self": [
+      {
+        "id": "dot.gin.undercut.self.1",
+        "text": "Oh dear, I undercut you. Was that rude? It felt lovely."
+      },
+      {
+        "id": "dot.gin.undercut.self.2",
+        "text": "Grandma had a few low cards tucked away. Undercut!"
+      }
+    ],
+    "gin.undercut.human": [
+      {
+        "id": "dot.gin.undercut.human.1",
+        "text": "Undercut! Well, aren't you clever. I'll remember that."
+      },
+      {
+        "id": "dot.gin.undercut.human.2",
+        "text": "Oh my. You got me fair and square. This time."
+      }
+    ],
+    "gin.dead_hand": [
+      {
+        "id": "dot.gin.dead_hand.1",
+        "text": "Nobody won? Well, more time for tea."
+      },
+      {
+        "id": "dot.gin.dead_hand.2",
+        "text": "A draw. How very polite of us both."
+      }
+    ],
+    "gin.took_discard.human": [
+      {
+        "id": "dot.gin.took_discard.human.1",
+        "text": "Oh, you wanted that? You only had to ask, dear."
+      },
+      {
+        "id": "dot.gin.took_discard.human.2",
+        "text": "Picking up Grandma's leftovers? Help yourself."
+      }
+    ],
+    "rummy.went_out.self": [
+      {
+        "id": "dot.rummy.went_out.self.1",
+        "text": "I'm all out, dear. Like my good yarn."
+      },
+      {
+        "id": "dot.rummy.went_out.self.2",
+        "text": "Out! Sorry, sweetheart. Not very sorry."
+      }
+    ],
+    "rummy.went_out.human": [
+      {
+        "id": "dot.rummy.went_out.human.1",
+        "text": "You're out already? My, my."
+      },
+      {
+        "id": "dot.rummy.went_out.human.2",
+        "text": "Oh, well played, dear. Grandma wasn't quite ready."
+      }
+    ],
+    "rummy.caught.self": [
+      {
+        "id": "dot.rummy.caught.self.1",
+        "text": "Oh dear. I was holding onto those for a reason."
+      },
+      {
+        "id": "dot.rummy.caught.self.2",
+        "text": "Caught with all these cards. How embarrassing."
+      }
+    ],
+    "rummy.caught.human": [
+      {
+        "id": "dot.rummy.caught.human.1",
+        "text": "Oh, sweetheart, that's a lot of cards to be holding."
+      },
+      {
+        "id": "dot.rummy.caught.human.2",
+        "text": "Caught with your hands full. It happens to the best of us."
+      }
+    ],
+    "rummy.took_pile.self": [
+      {
+        "id": "dot.rummy.took_pile.self.1",
+        "text": "I'll just take all of these, if nobody minds."
+      },
+      {
+        "id": "dot.rummy.took_pile.self.2",
+        "text": "The whole pile? Oh, why not. Grandma likes a project."
+      }
+    ],
+    "rummy.took_pile.human": [
+      {
+        "id": "dot.rummy.took_pile.human.1",
+        "text": "My, that's quite a handful, dear."
+      },
+      {
+        "id": "dot.rummy.took_pile.human.2",
+        "text": "Taking the whole pile? Very bold. I approve."
+      }
+    ],
+    "rummy.layoff.human": [
+      {
+        "id": "dot.rummy.layoff.human.1",
+        "text": "Oh, adding to Grandma's meld? How thoughtful."
+      },
+      {
+        "id": "dot.rummy.layoff.human.2",
+        "text": "You're welcome to my cards, dear. This once."
+      }
+    ],
+    "rummy.big_meld.self": [
+      {
+        "id": "dot.rummy.big_meld.self.1",
+        "text": "Look at that. Neat as a sweater."
+      },
+      {
+        "id": "dot.rummy.big_meld.self.2",
+        "text": "A lovely big meld. I knit it myself."
+      }
+    ],
+    "rummy.big_meld.human": [
+      {
+        "id": "dot.rummy.big_meld.human.1",
+        "text": "Oh, that's a lovely meld, dear."
+      },
+      {
+        "id": "dot.rummy.big_meld.human.2",
+        "text": "My goodness, look at all those. Very nice."
+      }
     ]
   }
 }

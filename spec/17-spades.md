@@ -182,7 +182,7 @@ Measured on 2026-11-25 with AI-only games to 500 (300 games per row; risk 0.3/0.
 - **Setup:** Game to (300 | 500), Difficulty, and a **Partner and opponents** grid of every roster
   character. Tapping a character fills the next free seat in the order **Partner (North) → West →
   East**, and the tile's badge names that seat. **Random** picks all three at random.
-  **Back** | **Deal!**.
+  **Back** | **Rules** | **Deal!** (Rules: spec 12 §10).
 - **Bidding:** after the deal, the player's cards are face up. Each player's bid appears in a small
   badge by their name as it is made ("Bid 3", or "Nil"). On her turn, a bid panel above her hand
   shows "Your bid", the bids so far, a row of buttons **Nil, 1–13**, and a **Suggested: N** hint

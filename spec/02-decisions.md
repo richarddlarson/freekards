@@ -870,3 +870,124 @@ Template:
   formats such values as "NaN", and the browser then drops the whole rank path. The fix changed only
   those four card files.
 
+
+## D-076 — Gin Rummy rules (first version)
+- Date: 2026-11-25
+- Status: Proposed (made by the assistant at the owner's request, for him to review)
+- Decision: Standard 2-player Gin Rummy as in spec 18 §2: 10 cards each, the upcard offered first to
+  the non-dealer, knock with 10 or less deadwood, 25 for gin or an undercut, lay-offs only after a
+  plain knock, game to **100** with 25 per hand won, a 100-point game bonus, and a doubled shutout.
+  The Ace is always low. A hand is dead when a discard leaves 2 cards in the stock. The computer
+  deals first and the deal alternates. Melds, lay-offs, and the defender's best split are arranged
+  **automatically** rather than by hand. No Big Gin and no Oklahoma variant in this version.
+- Why: These are the rules in most rule books (pagat.com) and common apps. Arranging melds
+  automatically is what computer Gin usually does: it removes fiddly drag-and-drop at the reveal and
+  never costs the player points, because the arrangement is always the best one. 100 points takes
+  about 7–8 hands between Medium players, a game length close to Hearts.
+
+## D-077 — Rummy 500 rules (first version)
+- Date: 2026-11-25
+- Status: Proposed (made by the assistant at the owner's request, for him to review)
+- Decision: 2-player Rummy 500 as in spec 18 §3: 13 cards each, a spread discard pile from which any
+  card can be taken with all the cards above it (a card below the top must be used at once, in the
+  next meld or lay-off), lay-offs on either player's melds score for the one who lays off, Ace low or
+  high and worth 15, going out needs no final discard, the hand ends when the stock runs out, and the
+  game is to **500**. The computer deals first and the deal alternates. No "calling rummy" on a
+  missed lay-off, and no extra bonus for going out.
+- Why: This is the common 500 Rum (pagat.com) for two players. "Must use it at once" is the usual
+  pick-up rule, and enforcing it as "the next play" keeps a player from getting stuck with a card
+  they can no longer meld. 500 is the game's name and takes about 4 hands, so no shorter option is
+  needed. "Calling rummy" is left out because it would make the player watch for the computer's
+  mistakes and is easy to miss on a tablet.
+
+## D-078 — Gin Rummy and Rummy 500 computer players
+- Date: 2026-11-25
+- Status: Accepted (tuning expected)
+- Decision: Both AIs use the same skill roll and "memory" model as Hearts and Spades. Gin: take a
+  discard only if it joins a meld or allows a knock, knock early while the stock is deep and only
+  with very low deadwood near the end, and discard the card that leaves the least deadwood, valuing
+  live partial melds and avoiding cards the opponent seems to collect. Rummy 500: plan the most
+  points that can go down, weigh each possible pick-up against the points it would leave stuck in
+  hand, meld everything it can, and avoid discards the opponent can lay off. Rules and measurements
+  are in spec 18 §2.9 and §3.8.
+- Why: Simple, explainable heuristics that play recognizably well and scale cleanly with skill
+  (measured by simulation). Rummy 500 is luckier than Gin, so its difficulty gap is smaller.
+
+## D-079 — Gin Rummy and Rummy 500 statistics and KardCoins
+- Date: 2026-11-25
+- Status: Proposed (made by the assistant at the owner's request, for him to review)
+- Decision: Each profile keeps Gin and Rummy 500 statistics and preferences (difficulty and
+  opponent, or Random) (spec 15 §2). Both games pay **80 KardCoins for a win or 10 for a loss**, ×
+  the difficulty multiplier, like Spades; Gin adds **+25 per gin** the player went (not multiplied).
+  History reasons read "Gin Rummy: won (Medium) + 1 gin" and "Rummy 500: lost (Easy)". Profiles saved
+  before these games get empty statistics and default preferences when loaded.
+- Why: A 2-player game is won about half the time, like Spades, so the same 80/10 keeps coin earning
+  even across games. Gin is the rare, exciting moment worth a bonus, like a moon or a Nil; Rummy 500
+  has no equivalent rare event (going out happens almost every hand).
+
+## D-080 — Gin Rummy and Rummy 500 dialogue
+- Date: 2026-11-25
+- Status: Accepted
+- Decision: New triggers (spec 08 §Gin Rummy and Rummy 500 triggers): `gin.gin`, `gin.knock`,
+  `gin.undercut`, `gin.dead_hand`, `gin.took_discard`, `rummy.went_out`, `rummy.caught`,
+  `rummy.took_pile`, `rummy.layoff`, and `rummy.big_meld`, seen as `self` (the computer) or `human`.
+  All six characters got two lines for each of the 17 triggers (204 in total), voiced with their
+  existing Piper voices. Two existing lines that assumed four players were reworded and re-voiced:
+  Marguerite's opener ("Fifty-two cards…" instead of "Four players, fifty-two cards…") and one of Gus's
+  "you did well" lines ("You're making me look bad…" instead of "…the rest of us…").
+- Why: The 2-player games have their own big moments (gin, undercuts, big pick-ups, getting caught),
+  and the shared game-start, hand, and idle lines still fit a 2-player table.
+
+## D-081 — Gin Rummy and Rummy 500 screens, and a shared base for every table
+- Date: 2026-11-25
+- Status: Proposed (made by the assistant at the owner's request, for him to review)
+- Decision: The main menu has four gold play buttons in two rows: **Play Hearts | Play Spades** and
+  **Play Rummy 500 | Play Gin Rummy**; Blackjack, Poker, and Solitaire stay "coming soon". Each new game
+  has a setup screen with Difficulty and one opponent (or Random). The 2-player table (spec 18 §4) puts
+  the computer at the top, the stock and discard pile in the middle (Rummy 500's pile spread out so
+  every card shows), a meld row for each player, and the player's hand at the bottom with an
+  **Arrange** button (Melds, the default, then Suit, then Rank; the Ace sorts low). Play is by tapping
+  cards to select them and confirming with buttons in an action bar above the hand (Discard, Knock /
+  Gin!, Meld, Lay off), with a prompt saying what to do next; dragging a card to the discard pile also
+  discards it. Taking cards from deep in the Rummy 500 pile always asks for confirmation. Gin's end of
+  hand shows both hands melded and the lay-offs moving before the results. **My stats** now shows one
+  game at a time, with a tab per game, beside Recent KardCoins. Technically, everything all tables
+  share (portraits, bubbles, dialogs, pause menu, coin award) moved into one base class, which the
+  trick-taking table and the new rummy table extend.
+- Why: Two taps (select, then confirm) instead of one avoids accidental discards and knocks on a
+  tablet, where a mis-tap can't be undone, and the buttons only light up when the move is legal, which
+  teaches the rules as she plays. Showing melds automatically helps a player who is new to Gin see
+  her deadwood. Four game columns no longer fit on My stats, so it got tabs. The menu name stays
+  "Rummy 500", as in the requirements (spec 01) and the old menu.
+
+## D-082 — A Rules screen for every game
+- Date: 2026-11-25
+- Status: Proposed (asked for by the owner; the details were chosen by the assistant for him to review)
+- Decision: Every game has a **Rules** panel (spec 12 §10), opened from a round **?** button beside ☰
+  on the table, from **Rules** in the pause menu, and from a **Rules** button on the game's setup
+  screen. Opening it from the table pauses the game. The panel has a contents list of sections on the
+  left and the scrolling text on the right. The text for each game is a Markdown file in
+  `spec/content/rules/`, written in plain language for a new player: the goal, the deal, the order of
+  play as numbered steps, special rules, scoring, winning, the rules FreeKards chose where versions
+  differ (the decisions in D-008, D-070, D-076, D-077), how KardCoins are earned, and how to use the
+  table's controls. A test checks that each file has the required sections and that its numbers match
+  the engines. Every new game gets a rules file as part of being built.
+- Why: A **?** icon is the familiar sign for help and needs no reading, and keeping it on the table
+  means the rules are one tap away mid-hand, when a question actually comes up. Putting the text in
+  `spec/content` keeps it editable without touching code and keeps it part of the source of truth.
+  Explaining the house choices (for example, Gin's Ace is always low, Rummy 500 has no "Rummy!" call)
+  heads off "that's not how we play it" surprises. The engine check stops the text drifting from the
+  rules if a number is changed later.
+
+## D-083 — App icon renders without scrollbars
+- Date: 2026-11-25
+- Status: Accepted (bug fix)
+- Decision: The icon renderer (`scripts/render-icon.cjs`) shows the SVG as a block element on a page
+  with scrolling turned off, and the icons were regenerated. A test decodes `build/icon.png` and checks
+  that everything outside the tile, including the right and bottom edges, is fully transparent.
+- Why: The owner saw a thin extra line along the right and bottom of the icon in the Linux panel. The
+  SVG had been placed inline, so it sat on a line of text whose descender space made the page a few
+  pixels taller than the 1024 px window. The page then showed scrollbars, and the capture included
+  them: a light-gray strip down the right and along the bottom of `build/icon.png`. Every smaller
+  Linux size and the Windows `.ico` are made from that image, so they all carried the line.
+
