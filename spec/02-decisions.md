@@ -937,3 +937,25 @@ Template:
   "you did well" lines ("You're making me look bad…" instead of "…the rest of us…").
 - Why: The 2-player games have their own big moments (gin, undercuts, big pick-ups, getting caught),
   and the shared game-start, hand, and idle lines still fit a 2-player table.
+
+## D-081 — Gin Rummy and Rummy 500 screens, and a shared base for every table
+- Date: 2026-11-25
+- Status: Proposed (made by the assistant at the owner's request, for him to review)
+- Decision: The main menu has four gold play buttons in two rows: **Play Hearts | Play Spades** and
+  **Play Rummy 500 | Play Gin Rummy**; Blackjack, Poker, and Solitaire stay "coming soon". Each new game
+  has a setup screen with Difficulty and one opponent (or Random). The 2-player table (spec 18 §4) puts
+  the computer at the top, the stock and discard pile in the middle (Rummy 500's pile spread out so
+  every card shows), a meld row for each player, and the player's hand at the bottom with an
+  **Arrange** button (Melds, the default, then Suit, then Rank; the Ace sorts low). Play is by tapping
+  cards to select them and confirming with buttons in an action bar above the hand (Discard, Knock /
+  Gin!, Meld, Lay off), with a prompt saying what to do next; dragging a card to the discard pile also
+  discards it. Taking cards from deep in the Rummy 500 pile always asks for confirmation. Gin's end of
+  hand shows both hands melded and the lay-offs moving before the results. **My stats** now shows one
+  game at a time, with a tab per game, beside Recent KardCoins. Technically, everything all tables
+  share (portraits, bubbles, dialogs, pause menu, coin award) moved into one base class, which the
+  trick-taking table and the new rummy table extend.
+- Why: Two taps (select, then confirm) instead of one avoids accidental discards and knocks on a
+  tablet, where a mis-tap can't be undone, and the buttons only light up when the move is legal, which
+  teaches the rules as she plays. Showing melds automatically helps a player who is new to Gin see
+  her deadwood. Four game columns no longer fit on My stats, so it got tabs. The menu name stays
+  "Rummy 500", as in the requirements (spec 01) and the old menu.

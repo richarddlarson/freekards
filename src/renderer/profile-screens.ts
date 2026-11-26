@@ -128,6 +128,10 @@ function confirmDialog(parent: HTMLElement, title: string, text: string, yes: st
 }
 
 /** The player's page: name, balance, Hearts statistics, recent coin history (spec 15 §4). */
+type StatsTab = 'hearts' | 'spades' | 'rummy500' | 'gin';
+/** The game tab last shown on My stats (for this run of the app). */
+let lastStatsTab: StatsTab = 'hearts';
+
 export function showProfilePage(stage: Stage, opts: { onBack(): void; onDeletedLast(): void }): void {
   const p = activeProfile();
   if (!p) return opts.onDeletedLast();
@@ -161,41 +165,74 @@ export function showProfilePage(stage: Stage, opts: { onBack(): void; onDeletedL
   balance.append(coinIcon('large'), h('span', 'profile-coins', coinText(p.coins)), h('span', 'coin-label', 'KardCoins'));
   panel.append(head, balance);
 
-  const s = p.stats.hearts;
-  const stats = h('div', 'stats-section');
-  stats.append(h('h3', 'stats-title', 'Hearts'));
-  const grid = h('div', 'stats-grid');
-  const rows: [string, string][] = [
-    ['Games played', String(s.gamesPlayed)],
-    ['Games won', `${s.gamesWon} (${pct(profile.winRate(s))})`],
-    ['Finishes 1st · 2nd · 3rd · 4th', s.placings.join(' · ')],
-    ['Win streak (current · best)', `${s.currentWinStreak} · ${s.bestWinStreak}`],
-    ['Best · worst final score', s.bestScore === null ? '—' : `${s.bestScore} · ${s.worstScore}`],
-    ['Hands played', String(s.handsPlayed)],
-    ['Moons shot', String(s.moonsShot)],
-    ['Queens of Spades taken', String(s.queensTaken)],
-    ['KardCoins earned in Hearts', coinText(s.coinsEarned)],
-  ];
-  for (const [k, v] of rows) grid.append(h('span', 'stats-key', k), h('span', 'stats-value', v));
-  stats.append(grid);
-
-  const sp = p.stats.spades;
-  const spadesSection = h('div', 'stats-section');
-  spadesSection.append(h('h3', 'stats-title', 'Spades'));
-  const spGrid = h('div', 'stats-grid');
   const ratio = (a: number, b: number) => (b === 0 ? '—' : `${a} of ${b}`);
-  const spRows: [string, string][] = [
-    ['Games played', String(sp.gamesPlayed)],
-    ['Games won', `${sp.gamesWon} (${pct(profile.winRate(sp))})`],
-    ['Win streak (current · best)', `${sp.currentWinStreak} · ${sp.bestWinStreak}`],
-    ['Best final score', sp.bestScore === null ? '—' : String(sp.bestScore)],
-    ['Hands played', String(sp.handsPlayed)],
-    ['Contracts made', ratio(sp.contractsMade, sp.contractsBid)],
-    ['Nils made', ratio(sp.nilsMade, sp.nilsBid)],
-    ['KardCoins earned in Spades', coinText(sp.coinsEarned)],
+  const opt = (n: number | null) => (n === null ? '—' : String(n));
+  const s = p.stats.hearts;
+  const sp = p.stats.spades;
+  const g = p.stats.gin;
+  const r = p.stats.rummy500;
+  const games: [StatsTab, string, [string, string][]][] = [
+    ['hearts', 'Hearts', [
+      ['Games played', String(s.gamesPlayed)],
+      ['Games won', `${s.gamesWon} (${pct(profile.winRate(s))})`],
+      ['Finishes 1st · 2nd · 3rd · 4th', s.placings.join(' · ')],
+      ['Win streak (current · best)', `${s.currentWinStreak} · ${s.bestWinStreak}`],
+      ['Best · worst final score', s.bestScore === null ? '—' : `${s.bestScore} · ${s.worstScore}`],
+      ['Hands played', String(s.handsPlayed)],
+      ['Moons shot', String(s.moonsShot)],
+      ['Queens of Spades taken', String(s.queensTaken)],
+      ['KardCoins earned in Hearts', coinText(s.coinsEarned)],
+    ]],
+    ['spades', 'Spades', [
+      ['Games played', String(sp.gamesPlayed)],
+      ['Games won', `${sp.gamesWon} (${pct(profile.winRate(sp))})`],
+      ['Win streak (current · best)', `${sp.currentWinStreak} · ${sp.bestWinStreak}`],
+      ['Best final score', opt(sp.bestScore)],
+      ['Hands played', String(sp.handsPlayed)],
+      ['Contracts made', ratio(sp.contractsMade, sp.contractsBid)],
+      ['Nils made', ratio(sp.nilsMade, sp.nilsBid)],
+      ['KardCoins earned in Spades', coinText(sp.coinsEarned)],
+    ]],
+    ['rummy500', 'Rummy 500', [
+      ['Games played', String(r.gamesPlayed)],
+      ['Games won', `${r.gamesWon} (${pct(profile.winRate(r))})`],
+      ['Win streak (current · best)', `${r.currentWinStreak} · ${r.bestWinStreak}`],
+      ['Best final score', opt(r.bestScore)],
+      ['Best hand', opt(r.bestHand)],
+      ['Hands played', String(r.handsPlayed)],
+      ['Times you went out', String(r.wentOut)],
+      ['KardCoins earned in Rummy 500', coinText(r.coinsEarned)],
+    ]],
+    ['gin', 'Gin Rummy', [
+      ['Games played', String(g.gamesPlayed)],
+      ['Games won', `${g.gamesWon} (${pct(profile.winRate(g))})`],
+      ['Win streak (current · best)', `${g.currentWinStreak} · ${g.bestWinStreak}`],
+      ['Best winning total', opt(g.bestScore)],
+      ['Hands won', ratio(g.handsWon, g.handsPlayed)],
+      ['Gins', String(g.gins)],
+      ['Undercuts', String(g.undercuts)],
+      ['KardCoins earned in Gin Rummy', coinText(g.coinsEarned)],
+    ]],
   ];
-  for (const [k, v] of spRows) spGrid.append(h('span', 'stats-key', k), h('span', 'stats-value', v));
-  spadesSection.append(spGrid);
+  const stats = h('div', 'stats-section');
+  const tabs = h('div', 'stats-tabs');
+  const body = h('div', 'stats-body');
+  const show = (tab: StatsTab) => {
+    lastStatsTab = tab;
+    const [, , rows] = games.find((x) => x[0] === tab)!;
+    const grid = h('div', 'stats-grid');
+    for (const [k, v] of rows) grid.append(h('span', 'stats-key', k), h('span', 'stats-value', v));
+    body.replaceChildren(grid);
+    for (const b of tabs.children) b.classList.toggle('selected', (b as HTMLElement).dataset['tab'] === tab);
+  };
+  for (const [tab, title] of games) {
+    const b = h('button', 'choice', title);
+    b.dataset['tab'] = tab;
+    onTap(b, () => show(tab));
+    tabs.append(b);
+  }
+  stats.append(tabs, body);
+  show(lastStatsTab);
 
   const history = h('div', 'stats-section');
   history.append(h('h3', 'stats-title', 'Recent KardCoins'));
@@ -210,7 +247,7 @@ export function showProfilePage(stage: Stage, opts: { onBack(): void; onDeletedL
   }
   history.append(list);
   const cols = h('div', 'profile-columns');
-  cols.append(stats, spadesSection, history);
+  cols.append(stats, history);
   panel.append(cols);
 
   const row = h('div', 'dialog-buttons');

@@ -204,3 +204,95 @@ lay-off it can make on the table and on its own new melds, chaining run extensio
   Rummy 500 has more luck in it than Gin: skill 0.95 beats 0.1 in 82% of games, 0.8 beats 0.55 in
   55%, and 0.8 beats 0.3 in 69%. The simulation test checks that 100 games finish with consistent
   scoring and that a strong player wins more than 60% against a weak one.
+
+## 4. Screens (D-081)
+### 4.1 Setup
+One panel per game, titled **Gin Rummy** or **Rummy 500**: **Difficulty** (Easy | Medium | Hard), and
+**Opponent**: a **Random** button and a grid of every roster character (as on the Hearts setup).
+Tapping a character selects it (its badge reads "Opponent"); tapping it again goes back to Random.
+**Back** | **Deal!**. The choice is saved in the active profile when Deal! is pressed (spec 15 §2).
+There are no rule options in this version.
+
+### 4.2 Table layout
+Positions are logical units on the reference table (spec 11), element centers. `W`, `H` as in
+spec 12 §2; `cx = W/2`, `cy = 0.41·H`. The menu button, score panel, and portrait size are as in
+spec 12 §2. The computer's portrait sits where North's does in Hearts (cx − 330, 120), with its
+speech bubble opening to the right.
+
+| Element | Position / size |
+|---------|-----------------|
+| Computer's hand | face down, scale 0.45, along the top edge (as North in Hearts), spacing 26 (less if the fan would pass 520 wide) |
+| Stock | scale 0.75, face down, a stack that rises 1 unit every 4 cards. Gin: (cx − 125, cy). Rummy 500: (cx − 700, cy) |
+| Discard pile | Gin: a stack at (cx + 125, cy), scale 0.75, top card face up. Rummy 500: **spread** left to right from x = cx − 520, scale 0.75, spacing (1240 − card width) / (n − 1), between 24 and 58 |
+| Computer's meld row | y = 320, scale 0.55, cards in a meld 32 apart, 28 between melds, centered on cx; squeezed to fit (12 between melds, then cards down to 18 apart) |
+| Player's meld row | y = H − 540, same sizes |
+| Player's hand | face up, full size, bottom edge 40 from the bottom, centered on cx, shown in **groups** (§4.3) with an extra 34 between groups. Card spacing = (min(1560, W − 420) − card width − gaps) / (n − 1), between 40 and 80 |
+| Selected card | lifted 44 (as in Hearts) |
+| "You" nameplate | x = 120, level with the hand |
+| **Arrange** button | 92 above the "You" nameplate |
+| Action bar (prompt + buttons) | centered on cx, 52 above the top of a lifted card |
+| Toasts | (cx, cy + 140) |
+
+Every card on the table is drawn the whole hand long. After each action, every card moves to its
+place for the new state (draws, discards, melds, and lay-offs all fly there), taking 400 ms for the
+computer's moves and the player's Card response flight time for her own.
+
+### 4.3 The player's hand: Arrange
+The **Arrange** button cycles three views. The choice lasts for the current table.
+- **Melds** (the default): the best arrangement of the hand (§1), each meld as a group (sets in suit
+  order, runs in rank order), and then the deadwood as one group in suit order. In Gin, this shows the
+  player her melds and deadwood at a glance. In Rummy 500 it shows what she could put down.
+- **Suit:** one group per suit, hearts, spades, diamonds, clubs (as spec 10 §1).
+- **Rank:** one group, by rank, then suit.
+In every view the **Ace sorts low** (next to the 2), and the player's **Card order** setting
+(spec 16 §2) decides whether ranks run low-to-high or high-to-low.
+
+### 4.4 Gin Rummy: playing
+- **Upcard:** the prompt reads "Take the 7♥, or pass?" with **Take 7♥** and **Pass** buttons (tapping the
+  upcard also takes it). The computer's pass shows a toast ("Reggie passes").
+- **Draw:** "Draw from the stock or the discard pile" (or "Draw a card from the stock" after both
+  passed the upcard). Tap the stock or the top discard.
+- **Discard:** "Choose a card to discard · Best deadwood: N". Tapping a hand card selects it (one at a
+  time; tap again to deselect) and the prompt becomes "Discard the K♠? Deadwood after: N". Buttons:
+  **Discard K♠**, and, whenever any discard would allow a knock, **Knock** (or **Gin!** when it would
+  leave no deadwood), enabled only for a selected card that allows it. A selected card can also be
+  dragged onto the discard pile to discard it. The card just taken from the pile shakes, with the toast
+  "You can't throw back the card you just picked up".
+- **End of a hand:** a toast ("You knock!", "Reggie goes gin!", "Dead hand: nobody scores"). Both
+  hands turn face up, arranged into melds and deadwood, in the two meld rows (the computer's at the
+  top). After 900 ms (× Game speed) the defender's lay-offs move onto the knocker's melds, then
+  "You undercut!" if it applies. After 1600 ms (× Game speed), the **Hand results** dialog: a sentence
+  ("Reggie knocked with 6 against 31.", "You went gin: 22 deadwood + 25 gin bonus.", or the undercut
+  explanation), a table of Player / Deadwood / This hand / Total, the cards laid off, and **Next hand**
+  (or **Final results**).
+- **Score panel:** "Gin Rummy · to 100", then for each player hands won and score; footer
+  "Hand N · Stock N".
+- **Game over:** "You win!" or "<Name> wins!", a table for both players with Score, Hands won × 25,
+  Game bonus, Shutout (if any), and **Final total**, the KardCoins award ("Win: 80 × 1.5 (Medium) · Gin
+  bonus +25"), **Play again** and **Main menu**.
+
+### 4.5 Rummy 500: playing
+- **Draw:** "Draw from the stock, or take cards from the discard pile". Tapping the stock or the top
+  discard draws at once. Tapping a card **below the top** that may be taken lifts it and every card above
+  it, with "Take the K♠ and the 2 cards above it? You must meld it right away." and **Take 3 cards** |
+  **Cancel**: a deep pick-up always needs this confirmation. A card that may not be taken shakes, with the
+  toast "You can take the K♠ only if you can meld it right away".
+- **Play:** tapping hand cards selects or deselects them (any number). Buttons: **Meld** (enabled when
+  the selected cards form a set or run), **Lay off** (enabled when every selected card can be laid off
+  on the table, one after another), and **Discard** (enabled with exactly one selected card that may be
+  discarded; labeled "Discard 8♣"). The prompt says what is needed: "Meld or lay off the 7♥ you picked
+  up" (that card glows gold until used), "Select cards to meld or lay off, or one card to discard", or
+  "N cards selected". A selected card can also be dragged up to the discard pile to discard it.
+- The computer draws, then puts down each meld and lay-off one at a time (550 ms × Game speed apart),
+  then discards. A pick-up of more than one card shows a toast ("Coach takes 4 cards").
+- **End of a hand:** a toast ("You went out!", "Coach went out!", or "The stock is empty"), the
+  computer's remaining cards turn face up, and after 1600 ms (× Game speed) the **Hand results** dialog:
+  Player / Melded / In hand / This hand / Total.
+- **Score panel:** "Rummy 500 · to 500", then for each player the points on the table this hand and the
+  score; footer "Hand N · Stock N".
+- **Game over:** "You win!" or "<Name> wins!", both final scores (winner first), the KardCoins award,
+  **Play again** and **Main menu**.
+
+### 4.6 Shared with the other tables
+Speech bubbles, idle comments, the pause menu (☰ or Esc), Sound and Settings mid-game, game speed and
+Card response, dialogs, and the KardCoins award all work exactly as on the Hearts table (spec 12 §3–§6).

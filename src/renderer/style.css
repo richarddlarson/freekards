@@ -1078,9 +1078,17 @@ button:disabled {
   gap: 0 60px;
 }
 
-/* Hearts and Spades side by side; Recent KardCoins full width below. */
-.profile-columns > .stats-section:nth-child(3) {
-  grid-column: span 2;
+/* A game's statistics (one tab per game) beside Recent KardCoins (spec 15 §4). */
+.stats-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0 22px;
+}
+
+.stats-tabs .choice {
+  min-width: 0;
+  padding: 0 22px;
 }
 
 .stats-title {
@@ -1423,6 +1431,79 @@ button:disabled {
 }
 
 .spades-results .total {
+  font-weight: bold;
+  color: #ffe98a;
+}
+
+/* ------------------------------------------------------------ Gin Rummy and Rummy 500 (spec 18 §4) */
+
+.rummy-actions {
+  position: absolute;
+  z-index: 500;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  white-space: nowrap;
+}
+
+.rummy-prompt {
+  padding: 14px 28px;
+  border-radius: 22px;
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  font-size: 28px;
+}
+
+.rummy-actions .action-button {
+  position: static;
+  transform: none;
+  min-width: 190px;
+  min-height: 72px;
+  padding: 0 28px;
+  font-size: 30px;
+}
+
+.rummy-actions .action-button.secondary {
+  background: var(--panel);
+  color: var(--text);
+  border: 2px solid var(--panel-border);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.arrange-button {
+  position: absolute;
+  z-index: 400;
+  transform: translate(-50%, -50%);
+  min-height: 52px;
+  padding: 0 18px;
+  font-size: 22px;
+  background: var(--panel);
+  white-space: nowrap;
+}
+
+/* The card picked up from below the top of a Rummy 500 discard pile, which must be used first. */
+.card.must-use {
+  box-shadow: 0 0 0 5px #ffe98a, 0 0 28px rgba(255, 220, 100, 0.9);
+}
+
+.rummy-result .dialog-note {
+  max-width: 900px;
+  margin: 0 auto 22px;
+  white-space: normal;
+}
+
+.results-small {
+  margin: 18px 0 0;
+  font-size: 24px;
+  opacity: 0.85;
+}
+
+.rummy-final .results-head {
+  text-align: right;
+}
+
+.rummy-final .total {
   font-weight: bold;
   color: #ffe98a;
 }

@@ -10,16 +10,20 @@
  *   #hearts&seed=7&autoplay&speed=3  a Hearts game with fixed seed, optionally self-playing
  *   #spades-setup                  the Spades setup screen
  *   #spades&seed=7&autoplay&speed=3[&target=500]  a Spades game (same options as #hearts)
+ *   #gin-setup / #rummy500-setup   the Gin Rummy / Rummy 500 setup screen
+ *   #gin&seed=7&autoplay&speed=3 / #rummy500&seed=7&autoplay&speed=3  a game (same options as #hearts)
  */
 import type { dialogue } from '../logic/index.js';
 import { Rng } from '../logic/index.js';
 import { CHARACTERS, characterById } from './content.js';
-import { showHeartsSetup, showMainMenu, showSpadesSetup } from './screens.js';
+import { showHeartsSetup, showMainMenu, showSpadesSetup, showTwoPlayerSetup } from './screens.js';
 import { loadSettings, saveSettings, type Settings } from './settings.js';
 import { Stage } from './stage.js';
 import { audio } from './audio.js';
 import { HeartsTable, type HeartsGameResult } from './table/hearts-table.js';
 import { SpadesTable, type SpadesGameResult } from './table/spades-table.js';
+import { GinTable, type GinGameResult } from './table/gin-table.js';
+import { Rummy500Table, type Rummy500GameResult } from './table/rummy500-table.js';
 import { profile } from '../logic/index.js';
 import { activeProfile, activeSettings, allProfiles, loadProfiles, replaceProfile } from './profiles.js';
 import { showNameEntry, showProfilePage, showWhoIsPlaying } from './profile-screens.js';
@@ -34,9 +38,15 @@ audio.setVolumes(loadSettings().volumes);
 audio.setMusicChoice(loadSettings().musicTrack);
 void audio.preloadCues();
 audio.startMusic();
-let table: HeartsTable | SpadesTable | null = null;
+let table: HeartsTable | SpadesTable | GinTable | Rummy500Table | null = null;
 /** Spades choices when no profile is active (browser preview); profiles keep their own (spec 15 §2). */
 let guestSpadesPrefs: profile.SpadesPrefs = { ...profile.DEFAULT_SPADES_PREFS };
+const guestTwoPlayerPrefs: Record<TwoPlayerGame, profile.TwoPlayerPrefs> = {
+  gin: { ...profile.DEFAULT_TWO_PLAYER_PREFS },
+  rummy500: { ...profile.DEFAULT_TWO_PLAYER_PREFS },
+};
+type TwoPlayerGame = 'gin' | 'rummy500';
+type Demo = { seed?: number; autoplay?: boolean; speed?: number; record?: boolean };
 
 function pickOpponents(settings: Settings, seed: number): dialogue.CharacterDef[] {
   const chosen = settings.opponents?.map((id) => characterById(id)).filter((c): c is dialogue.CharacterDef => !!c);
@@ -49,7 +59,7 @@ function menu(): void {
   table = null;
   showMainMenu(
     stage,
-    { playHearts: setup, playSpades: spadesSetup, quit: () => window.close(), stats: statsPage, switchPlayer: whoIsPlaying, about: aboutPage },
+    { playHearts: setup, playSpades: spadesSetup, playRummy500: () => twoPlayerSetup('rummy500'), playGin: () => twoPlayerSetup('gin'), quit: () => window.close(), stats: statsPage, switchPlayer: whoIsPlaying, about: aboutPage },
     activeProfile(),
   );
 }
@@ -144,6 +154,64 @@ function playSpades(prefs: profile.SpadesPrefs, demo: { seed?: number; autoplay?
   void t.run();
 }
 
+function twoPlayerPrefs(game: TwoPlayerGame): profile.TwoPlayerPrefs {
+  return activeProfile()?.prefs[game] ?? guestTwoPlayerPrefs[game];
+}
+
+function twoPlayerSetup(game: TwoPlayerGame): void {
+  showTwoPlayerSetup(stage, game === 'gin' ? 'Gin Rummy' : 'Rummy 500', twoPlayerPrefs(game), {
+    back: menu,
+    start: (s) => {
+      const cur = activeProfile();
+      if (cur) replaceProfile({ ...cur, prefs: { ...cur.prefs, [game]: s } });
+      else guestTwoPlayerPrefs[game] = s;
+      playTwoPlayer(game, s);
+    },
+  });
+}
+
+/** The chosen opponent, or one at random. */
+function pickOpponent(prefs: profile.TwoPlayerPrefs, seed: number): dialogue.CharacterDef {
+  return (prefs.opponent ? characterById(prefs.opponent) : undefined) ?? new Rng(seed ^ 0x2a2a).pick(CHARACTERS);
+}
+
+function recordGin(prefs: profile.TwoPlayerPrefs, g: GinGameResult): ReturnType<typeof profile.recordGinGame> | null {
+  const p = activeProfile();
+  if (!p) return null;
+  const r = profile.recordGinGame(p, { ...g, difficulty: prefs.difficulty }, new Date().toISOString());
+  replaceProfile(r.profile);
+  return r;
+}
+
+function recordRummy500(prefs: profile.TwoPlayerPrefs, g: Rummy500GameResult): ReturnType<typeof profile.recordRummy500Game> | null {
+  const p = activeProfile();
+  if (!p) return null;
+  const r = profile.recordRummy500Game(p, { ...g, difficulty: prefs.difficulty }, new Date().toISOString());
+  replaceProfile(r.profile);
+  return r;
+}
+
+function playTwoPlayer(game: TwoPlayerGame, prefs: profile.TwoPlayerPrefs, demo: Demo = {}): void {
+  table?.destroy();
+  stage.clear();
+  const seed = demo.seed ?? (Date.now() >>> 0);
+  const common = {
+    difficulty: prefs.difficulty,
+    opponents: [pickOpponent(prefs, seed)],
+    seed,
+    autoplay: demo.autoplay,
+    speed: demo.speed,
+    getSettings: activeSettings,
+    onExit: (next: 'menu' | 'again') => (next === 'again' ? playTwoPlayer(game, prefs) : menu()),
+  };
+  const t =
+    game === 'gin'
+      ? new GinTable(stage, { ...common, onGameFinished: (g) => (demo.autoplay && !demo.record ? null : recordGin(prefs, g)) })
+      : new Rummy500Table(stage, { ...common, onGameFinished: (g) => (demo.autoplay && !demo.record ? null : recordRummy500(prefs, g)) });
+  table = t;
+  void t.run();
+}
+
 /** Record a finished game for the active player and return the award to show (D-050). */
 function recordResult(settings: Settings, g: HeartsGameResult): ReturnType<typeof profile.recordHeartsGame> | null {
   const p = activeProfile();
@@ -184,6 +252,17 @@ async function start(): Promise<void> {
       { ...spadesPrefs(), targetScore: target },
       { seed: Number(hash.get('seed') ?? 1), autoplay: hash.has('autoplay'), speed: Number(hash.get('speed') ?? 1), record: hash.has('record') },
     );
+  }
+  for (const game of ['gin', 'rummy500'] as const) {
+    if (hash.has(`${game}-setup`)) return twoPlayerSetup(game);
+    if (hash.has(game)) {
+      return playTwoPlayer(game, twoPlayerPrefs(game), {
+        seed: Number(hash.get('seed') ?? 1),
+        autoplay: hash.has('autoplay'),
+        speed: Number(hash.get('speed') ?? 1),
+        record: hash.has('record'),
+      });
+    }
   }
   if (hash.has('welcome')) return welcome();
   if (hash.has('who')) return whoIsPlaying();

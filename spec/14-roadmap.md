@@ -10,19 +10,20 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 **In progress** · **Done**.
 
 ## Where we left off (updated at the end of each working session)
-**2026-11-25 (third session):** v0.1.0 is published (pre-release). Branch
-`session/2026-11-25-spades` adds **Spades** (spec 17, D-070 to D-074): rules engine, computer players
-tuned by simulation, partnership dialogue with 156 new voiced lines, stats and KardCoins, setup
-screen, bidding, and the table, on a table class now shared with Hearts (D-072). It also fixes the
-Rounded deck's 8s, which had no corner rank (D-075; the bug is in v0.1.0). The owner play-tested
-Spades and approved every choice made in his absence. Waiting on the owner:
-1. Merge the session PR (#4).
-2. Cut **v0.2.0** when ready, so players get Spades and the 8s fix (`runtimes/electron.md`
-   §How to cut a release).
+**2026-11-25 (fourth session):** Spades is merged (PR #4); the owner asked to hold v0.2.0 for now.
+Branch `session/2026-11-25-rummy-gin` adds **Gin Rummy** and **Rummy 500** for two players (spec 18,
+D-076 to D-081): a shared melds module, both rules engines, computer players tuned by simulation, 204
+new voiced lines, stats and KardCoins, setup screens, and a new 2-player table, on a table base class
+now shared by every game. My stats now has a tab per game. The owner asked the assistant to make every
+choice and list them for review. Waiting on the owner:
+1. Play-test both games and review the decisions (D-076 to D-081, marked Proposed); then push the
+   session PR when he asks.
+2. Cut **v0.2.0** when he is ready (Spades, the 8s fix, and these two games if merged by then).
 3. Still open from before: confirm that profiles and coins persist in the **installed** app across
    restarts, and the play-tester's feedback on Settings (R-005), bigger cards (R-006), and the
    Rounded deck (R-007).
-4. Next options: code signing (Q3, D-068), the next game (R-002), or KardCoin spending (R-001 part 4).
+4. Next options: code signing (Q3, D-068), the next game (R-002: Blackjack, Poker, or Solitaire), or
+   KardCoin spending (R-001 part 4).
 
 ---
 
@@ -106,9 +107,16 @@ Spades and approved every choice made in his absence. Waiting on the owner:
   ExtraBold). Deck names Classic and Rounded.
 
 ## R-002 — Remaining games
-- **Status:** In progress. **Spades** built 2026-11-25 (spec 17, D-070 to D-074).
-- **Games:** ~~Spades~~, Rummy 500, Gin Rummy, Blackjack, Poker, Solitaire. Open questions Q6–Q8 cover
-  rules and variants.
+- **Status:** In progress. **Spades** built 2026-11-25 (spec 17, D-070 to D-074). **Gin Rummy** and
+  **Rummy 500** built 2026-11-25 (spec 18, D-076 to D-081), awaiting the owner's review.
+- **Games:** ~~Spades~~, ~~Rummy 500~~, ~~Gin Rummy~~, Blackjack, Poker, Solitaire. Open questions Q6–Q8
+  cover rules and variants.
+- **Request for the rummy games (original wording, 2026-11-25):** "Let's try adding something
+  different. I want to add 500 Rummy and Gin (both 2 player only) to the list of available games.
+  They are very similar games, so it may make sense to try and add them in a single session. You did a
+  great job adding Spades without my answers, so go ahead and do the same thing for these two games as
+  well. Same situation: make the decisions wherever there's a question, then document them at the end
+  and I can override later."
 
 ## R-004 — More natural-sounding character voices
 - **Status:** Idea

@@ -9,13 +9,14 @@ H ≥ 1280; extra space appears on wide or tall windows). `cx = W/2`, `cy = 0.46
 
 ## 1. Screen flow
 ```
-Main menu ──Play Hearts──▶ Hearts setup ──Deal!──▶ Hearts table ──game over──▶ Game-over dialog
+Main menu ──Play <game>──▶ <game> setup ──Deal!──▶ <game> table ──game over──▶ Game-over dialog
     ▲                        │ Back                  │ ☰ menu                     │ Play again → new table, same settings
     └────────────────────────┴───────────────────────┴── Main menu ───────────────┘
 ```
 - **Main menu:** the "FreeKards" title, tagline "Classic card games with friendly faces", the large
-  gold **Play Hearts** and **Play Spades** buttons side by side (D-072), a 2-column grid of the other
-  five games marked *coming soon* (disabled; the odd last one centered),
+  gold play buttons in two rows of two, **Play Hearts** | **Play Spades** and **Play Rummy 500** |
+  **Play Gin Rummy** (D-072, D-081), a 2-column grid of the other three games marked *coming soon*
+  (disabled; the odd last one centered),
   and, along the bottom, **Sound** (opens the Sound panel, spec 13), **Settings** (the player's
   Settings panel, spec 16), **About** (the About & Credits screen, below), and **Quit** (closes the app).
 - **About & Credits** (D-066, spec 09 §5), one panel that fills most of the screen:
@@ -148,6 +149,10 @@ differences:
   "Good try: 10 × 1.5 (Medium)".
 - **Remembered preferences:** game length, difficulty, and the partner and opponents (or Random)
   are saved in the active profile when **Deal!** is pressed (spec 15 §2).
+
+## 9. The Gin Rummy and Rummy 500 tables
+These 2-player tables share the chrome above (score panel, menu, bubbles, dialogs, pause menu) but have
+their own layout and play: see spec 18 §4.
 
 ## 7. Not yet implemented
 Portrait art, saving a game in progress, and other themes.
