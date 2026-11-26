@@ -105,7 +105,7 @@
     "hand.good.human": [
       {
         "id": "gus.hand.good.human.1",
-        "text": "You're making the rest of us look bad. Mostly me."
+        "text": "You're making me look bad. Not that I needed the help."
       },
       {
         "id": "gus.hand.good.human.2",
@@ -400,6 +400,176 @@
       {
         "id": "gus.spades.trumped.partner.2",
         "text": "Good trump. Real good. I'm smiling on the inside."
+      }
+    ],
+    "gin.gin.self": [
+      {
+        "id": "gus.gin.gin.self.1",
+        "text": "Gin. Don't make a fuss. Okay, a small fuss."
+      },
+      {
+        "id": "gus.gin.gin.self.2",
+        "text": "Gin! Every card delivered to the right address."
+      }
+    ],
+    "gin.gin.human": [
+      {
+        "id": "gus.gin.gin.human.1",
+        "text": "Gin? Of course it is. The deck's rigged."
+      },
+      {
+        "id": "gus.gin.gin.human.2",
+        "text": "Gin. I'm going to need a peppermint for this one."
+      }
+    ],
+    "gin.knock.self": [
+      {
+        "id": "gus.gin.knock.self.1",
+        "text": "Knock knock. It's the mailman."
+      },
+      {
+        "id": "gus.gin.knock.self.2",
+        "text": "I'm knocking. Brace yourself. Or don't. I'm not your boss."
+      }
+    ],
+    "gin.knock.human": [
+      {
+        "id": "gus.gin.knock.human.1",
+        "text": "Knocking already? I just sat down."
+      },
+      {
+        "id": "gus.gin.knock.human.2",
+        "text": "Alright, alright. Let's see what you've got."
+      }
+    ],
+    "gin.undercut.self": [
+      {
+        "id": "gus.gin.undercut.self.1",
+        "text": "Undercut! Return to sender, postage due."
+      },
+      {
+        "id": "gus.gin.undercut.self.2",
+        "text": "Thought you had me. Nobody has Gus. Except that goose."
+      }
+    ],
+    "gin.undercut.human": [
+      {
+        "id": "gus.gin.undercut.human.1",
+        "text": "Undercut. By you. I need to sit down. I am sitting down."
+      },
+      {
+        "id": "gus.gin.undercut.human.2",
+        "text": "Well, that backfired. Like my old mail truck."
+      }
+    ],
+    "gin.dead_hand": [
+      {
+        "id": "gus.gin.dead_hand.1",
+        "text": "Nobody wins. Feels like most Tuesdays."
+      },
+      {
+        "id": "gus.gin.dead_hand.2",
+        "text": "A dead hand. Deliver it to the dead letter office."
+      }
+    ],
+    "gin.took_discard.human": [
+      {
+        "id": "gus.gin.took_discard.human.1",
+        "text": "Hey, I threw that away on purpose."
+      },
+      {
+        "id": "gus.gin.took_discard.human.2",
+        "text": "Taking my junk mail? Be my guest."
+      }
+    ],
+    "rummy.went_out.self": [
+      {
+        "id": "gus.rummy.went_out.self.1",
+        "text": "I'm out. Route finished. Time for coffee."
+      },
+      {
+        "id": "gus.rummy.went_out.self.2",
+        "text": "Out! Thirty-one years and I still finish my route early."
+      }
+    ],
+    "rummy.went_out.human": [
+      {
+        "id": "gus.rummy.went_out.human.1",
+        "text": "Out already? I had plans for these cards."
+      },
+      {
+        "id": "gus.rummy.went_out.human.2",
+        "text": "You're out. Great. I'm holding a whole mailbag here."
+      }
+    ],
+    "rummy.caught.self": [
+      {
+        "id": "gus.rummy.caught.self.1",
+        "text": "Caught holding the bag. Again."
+      },
+      {
+        "id": "gus.rummy.caught.self.2",
+        "text": "All these points, stuck in my hand. Like my pension."
+      }
+    ],
+    "rummy.caught.human": [
+      {
+        "id": "gus.rummy.caught.human.1",
+        "text": "Caught with a full hand. Welcome to my world."
+      },
+      {
+        "id": "gus.rummy.caught.human.2",
+        "text": "Ooh, that's a heavy bag to carry. Trust me, I know."
+      }
+    ],
+    "rummy.took_pile.self": [
+      {
+        "id": "gus.rummy.took_pile.self.1",
+        "text": "I'll take the whole pile. Bulk mail rate."
+      },
+      {
+        "id": "gus.rummy.took_pile.self.2",
+        "text": "Give me all of it. I've carried heavier."
+      }
+    ],
+    "rummy.took_pile.human": [
+      {
+        "id": "gus.rummy.took_pile.human.1",
+        "text": "Taking the whole pile? Hope your arms are strong."
+      },
+      {
+        "id": "gus.rummy.took_pile.human.2",
+        "text": "That's a lot of mail. Sign here."
+      }
+    ],
+    "rummy.layoff.human": [
+      {
+        "id": "gus.rummy.layoff.human.1",
+        "text": "Sure, use my meld. Everybody does."
+      },
+      {
+        "id": "gus.rummy.layoff.human.2",
+        "text": "Hey, that's my meld. ...Fine. Peppermint?"
+      }
+    ],
+    "rummy.big_meld.self": [
+      {
+        "id": "gus.rummy.big_meld.self.1",
+        "text": "Look at that. Organized. Like a mail sorter."
+      },
+      {
+        "id": "gus.rummy.big_meld.self.2",
+        "text": "A big one. Don't tell anyone I smiled."
+      }
+    ],
+    "rummy.big_meld.human": [
+      {
+        "id": "gus.rummy.big_meld.human.1",
+        "text": "Showing off now, are we?"
+      },
+      {
+        "id": "gus.rummy.big_meld.human.2",
+        "text": "That's a lot of cards. I'm impressed. Don't tell anyone."
       }
     ]
   }

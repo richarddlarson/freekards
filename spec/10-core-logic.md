@@ -21,6 +21,8 @@ another runtime must reproduce them exactly, so that saved games, seeds, and tes
 - 4-player games use seats 0–3 in **clockwise play order**:
   0 = South (always the human), 1 = West, 2 = North, 3 = East.
 - "Next player" = seat + 1 (mod 4). The player to your **left** is the next player clockwise.
+- **2-player games** (Gin Rummy, Rummy 500) use players 0 (the human) and 1 (the computer), who
+  sits at the top of the table. Play alternates; "next player" = 1 − player.
 - In partnership games (Spades), partners sit across: seats 0 + 2 are team 0 (the player's team),
   seats 1 + 3 are team 1 (team = seat mod 2).
 

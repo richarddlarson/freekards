@@ -61,7 +61,10 @@ src/logic/                  ENGINE-NEUTRAL game logic (spec 05, 10). No DOM/Node
   spades/types.ts           Spades state, actions, events (spec 17)
   spades/engine.ts          Rules engine and scoring (spec 17 §1–6)
   spades/ai.ts              Computer player: bid estimate, Nil, card scoring (spec 17 §7)
-  dialogue/                 Character types, dialogue director, Hearts and Spades event→trigger mappings (spec 08, D-036, D-074)
+  rummy/melds.ts            Sets, runs, lay-offs, best arrangement, Gin defender's lay-offs (spec 18 §1)
+  gin/                      Gin Rummy types, engine, computer player (spec 18 §2)
+  rummy500/                 Rummy 500 types, engine, computer player (spec 18 §3)
+  dialogue/                 Character types, dialogue director, event→trigger mappings for every game (spec 08, D-036, D-074, D-080)
   layout/hearts-table.ts    Viewport fitting, table positions, timing, Card response / Game speed tables (spec 11, 12, 16)
   settings/                 Per-player settings: types, defaults, repair (spec 16)
   index.ts                  Public entry point

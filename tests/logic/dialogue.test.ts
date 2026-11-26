@@ -211,3 +211,37 @@ describe('Spades triggers', () => {
     expect(c.map((x) => `${x.seat}:${x.trigger}`)).toEqual(['1:game.won.human', '2:game.won.self', '3:game.won.human']);
   });
 });
+
+describe('Gin Rummy and Rummy 500 triggers', () => {
+  const sc: [number, number] = [0, 0];
+
+  it('every character has lines for every Gin and Rummy 500 trigger', async () => {
+    const { RUMMY_TRIGGERS } = await import('../../src/logic/dialogue/index.js');
+    for (const c of await loadRoster()) for (const t of RUMMY_TRIGGERS) expect(c.lines[t]?.length ?? 0, `${c.id} ${t}`).toBeGreaterThan(0);
+  });
+
+  it('Gin: the computer speaks from seat 1 with self / human perspectives', async () => {
+    const { ginCandidates } = await import('../../src/logic/dialogue/index.js');
+    const t = (events: Parameters<typeof ginCandidates>[0]) => ginCandidates(events).map((x) => `${x.seat}:${x.trigger}`);
+    expect(t([{ type: 'gin', player: 1, cards: [], scores: sc }])).toEqual(['1:gin.gin.self']);
+    expect(t([{ type: 'knocked', player: 0, cards: [], scores: sc, deadwoodValue: 4 }])).toEqual(['1:gin.knock.human']);
+    expect(t([{ type: 'undercut', player: 0, cards: [], scores: sc }])).toEqual(['1:gin.undercut.human']);
+    expect(t([{ type: 'drew', player: 0, cards: ['5H'], scores: sc, source: 'discard' }])).toEqual(['1:gin.took_discard.human']);
+    expect(t([{ type: 'drew', player: 0, cards: ['5H'], scores: sc, source: 'stock' }])).toEqual([]);
+    expect(t([{ type: 'game_won', player: 0, cards: [], scores: sc, result: { winner: 0, gameBonus: 100, boxBonus: [0, 0], shutout: false, finalTotals: [0, 0] } }])).toEqual(['1:game.won.human']);
+  });
+
+  it('Rummy 500: big pick-ups, lay-offs on the computer’s melds, going out, and being caught', async () => {
+    const { rummy500Candidates } = await import('../../src/logic/dialogue/index.js');
+    const t = (events: Parameters<typeof rummy500Candidates>[0]) => rummy500Candidates(events).map((x) => x.trigger);
+    expect(t([{ type: 'took_discard', player: 1, cards: ['2H', '3H', '4H'], scores: sc, index: 0 }])).toEqual(['rummy.took_pile.self']);
+    expect(t([{ type: 'took_discard', player: 0, cards: ['2H'], scores: sc, index: 3 }])).toEqual([]);
+    expect(t([{ type: 'laid_off', player: 0, cards: ['TH'], scores: sc, meld: 0, meldOwner: 1, points: 10 }])).toEqual(['rummy.layoff.human']);
+    expect(t([{ type: 'laid_off', player: 0, cards: ['TH'], scores: sc, meld: 0, meldOwner: 0, points: 10 }])).toEqual([]);
+    expect(t([{ type: 'melded', player: 0, cards: ['AH', 'AS', 'AD'], scores: sc, meld: 0, points: 45 }])).toEqual(['rummy.big_meld.human']);
+    const result = { endedBy: 'out' as const, outPlayer: 0 as const, melded: [80, 20] as [number, number], inHand: [0, 45] as [number, number], handCards: [[], []] as [never[], never[]], total: [80, -25] as [number, number] };
+    expect(t([{ type: 'went_out', player: 0, cards: [], scores: sc }, { type: 'hand_scored', player: null, cards: [], scores: sc, result }])).toEqual([
+      'rummy.went_out.human', 'rummy.caught.self', 'hand.good.human', 'hand.bad.self',
+    ]);
+  });
+});

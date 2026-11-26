@@ -870,3 +870,70 @@ Template:
   formats such values as "NaN", and the browser then drops the whole rank path. The fix changed only
   those four card files.
 
+
+## D-076 — Gin Rummy rules (first version)
+- Date: 2026-11-25
+- Status: Proposed (made by the assistant at the owner's request, for him to review)
+- Decision: Standard 2-player Gin Rummy as in spec 18 §2: 10 cards each, the upcard offered first to
+  the non-dealer, knock with 10 or less deadwood, 25 for gin or an undercut, lay-offs only after a
+  plain knock, game to **100** with 25 per hand won, a 100-point game bonus, and a doubled shutout.
+  The Ace is always low. A hand is dead when a discard leaves 2 cards in the stock. The computer
+  deals first and the deal alternates. Melds, lay-offs, and the defender's best split are arranged
+  **automatically** rather than by hand. No Big Gin and no Oklahoma variant in this version.
+- Why: These are the rules in most rule books (pagat.com) and common apps. Arranging melds
+  automatically is what computer Gin usually does: it removes fiddly drag-and-drop at the reveal and
+  never costs the player points, because the arrangement is always the best one. 100 points takes
+  about 7–8 hands between Medium players, a game length close to Hearts.
+
+## D-077 — Rummy 500 rules (first version)
+- Date: 2026-11-25
+- Status: Proposed (made by the assistant at the owner's request, for him to review)
+- Decision: 2-player Rummy 500 as in spec 18 §3: 13 cards each, a spread discard pile from which any
+  card can be taken with all the cards above it (a card below the top must be used at once, in the
+  next meld or lay-off), lay-offs on either player's melds score for the one who lays off, Ace low or
+  high and worth 15, going out needs no final discard, the hand ends when the stock runs out, and the
+  game is to **500**. The computer deals first and the deal alternates. No "calling rummy" on a
+  missed lay-off, and no extra bonus for going out.
+- Why: This is the common 500 Rum (pagat.com) for two players. "Must use it at once" is the usual
+  pick-up rule, and enforcing it as "the next play" keeps a player from getting stuck with a card
+  they can no longer meld. 500 is the game's name and takes about 4 hands, so no shorter option is
+  needed. "Calling rummy" is left out because it would make the player watch for the computer's
+  mistakes and is easy to miss on a tablet.
+
+## D-078 — Gin Rummy and Rummy 500 computer players
+- Date: 2026-11-25
+- Status: Accepted (tuning expected)
+- Decision: Both AIs use the same skill roll and "memory" model as Hearts and Spades. Gin: take a
+  discard only if it joins a meld or allows a knock, knock early while the stock is deep and only
+  with very low deadwood near the end, and discard the card that leaves the least deadwood, valuing
+  live partial melds and avoiding cards the opponent seems to collect. Rummy 500: plan the most
+  points that can go down, weigh each possible pick-up against the points it would leave stuck in
+  hand, meld everything it can, and avoid discards the opponent can lay off. Rules and measurements
+  are in spec 18 §2.9 and §3.8.
+- Why: Simple, explainable heuristics that play recognizably well and scale cleanly with skill
+  (measured by simulation). Rummy 500 is luckier than Gin, so its difficulty gap is smaller.
+
+## D-079 — Gin Rummy and Rummy 500 statistics and KardCoins
+- Date: 2026-11-25
+- Status: Proposed (made by the assistant at the owner's request, for him to review)
+- Decision: Each profile keeps Gin and Rummy 500 statistics and preferences (difficulty and
+  opponent, or Random) (spec 15 §2). Both games pay **80 KardCoins for a win or 10 for a loss**, ×
+  the difficulty multiplier, like Spades; Gin adds **+25 per gin** the player went (not multiplied).
+  History reasons read "Gin Rummy: won (Medium) + 1 gin" and "Rummy 500: lost (Easy)". Profiles saved
+  before these games get empty statistics and default preferences when loaded.
+- Why: A 2-player game is won about half the time, like Spades, so the same 80/10 keeps coin earning
+  even across games. Gin is the rare, exciting moment worth a bonus, like a moon or a Nil; Rummy 500
+  has no equivalent rare event (going out happens almost every hand).
+
+## D-080 — Gin Rummy and Rummy 500 dialogue
+- Date: 2026-11-25
+- Status: Accepted
+- Decision: New triggers (spec 08 §Gin Rummy and Rummy 500 triggers): `gin.gin`, `gin.knock`,
+  `gin.undercut`, `gin.dead_hand`, `gin.took_discard`, `rummy.went_out`, `rummy.caught`,
+  `rummy.took_pile`, `rummy.layoff`, and `rummy.big_meld`, seen as `self` (the computer) or `human`.
+  All six characters got two lines for each of the 17 triggers (204 in total), voiced with their
+  existing Piper voices. Two existing lines that assumed four players were reworded and re-voiced:
+  Marguerite's opener ("Fifty-two cards…" instead of "Four players, fifty-two cards…") and one of Gus's
+  "you did well" lines ("You're making me look bad…" instead of "…the rest of us…").
+- Why: The 2-player games have their own big moments (gin, undercuts, big pick-ups, getting caught),
+  and the shared game-start, hand, and idle lines still fit a 2-player table.

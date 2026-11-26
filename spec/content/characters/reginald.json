@@ -354,6 +354,176 @@
         "id": "reginald.spades.trumped.partner.2",
         "text": "A fine spade! You're learning from me."
       }
+    ],
+    "gin.gin.self": [
+      {
+        "id": "reginald.gin.gin.self.1",
+        "text": "Gin. As my ancestors would have wanted."
+      },
+      {
+        "id": "reginald.gin.gin.self.2",
+        "text": "Gin! Breeding will tell."
+      }
+    ],
+    "gin.gin.human": [
+      {
+        "id": "reginald.gin.gin.human.1",
+        "text": "Gin? From you? I demand a recount."
+      },
+      {
+        "id": "reginald.gin.gin.human.2",
+        "text": "Gin. Well. Even a commoner may have a lucky day."
+      }
+    ],
+    "gin.knock.self": [
+      {
+        "id": "reginald.gin.knock.self.1",
+        "text": "I shall knock. Do try to look surprised."
+      },
+      {
+        "id": "reginald.gin.knock.self.2",
+        "text": "A knock, delivered with aristocratic precision."
+      }
+    ],
+    "gin.knock.human": [
+      {
+        "id": "reginald.gin.knock.human.1",
+        "text": "Knocking? How terribly forward of you."
+      },
+      {
+        "id": "reginald.gin.knock.human.2",
+        "text": "A knock? We shall see about that."
+      }
+    ],
+    "gin.undercut.self": [
+      {
+        "id": "reginald.gin.undercut.self.1",
+        "text": "Undercut! Rank has its privileges."
+      },
+      {
+        "id": "reginald.gin.undercut.self.2",
+        "text": "An undercut. I believe that is what they call class."
+      }
+    ],
+    "gin.undercut.human": [
+      {
+        "id": "reginald.gin.undercut.human.1",
+        "text": "Undercut? This is an outrage! An absolute outrage!"
+      },
+      {
+        "id": "reginald.gin.undercut.human.2",
+        "text": "Undercut by you. I shall never speak of this."
+      }
+    ],
+    "gin.dead_hand": [
+      {
+        "id": "reginald.gin.dead_hand.1",
+        "text": "A draw. Tolerable, I suppose."
+      },
+      {
+        "id": "reginald.gin.dead_hand.2",
+        "text": "No winner. A diplomatic outcome."
+      }
+    ],
+    "gin.took_discard.human": [
+      {
+        "id": "reginald.gin.took_discard.human.1",
+        "text": "You took my discard? I was finished with that peasant card."
+      },
+      {
+        "id": "reginald.gin.took_discard.human.2",
+        "text": "Hand-me-downs. How quaint."
+      }
+    ],
+    "rummy.went_out.self": [
+      {
+        "id": "reginald.rummy.went_out.self.1",
+        "text": "I'm out. Do clear the table, would you?"
+      },
+      {
+        "id": "reginald.rummy.went_out.self.2",
+        "text": "Out! The Fairweathers always leave early."
+      }
+    ],
+    "rummy.went_out.human": [
+      {
+        "id": "reginald.rummy.went_out.human.1",
+        "text": "Out already? How very abrupt."
+      },
+      {
+        "id": "reginald.rummy.went_out.human.2",
+        "text": "You're out? I wasn't ready. That doesn't count."
+      }
+    ],
+    "rummy.caught.self": [
+      {
+        "id": "reginald.rummy.caught.self.1",
+        "text": "Caught with cards in hand. I was keeping them warm."
+      },
+      {
+        "id": "reginald.rummy.caught.self.2",
+        "text": "These points are merely resting. With me."
+      }
+    ],
+    "rummy.caught.human": [
+      {
+        "id": "reginald.rummy.caught.human.1",
+        "text": "Caught holding cards. How unfortunate. For you."
+      },
+      {
+        "id": "reginald.rummy.caught.human.2",
+        "text": "A full hand at the bell. Tsk."
+      }
+    ],
+    "rummy.took_pile.self": [
+      {
+        "id": "reginald.rummy.took_pile.self.1",
+        "text": "I shall take the whole pile. The estate is large."
+      },
+      {
+        "id": "reginald.rummy.took_pile.self.2",
+        "text": "All of it, please. I collect things."
+      }
+    ],
+    "rummy.took_pile.human": [
+      {
+        "id": "reginald.rummy.took_pile.human.1",
+        "text": "The entire pile? How greedy. I approve."
+      },
+      {
+        "id": "reginald.rummy.took_pile.human.2",
+        "text": "Taking all those cards. Ambitious, for a commoner."
+      }
+    ],
+    "rummy.layoff.human": [
+      {
+        "id": "reginald.rummy.layoff.human.1",
+        "text": "You've placed your card on my meld? The impertinence."
+      },
+      {
+        "id": "reginald.rummy.layoff.human.2",
+        "text": "That is my meld. Do wipe your feet."
+      }
+    ],
+    "rummy.big_meld.self": [
+      {
+        "id": "reginald.rummy.big_meld.self.1",
+        "text": "Behold. A meld worthy of the family crest."
+      },
+      {
+        "id": "reginald.rummy.big_meld.self.2",
+        "text": "Magnificent. Like my great-grandfather's mustache."
+      }
+    ],
+    "rummy.big_meld.human": [
+      {
+        "id": "reginald.rummy.big_meld.human.1",
+        "text": "A large meld. Rather vulgar, but effective."
+      },
+      {
+        "id": "reginald.rummy.big_meld.human.2",
+        "text": "Hmph. Impressive. Don't let it go to your head."
+      }
     ]
   }
 }

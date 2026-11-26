@@ -366,6 +366,176 @@
         "id": "chad.spades.trumped.partner.2",
         "text": "That's my teammate! Big-time trump!"
       }
+    ],
+    "gin.gin.self": [
+      {
+        "id": "chad.gin.gin.self.1",
+        "text": "GIN! And the crowd goes WILD!"
+      },
+      {
+        "id": "chad.gin.gin.self.2",
+        "text": "Gin! That's called execution, people!"
+      }
+    ],
+    "gin.gin.human": [
+      {
+        "id": "chad.gin.gin.human.1",
+        "text": "Gin?! Okay. Respect. Huge respect. I'm fine."
+      },
+      {
+        "id": "chad.gin.gin.human.2",
+        "text": "Wow. Gin. You're coaching ME now."
+      }
+    ],
+    "gin.knock.self": [
+      {
+        "id": "chad.gin.knock.self.1",
+        "text": "Knocking! Calculated risk! Mostly calculated!"
+      },
+      {
+        "id": "chad.gin.knock.self.2",
+        "text": "Knock knock! Who's there? VICTORY."
+      }
+    ],
+    "gin.knock.human": [
+      {
+        "id": "chad.gin.knock.human.1",
+        "text": "Bold move! I love the energy!"
+      },
+      {
+        "id": "chad.gin.knock.human.2",
+        "text": "A knock! Let's see the tape on this one."
+      }
+    ],
+    "gin.undercut.self": [
+      {
+        "id": "chad.gin.undercut.self.1",
+        "text": "UNDERCUT! Comeback of the season!"
+      },
+      {
+        "id": "chad.gin.undercut.self.2",
+        "text": "Undercut! That's what we call a reversal, folks!"
+      }
+    ],
+    "gin.undercut.human": [
+      {
+        "id": "chad.gin.undercut.human.1",
+        "text": "Undercut. That's fine. That's a learning moment."
+      },
+      {
+        "id": "chad.gin.undercut.human.2",
+        "text": "Ooh, the knock backfired. Nobody saw that coming. Especially me."
+      }
+    ],
+    "gin.dead_hand": [
+      {
+        "id": "chad.gin.dead_hand.1",
+        "text": "A dead hand. A tie. Basically a win for both of us!"
+      },
+      {
+        "id": "chad.gin.dead_hand.2",
+        "text": "Nobody won. That's just a rest day, people."
+      }
+    ],
+    "gin.took_discard.human": [
+      {
+        "id": "chad.gin.took_discard.human.1",
+        "text": "You want my discard? Smart! I taught you that!"
+      },
+      {
+        "id": "chad.gin.took_discard.human.2",
+        "text": "Taking my card! That's called scouting the competition!"
+      }
+    ],
+    "rummy.went_out.self": [
+      {
+        "id": "chad.rummy.went_out.self.1",
+        "text": "I'm OUT! Touchdown! Spike the cards!"
+      },
+      {
+        "id": "chad.rummy.went_out.self.2",
+        "text": "Out! Clock management, baby!"
+      }
+    ],
+    "rummy.went_out.human": [
+      {
+        "id": "chad.rummy.went_out.human.1",
+        "text": "You're out?! I wasn't done strategizing!"
+      },
+      {
+        "id": "chad.rummy.went_out.human.2",
+        "text": "Wow, out already. I'm calling a timeout. Retroactively."
+      }
+    ],
+    "rummy.caught.self": [
+      {
+        "id": "chad.rummy.caught.self.1",
+        "text": "Caught holding cards. Totally part of the plan."
+      },
+      {
+        "id": "chad.rummy.caught.self.2",
+        "text": "All these points in my hand. That's just potential energy."
+      }
+    ],
+    "rummy.caught.human": [
+      {
+        "id": "chad.rummy.caught.human.1",
+        "text": "Caught with cards! Happens to the best. Mostly to me."
+      },
+      {
+        "id": "chad.rummy.caught.human.2",
+        "text": "Tough break! Shake it off, champ!"
+      }
+    ],
+    "rummy.took_pile.self": [
+      {
+        "id": "chad.rummy.took_pile.self.1",
+        "text": "I'm taking the WHOLE pile! Go big or go home!"
+      },
+      {
+        "id": "chad.rummy.took_pile.self.2",
+        "text": "All of it! I'm bulking!"
+      }
+    ],
+    "rummy.took_pile.human": [
+      {
+        "id": "chad.rummy.took_pile.human.1",
+        "text": "The whole pile? Now THAT is commitment!"
+      },
+      {
+        "id": "chad.rummy.took_pile.human.2",
+        "text": "Taking everything! I love the ambition!"
+      }
+    ],
+    "rummy.layoff.human": [
+      {
+        "id": "chad.rummy.layoff.human.1",
+        "text": "Using my meld? Teamwork! Kind of!"
+      },
+      {
+        "id": "chad.rummy.layoff.human.2",
+        "text": "Hey, that's my play! ...Great assist though."
+      }
+    ],
+    "rummy.big_meld.self": [
+      {
+        "id": "chad.rummy.big_meld.self.1",
+        "text": "Look at that meld! Highlight reel!"
+      },
+      {
+        "id": "chad.rummy.big_meld.self.2",
+        "text": "BOOM. That's a power move."
+      }
+    ],
+    "rummy.big_meld.human": [
+      {
+        "id": "chad.rummy.big_meld.human.1",
+        "text": "Big meld! Big energy! I respect it!"
+      },
+      {
+        "id": "chad.rummy.big_meld.human.2",
+        "text": "Whoa! That's a highlight right there!"
+      }
     ]
   }
 }
