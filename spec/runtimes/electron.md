@@ -107,7 +107,9 @@ scripts/build-voices.py     Voice clips: Piper synthesis → Opus, incremental (
 scripts/build-music.mjs     Music: fetch originals, verify SHA-256, encode to Opus (D-045)
 scripts/generate-icon.mjs   App icon generator → build/icon.svg (spec 07 §App icon, D-067); --drafts <dir> writes all designs
 scripts/render-icon.cjs     Renders build/icon.svg to build/icon.png (1024×1024, transparent) in an offscreen Electron window,
-                            and build/icons/<n>x<n>.png for n = 16, 24, 32, 48, 64, 128, 256, 512 (Linux)
+                            and build/icons/<n>x<n>.png for n = 16, 24, 32, 48, 64, 128, 256, 512 (Linux). The SVG is
+                            shown as a block on a page that can't scroll, so no scrollbar gets into the capture (D-083);
+                            tests/logic/app-icon.test.ts checks that the icon's border is transparent
 scripts/generate-cards.mjs  Classic Casino deck generator → assets/themes/classic-casino/decks/<deck> (D-027, D-062);
                             outlines each deck's index font from assets/fonts with opentype.js (D-060); near-zero
                             coordinates are snapped to 0 because opentype.js 2.0.0 writes values like 3.5e-15 as "NaN" (D-075).

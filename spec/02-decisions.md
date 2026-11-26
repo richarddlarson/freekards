@@ -978,3 +978,16 @@ Template:
   Explaining the house choices (for example, Gin's Ace is always low, Rummy 500 has no "Rummy!" call)
   heads off "that's not how we play it" surprises. The engine check stops the text drifting from the
   rules if a number is changed later.
+
+## D-083 — App icon renders without scrollbars
+- Date: 2026-11-25
+- Status: Accepted (bug fix)
+- Decision: The icon renderer (`scripts/render-icon.cjs`) shows the SVG as a block element on a page
+  with scrolling turned off, and the icons were regenerated. A test decodes `build/icon.png` and checks
+  that everything outside the tile, including the right and bottom edges, is fully transparent.
+- Why: The owner saw a thin extra line along the right and bottom of the icon in the Linux panel. The
+  SVG had been placed inline, so it sat on a line of text whose descender space made the page a few
+  pixels taller than the 1024 px window. The page then showed scrollbars, and the capture included
+  them: a light-gray strip down the right and along the bottom of `build/icon.png`. Every smaller
+  Linux size and the Windows `.ico` are made from that image, so they all carried the line.
+

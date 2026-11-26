@@ -30,7 +30,10 @@ app.whenReady().then(async () => {
     webPreferences: { offscreen: true, sandbox: true, contextIsolation: true },
   });
   const svg = fs.readFileSync(svgFile, 'utf8');
-  const html = `<!doctype html><html><body style="margin:0;background:transparent">${svg}</body></html>`;
+  // The SVG must be a block and the page must not scroll: an inline SVG sits on a text line, which
+  // makes the page a few pixels taller than the window, and the scrollbars then appeared in the
+  // capture as a gray line along the icon's right and bottom edges (D-083).
+  const html = `<!doctype html><html style="overflow:hidden"><body style="margin:0;overflow:hidden;background:transparent">${svg.replace('<svg ', '<svg style="display:block" ')}</body></html>`;
   await win.loadURL(`data:text/html;charset=utf-8,${encodeURIComponent(html)}`);
   await new Promise((r) => setTimeout(r, 500));
   const image = await win.webContents.capturePage({ x: 0, y: 0, width: SIZE, height: SIZE });
