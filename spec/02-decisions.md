@@ -873,7 +873,7 @@ Template:
 
 ## D-076 — Gin Rummy rules (first version)
 - Date: 2026-11-25
-- Status: Proposed (made by the assistant at the owner's request, for him to review)
+- Status: Accepted (made by the assistant at the owner's request; approved by the owner, 2026-11-25)
 - Decision: Standard 2-player Gin Rummy as in spec 18 §2: 10 cards each, the upcard offered first to
   the non-dealer, knock with 10 or less deadwood, 25 for gin or an undercut, lay-offs only after a
   plain knock, game to **100** with 25 per hand won, a 100-point game bonus, and a doubled shutout.
@@ -887,7 +887,7 @@ Template:
 
 ## D-077 — Rummy 500 rules (first version)
 - Date: 2026-11-25
-- Status: Proposed (made by the assistant at the owner's request, for him to review)
+- Status: Accepted (made by the assistant at the owner's request; approved by the owner, 2026-11-25)
 - Decision: 2-player Rummy 500 as in spec 18 §3: 13 cards each, a spread discard pile from which any
   card can be taken with all the cards above it (a card below the top must be used at once, in the
   next meld or lay-off), lay-offs on either player's melds score for the one who lays off, Ace low or
@@ -915,7 +915,7 @@ Template:
 
 ## D-079 — Gin Rummy and Rummy 500 statistics and KardCoins
 - Date: 2026-11-25
-- Status: Proposed (made by the assistant at the owner's request, for him to review)
+- Status: Accepted (made by the assistant at the owner's request; approved by the owner, 2026-11-25)
 - Decision: Each profile keeps Gin and Rummy 500 statistics and preferences (difficulty and
   opponent, or Random) (spec 15 §2). Both games pay **80 KardCoins for a win or 10 for a loss**, ×
   the difficulty multiplier, like Spades; Gin adds **+25 per gin** the player went (not multiplied).
@@ -940,7 +940,7 @@ Template:
 
 ## D-081 — Gin Rummy and Rummy 500 screens, and a shared base for every table
 - Date: 2026-11-25
-- Status: Proposed (made by the assistant at the owner's request, for him to review)
+- Status: Accepted (made by the assistant at the owner's request; approved by the owner, 2026-11-25)
 - Decision: The main menu has four gold play buttons in two rows: **Play Hearts | Play Spades** and
   **Play Rummy 500 | Play Gin Rummy**; Blackjack, Poker, and Solitaire stay "coming soon". Each new game
   has a setup screen with Difficulty and one opponent (or Random). The 2-player table (spec 18 §4) puts
@@ -962,7 +962,7 @@ Template:
 
 ## D-082 — A Rules screen for every game
 - Date: 2026-11-25
-- Status: Proposed (asked for by the owner; the details were chosen by the assistant for him to review)
+- Status: Accepted (asked for by the owner; the details were chosen by the assistant and approved by the owner, 2026-11-25)
 - Decision: Every game has a **Rules** panel (spec 12 §10), opened from a round **?** button beside ☰
   on the table, from **Rules** in the pause menu, and from a **Rules** button on the game's setup
   screen. Opening it from the table pauses the game. The panel has a contents list of sections on the
