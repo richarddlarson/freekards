@@ -12,7 +12,7 @@ type CharacterDef = dialogue.CharacterDef;
 
 export function showMainMenu(
   stage: Stage,
-  actions: { playHearts(): void; quit(): void; stats(): void; switchPlayer(): void; about(): void },
+  actions: { playHearts(): void; playSpades(): void; quit(): void; stats(): void; switchPlayer(): void; about(): void },
   player: profile.Profile | null,
 ): void {
   stage.clear();
@@ -31,10 +31,12 @@ export function showMainMenu(
   }
   screen.append(h('h1', 'title', 'FreeKards'), h('p', 'subtitle', 'Classic card games with friendly faces'));
   const list = h('div', 'menu-list');
-  const hearts = h('button', 'big-button', 'Play Hearts');
+  const hearts = h('button', 'big-button play', 'Play Hearts');
   onTap(hearts, actions.playHearts);
-  list.append(hearts);
-  for (const name of ['Spades', 'Rummy 500', 'Gin Rummy', 'Blackjack', 'Poker', 'Solitaire']) {
+  const spadesBtn = h('button', 'big-button play', 'Play Spades');
+  onTap(spadesBtn, actions.playSpades);
+  list.append(hearts, spadesBtn);
+  for (const name of ['Rummy 500', 'Gin Rummy', 'Blackjack', 'Poker', 'Solitaire']) {
     const b = h('button', 'big-button secondary soon');
     b.append(h('span', 'soon-name', name), h('span', 'soon-note', 'coming soon'));
     b.disabled = true;
@@ -140,6 +142,81 @@ export function showHeartsSetup(
     hint.textContent = s.opponents === null ? 'Three random opponents' : `Pick ${3 - chosen.length} more` + (chosen.length === 3 ? '' : '');
     if (chosen.length === 3) hint.textContent = 'Ready!';
     start.disabled = s.opponents !== null && chosen.length !== 3;
+  }
+  refresh();
+  screen.append(panel);
+  stage.el.append(screen);
+}
+
+const SPADES_SEAT_LABELS = ['Partner', 'West', 'East'];
+
+/** Spades setup (spec 17 §8): game length, difficulty, and partner + opponents (North, West, East). */
+export function showSpadesSetup(
+  stage: Stage,
+  initial: profile.SpadesPrefs,
+  actions: { start(s: profile.SpadesPrefs): void; back(): void },
+): void {
+  stage.clear();
+  const s: profile.SpadesPrefs = { ...initial, players: initial.players ? [...initial.players] : null };
+  const screen = h('div', 'screen setup-screen');
+  const panel = h('div', 'setup-panel');
+  panel.append(h('h2', 'setup-title', 'Spades'));
+  panel.append(
+    choiceRow<'300' | '500'>('Game to', [['300', '300 points'], ['500', '500 points']], String(s.targetScore) as '300' | '500', (v) => (s.targetScore = v === '500' ? 500 : 300)),
+    choiceRow<Difficulty>('Difficulty', [['easy', 'Easy'], ['medium', 'Medium'], ['hard', 'Hard']], s.difficulty, (v) => (s.difficulty = v)),
+  );
+
+  const row = h('div', 'setup-row');
+  const label = h('div', 'setup-label', 'Partner and opponents');
+  const random = h('button', 'choice', 'Random');
+  const hint = h('span', 'setup-hint', '');
+  const head = h('div', 'opponents-head');
+  head.append(label, random, hint);
+  const grid = h('div', 'opponent-grid');
+  const tiles = new Map<string, HTMLElement>();
+  for (const c of CHARACTERS) {
+    const tile = h('button', 'opponent-tile');
+    const text = h('div', 'opponent-text');
+    text.append(h('div', 'opponent-name', c.nickname), h('div', 'opponent-full', c.name), h('div', 'opponent-tagline', c.tagline));
+    tile.append(portraitBadge(c, 'portrait-face small'), text, h('div', 'seat-badge'));
+    onTap(tile, () => {
+      const chosen = s.players ?? [];
+      if (chosen.includes(c.id)) s.players = chosen.filter((x) => x !== c.id);
+      else if (chosen.length < 3) s.players = [...chosen, c.id];
+      else return;
+      refresh();
+    });
+    tiles.set(c.id, tile);
+    grid.append(tile);
+  }
+  onTap(random, () => {
+    s.players = null;
+    refresh();
+  });
+  row.append(head, grid);
+  panel.append(row);
+
+  const buttons = h('div', 'dialog-buttons');
+  const back = h('button', 'big-button secondary', 'Back');
+  const start = h('button', 'big-button', 'Deal!');
+  onTap(back, actions.back);
+  onTap(start, () => {
+    if (s.players === null || s.players.length === 3) actions.start(s);
+  });
+  buttons.append(back, start);
+  panel.append(buttons);
+
+  function refresh(): void {
+    random.classList.toggle('selected', s.players === null);
+    const chosen = s.players ?? [];
+    for (const [id, tile] of tiles) {
+      const i = chosen.indexOf(id);
+      tile.classList.toggle('selected', i >= 0);
+      tile.querySelector('.seat-badge')!.textContent = i >= 0 ? SPADES_SEAT_LABELS[i]! : '';
+    }
+    const next = SPADES_SEAT_LABELS[chosen.length];
+    hint.textContent = s.players === null ? 'A random partner and opponents' : chosen.length === 3 ? 'Ready!' : `Pick your ${next === 'Partner' ? 'partner' : `${next} opponent`}`;
+    start.disabled = s.players !== null && chosen.length !== 3;
   }
   refresh();
   screen.append(panel);

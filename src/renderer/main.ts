@@ -8,15 +8,18 @@
  *   #about[&licenses]              the About & Credits screen (on its Licenses tab)
  *   (add &record to a #hearts autoplay demo to record its result for the active player)
  *   #hearts&seed=7&autoplay&speed=3  a Hearts game with fixed seed, optionally self-playing
+ *   #spades-setup                  the Spades setup screen
+ *   #spades&seed=7&autoplay&speed=3[&target=500]  a Spades game (same options as #hearts)
  */
 import type { dialogue } from '../logic/index.js';
 import { Rng } from '../logic/index.js';
 import { CHARACTERS, characterById } from './content.js';
-import { showHeartsSetup, showMainMenu } from './screens.js';
+import { showHeartsSetup, showMainMenu, showSpadesSetup } from './screens.js';
 import { loadSettings, saveSettings, type Settings } from './settings.js';
 import { Stage } from './stage.js';
 import { audio } from './audio.js';
 import { HeartsTable, type HeartsGameResult } from './table/hearts-table.js';
+import { SpadesTable, type SpadesGameResult } from './table/spades-table.js';
 import { profile } from '../logic/index.js';
 import { activeProfile, activeSettings, allProfiles, loadProfiles, replaceProfile } from './profiles.js';
 import { showNameEntry, showProfilePage, showWhoIsPlaying } from './profile-screens.js';
@@ -31,7 +34,9 @@ audio.setVolumes(loadSettings().volumes);
 audio.setMusicChoice(loadSettings().musicTrack);
 void audio.preloadCues();
 audio.startMusic();
-let table: HeartsTable | null = null;
+let table: HeartsTable | SpadesTable | null = null;
+/** Spades choices when no profile is active (browser preview); profiles keep their own (spec 15 §2). */
+let guestSpadesPrefs: profile.SpadesPrefs = { ...profile.DEFAULT_SPADES_PREFS };
 
 function pickOpponents(settings: Settings, seed: number): dialogue.CharacterDef[] {
   const chosen = settings.opponents?.map((id) => characterById(id)).filter((c): c is dialogue.CharacterDef => !!c);
@@ -44,7 +49,7 @@ function menu(): void {
   table = null;
   showMainMenu(
     stage,
-    { playHearts: setup, quit: () => window.close(), stats: statsPage, switchPlayer: whoIsPlaying, about: aboutPage },
+    { playHearts: setup, playSpades: spadesSetup, quit: () => window.close(), stats: statsPage, switchPlayer: whoIsPlaying, about: aboutPage },
     activeProfile(),
   );
 }
@@ -89,6 +94,56 @@ function setup(): void {
   });
 }
 
+function spadesPrefs(): profile.SpadesPrefs {
+  return activeProfile()?.prefs.spades ?? guestSpadesPrefs;
+}
+
+function spadesSetup(): void {
+  showSpadesSetup(stage, spadesPrefs(), {
+    back: menu,
+    start: (s) => {
+      const cur = activeProfile();
+      if (cur) replaceProfile({ ...cur, prefs: { ...cur.prefs, spades: s } });
+      else guestSpadesPrefs = s;
+      playSpades(s);
+    },
+  });
+}
+
+/** Partner (North), West, East: the chosen characters, or three at random. */
+function pickSpadesPlayers(prefs: profile.SpadesPrefs, seed: number): dialogue.CharacterDef[] {
+  const chosen = prefs.players?.map((id) => characterById(id)).filter((c): c is dialogue.CharacterDef => !!c);
+  const [north, west, east] = chosen && chosen.length === 3 ? chosen : new Rng(seed ^ 0x5ade).shuffle(CHARACTERS).slice(0, 3);
+  return [west!, north!, east!];
+}
+
+function recordSpades(prefs: profile.SpadesPrefs, g: SpadesGameResult): ReturnType<typeof profile.recordSpadesGame> | null {
+  const p = activeProfile();
+  if (!p) return null;
+  const r = profile.recordSpadesGame(p, { ...g, difficulty: prefs.difficulty }, new Date().toISOString());
+  replaceProfile(r.profile);
+  return r;
+}
+
+function playSpades(prefs: profile.SpadesPrefs, demo: { seed?: number; autoplay?: boolean; speed?: number; record?: boolean } = {}): void {
+  table?.destroy();
+  stage.clear();
+  const seed = demo.seed ?? (Date.now() >>> 0);
+  const t = new SpadesTable(stage, {
+    targetScore: prefs.targetScore,
+    difficulty: prefs.difficulty,
+    opponents: pickSpadesPlayers(prefs, seed),
+    seed,
+    autoplay: demo.autoplay,
+    speed: demo.speed,
+    getSettings: activeSettings,
+    onGameFinished: (g) => (demo.autoplay && !demo.record ? null : recordSpades(prefs, g)),
+    onExit: (next) => (next === 'again' ? playSpades(prefs) : menu()),
+  });
+  table = t;
+  void t.run();
+}
+
 /** Record a finished game for the active player and return the award to show (D-050). */
 function recordResult(settings: Settings, g: HeartsGameResult): ReturnType<typeof profile.recordHeartsGame> | null {
   const p = activeProfile();
@@ -122,6 +177,14 @@ const hash = new URLSearchParams(location.hash.slice(1));
 async function start(): Promise<void> {
   await loadProfiles();
   if (hash.has('setup')) return setup();
+  if (hash.has('spades-setup')) return spadesSetup();
+  if (hash.has('spades')) {
+    const target = hash.get('target') === '500' ? 500 : 300;
+    return playSpades(
+      { ...spadesPrefs(), targetScore: target },
+      { seed: Number(hash.get('seed') ?? 1), autoplay: hash.has('autoplay'), speed: Number(hash.get('speed') ?? 1), record: hash.has('record') },
+    );
+  }
   if (hash.has('welcome')) return welcome();
   if (hash.has('who')) return whoIsPlaying();
   if (hash.has('stats')) return statsPage();

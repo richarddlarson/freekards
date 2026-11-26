@@ -10,22 +10,22 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 **In progress** · **Done**.
 
 ## Where we left off (updated at the end of each working session)
-**2026-11-25 (second session):** PR #1 (Hearts, profiles, settings) and PR #2 (card decks,
-hearts-first suit order, local build launcher) are merged, and `main` is green. This session, on
-`session/2026-11-25-release`, prepared the first release: the About & Credits screen (D-066), the app
-icon (D-067), Windows signing deferred with the options researched (D-068), and v0.1.0 as a
-pre-release with a download guide in the release notes (D-069). Waiting on the owner:
-1. Try the session build: **About** on the main menu (both tabs, the Electron and Chromium license
-   buttons) and the new icon. Rerun `scripts/install-local-launcher.sh` once so the local-build menu
-   entry shows the icon.
-2. Push and merge the session PR. Then tag `v0.1.0` on `main` (the release steps are in
-   `runtimes/electron.md` §How to cut a release), review the draft release, test-install the Windows
-   ARM64 installer on the Surface Pro 9, and publish.
-3. Still open from before: confirm that profiles and coins persist in the **installed** app across
-   restarts (`~/.config/cardtable/data/profiles.json`), and the play-tester's feedback on Settings
-   (R-005), the bigger cards (R-006), and the Rounded deck (R-007).
-4. Next, after the release: code signing (Q3, D-068), the next game (R-002), or KardCoin spending
-   (R-001 part 4).
+**2026-11-25 (third session):** v0.1.0 is published (pre-release). On branch
+`session/2026-11-25-spades`, built while the owner was away at his request: **Spades** (spec 17,
+D-070 to D-074): rules engine, computer players tuned by simulation, partnership dialogue with 156
+new voiced lines, stats and KardCoins, setup screen, bidding, and the table. Hearts and Spades now
+share one table class (D-072). Waiting on the owner:
+1. **Review the decisions made for him** (each is marked *owner to review* in spec 17 and D-070 to
+   D-073): game to 300 by default (500 offered); Nil allowed, no blind Nil, no minimum team bid; a
+   failed Nil's tricks count as bags, not toward the partner's bid; the −200 mercy rule; South deals
+   first; coins 80 win / 10 loss (× difficulty) + 25 per Nil made; the "Suggested" bid hint; the
+   look of the bid panel, badges, and team score panel.
+2. **Listen to the new Spades voice lines** (26 per character); regenerate any that sound off.
+3. Play-test Spades with the play-tester, then push and merge the session PR.
+4. Still open from before: confirm that profiles and coins persist in the **installed** app across
+   restarts, and the play-tester's feedback on Settings (R-005), bigger cards (R-006), and the
+   Rounded deck (R-007).
+5. Next options: code signing (Q3, D-068), the next game (R-002), or KardCoin spending (R-001 part 4).
 
 ---
 

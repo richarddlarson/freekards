@@ -148,13 +148,17 @@ button:disabled {
   justify-items: stretch;
 }
 
-.menu-list > .big-button:first-child {
-  grid-column: span 2;
-  justify-self: center;
-  min-width: 560px;
+.menu-list > .big-button.play {
   min-height: 110px;
   font-size: 46px;
   border-radius: 55px;
+}
+
+/* An odd number of "coming soon" games: the last one is centered under the others. */
+.menu-list .big-button.soon:last-of-type:nth-of-type(odd) {
+  grid-column: span 2;
+  justify-self: center;
+  width: 460px;
 }
 
 .menu-list .big-button.soon {
@@ -1071,7 +1075,12 @@ button:disabled {
 .profile-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 0 60px;
+}
+
+/* Hearts and Spades side by side; Recent KardCoins full width below. */
+.profile-columns > .stats-section:nth-child(3) {
+  grid-column: span 2;
 }
 
 .stats-title {
@@ -1279,4 +1288,141 @@ button:disabled {
 
 .about-panel .dialog-buttons {
   margin-top: 20px;
+}
+
+/* ------------------------------------------------------------ Spades (spec 17 §8, D-072) */
+
+.team-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.team-name {
+  font-size: 22px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 6px;
+}
+
+.team-name.turn {
+  color: #ffe98a;
+}
+
+.team-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.team-stats {
+  display: flex;
+  gap: 12px;
+  font-size: 18px;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.team-score {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.bid-badge {
+  position: absolute;
+  z-index: 350;
+  transform: translate(-50%, -50%);
+  padding: 3px 16px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 2px solid var(--brass);
+  color: #ffe98a;
+  font-size: 22px;
+  font-weight: bold;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.bid-badge.nil {
+  border-color: #7fd1ff;
+  color: #bfe8ff;
+}
+
+.bid-badge.broken {
+  border-color: #e0614f;
+  color: #ffb3a8;
+  text-decoration: line-through;
+}
+
+.bid-panel {
+  position: absolute;
+  z-index: 450;
+  transform: translate(-50%, -58%);
+  width: 820px;
+  padding: 26px 34px;
+  border-radius: 24px;
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.bid-title {
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--brass);
+}
+
+.bid-others {
+  display: flex;
+  gap: 28px;
+  font-size: 22px;
+  opacity: 0.9;
+}
+
+.bid-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 92px);
+  gap: 12px;
+}
+
+.bid-choice {
+  min-width: 0;
+  height: 72px;
+  padding: 0;
+  font-size: 28px;
+}
+
+.bid-hint {
+  font-size: 22px;
+  opacity: 0.85;
+}
+
+.spades-results {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 8px 44px;
+  font-size: 26px;
+  text-align: left;
+}
+
+.spades-results .results-head {
+  text-align: right;
+}
+
+.spades-results .strong {
+  font-weight: bold;
+  padding-top: 6px;
+  border-top: 1px solid rgba(217, 168, 43, 0.4);
+}
+
+.spades-results .total {
+  font-weight: bold;
+  color: #ffe98a;
 }

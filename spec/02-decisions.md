@@ -844,3 +844,17 @@ Template:
 - Why: Spades is played with a partner, so reactions to a partner's Nil or a well-timed trump are
   what make the table feel alive. Reusing the shared triggers keeps every existing line useful.
 
+## D-072 — Spades screens, and a shared trick-taking table
+- Date: 2026-11-25
+- Status: Accepted (**owner to review**: the look of the bid panel, badges, and team score panel)
+- Decision: The main menu gets **Play Hearts** and **Play Spades** side by side as the two gold
+  buttons, with the five games still to come below them. Spades has its own setup screen and table
+  (spec 17 §8, spec 12 §8): a bid panel with Nil and 1–13 and a **Suggested** bid, a "Bid 3 · Won 1"
+  badge by each player, a two-team score panel, a per-team hand summary, and a team game-over
+  screen. My stats shows Hearts and Spades side by side. Technically, everything the two games
+  share (dealing, card gestures, trick play, speech bubbles, the pause menu, the coin award) moved
+  from the Hearts table into one shared table class that each game extends, so Hearts behaves
+  exactly as before and later trick-taking games reuse it.
+- Why: Spades should look and feel like the Hearts table she already knows. The suggested bid helps
+  a player who is new to bidding. It uses the same estimate as the computer players and can be ignored.
+

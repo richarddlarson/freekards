@@ -67,8 +67,9 @@ Statistics per profile and game; only **finished** games count (abandoned games 
 
 ## 4. Stats page ("My stats")
 Header: initial, name, and a **Rename** button (inline field; Enter or leaving the field saves).
-Below that is the balance in large type. Two columns follow: **Hearts** statistics, and **Recent
-KardCoins** (the 6 latest history entries: date, reason, signed amount in green or red). Buttons:
+Below that is the balance in large type. Two columns follow, **Hearts** and **Spades** statistics,
+and below them, full width, **Recent KardCoins** (the 6 latest history entries: date, reason, signed
+amount in green or red). Spades shows ratios as "6 of 7" ("—" before the first one). Buttons:
 **Delete player** (with a confirmation that names the coins that will be lost) and **Back**.
 Deleting the last profile returns to the Welcome screen.
 
