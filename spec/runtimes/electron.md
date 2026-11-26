@@ -317,14 +317,17 @@ To try the current checkout on a Linux desktop without installing it:
 
 ### How to cut a release (D-041, D-069)
 1. On the session branch, set `version` in `package.json` and run `npm install --package-lock-only`
-   so the lockfile matches. Commit with the spec updates for the release. The owner merges the
+   so the lockfile matches. Bring the root `README.md` up to date (the current release, games, and
+   features). Commit with the spec updates for the release. The owner merges the
    session PR as usual (D-059).
 2. After the merge, with the owner's go-ahead, tag the merge commit on an up-to-date `main`:
    `git tag -a vX.Y.Z -m "FreeKards vX.Y.Z"`, then `git push origin vX.Y.Z`. The tag must match the
    `package.json` version (CI checks this).
 3. Wait for the `build` workflow on the tag. It creates a **draft** GitHub Release with all
    installers, the SBOMs, and `LICENSE`, marked as a pre-release for `0.x`.
-4. The owner reviews the draft (notes, files, a test install), then clicks **Publish release**.
+4. Add a **What's new in vX.Y.Z** section at the top of the draft's notes, written for players
+   (new games and features, then fixes), above the download guide (`gh release edit --notes-file`).
+5. The owner reviews the draft (notes, files, a test install), then clicks **Publish release**.
 
 If the tag build fails **before the draft release exists**, nothing has been published: delete the
 tag (`git push origin --delete vX.Y.Z` and `git tag -d vX.Y.Z`), fix the problem through a session PR

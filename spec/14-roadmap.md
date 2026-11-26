@@ -21,7 +21,9 @@ the text in `spec/content/rules/`. It also fixed a gray line on the app icon's e
 approved every decision (D-076 to D-082), and the merged session branches were deleted. He then
 asked to cut **v0.2.0** (Spades, Gin Rummy, Rummy 500, the Rules screens, and the 8s and icon fixes):
 the version is bumped on `session/2026-11-25-release-0.2.0`, then the merge is tagged `v0.2.0` and CI
-builds a draft pre-release. Waiting on the owner:
+builds a draft pre-release. The first tag build timed out on a slow test, so the unpublished tag was
+moved after a fix (D-084). The draft now starts with a "What's new in v0.2.0" section, and the README
+describes the current release (both are now release steps). Waiting on the owner:
 1. Review the v0.2.0 draft release (notes, files, a test install), then click **Publish release**.
 2. Still open from before: confirm that profiles and coins persist in the **installed** app across
    restarts, and the play-tester's feedback on Settings (R-005), bigger cards (R-006), and the

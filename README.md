@@ -6,9 +6,8 @@ both x64 and ARM64.
 Games: **Hearts**, **Spades**, **Rummy 500**, and **Gin Rummy** are playable. Coming later:
 Blackjack, Poker, and Solitaire.
 
-> **Status:** early pre-release. Hearts, Spades, Rummy 500, and Gin Rummy are fully playable, with
-> sound, music, talking opponents, a rules screen for each game, player profiles, and statistics.
-> The other games are coming.
+> **Status:** early pre-release; the current release is **v0.2.0**. Hearts, Spades, Rummy 500, and
+> Gin Rummy are fully playable. The other games are coming.
 
 ## Download and install
 Get the installer for your computer from the
@@ -20,11 +19,27 @@ file to download.
 - **Linux Mint, Ubuntu, Debian:** open the `.deb` to install it. On other distributions, use the
   `.AppImage` (mark it executable, then run it).
 
-## Highlights (planned)
-- Animated card dealing and play, designed for touch screens such as the Surface Pro.
-- Computer opponents with personalities who comment on the game in speech bubbles and spoken voice.
-- Sound effects, background music, and interchangeable visual themes.
-- 100% offline. No accounts, no ads, no tracking.
+## Features
+- **Four games:**
+  - **Hearts**, with an optional Jack of Diamonds rule.
+  - **Spades**, played with a partner, to 300 or 500 points.
+  - **Rummy 500** and **Gin Rummy**, for two players.
+- **Made for touch screens** such as the Surface Pro: tap or drag cards, with animated dealing and
+  play. A mouse works too.
+- **Six computer opponents with personalities.** They comment on the game in speech bubbles and out
+  loud, and play at Easy, Medium, or Hard.
+- **A rules screen for every game**, one tap away on the table (the **?** button).
+- **Player profiles:** each player has their own statistics and KardCoins, earned by playing.
+- **Personal settings for each player:** two card decks (Classic and Rounded), card order, how
+  quickly a touch plays a card, and game speed.
+- **Sound:** card sounds, a playlist of background music, and separate volume controls for music,
+  sound effects, and voices.
+- **100% offline.** No accounts, no ads, no tracking.
+
+### Planned
+- Blackjack, Poker, and Solitaire.
+- Ways to spend KardCoins, and player avatars.
+- More visual themes and card decks.
 
 ## Spec-driven
 The [`spec/`](spec/) folder is the source of truth. It is complete enough to rebuild the app from it
