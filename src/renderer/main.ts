@@ -159,7 +159,7 @@ function twoPlayerPrefs(game: TwoPlayerGame): profile.TwoPlayerPrefs {
 }
 
 function twoPlayerSetup(game: TwoPlayerGame): void {
-  showTwoPlayerSetup(stage, game === 'gin' ? 'Gin Rummy' : 'Rummy 500', twoPlayerPrefs(game), {
+  showTwoPlayerSetup(stage, game, twoPlayerPrefs(game), {
     back: menu,
     start: (s) => {
       const cur = activeProfile();

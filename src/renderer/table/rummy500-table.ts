@@ -30,6 +30,7 @@ type Choice =
   | { type: 'discard'; card: Card };
 
 export class Rummy500Table extends RummyTable {
+  protected readonly rulesGame = 'rummy500' as const;
   private state: rummy500.Rummy500State;
   private readonly ais: (rummy500.Rummy500AiPlayer | null)[];
   private choose: ((c: Choice) => void) | null = null;

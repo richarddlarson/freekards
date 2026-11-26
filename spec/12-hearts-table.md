@@ -40,7 +40,8 @@ Main menu ──Play <game>──▶ <game> setup ──Deal!──▶ <game> ta
     Tapping a character adds them to the next free seat, in the order West → North → East, and the
     tile shows that seat. Tapping again removes them. At most 3 can be chosen. **Random** clears the
     selection and picks 3 at random when the game starts.
-  - **Back** | **Deal!** (Deal! is disabled unless Random is selected or exactly 3 are chosen).
+  - **Back** | **Rules** | **Deal!** (Deal! is disabled unless Random is selected or exactly 3 are chosen).
+    **Rules** opens the Hearts rules (§10) over the setup screen.
   - The choices are remembered for next time (§5).
 
 ## 2. Table layout
@@ -58,6 +59,7 @@ Main menu ──Play <game>──▶ <game> setup ──Deal!──▶ <game> ta
 | Won tricks fly toward | South (cx, H + 256); West (−256, cy); North (cx, −256); East (W + 256, cy), shrinking to 0.45 and fading out |
 | Score panel | top-right corner, 40 from the edges, 330 wide |
 | Menu button (☰) | 72 diameter, top-left, 40 from the edges |
+| Rules button (?) | same size and style as ☰, 20 to its right (D-082) |
 | Action button (Pass) | (cx, South card top − 44 − 60) |
 | Center message | (cx, cy) |
 | Toast | (cx, cy − 290) |
@@ -92,8 +94,9 @@ All card images are loaded and decoded before the first deal, so flips never sho
   dimmed (brightness 60%). **A single tap plays a legal card**, or the player can **drag** a legal
   card up onto the table (spec 16 §3). Tapping an illegal card shakes it (240 ms) and does nothing else.
 - **Esc key** (D-058), for players with a keyboard: with no dialog open, it opens the pause menu
-  (the same as ☰). While paused, it resumes, or, when Sound or Settings is open on top of the
-  pause menu, it closes that panel (the same as its Done button). It does nothing on the Hand results
+  (the same as ☰). While paused, it resumes, or, when Sound, Settings, or Rules is open on top of
+  another dialog, it closes that panel (the same as its Done button). With Rules opened from the ?
+  button, it closes Rules and resumes. It does nothing on the Hand results
   and Game over dialogs. Holding the key down doesn't repeat.
 - **Turn indicator:** the active computer player's portrait glows, and the active player's name is
   highlighted in the score panel.
@@ -121,7 +124,7 @@ don't cover them.
 - **Game over:** "You win!" or "<Nickname> wins!", the final standings sorted by score, the
   KardCoins award (spec 15 §3), and the buttons **Play again** (same settings, new deal) and
   **Main menu**.
-- **Pause (☰ or Esc):** **Resume**, **Sound** (spec 13), **Settings** (spec 16), **New game**, and **Main menu**. The game is paused while it's open.
+- **Pause (☰ or Esc):** **Resume**, **Rules** (§10), **Sound** (spec 13), **Settings** (spec 16), **New game**, and **Main menu**. The game is paused while it's open.
 
 ## 8. The Spades table (spec 17, D-072)
 Spades uses the same table, positions, timing, gestures, and dialogs as Hearts (§2–§6), with these
@@ -153,6 +156,30 @@ differences:
 ## 9. The Gin Rummy and Rummy 500 tables
 These 2-player tables share the chrome above (score panel, menu, bubbles, dialogs, pause menu) but have
 their own layout and play: see spec 18 §4.
+
+## 10. Rules screens (D-082)
+Every game has a **Rules** panel that explains how to play it.
+- **Where it opens:** the **Rules** button on the game's setup screen (between Back and Deal!); on
+  the table, the round **?** button beside ☰ (§2); and **Rules** in the pause menu.
+  - From the **?** button, the game pauses until the panel closes. If another dialog is already open
+    (Hand results, the pause menu), Rules opens on top of it, and closing Rules returns to that dialog.
+  - **Done** or **Esc** closes it.
+- **Content:** one Markdown file per game in `spec/content/rules/` (`hearts.md`, `spades.md`,
+  `gin.md`, `rummy500.md`), bundled into the app. Each has a one-line introduction and these sections,
+  in a sensible order for that game: the goal or the melds, the deal, the **Order of play** (a numbered
+  list), the game's special rules, Scoring, **Winning**, the rules FreeKards chose where versions
+  differ (**Special rules**, an **Optional rule**, or **FreeKards choices**), **KardCoins**, and, last,
+  **Playing on this table** (the controls). A test checks that every file has these sections and that
+  its numbers (targets, bonuses, card values, hand sizes) match the game engines.
+- **Text format:** a small Markdown subset: `# Title`, then an intro paragraph, `## Section`
+  headings, paragraphs, `- ` bullet lists, `1. ` numbered lists (an indented line continues an item),
+  and `**bold**`. Anything else is an error, caught by the test.
+- **Panel:** 1600 × 1180 (smaller on a short window), opaque, centered (it sits over everything, so it
+  isn't shifted down like other dialogs). Title "How to play <Game>". On the left, a 360-wide contents
+  list of the section headings: tapping one scrolls to that section, and the section being read is
+  highlighted (brass bar, gold text). On the right, the text scrolls (finger or mouse wheel): the
+  intro in italics, section headings in brass (36 px), body text 28 px, bold words in gold. **Done**
+  at the bottom. Speech bubbles are hidden while it's open.
 
 ## 7. Not yet implemented
 Portrait art, saving a game in progress, and other themes.

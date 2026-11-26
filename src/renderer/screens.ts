@@ -1,5 +1,5 @@
 /** Main menu and game setup screens (spec 12 §1). */
-import type { Difficulty, dialogue, hearts } from '../logic/index.js';
+import type { Difficulty, dialogue, hearts, rules } from '../logic/index.js';
 import { CHARACTERS, portraitColors } from './content.js';
 import type { Settings } from './settings.js';
 import { soundSettingsPanel } from './sound-settings.js';
@@ -7,6 +7,7 @@ import { coinBadge, playerBadge } from './profile-screens.js';
 import type { profile } from '../logic/index.js';
 import { choiceRow, h, onTap, type Stage } from './stage.js';
 import { settingsPanel } from './settings-panel.js';
+import { openRules } from './rules-panel.js';
 
 type CharacterDef = dialogue.CharacterDef;
 
@@ -76,6 +77,13 @@ export function portraitBadge(c: CharacterDef, className = 'portrait-face'): HTM
   return face;
 }
 
+/** The Rules button on a setup screen (spec 12 §10): opens that game's rules over the screen. */
+function rulesButton(screen: HTMLElement, game: rules.RulesGame): HTMLElement {
+  const b = h('button', 'big-button secondary', 'Rules');
+  onTap(b, () => openRules(screen, game));
+  return b;
+}
+
 const SEAT_LABELS = ['West', 'North', 'East'];
 
 /** Hearts setup: rule set, difficulty, and opponents (D-008, D-010). */
@@ -132,7 +140,7 @@ export function showHeartsSetup(
   onTap(start, () => {
     if (s.opponents === null || s.opponents.length === 3) actions.start(s);
   });
-  buttons.append(back, start);
+  buttons.append(back, rulesButton(screen, 'hearts'), start);
   panel.append(buttons);
 
   function refresh(): void {
@@ -207,7 +215,7 @@ export function showSpadesSetup(
   onTap(start, () => {
     if (s.players === null || s.players.length === 3) actions.start(s);
   });
-  buttons.append(back, start);
+  buttons.append(back, rulesButton(screen, 'spades'), start);
   panel.append(buttons);
 
   function refresh(): void {
@@ -230,7 +238,7 @@ export function showSpadesSetup(
 /** Setup for a 2-player game (Gin Rummy, Rummy 500; spec 18 §4.1): difficulty and one opponent (or Random). */
 export function showTwoPlayerSetup(
   stage: Stage,
-  title: string,
+  game: 'gin' | 'rummy500',
   initial: profile.TwoPlayerPrefs,
   actions: { start(s: profile.TwoPlayerPrefs): void; back(): void },
 ): void {
@@ -238,7 +246,7 @@ export function showTwoPlayerSetup(
   const s: profile.TwoPlayerPrefs = { ...initial };
   const screen = h('div', 'screen setup-screen');
   const panel = h('div', 'setup-panel');
-  panel.append(h('h2', 'setup-title', title));
+  panel.append(h('h2', 'setup-title', game === 'gin' ? 'Gin Rummy' : 'Rummy 500'));
   panel.append(choiceRow<Difficulty>('Difficulty', [['easy', 'Easy'], ['medium', 'Medium'], ['hard', 'Hard']], s.difficulty, (v) => (s.difficulty = v)));
 
   const row = h('div', 'setup-row');
@@ -272,7 +280,7 @@ export function showTwoPlayerSetup(
   const start = h('button', 'big-button', 'Deal!');
   onTap(back, actions.back);
   onTap(start, () => actions.start(s));
-  buttons.append(back, start);
+  buttons.append(back, rulesButton(screen, game), start);
   panel.append(buttons);
 
   function refresh(): void {

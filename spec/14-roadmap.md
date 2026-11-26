@@ -15,9 +15,11 @@ Branch `session/2026-11-25-rummy-gin` adds **Gin Rummy** and **Rummy 500** for t
 D-076 to D-081): a shared melds module, both rules engines, computer players tuned by simulation, 204
 new voiced lines, stats and KardCoins, setup screens, and a new 2-player table, on a table base class
 now shared by every game. My stats now has a tab per game. The owner asked the assistant to make every
-choice and list them for review. Waiting on the owner:
-1. Play-test both games and review the decisions (D-076 to D-081, marked Proposed); then push the
-   session PR when he asks.
+choice and list them for review. After seeing them he asked for a **Rules screen** for every game
+(R-008, D-082): a **?** button on each table, Rules in the pause menu and on each setup screen, with
+the text in `spec/content/rules/`. Waiting on the owner:
+1. Play-test both games and the Rules screens, and review the decisions (D-076 to D-082, marked
+   Proposed); then push the session PR when he asks.
 2. Cut **v0.2.0** when he is ready (Spades, the 8s fix, and these two games if merged by then).
 3. Still open from before: confirm that profiles and coins persist in the **installed** app across
    restarts, and the play-tester's feedback on Settings (R-005), bigger cards (R-006), and the
@@ -105,6 +107,16 @@ choice and list them for review. Waiting on the owner:
 - **Choices made by the owner:** Nunito ExtraBold, picked from an audition of six rounded fonts
   (Nunito Black and ExtraBold, Fredoka Bold and SemiBold, Baloo 2 ExtraBold, M PLUS Rounded 1c
   ExtraBold). Deck names Classic and Rounded.
+
+## R-008 — A rules screen for every game
+- **Status:** Built 2026-11-25 (spec 12 §10, D-082), awaiting the owner's review. Every new game
+  gets a rules file in `spec/content/rules/` as part of being built.
+- **Requested:** 2026-11-25, by the owner
+- **Request (original wording):** "These look great!  Let's add one more thing: On each game, we need
+  to add a "rules" screen that the user can bring up by clicking an icon or "something" on the app
+  screen in order to understand the rules of that game, then on that screen we display the basic
+  rules, order of play, and any special rules such as those decisions you made above.  Can we add
+  that?  We will need this for all the games, not just gin and rummy 500."
 
 ## R-002 — Remaining games
 - **Status:** In progress. **Spades** built 2026-11-25 (spec 17, D-070 to D-074). **Gin Rummy** and

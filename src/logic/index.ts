@@ -13,3 +13,4 @@ export * as layout from './layout/hearts-table.js';
 export * as rummyLayout from './layout/rummy-table.js';
 export * as profile from './profile/profile.js';
 export * as settings from './settings/index.js';
+export * as rules from './rules/rules-text.js';

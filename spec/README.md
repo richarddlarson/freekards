@@ -22,7 +22,7 @@ look, feel, behavior, build, packaging, install, runtime, or development process
 | [08-characters.md](08-characters.md) | Character roster, personality, difficulty model, and dialogue. |
 | [09-licensing-and-sbom.md](09-licensing-and-sbom.md) | MIT license, third-party license policy, SBOM, and Credits screen. |
 | [10-core-logic.md](10-core-logic.md) | Shared logic conventions: card ids, seats, seeded random numbers, state-machine shape. |
-| [content/](content/) | Canonical engine-neutral content data: character profiles and dialogue, audio cue map (D-031). |
+| [content/](content/) | Canonical engine-neutral content data: character profiles and dialogue, audio cue map (D-031), and each game's rules text shown in the app (D-082). |
 | [11-display-and-layout.md](11-display-and-layout.md) | Target screens, resolution scaling, layout model, touch targets, orientation. |
 | [12-hearts-table.md](12-hearts-table.md) | Screen flow, Hearts table layout, timing, interaction, dialogs. |
 | [13-audio.md](13-audio.md) | Audio channels, volume, sound cues, music playlist, sources. |

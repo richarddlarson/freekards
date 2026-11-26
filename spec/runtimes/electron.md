@@ -68,6 +68,7 @@ src/logic/                  ENGINE-NEUTRAL game logic (spec 05, 10). No DOM/Node
   layout/hearts-table.ts    Viewport fitting, table positions, timing, Card response / Game speed tables (spec 11, 12, 16)
   layout/rummy-table.ts     2-player table: stock, discard pile (stacked or spread), meld rows, grouped hand (spec 18 §4.2)
   settings/                 Per-player settings: types, defaults, repair (spec 16)
+  rules/rules-text.ts       Parses the rules Markdown subset into plain blocks (spec 12 §10)
   index.ts                  Public entry point
 src/main/main.cts           Electron main process
 src/main/preload.cts        Preload bridge (window.freekards)
@@ -86,6 +87,7 @@ src/renderer/               Presentation (DOM + CSS):
   audio.ts                  Web Audio engine: channels, cues, playlist (spec 13)
   sound-settings.ts         Sound panel (sliders, Mute all)
   settings-panel.ts         Per-player Settings panel (spec 16)
+  rules-panel.ts            Rules panel (spec 12 §10, D-082): bundles spec/content/rules/*.md (?raw), contents list + scrolling text
   screens.ts                Main menu, Hearts setup, Spades setup, and the 2-player setup (Gin Rummy, Rummy 500)
   table/card-sprite.ts      One element per card, moved with the Web Animations API
   table/table-base.ts       What every table shares (D-081): portraits, bubbles, score panel, menu button, toasts,

@@ -80,6 +80,8 @@ export const LAYOUT = {
   scorePanelW: 330,
   scorePanelH: 240,
   menuButtonSize: 72,
+  /** The ? (rules) button sits this far right of the menu button (spec 12 §2). */
+  rulesButtonGap: 20,
   /** A pointer must move this far (logical units) before a press becomes a drag (D-055). */
   dragStart: 12,
   /** A dragged card plays if released with its center at least this far above its place in the hand. */

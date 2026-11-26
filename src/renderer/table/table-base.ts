@@ -5,12 +5,13 @@
  * award, and the pause menu. Trick-taking games (TrickTable) and the 2-player rummy games
  * (RummyTable) extend it. Game state is only changed through engine actions.
  */
-import { dialogue, effectiveSkill, layout, settings, type Difficulty } from '../../logic/index.js';
+import { dialogue, effectiveSkill, layout, settings, type Difficulty, type rules } from '../../logic/index.js';
 import { portraitColors, preloadCardImages } from '../content.js';
 import { h, onTap, type Stage } from '../stage.js';
 import { audio } from '../audio.js';
 import { soundSettingsPanel } from '../sound-settings.js';
 import { settingsPanel } from '../settings-panel.js';
+import { rulesPanel } from '../rules-panel.js';
 
 type CharacterDef = dialogue.CharacterDef;
 
@@ -56,6 +57,8 @@ export abstract class TableBase {
   protected readonly youPlate = h('div', 'nameplate you', 'You');
   protected readonly scorePanel = h('div', 'score-panel');
   protected readonly menuBtn = h('button', 'menu-button', '☰');
+  /** Opens this game's rules (spec 12 §10). */
+  protected readonly rulesBtn = h('button', 'menu-button rules-button', '?');
   protected readonly message = h('div', 'table-message');
   protected readonly toast = h('div', 'toast');
   protected overlay: HTMLDivElement | null = null;
@@ -89,6 +92,9 @@ export abstract class TableBase {
   }
 
   // ------------------------------------------------------------------ game-specific hooks
+
+  /** Which game's rules the ? button and the pause menu open. */
+  protected abstract readonly rulesGame: rules.RulesGame;
 
   /** Fill the score panel (called once). */
   protected abstract buildScorePanel(): void;
@@ -215,9 +221,11 @@ export abstract class TableBase {
     }
     this.buildScorePanel();
     onTap(this.menuBtn, () => this.openMenu());
+    onTap(this.rulesBtn, () => this.openRules());
+    this.rulesBtn.title = 'Rules';
     this.message.hidden = true;
     this.buildTable();
-    this.root.append(this.youPlate, this.scorePanel, this.menuBtn, this.message, this.toast);
+    this.root.append(this.youPlate, this.scorePanel, this.menuBtn, this.rulesBtn, this.message, this.toast);
     this.stage.el.append(this.root);
   }
 
@@ -243,6 +251,7 @@ export abstract class TableBase {
     this.scorePanel.style.top = `${L.scorePanel.y}px`;
     this.scorePanel.style.width = `${L.scorePanel.w}px`;
     this.place(this.menuBtn, L.menuButton);
+    this.place(this.rulesBtn, { x: L.menuButton.x + L.menuButton.size + layout.LAYOUT.rulesButtonGap, y: L.menuButton.y });
     this.place(this.message, L.message);
     this.place(this.toast, { x: L.center.x, y: L.center.y - 290 });
     this.relayoutTable();
@@ -397,7 +406,36 @@ export abstract class TableBase {
     else this.openMenu();
   };
 
+  /**
+   * The Rules panel (spec 12 §10). Over the pause menu or any other dialog it opens on top, and Done
+   * goes back to that dialog. Otherwise it pauses the game until Done (or Esc).
+   */
+  private openRules(): void {
+    if (this.root.querySelector('.rules-panel')) return;
+    this.root.classList.add('rules-open');
+    if (this.overlay) {
+      const o = h('div', 'overlay');
+      o.append(
+        rulesPanel(this.rulesGame, () => {
+          o.remove();
+          this.root.classList.remove('rules-open');
+        }),
+      );
+      this.overlay.append(o);
+      return;
+    }
+    this.paused = true;
+    const o = this.showOverlay(
+      rulesPanel(this.rulesGame, () => {
+        this.root.classList.remove('rules-open');
+        this.resume();
+      }),
+    );
+    o.classList.add('centered');
+  }
+
   private resume(): void {
+    this.root.classList.remove('rules-open');
     this.closeOverlay();
     this.paused = false;
     const w = this.resumeWaiters;
@@ -412,6 +450,8 @@ export abstract class TableBase {
     panel.append(h('h2', '', 'Paused'));
     const col = h('div', 'dialog-buttons column');
     const resume = h('button', 'big-button', 'Resume');
+    const rulesBtn = h('button', 'big-button secondary', 'Rules');
+    onTap(rulesBtn, () => this.openRules());
     const sound = h('button', 'big-button secondary', 'Sound');
     onTap(sound, () => {
       const back = this.overlay;
@@ -436,7 +476,7 @@ export abstract class TableBase {
     onTap(resume, () => this.resume());
     onTap(restart, () => this.base.onExit('again'));
     onTap(menu, () => this.base.onExit('menu'));
-    col.append(resume, sound, prefs, restart, menu);
+    col.append(resume, rulesBtn, sound, prefs, restart, menu);
     panel.append(col);
     this.showOverlay(panel);
   }

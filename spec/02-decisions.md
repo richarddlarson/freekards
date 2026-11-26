@@ -959,3 +959,22 @@ Template:
   teaches the rules as she plays. Showing melds automatically helps a player who is new to Gin see
   her deadwood. Four game columns no longer fit on My stats, so it got tabs. The menu name stays
   "Rummy 500", as in the requirements (spec 01) and the old menu.
+
+## D-082 — A Rules screen for every game
+- Date: 2026-11-25
+- Status: Proposed (asked for by the owner; the details were chosen by the assistant for him to review)
+- Decision: Every game has a **Rules** panel (spec 12 §10), opened from a round **?** button beside ☰
+  on the table, from **Rules** in the pause menu, and from a **Rules** button on the game's setup
+  screen. Opening it from the table pauses the game. The panel has a contents list of sections on the
+  left and the scrolling text on the right. The text for each game is a Markdown file in
+  `spec/content/rules/`, written in plain language for a new player: the goal, the deal, the order of
+  play as numbered steps, special rules, scoring, winning, the rules FreeKards chose where versions
+  differ (the decisions in D-008, D-070, D-076, D-077), how KardCoins are earned, and how to use the
+  table's controls. A test checks that each file has the required sections and that its numbers match
+  the engines. Every new game gets a rules file as part of being built.
+- Why: A **?** icon is the familiar sign for help and needs no reading, and keeping it on the table
+  means the rules are one tap away mid-hand, when a question actually comes up. Putting the text in
+  `spec/content` keeps it editable without touching code and keeps it part of the source of truth.
+  Explaining the house choices (for example, Gin's Ace is always low, Rummy 500 has no "Rummy!" call)
+  heads off "that's not how we play it" surprises. The engine check stops the text drifting from the
+  rules if a number is changed later.

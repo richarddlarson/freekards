@@ -15,6 +15,19 @@
       "tool": "Written with Claude (Anthropic) for this project, under owner direction (D-030)"
     },
     {
+      "path": "spec/content/rules/*.md",
+      "title": "Rules text for each game (Hearts, Spades, Gin Rummy, Rummy 500)",
+      "kind": "other",
+      "origin": "ai-assisted",
+      "author": "The FreeKards Contributors",
+      "source": "https://github.com/richarddlarson/freekards",
+      "license": "MIT",
+      "licenseUrl": "https://opensource.org/license/mit",
+      "attribution": null,
+      "modified": null,
+      "tool": "Written with Claude (Anthropic) for this project, at the owner's request (D-082)"
+    },
+    {
       "path": "assets/themes/classic-casino/decks/*/faces/*.svg",
       "title": "Classic Casino card faces: 52 per deck (Classic, Rounded)",
       "kind": "image",

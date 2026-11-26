@@ -210,7 +210,7 @@ lay-off it can make on the table and on its own new melds, chaining run extensio
 One panel per game, titled **Gin Rummy** or **Rummy 500**: **Difficulty** (Easy | Medium | Hard), and
 **Opponent**: a **Random** button and a grid of every roster character (as on the Hearts setup).
 Tapping a character selects it (its badge reads "Opponent"); tapping it again goes back to Random.
-**Back** | **Deal!**. The choice is saved in the active profile when Deal! is pressed (spec 15 §2).
+**Back** | **Rules** | **Deal!** (Rules: spec 12 §10). The choice is saved in the active profile when Deal! is pressed (spec 15 §2).
 There are no rule options in this version.
 
 ### 4.2 Table layout
@@ -294,5 +294,5 @@ In every view the **Ace sorts low** (next to the 2), and the player's **Card ord
   **Play again** and **Main menu**.
 
 ### 4.6 Shared with the other tables
-Speech bubbles, idle comments, the pause menu (☰ or Esc), Sound and Settings mid-game, game speed and
+Speech bubbles, idle comments, the pause menu (☰ or Esc), the Rules panel (the ? button; spec 12 §10), Sound and Settings mid-game, game speed and
 Card response, dialogs, and the KardCoins award all work exactly as on the Hearts table (spec 12 §3–§6).

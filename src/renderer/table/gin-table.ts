@@ -37,6 +37,7 @@ export function cardName(c: Card): string {
 }
 
 export class GinTable extends RummyTable {
+  protected readonly rulesGame = 'gin' as const;
   private state: gin.GinState;
   private readonly ais: (gin.GinAiPlayer | null)[];
   /** The player's pending choice, while waiting for them. */
