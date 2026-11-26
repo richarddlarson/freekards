@@ -13,8 +13,9 @@ Main menu ──Play Hearts──▶ Hearts setup ──Deal!──▶ Hearts ta
     ▲                        │ Back                  │ ☰ menu                     │ Play again → new table, same settings
     └────────────────────────┴───────────────────────┴── Main menu ───────────────┘
 ```
-- **Main menu:** the "FreeKards" title, tagline "Classic card games with friendly faces", a large
-  **Play Hearts** button, a 2-column grid of the other six games marked *coming soon* (disabled),
+- **Main menu:** the "FreeKards" title, tagline "Classic card games with friendly faces", the large
+  gold **Play Hearts** and **Play Spades** buttons side by side (D-072), a 2-column grid of the other
+  five games marked *coming soon* (disabled; the odd last one centered),
   and, along the bottom, **Sound** (opens the Sound panel, spec 13), **Settings** (the player's
   Settings panel, spec 16), **About** (the About & Credits screen, below), and **Quit** (closes the app).
 - **About & Credits** (D-066, spec 09 §5), one panel that fills most of the screen:
@@ -120,6 +121,33 @@ don't cover them.
   KardCoins award (spec 15 §3), and the buttons **Play again** (same settings, new deal) and
   **Main menu**.
 - **Pause (☰ or Esc):** **Resume**, **Sound** (spec 13), **Settings** (spec 16), **New game**, and **Main menu**. The game is paused while it's open.
+
+## 8. The Spades table (spec 17, D-072)
+Spades uses the same table, positions, timing, gestures, and dialogs as Hearts (§2–§6), with these
+differences:
+- **Deal** starts at the dealer's left. There is no passing.
+- **Bid badges:** a pill (gold border, text #ffe98a, 22 px bold) for each player: under each
+  computer player's nameplate (portrait center + 132), and 52 above the "You" nameplate. It shows
+  "Bid 3" (or "Nil") once that player has bid, then "Bid 3 · Won 1" during play. A Nil badge has a
+  light-blue border; a broken Nil turns red and is struck through.
+- **Bid panel** (the player's turn to bid): 820 wide, centered on the table center (cx, cy), with
+  "Your bid", the bids so far ("Partner (Dot): 3 · Reggie: 1 · …", "—" for not yet bid), a 7 × 2 grid
+  of **Nil, 1–13** (92 × 72 buttons), "Suggested: N", and a **Bid N** button (disabled until a
+  number is chosen). Tapping a number selects it; **Bid** confirms. The Bid button is the only way
+  to submit, so a stray tap can't place a bid.
+- **Computer bids** come one at a time with the usual thinking pause (× Game speed). A Nil bid
+  shows a toast ("Dot bids Nil!").
+- **Toasts:** "Spades are broken!", and "<Name>'s Nil is broken!" / "Your Nil is broken!".
+- **Score panel:** "Spades · to 300", then for each team its name ("You & Dot",
+  "Reggie & The Professor") and a line "Bid 7 · Won 3 · Bags 2" with the team score at the right.
+  The team whose player is to act is highlighted. Footer: "Hand N · Dealer: <name>".
+- **Hand results:** a table with a column per team and rows Bid, Won, Contract ("+70", or "−70 (set)"),
+  Bags, Nil (only if bid), Bag penalty (only if any), **This hand**, **Total**, and Bags so far.
+- **Game over:** "You and <partner> win!" or "<West> and <East> win!", the two team scores (winner
+  first), and the KardCoins award, e.g. "Win: 80 × 1.5 (Medium) · Nil bonus +25" or
+  "Good try: 10 × 1.5 (Medium)".
+- **Remembered preferences:** game length, difficulty, and the partner and opponents (or Random)
+  are saved in the active profile when **Deal!** is pressed (spec 15 §2).
 
 ## 7. Not yet implemented
 Portrait art, saving a game in progress, and other themes.

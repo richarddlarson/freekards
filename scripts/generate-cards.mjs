@@ -108,8 +108,22 @@ function lettering(text, cx, y, size, fill, { tracking = 0, squeeze = 1 } = {}) 
     x2 = Math.max(x2, b.x2);
   }
   const shift = -(x1 + x2) / 2;
-  const d = parts.map(({ g, x }) => g.getPath(x + shift, 0, size).toPathData(2)).join('');
+  const d = parts.map(({ g, x }) => pathData(g.getPath(x + shift, 0, size))).join('');
   return `<path d="${d}" fill="${fill}" transform="translate(${cx} ${y})${squeeze === 1 ? '' : ` scale(${squeeze} 1)`}"/>`;
+}
+
+/**
+ * Path data with 2 decimals. Coordinates within 1e-9 of zero are snapped to 0 first: opentype.js
+ * 2.0.0 formats tiny values such as 3.5e-15 as "NaN", and a browser then drops the whole path.
+ * This happened to the Rounded deck's "8", whose contours start exactly on its centering line.
+ */
+function pathData(path) {
+  for (const c of path.commands) {
+    for (const k of ['x', 'y', 'x1', 'y1', 'x2', 'y2']) if (c[k] !== undefined && Math.abs(c[k]) < 1e-9) c[k] = 0;
+  }
+  const d = path.toPathData(2);
+  if (/NaN|Infinity/.test(d)) throw new Error(`bad path data: ${d.slice(0, 80)}`);
+  return d;
 }
 
 // ---------------------------------------------------------------- card frame & indices

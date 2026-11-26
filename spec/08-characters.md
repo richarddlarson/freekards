@@ -61,6 +61,25 @@ A trigger is `<scope>.<event>.<perspective>`, or `<scope>.<event>` where perspec
 
 Later games add their own `<game>.*` triggers. A character with no lines for a trigger stays silent.
 
+### Spades triggers [Confirmed] (implemented, D-074)
+Spades is a partnership game, so its triggers use the perspectives **`self`** (the speaker),
+**`partner`** (the speaker's partner, who is the player when North speaks), and **`opponent`**,
+or, for team events, **`us`** (the speaker's team) and **`them`**.
+
+| Trigger | Fires when | Weight |
+|---------|-----------|--------|
+| `spades.bid_nil.self` / `.partner` | `bid_made` with a Nil bid (not spoken by the bidder's opponents) | 0.6 |
+| `spades.nil_failed.self` / `.partner` / `.opponent` | `nil_failed` (the Nil bidder took a trick) | 0.9 |
+| `spades.nil_made.self` / `.partner` / `.opponent` | `hand_scored`, for each Nil that was made | 0.9 |
+| `spades.set.us` / `.them` | `hand_scored`, for a team whose contract was set | 0.8 |
+| `spades.bags.us` / `.them` | `bag_penalty` | 0.7 |
+| `spades.trumped.self` / `.partner` | `trick_won` with a spade on a non-spade lead | 0.3 |
+
+The shared triggers keep their weights and mean, in Spades: `game.won.self` = the speaker's team won,
+`game.won.human` = the player's team beat the speaker's; `hand.good.self` / `hand.bad.self` = the
+speaker's team scored more / less this hand, and `hand.good.human` / `hand.bad.human` the same for the
+player's team, from an opponent's side.
+
 ### Who speaks [Confirmed] (implemented, D-036)
 1. When a logic event happens, collect every computer character with lines for the matching
    trigger. A character with a `self` trigger is preferred over the others.

@@ -16,6 +16,7 @@ time. Click **More info**, then **Run anyway**. If your browser warns while down
 **Keep**. FreeKards is open source, and every installer on this page was built by GitHub Actions
 from the code in this repository.
 
-The `sbom/` files list every component and asset in the app, with its license.
+The SBOM files (`assets.json`, `code.cdx.json`, `dev.cdx.json`, `build-tools.json`) list every
+component and asset in the app, with its license.
 
 ---

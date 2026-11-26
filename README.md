@@ -3,10 +3,11 @@
 Free, open-source classic card games with friendly computer opponents, for Windows and Linux on
 both x64 and ARM64.
 
-Planned games: Hearts (in progress), Spades, Blackjack, Poker, Rummy 500, Gin Rummy, and Solitaire.
+Games: **Hearts** and **Spades** are playable. Coming later: Blackjack, Poker, Rummy 500, Gin
+Rummy, and Solitaire.
 
-> **Status:** early pre-release. Hearts is fully playable, with sound, music, talking opponents,
-> player profiles, and statistics. The other games are coming.
+> **Status:** early pre-release. Hearts and Spades are fully playable, with sound, music, talking
+> opponents, player profiles, and statistics. The other games are coming.
 
 ## Download and install
 Get the installer for your computer from the

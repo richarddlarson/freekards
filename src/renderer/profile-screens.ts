@@ -179,6 +179,24 @@ export function showProfilePage(stage: Stage, opts: { onBack(): void; onDeletedL
   for (const [k, v] of rows) grid.append(h('span', 'stats-key', k), h('span', 'stats-value', v));
   stats.append(grid);
 
+  const sp = p.stats.spades;
+  const spadesSection = h('div', 'stats-section');
+  spadesSection.append(h('h3', 'stats-title', 'Spades'));
+  const spGrid = h('div', 'stats-grid');
+  const ratio = (a: number, b: number) => (b === 0 ? '—' : `${a} of ${b}`);
+  const spRows: [string, string][] = [
+    ['Games played', String(sp.gamesPlayed)],
+    ['Games won', `${sp.gamesWon} (${pct(profile.winRate(sp))})`],
+    ['Win streak (current · best)', `${sp.currentWinStreak} · ${sp.bestWinStreak}`],
+    ['Best final score', sp.bestScore === null ? '—' : String(sp.bestScore)],
+    ['Hands played', String(sp.handsPlayed)],
+    ['Contracts made', ratio(sp.contractsMade, sp.contractsBid)],
+    ['Nils made', ratio(sp.nilsMade, sp.nilsBid)],
+    ['KardCoins earned in Spades', coinText(sp.coinsEarned)],
+  ];
+  for (const [k, v] of spRows) spGrid.append(h('span', 'stats-key', k), h('span', 'stats-value', v));
+  spadesSection.append(spGrid);
+
   const history = h('div', 'stats-section');
   history.append(h('h3', 'stats-title', 'Recent KardCoins'));
   const list = h('div', 'ledger');
@@ -192,7 +210,7 @@ export function showProfilePage(stage: Stage, opts: { onBack(): void; onDeletedL
   }
   history.append(list);
   const cols = h('div', 'profile-columns');
-  cols.append(stats, history);
+  cols.append(stats, spadesSection, history);
   panel.append(cols);
 
   const row = h('div', 'dialog-buttons');

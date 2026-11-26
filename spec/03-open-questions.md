@@ -12,7 +12,9 @@ question is removed from this list.
 ## Games and rules
 - Q6. Poker: which variant? Texas Hold'em, Five-Card Draw, or something else? Played for chips, with a bankroll?
 - Q7. Solitaire: which variants? Klondike only, or also FreeCell, Spider, and others? Draw 1 or draw 3?
-- Q8. House rules worth matching in the other games (Spades nil and blind nil, Rummy 500 details, and so on).
+- Q8. House rules worth matching in the other games (Rummy 500 details, and so on). Spades rules
+  are settled for now (D-070, approved by the owner); blind Nil or a minimum team bid could be added
+  later as options.
 
 ## Characters, art, and audio
 - Q12. Future characters, including non-human kinds: the owner will ask the main player what she'd like added.

@@ -269,6 +269,138 @@
         "id": "gus.hearts.pass.received.2",
         "text": "You passed me these? On purpose?"
       }
+    ],
+    "spades.bid_nil.self": [
+      {
+        "id": "gus.spades.bid_nil.self.1",
+        "text": "Nil. Zero. Same as my pension raise."
+      },
+      {
+        "id": "gus.spades.bid_nil.self.2",
+        "text": "I'm bidding nothing. Finally, something I'm good at."
+      }
+    ],
+    "spades.bid_nil.partner": [
+      {
+        "id": "gus.spades.bid_nil.partner.1",
+        "text": "Nil? Fine. I'll cover you. I covered Route Nine for thirty years."
+      },
+      {
+        "id": "gus.spades.bid_nil.partner.2",
+        "text": "Alright, partner. You duck. I'll do the heavy lifting."
+      }
+    ],
+    "spades.nil_made.self": [
+      {
+        "id": "gus.spades.nil_made.self.1",
+        "text": "Not a single trick. That's called discipline."
+      },
+      {
+        "id": "gus.spades.nil_made.self.2",
+        "text": "Zero tricks. The goose on Elm Street couldn't have done better."
+      }
+    ],
+    "spades.nil_made.partner": [
+      {
+        "id": "gus.spades.nil_made.partner.1",
+        "text": "You did it, partner! ...Don't tell anyone I cheered."
+      },
+      {
+        "id": "gus.spades.nil_made.partner.2",
+        "text": "Nil made. Have a peppermint. You earned it."
+      }
+    ],
+    "spades.nil_made.opponent": [
+      {
+        "id": "gus.spades.nil_made.opponent.1",
+        "text": "Their nil held. Rigged, I tell you."
+      }
+    ],
+    "spades.nil_failed.self": [
+      {
+        "id": "gus.spades.nil_failed.self.1",
+        "text": "There goes my nil. Deck's rigged."
+      },
+      {
+        "id": "gus.spades.nil_failed.self.2",
+        "text": "Took a trick. Of course I did."
+      }
+    ],
+    "spades.nil_failed.partner": [
+      {
+        "id": "gus.spades.nil_failed.partner.1",
+        "text": "Oof. Well, I'll still split my peppermints with you."
+      },
+      {
+        "id": "gus.spades.nil_failed.partner.2",
+        "text": "Close one, partner. Close one."
+      }
+    ],
+    "spades.nil_failed.opponent": [
+      {
+        "id": "gus.spades.nil_failed.opponent.1",
+        "text": "Ha! That nil just got returned to sender."
+      },
+      {
+        "id": "gus.spades.nil_failed.opponent.2",
+        "text": "Nil busted. Postage due."
+      }
+    ],
+    "spades.set.us": [
+      {
+        "id": "gus.spades.set.us.1",
+        "text": "Set. Like a mailbox in wet cement."
+      },
+      {
+        "id": "gus.spades.set.us.2",
+        "text": "We came up short. Story of my life."
+      }
+    ],
+    "spades.set.them": [
+      {
+        "id": "gus.spades.set.them.1",
+        "text": "Didn't make it, did you? Shame. Not really."
+      },
+      {
+        "id": "gus.spades.set.them.2",
+        "text": "Set! I'd say sorry, but I'm retired."
+      }
+    ],
+    "spades.bags.us": [
+      {
+        "id": "gus.spades.bags.us.1",
+        "text": "A hundred points for too many bags. Like my closet."
+      },
+      {
+        "id": "gus.spades.bags.us.2",
+        "text": "Bags. I hate bags. Ask my grocery store."
+      }
+    ],
+    "spades.bags.them": [
+      {
+        "id": "gus.spades.bags.them.1",
+        "text": "Too many bags. I know the feeling."
+      }
+    ],
+    "spades.trumped.self": [
+      {
+        "id": "gus.spades.trumped.self.1",
+        "text": "Spade. Special delivery."
+      },
+      {
+        "id": "gus.spades.trumped.self.2",
+        "text": "Trumped it. Sign here, please."
+      }
+    ],
+    "spades.trumped.partner": [
+      {
+        "id": "gus.spades.trumped.partner.1",
+        "text": "Nice spade, partner. Don't let it go to your head."
+      },
+      {
+        "id": "gus.spades.trumped.partner.2",
+        "text": "Good trump. Real good. I'm smiling on the inside."
+      }
     ]
   }
 }

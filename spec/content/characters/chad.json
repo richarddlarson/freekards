@@ -234,6 +234,138 @@
         "id": "chad.hearts.pass.received.1",
         "text": "Great cards! I mean, terrible cards. Great attitude though!"
       }
+    ],
+    "spades.bid_nil.self": [
+      {
+        "id": "chad.spades.bid_nil.self.1",
+        "text": "Going NIL! Zero tricks, maximum confidence!"
+      },
+      {
+        "id": "chad.spades.bid_nil.self.2",
+        "text": "Nil! This is my comeback story, people!"
+      }
+    ],
+    "spades.bid_nil.partner": [
+      {
+        "id": "chad.spades.bid_nil.partner.1",
+        "text": "Nil?! Bold move! I've got your back, teammate!"
+      },
+      {
+        "id": "chad.spades.bid_nil.partner.2",
+        "text": "You go nil, I go beast mode. Team synergy!"
+      }
+    ],
+    "spades.nil_made.self": [
+      {
+        "id": "chad.spades.nil_made.self.1",
+        "text": "ZERO tricks! That's elite avoidance!"
+      },
+      {
+        "id": "chad.spades.nil_made.self.2",
+        "text": "Perfect nil! I'd like to thank my smoothie."
+      }
+    ],
+    "spades.nil_made.partner": [
+      {
+        "id": "chad.spades.nil_made.partner.1",
+        "text": "NIL MADE! Up top, partner! ...Virtual up top!"
+      },
+      {
+        "id": "chad.spades.nil_made.partner.2",
+        "text": "That's what I call executing the game plan!"
+      }
+    ],
+    "spades.nil_made.opponent": [
+      {
+        "id": "chad.spades.nil_made.opponent.1",
+        "text": "Respect. That was a clean nil. I'm taking notes."
+      }
+    ],
+    "spades.nil_failed.self": [
+      {
+        "id": "chad.spades.nil_failed.self.1",
+        "text": "Okay, that trick was a learning opportunity."
+      },
+      {
+        "id": "chad.spades.nil_failed.self.2",
+        "text": "Nil's gone. But my spirit? Undefeated."
+      }
+    ],
+    "spades.nil_failed.partner": [
+      {
+        "id": "chad.spades.nil_failed.partner.1",
+        "text": "Shake it off, teammate! Fresh rep next hand!"
+      },
+      {
+        "id": "chad.spades.nil_failed.partner.2",
+        "text": "Hey, failure is just data! Mostly bad data."
+      }
+    ],
+    "spades.nil_failed.opponent": [
+      {
+        "id": "chad.spades.nil_failed.opponent.1",
+        "text": "And the nil goes DOWN! What a play!"
+      },
+      {
+        "id": "chad.spades.nil_failed.opponent.2",
+        "text": "The crowd goes wild! The nil is broken!"
+      }
+    ],
+    "spades.set.us": [
+      {
+        "id": "chad.spades.set.us.1",
+        "text": "We got set. That's fine. That's FINE."
+      },
+      {
+        "id": "chad.spades.set.us.2",
+        "text": "Not a loss. A setback. A set... back."
+      }
+    ],
+    "spades.set.them": [
+      {
+        "id": "chad.spades.set.them.1",
+        "text": "SET! That's a defensive masterclass, folks!"
+      },
+      {
+        "id": "chad.spades.set.them.2",
+        "text": "Boom! Defense wins championships!"
+      }
+    ],
+    "spades.bags.us": [
+      {
+        "id": "chad.spades.bags.us.1",
+        "text": "Bag penalty?! Nobody told me bags were bad!"
+      },
+      {
+        "id": "chad.spades.bags.us.2",
+        "text": "Too many bags. I over-performed. Classic Chad."
+      }
+    ],
+    "spades.bags.them": [
+      {
+        "id": "chad.spades.bags.them.1",
+        "text": "Bag penalty! Gotta respect the fundamentals!"
+      }
+    ],
+    "spades.trumped.self": [
+      {
+        "id": "chad.spades.trumped.self.1",
+        "text": "Spade! Slam dunk!"
+      },
+      {
+        "id": "chad.spades.trumped.self.2",
+        "text": "Trumped it! And the crowd goes wild!"
+      }
+    ],
+    "spades.trumped.partner": [
+      {
+        "id": "chad.spades.trumped.partner.1",
+        "text": "Huge spade, partner! Huge!"
+      },
+      {
+        "id": "chad.spades.trumped.partner.2",
+        "text": "That's my teammate! Big-time trump!"
+      }
     ]
   }
 }

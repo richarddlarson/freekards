@@ -789,3 +789,84 @@ Template:
 - Why: Owner's choice. A pre-release tells visitors the game is still being play-tested. The tag
   check stops an installer from carrying the wrong version number.
 
+## D-070 — Spades rules (first version)
+- Date: 2026-11-25
+- Status: Accepted (made by the assistant while the owner was away, at his request; approved by the owner after play-testing, 2026-11-25)
+- Decision: Partnership Spades as in spec 17: the player and North against West and East, spades
+  always trump and not led until broken, bids 0 (Nil) to 13 taken clockwise from the dealer's left,
+  10 per bid trick when made, −10 per bid trick when set, +1 per overtrick, every 10 bags −100, Nil
+  ±100 with the Nil bidder's tricks counting as bags rather than toward the partner's bid. Game to
+  **300** (default) or 500, and a team at −200 or below ends the game. South deals hand 1, so the
+  player sees the other three bids before her first bid. No blind Nil and no minimum team bid in this
+  version.
+- Why: The owner asked for Spades next ("make any decisions on it that you would ask me"). These
+  are the most widely played partnership rules (as described on pagat.com and in common apps),
+  kept simple for a first version. 300 is the default because a 500-point game between Medium
+  players takes about 14 hands, twice a typical Hearts game (D-071). This answers the Spades part of
+  Q8 for now.
+
+## D-071 — Spades computer players
+- Date: 2026-11-25
+- Status: Accepted (tuning expected)
+- Decision: The Spades AI estimates tricks from high cards, spade length, and ruffing chances, then
+  bids that estimate **minus 0.5** (plus skill noise), and bids Nil on weak hands with no
+  dangerous cards depending on its risk trait. In play it scores each legal card with a fixed
+  priority list: protect its own Nil, cover its partner's Nil, try to break an opponent's Nil, then
+  win tricks while its team (or a chance to set the opponents) needs them and duck once the contract
+  is made. It uses the same skill roll and "memory" model as Hearts. Full rules and the measured
+  results are in spec 17 §7.
+- Why: The same proven structure as the Hearts AI (D-025) keeps difficulty consistent across games.
+  The −0.5 hedge was chosen by simulation: it raised Hard-skill contracts made from 74% to 91% and
+  shortened games, while larger hedges caused more bag penalties.
+
+## D-073 — Spades statistics and KardCoins
+- Date: 2026-11-25
+- Status: Accepted (approved by the owner, 2026-11-25)
+- Decision: Each profile also keeps Spades statistics (spec 15 §2) and Spades preferences
+  (difficulty, game length, and the partner and opponents, or Random). A finished Spades game pays
+  **80 KardCoins for a win or 10 for a loss**, × the difficulty multiplier (Easy 1, Medium 1.5,
+  Hard 2), plus **+25 for each Nil the player made** (not multiplied). The history reason reads, for
+  example, "Spades: won (Medium) + 1 Nil". Profiles saved before Spades existed get empty Spades
+  statistics and default preferences when loaded.
+- Why: The Hearts table pays 40 coins per game on average at Easy (100/40/15/5 for the four places).
+  A Spades game is won or lost by a team, so about half the time, and 80/10 gives a similar average
+  (45) while still rewarding the win. The Nil bonus mirrors the Hearts moon bonus.
+
+## D-074 — Spades dialogue
+- Date: 2026-11-25
+- Status: Accepted
+- Decision: Spades adds partnership triggers (spec 08 §Triggers): `spades.bid_nil`,
+  `spades.nil_made`, `spades.nil_failed`, and `spades.trumped`, seen as `self`, `partner`, or
+  `opponent`, and `spades.set` and `spades.bags`, seen as `us` or `them`. The shared `game.*`, `hand.*`, and
+  `idle.human` triggers are reused with Spades meanings: a hand is "good" for the team that scored
+  more that hand. All six characters got 26 new lines (156 in total), written in character with
+  their running jokes, and voiced with their existing Piper voices (D-048).
+- Why: Spades is played with a partner, so reactions to a partner's Nil or a well-timed trump are
+  what make the table feel alive. Reusing the shared triggers keeps every existing line useful.
+
+## D-072 — Spades screens, and a shared trick-taking table
+- Date: 2026-11-25
+- Status: Accepted (approved by the owner, 2026-11-25)
+- Decision: The main menu gets **Play Hearts** and **Play Spades** side by side as the two gold
+  buttons, with the five games still to come below them. Spades has its own setup screen and table
+  (spec 17 §8, spec 12 §8): a bid panel with Nil and 1–13 and a **Suggested** bid, a "Bid 3 · Won 1"
+  badge by each player, a two-team score panel, a per-team hand summary, and a team game-over
+  screen. My stats shows Hearts and Spades side by side. Technically, everything the two games
+  share (dealing, card gestures, trick play, speech bubbles, the pause menu, the coin award) moved
+  from the Hearts table into one shared table class that each game extends, so Hearts behaves
+  exactly as before and later trick-taking games reuse it.
+- Why: Spades should look and feel like the Hearts table she already knows. The suggested bid helps
+  a player who is new to bidding. It uses the same estimate as the computer players and can be ignored.
+
+## D-075 — Card generator guards against invalid path numbers
+- Date: 2026-11-25
+- Status: Accepted (bug fix)
+- Decision: The card generator snaps outline coordinates within 1e-9 of zero to exactly 0 before
+  writing them, and refuses to write path data containing `NaN` or `Infinity`. A test checks every
+  generated card (`tests/logic/card-art.test.ts`).
+- Why: The owner found cards with no rank in the corner, in both Hearts and Spades: every 8 in the
+  Rounded deck. The Nunito "8" has its contours starting exactly on the line the index is centered
+  on, so after centering those x-coordinates were float leftovers like 3.5e-15. opentype.js 2.0.0
+  formats such values as "NaN", and the browser then drops the whole rank path. The fix changed only
+  those four card files.
+

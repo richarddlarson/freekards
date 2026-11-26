@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 import {
   DialogueDirector,
   DIALOGUE_TUNING,
-  KNOWN_TRIGGERS,
+  ALL_TRIGGERS,
+  spadesCandidates,
   bubbleDurationMs,
   heartsCandidates,
   type CharacterDef,
@@ -53,7 +54,7 @@ describe('character content (spec/content/characters)', () => {
       expect(c.traits.risk).toBeLessThanOrEqual(1);
       expect(Math.abs(c.traits.skillAdjust)).toBeLessThanOrEqual(0.15);
       for (const [trigger, lines] of Object.entries(c.lines)) {
-        expect(KNOWN_TRIGGERS, `${c.id}: unknown trigger ${trigger}`).toContain(trigger);
+        expect(ALL_TRIGGERS, `${c.id}: unknown trigger ${trigger}`).toContain(trigger);
         expect(lines.length).toBeGreaterThan(0);
         lines.forEach((l, i) => {
           expect(l.id).toBe(`${c.id}.${trigger}.${i + 1}`);
@@ -175,5 +176,38 @@ describe('hearts triggers', () => {
       { type: 'cards_passed', seat: 1, from: 1, to: 2, direction: 'left', cards: ['5C', '6C', '7C'], scores },
     ];
     expect(heartsCandidates(ev, after())).toEqual([{ seat: 1, trigger: 'hearts.pass.received', weight: 0.2 }]);
+  });
+});
+
+describe('Spades triggers', () => {
+  const sc: [number, number] = [0, 0];
+  const team = (over: Partial<import('../../src/logic/spades/index.js').TeamHandResult>) => ({
+    contract: 4, counted: 4, made: true, contractPoints: 40, bags: 0, nils: [], nilPoints: 0, bagPenalty: 0, total: 40, ...over,
+  });
+
+  it('a Nil bid speaks to the bidder and their partner, not the opponents', () => {
+    const c = spadesCandidates([{ type: 'bid_made', seat: 0, cards: [], scores: sc, bid: 0 }]);
+    expect(c).toEqual([{ seat: 2, trigger: 'spades.bid_nil.partner', weight: 0.6 }]);
+  });
+
+  it('a failed Nil uses self / partner / opponent', () => {
+    const c = spadesCandidates([{ type: 'nil_failed', seat: 1, cards: [], scores: sc }]);
+    expect(c.map((x) => `${x.seat}:${x.trigger}`)).toEqual(['1:spades.nil_failed.self', '2:spades.nil_failed.opponent', '3:spades.nil_failed.partner']);
+  });
+
+  it('a set and the hand result use the team perspective', () => {
+    const results = [team({ made: false, contractPoints: -50, total: -50, contract: 5, counted: 3 }), team({})] as [ReturnType<typeof team>, ReturnType<typeof team>];
+    const c = spadesCandidates([{ type: 'hand_scored', seat: null, cards: [], scores: sc, results }]);
+    const t = c.map((x) => `${x.seat}:${x.trigger}`);
+    expect(t).toContain('2:spades.set.us');
+    expect(t).toContain('1:spades.set.them');
+    expect(t).toContain('1:hand.good.self');
+    expect(t).toContain('2:hand.bad.self');
+    expect(t).toContain('3:hand.bad.human');
+  });
+
+  it('the player\'s team winning is game.won.self for North and game.won.human for the others', () => {
+    const c = spadesCandidates([{ type: 'game_won', seat: null, cards: [], scores: sc, team: 0 }]);
+    expect(c.map((x) => `${x.seat}:${x.trigger}`)).toEqual(['1:game.won.human', '2:game.won.self', '3:game.won.human']);
   });
 });
