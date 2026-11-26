@@ -991,3 +991,15 @@ Template:
   them: a light-gray strip down the right and along the bottom of `build/icon.png`. Every smaller
   Linux size and the Windows `.ico` are made from that image, so they all carried the line.
 
+## D-084 — Longer test time limit, and re-tagging a failed release build
+- Date: 2026-11-25
+- Status: Accepted (bug fix)
+- Decision: Every test may run for up to **60 seconds** (`testTimeout` in `vitest.config.ts`), instead of
+  Vitest's 5-second default. If the build for a release tag fails before its draft release exists, the
+  tag is deleted, the fix goes through a session PR, and the new merge commit is tagged
+  (`runtimes/electron.md` §How to cut a release). A published release's tag is never moved.
+- Why: The first v0.2.0 tag build failed because the Spades simulation test (200 AI-only games) took
+  just over 5 seconds on a busy GitHub runner, although it passed on the same code minutes earlier.
+  The simulations are meant to be long; a real hang still fails, just later. No release had been
+  created, so moving the tag was safe, and it keeps the version number the owner asked for.
+
