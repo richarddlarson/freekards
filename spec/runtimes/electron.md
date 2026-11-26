@@ -43,7 +43,7 @@ All versions are pinned exactly in `package.json` (no `^` or `~` ranges). `packa
 package.json                Scripts, pinned dev dependencies, allowScripts
 electron-builder.yml        Installer configuration
 vite.config.ts              Renderer build (root src/renderer → dist/renderer)
-vitest.config.ts            Tests: tests/**/*.test.ts, Node environment
+vitest.config.ts            Tests: tests/**/*.test.ts, Node environment, 60 s per test (D-084)
 tsconfig.base.json          Shared strict compiler options
 tsconfig.logic.json         Logic layer only, lib ES2023, no DOM, no Node types (enforces engine neutrality)
 tsconfig.renderer.json      Renderer + logic, adds the DOM lib and vite/client types (import.meta.glob)
@@ -325,6 +325,11 @@ To try the current checkout on a Linux desktop without installing it:
 3. Wait for the `build` workflow on the tag. It creates a **draft** GitHub Release with all
    installers, the SBOMs, and `LICENSE`, marked as a pre-release for `0.x`.
 4. The owner reviews the draft (notes, files, a test install), then clicks **Publish release**.
+
+If the tag build fails **before the draft release exists**, nothing has been published: delete the
+tag (`git push origin --delete vX.Y.Z` and `git tag -d vX.Y.Z`), fix the problem through a session PR
+as usual, then tag the new merge commit (D-084). Once a release has been published, never move its
+tag; release a new patch version instead.
 
 ### Unsigned installers (D-068; Q3 open)
 The installers are not code-signed yet. The release notes (`.github/release-header.md`) and the
