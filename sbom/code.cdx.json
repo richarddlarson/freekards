@@ -96,8 +96,8 @@
     "component": {
       "type": "application",
       "name": "cardtable",
-      "version": "0.1.0",
-      "bom-ref": "cardtable@0.1.0",
+      "version": "0.2.0",
+      "bom-ref": "cardtable@0.2.0",
       "author": "The FreeKards Contributors",
       "description": "A free, open-source collection of classic card games with friendly computer opponents.",
       "licenses": [
@@ -108,7 +108,7 @@
           }
         }
       ],
-      "purl": "pkg:npm/cardtable@0.1.0",
+      "purl": "pkg:npm/cardtable@0.2.0",
       "properties": [
         {
           "name": "cdx:npm:package:path",
@@ -166,7 +166,7 @@
   ],
   "dependencies": [
     {
-      "ref": "cardtable@0.1.0"
+      "ref": "cardtable@0.2.0"
     }
   ]
 }

@@ -18,14 +18,15 @@ now shared by every game. My stats now has a tab per game. The owner asked the a
 choice and list them for review. After seeing them he asked for a **Rules screen** for every game
 (R-008, D-082): a **?** button on each table, Rules in the pause menu and on each setup screen, with
 the text in `spec/content/rules/`. It also fixed a gray line on the app icon's edges (D-083). The owner
-approved every decision (D-076 to D-082). Waiting on the owner:
-1. Merge the approval PR.
-2. Cut **v0.2.0** when he is ready (Spades, Gin Rummy, Rummy 500, the Rules screens, and the 8s and
-   icon fixes; `runtimes/electron.md` §How to cut a release).
-3. Still open from before: confirm that profiles and coins persist in the **installed** app across
+approved every decision (D-076 to D-082), and the merged session branches were deleted. He then
+asked to cut **v0.2.0** (Spades, Gin Rummy, Rummy 500, the Rules screens, and the 8s and icon fixes):
+the version is bumped on `session/2026-11-25-release-0.2.0`, then the merge is tagged `v0.2.0` and CI
+builds a draft pre-release. Waiting on the owner:
+1. Review the v0.2.0 draft release (notes, files, a test install), then click **Publish release**.
+2. Still open from before: confirm that profiles and coins persist in the **installed** app across
    restarts, and the play-tester's feedback on Settings (R-005), bigger cards (R-006), and the
    Rounded deck (R-007).
-4. Next options: code signing (Q3, D-068), the next game (R-002: Blackjack, Poker, or Solitaire), or
+3. Next options: code signing (Q3, D-068), the next game (R-002: Blackjack, Poker, or Solitaire), or
    KardCoin spending (R-001 part 4).
 
 ---
