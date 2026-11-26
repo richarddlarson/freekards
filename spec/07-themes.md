@@ -90,7 +90,9 @@ The app icon is the same for every theme. It is drawn on a 1024×1024 canvas, or
     in Fira Sans Condensed Bold (OFL-1.1), with a 40-unit suit symbol under it. The index column
     is centered 36 units from the card's left edge, so a tightly fanned hand still shows it. "10" is
     set tight and narrowed to 84% width. All lettering is converted to vector outlines when the cards
-    are generated, so the faces need no font at run time.
+    are generated, so the faces need no font at run time. Outline coordinates are written with 2
+    decimals and must never contain an invalid number such as `NaN`, because a browser stops drawing a
+    path at the first one (D-075); a test checks every generated card.
   - Number cards use the traditional pip layouts, pulled toward the middle to clear the indices:
     columns at 39.2% / 50% / 60.8% of the width, rows at 92% of the traditional spread, pips 40
     units.

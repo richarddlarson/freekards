@@ -858,3 +858,15 @@ Template:
 - Why: Spades should look and feel like the Hearts table she already knows. The suggested bid helps
   a player who is new to bidding. It uses the same estimate as the computer players and can be ignored.
 
+## D-075 — Card generator guards against invalid path numbers
+- Date: 2026-11-25
+- Status: Accepted (bug fix)
+- Decision: The card generator snaps outline coordinates within 1e-9 of zero to exactly 0 before
+  writing them, and refuses to write path data containing `NaN` or `Infinity`. A test checks every
+  generated card (`tests/logic/card-art.test.ts`).
+- Why: The owner found cards with no rank in the corner, in both Hearts and Spades: every 8 in the
+  Rounded deck. The Nunito "8" has its contours starting exactly on the line the index is centered
+  on, so after centering those x-coordinates were float leftovers like 3.5e-15. opentype.js 2.0.0
+  formats such values as "NaN", and the browser then drops the whole rank path. The fix changed only
+  those four card files.
+

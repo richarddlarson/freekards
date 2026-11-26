@@ -96,7 +96,8 @@ scripts/generate-icon.mjs   App icon generator → build/icon.svg (spec 07 §App
 scripts/render-icon.cjs     Renders build/icon.svg to build/icon.png (1024×1024, transparent) in an offscreen Electron window,
                             and build/icons/<n>x<n>.png for n = 16, 24, 32, 48, 64, 128, 256, 512 (Linux)
 scripts/generate-cards.mjs  Classic Casino deck generator → assets/themes/classic-casino/decks/<deck> (D-027, D-062);
-                            outlines each deck's index font from assets/fonts with opentype.js (D-060).
+                            outlines each deck's index font from assets/fonts with opentype.js (D-060); near-zero
+                            coordinates are snapped to 0 because opentype.js 2.0.0 writes values like 3.5e-15 as "NaN" (D-075).
                             --font <ttf> --out <dir> writes a trial deck for font auditions
 scripts/capture.cjs         Offscreen screenshot tool (D-037)
 scripts/run-local.sh        Build and run this checkout without installing (Linux, D-063)
