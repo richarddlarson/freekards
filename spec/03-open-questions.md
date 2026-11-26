@@ -14,7 +14,7 @@ question is removed from this list.
 - Q7. Solitaire: which variants? Klondike only, or also FreeCell, Spider, and others? Draw 1 or draw 3?
 - Q8. House rules worth matching in the other games. Spades rules are settled for now (D-070,
   approved by the owner); blind Nil or a minimum team bid could be added later as options. Gin Rummy
-  (D-076) and Rummy 500 (D-077) have first versions awaiting the owner's review; possible later
+  (D-076) and Rummy 500 (D-077) are settled for now (approved by the owner); possible later
   options include Big Gin, Oklahoma Gin, a shorter Gin game, "calling rummy", and Rummy 500 for 3–4
   players.
 

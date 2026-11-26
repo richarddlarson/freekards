@@ -1,7 +1,8 @@
 # 18 — Gin Rummy and Rummy 500 (core spec, engine-neutral)
 
-Status: **[Proposed]** first playable version (D-076 to D-081), built 2026-11-25. The owner asked
-the assistant to make the choices he would normally make, and to list them for review. Shared
+Status: **[Confirmed]** first playable version (D-076 to D-081), built 2026-11-25. The owner asked
+the assistant to make the choices he would normally make; after play-testing he approved all of them
+the same day. Shared
 conventions (card ids, random numbers, state-machine shape) are in `10-core-logic.md`.
 
 Both games are for **2 players**: the player (player 0) and one computer opponent (player 1), who
