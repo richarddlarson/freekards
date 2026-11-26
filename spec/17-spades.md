@@ -1,8 +1,8 @@
 # 17 — Spades (core spec, engine-neutral)
 
 Status: **[Confirmed]** first playable version (D-070 to D-074), built 2026-11-25 while the owner was
-away. He asked the assistant to make the choices he would normally make and to list them for
-review. Each such choice is marked *(owner to review)*. Shared conventions (card ids, seats, random
+away. He asked the assistant to make the choices he would normally make; after play-testing he
+approved all of them the same day. Shared conventions (card ids, seats, random
 numbers, state-machine shape) are in `10-core-logic.md`.
 
 ## 1. Players, partnerships, and deck
@@ -20,10 +20,10 @@ numbers, state-machine shape) are in `10-core-logic.md`.
 
 - 500 is the classic target, but between evenly matched Medium players it takes about 14 hands,
   twice as long as a typical Hearts game. 300 takes about 7.5 hands, close to Hearts, so it is the
-  default and 500 is offered as the full-length game. *(owner to review)*
+  default and 500 is offered as the full-length game.
 - **Nil** bids are always allowed. **Blind nil** (bidding nil before seeing your cards) is not offered
-  in this version. *(owner to review)*
-- There is no minimum team bid. *(owner to review)*
+  in this version.
+- There is no minimum team bid.
 
 ## 3. Phases (state machine)
 1. `setup` (presentation only): options, partner, and opponents (§8). The logic layer starts at
@@ -32,7 +32,7 @@ numbers, state-machine shape) are in `10-core-logic.md`.
    other bids before making hers on the first hand). The dealer moves one seat clockwise each hand.
    Shuffle with the game's generator and deal 13 cards each, one at a time clockwise, starting with
    the dealer's left: card *i* of the shuffled deck goes to seat (dealer + 1 + *i*) mod 4. Then go
-   to `bid`. *(owner to review: first dealer)*
+   to `bid`.
 3. `bid` (action `bid(seat, n)`, n = 0–13, where **0 means Nil**): starting with the dealer's left
    and going clockwise, each player bids once, in turn. After the 4th bid, go to `play`.
 4. `play` (action `play(seat, card)`): 13 tricks.
@@ -59,7 +59,7 @@ An action in the wrong phase, out of turn, or against the rules is rejected and 
   - **Set** (counted tricks < contract): −10 × contract.
 - **Nil:** +100 if the Nil bidder wins no tricks, −100 if they win any. Tricks a Nil bidder wins
   **do not count toward the partner's contract**; each is worth +1 and counts as a **bag** for the
-  team. *(owner to review: some house rules count them toward the partner's bid instead)*
+  team.
 - **Bags:** each team keeps a running bag count. When it reaches 10 or more, the team loses 100
   points and 10 is taken off its bag count (repeated if needed).
 - Hand total = contract points + bag points + Nil points + bag penalty.
@@ -70,7 +70,7 @@ Example: you bid 4 and your partner bids 3 (contract 7). You win 5 tricks and yo
 ## 5. Game end
 After each hand, the game is over if either team has **reached the target** (≥ 300 or 500) or has
 **fallen to −200 or below**, **and** the two team scores differ. The team with the higher score
-wins. If the scores are tied, play another hand. *(owner to review: the −200 "mercy" rule)*
+wins. If the scores are tied, play another hand.
 
 ## 6. Logic events (consumed by presentation and dialogue)
 Every event carries `type`, `seat` (acting player, or none), `cards`, and `scores` (a snapshot of
@@ -187,7 +187,7 @@ Measured on 2026-11-25 with AI-only games to 500 (300 games per row; risk 0.3/0.
   badge by their name as it is made ("Bid 3", or "Nil"). On her turn, a bid panel above her hand
   shows "Your bid", the bids so far, a row of buttons **Nil, 1–13**, and a **Suggested: N** hint
   (the AI's own estimate for her hand). She taps a number to select it, then **Bid N** to confirm.
-  *(owner to review: the suggestion hint)*
+ 
 - **Play:** as in Hearts, with each badge showing "Bid 3 · Won 1" and spades broken announced with a
   toast. A failed Nil is announced with a toast: "<Name>'s Nil is broken!".
 - **Score panel:** "Spades · to 500", then one row per team: **"You & <partner>"** and

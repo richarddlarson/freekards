@@ -10,22 +10,19 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 **In progress** · **Done**.
 
 ## Where we left off (updated at the end of each working session)
-**2026-11-25 (third session):** v0.1.0 is published (pre-release). On branch
-`session/2026-11-25-spades`, built while the owner was away at his request: **Spades** (spec 17,
-D-070 to D-074): rules engine, computer players tuned by simulation, partnership dialogue with 156
-new voiced lines, stats and KardCoins, setup screen, bidding, and the table. Hearts and Spades now
-share one table class (D-072). Waiting on the owner:
-1. **Review the decisions made for him** (each is marked *owner to review* in spec 17 and D-070 to
-   D-073): game to 300 by default (500 offered); Nil allowed, no blind Nil, no minimum team bid; a
-   failed Nil's tricks count as bags, not toward the partner's bid; the −200 mercy rule; South deals
-   first; coins 80 win / 10 loss (× difficulty) + 25 per Nil made; the "Suggested" bid hint; the
-   look of the bid panel, badges, and team score panel.
-2. **Listen to the new Spades voice lines** (26 per character); regenerate any that sound off.
-3. Play-test Spades with the play-tester, then push and merge the session PR.
-4. Still open from before: confirm that profiles and coins persist in the **installed** app across
+**2026-11-25 (third session):** v0.1.0 is published (pre-release). Branch
+`session/2026-11-25-spades` adds **Spades** (spec 17, D-070 to D-074): rules engine, computer players
+tuned by simulation, partnership dialogue with 156 new voiced lines, stats and KardCoins, setup
+screen, bidding, and the table, on a table class now shared with Hearts (D-072). It also fixes the
+Rounded deck's 8s, which had no corner rank (D-075; the bug is in v0.1.0). The owner play-tested
+Spades and approved every choice made in his absence. Waiting on the owner:
+1. Merge the session PR (#4).
+2. Cut **v0.2.0** when ready, so players get Spades and the 8s fix (`runtimes/electron.md`
+   §How to cut a release).
+3. Still open from before: confirm that profiles and coins persist in the **installed** app across
    restarts, and the play-tester's feedback on Settings (R-005), bigger cards (R-006), and the
    Rounded deck (R-007).
-5. Next options: code signing (Q3, D-068), the next game (R-002), or KardCoin spending (R-001 part 4).
+4. Next options: code signing (Q3, D-068), the next game (R-002), or KardCoin spending (R-001 part 4).
 
 ---
 

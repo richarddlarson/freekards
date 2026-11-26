@@ -791,7 +791,7 @@ Template:
 
 ## D-070 — Spades rules (first version)
 - Date: 2026-11-25
-- Status: Accepted (made by the assistant while the owner was away, at his request; **owner to review**)
+- Status: Accepted (made by the assistant while the owner was away, at his request; approved by the owner after play-testing, 2026-11-25)
 - Decision: Partnership Spades as in spec 17: the player and North against West and East, spades
   always trump and not led until broken, bids 0 (Nil) to 13 taken clockwise from the dealer's left,
   10 per bid trick when made, −10 per bid trick when set, +1 per overtrick, every 10 bags −100, Nil
@@ -821,7 +821,7 @@ Template:
 
 ## D-073 — Spades statistics and KardCoins
 - Date: 2026-11-25
-- Status: Accepted (**owner to review**: the amounts)
+- Status: Accepted (approved by the owner, 2026-11-25)
 - Decision: Each profile also keeps Spades statistics (spec 15 §2) and Spades preferences
   (difficulty, game length, and the partner and opponents, or Random). A finished Spades game pays
   **80 KardCoins for a win or 10 for a loss**, × the difficulty multiplier (Easy 1, Medium 1.5,
@@ -846,7 +846,7 @@ Template:
 
 ## D-072 — Spades screens, and a shared trick-taking table
 - Date: 2026-11-25
-- Status: Accepted (**owner to review**: the look of the bid panel, badges, and team score panel)
+- Status: Accepted (approved by the owner, 2026-11-25)
 - Decision: The main menu gets **Play Hearts** and **Play Spades** side by side as the two gold
   buttons, with the five games still to come below them. Spades has its own setup screen and table
   (spec 17 §8, spec 12 §8): a bid panel with Nil and 1–13 and a **Suggested** bid, a "Bid 3 · Won 1"
