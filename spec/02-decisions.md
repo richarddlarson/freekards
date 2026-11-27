@@ -1029,3 +1029,15 @@ Template:
   still stand out. Three texture strengths and four grain styles were compared on all colors; the
   "fine, medium" grain was chosen as visible up close but quiet at a glance. Gold and Amber are both
   offered because the owner named both "gold" and "orangish".
+
+## D-087 — Felt texture that holds up on 4K screens
+- Date: 2026-11-27
+- Status: Proposed (owner to review on his 4K monitor and the tablet)
+- Decision: The felt texture of D-086 is replaced by two noise layers: a **grain** a few logical units
+  across (base frequency 0.5) with its contrast stretched, and faint sideways **fibers**. Each tile is
+  drawn at 4× resolution. Exact values: `07-themes.md` §Classic Casino table felt.
+- Why: The owner reported that on his 4K monitor every felt looked smooth. D-086's grain was about one
+  logical unit across, so at 1080p it showed as pixel-level speckle, but when the table is scaled up
+  about 1.6× for 4K it was smoothed away. Measured fine-detail contrast at 4K was 1.6 (out of 255) with
+  the old texture and 3.2 with the new one; at 1920 × 1280 it went from 2.4 to 4.2. Six variants were
+  compared at both scales: a coarser grain looked like sandpaper, and a large mottle looked cloudy.

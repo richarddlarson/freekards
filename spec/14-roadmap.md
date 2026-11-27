@@ -13,8 +13,9 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 **2026-11-27 (fifth session):** On branch `session/2026-11-27-felt` (not pushed yet). The Gin Rummy
 discard prompt now says "Lowest deadwood after discard: N" (D-085). The table felt has a subtle
 generated texture, and a new **Table color** setting offers Green, Blue, Burgundy, Gold, and Amber
-(R-009, D-086, marked Proposed). Waiting on the owner: try the felts on the real screen and say
-whether the texture should be stronger or lighter, and which colors to keep.
+(R-009, D-086, marked Proposed). The owner liked the colors, but on his 4K monitor the texture
+vanished, so it was redone with a coarser grain plus faint fibers that hold up at any resolution
+(D-087, Proposed). Waiting on the owner: check the new texture on the 4K monitor and the tablet.
 
 **Earlier, 2026-11-25 (fourth session):** Spades is merged (PR #4); the owner asked to hold v0.2.0 for now.
 PR #5 (merged) added **Gin Rummy** and **Rummy 500** for two players (spec 18,
@@ -129,8 +130,8 @@ pre-release on 2026-11-27.** Waiting on the owner:
   that?  We will need this for all the games, not just gin and rummy 500."
 
 ## R-009 — Felt texture and more table colors
-- **Status:** In progress 2026-11-27 (D-086, spec 16 §6, `07-themes.md` §Classic Casino table felt).
-  The owner is to review the texture and colors on the table.
+- **Status:** In progress 2026-11-27 (D-086, D-087, spec 16 §6, `07-themes.md` §Classic Casino table
+  felt). The owner likes the colors; the texture was redone for 4K screens and awaits his review.
 - **Requested:** 2026-11-27, by the owner
 - **Request (original wording):** "The next thing we need to work on it that the card table top is a
   uniform shaded green table. Most other card games out there give is a very light, subtle texture

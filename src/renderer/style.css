@@ -68,9 +68,16 @@
 }
 
 :root {
-  /* Felt texture (D-086): gray fractal noise, a 256-unit seamless tile, blended over the felt color
-     with "overlay" so it shades the color lighter and darker without changing its hue. */
-  --felt-texture: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='256' height='256'><filter id='n' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' seed='7' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='256' height='256' filter='url(%23n)' opacity='0.6'/></svg>");
+  /* Felt texture (D-086, D-087): two layers of gray fractal noise, blended over the felt color with
+     "overlay" so they shade it lighter and darker without changing its hue. The grain is a few
+     units across (not one pixel), with its contrast stretched, so it still shows when the stage is
+     scaled up on a 4K screen. The fibers are noise stretched sideways, like the nap of felt. Each
+     image is drawn at 4x (1024 pixels, noise frequency / 4) and shown as a 256-unit tile. */
+  --felt-grain: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1024' height='1024'><filter id='n' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='0.125' numOctaves='4' seed='7' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncR type='linear' slope='2.5' intercept='-0.75'/><feFuncG type='linear' slope='2.5' intercept='-0.75'/><feFuncB type='linear' slope='2.5' intercept='-0.75'/></feComponentTransfer></filter><rect width='1024' height='1024' filter='url(%23n)' opacity='0.4'/></svg>");
+  --felt-fibers: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1024' height='1024'><filter id='n' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='0.075 0.3' numOctaves='4' seed='7' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncR type='linear' slope='2' intercept='-0.5'/><feFuncG type='linear' slope='2' intercept='-0.5'/><feFuncB type='linear' slope='2' intercept='-0.5'/></feComponentTransfer></filter><rect width='1024' height='1024' filter='url(%23n)' opacity='0.3'/></svg>");
+  --felt-texture: var(--felt-grain), var(--felt-fibers);
+  --felt-texture-size: 256px 256px, 256px 256px;
+  --felt-texture-blend: overlay, overlay;
   --trim: #6b4423;
   --brass: #d9a82b;
   --text: #f7f2e3;
@@ -114,7 +121,8 @@ body {
   background:
     var(--felt-texture),
     radial-gradient(ellipse at 50% 45%, var(--felt) 0%, var(--felt-mid) 55%, var(--felt-dark) 100%);
-  background-blend-mode: overlay, normal;
+  background-size: var(--felt-texture-size), auto;
+  background-blend-mode: var(--felt-texture-blend), normal;
   box-shadow: inset 0 0 0 14px var(--trim), inset 0 0 0 17px var(--brass), inset 0 0 120px rgba(0, 0, 0, 0.55);
   font-size: 30px;
 }

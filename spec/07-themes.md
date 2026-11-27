@@ -52,10 +52,18 @@ chooses a theme in Settings, and the change takes effect immediately.
 Every screen, table or menu, is drawn on the felt. The player picks its color in Settings (spec 16 §6).
 - **Color:** a radial gradient, an ellipse centered at 50% across and 45% down, from the felt's
   **center** color, through its **middle** color at 55%, to its **edge** color at 100%.
-- **Texture:** over the color lies a seamless 256 × 256 tile (logical units) of gray fractal noise
-  (base frequency 0.85, 4 octaves, seed 7, desaturated, at 60% opacity), blended with **overlay**. It
-  shades the felt a little lighter and darker in a fine grain, like the nap of real felt, without
-  changing its hue. It is generated (code, no image file), so it is original MIT work.
+- **Texture (D-087):** over the color lie two layers of gray fractal noise, each a seamless 256 × 256
+  tile (logical units), blended with **overlay**, so they shade the felt a little lighter and darker
+  without changing its hue. Each noise is desaturated, then its contrast is stretched (value × slope
+  + 0.5 − 0.5 × slope), then shown at an opacity:
+  - **Grain:** base frequency 0.5 (features a few units across), 4 octaves, seed 7, slope 2.5,
+    opacity 40%.
+  - **Fibers:** base frequency 0.3 across and 1.2 down (short sideways streaks, like the nap of
+    felt), 4 octaves, seed 7, slope 2, opacity 30%.
+  - The grain must be several logical units across, not one pixel: a one-pixel grain disappears when
+    the table is scaled up on a high-resolution screen. Each tile image is drawn at 4× (1024 pixels,
+    frequencies ÷ 4) so it stays sharp at any scale.
+  - It is generated (code, no image file), so it is original MIT work.
 - **Trim:** around the edge, a 14-unit wood band (`#6b4423`), a 3-unit brass line (`#d9a82b`) inside
   it, and an inner shadow (120 units, black at 55%) that darkens the felt toward the trim.
 - **Tints:** panels (such as the score sheet), dialogs, and drop-down lists drawn over the
