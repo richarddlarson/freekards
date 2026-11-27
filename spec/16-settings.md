@@ -1,7 +1,7 @@
 # 16 — Player Settings (core spec, engine-neutral)
 
 Status: **[Confirmed]** first version (D-053 to D-056), from roadmap R-005. Card deck added by
-D-062 (R-007). More settings will be
+D-062 (R-007). Table color added by D-086 (R-009). More settings will be
 added here as play-testing turns them up. Each new setting gets a decision entry, a section below,
 a default, and a repair rule.
 
@@ -16,14 +16,16 @@ a default, and a repair rule.
   a line that describes the selected choice. A **Done** button closes it.
 - **Changes apply and save at once**, with no Save or Cancel. A change made mid-game takes effect
   when the panel closes. Every card on the table switches to the chosen deck, the player's hand
-  re-sorts, and new timings apply to the next card.
-- Rows, top to bottom: Card deck, Card order, Card response, Game speed.
+  re-sorts, and new timings apply to the next card. The table color is the exception: it changes
+  the moment it is chosen, so the player sees it around the open panel.
+- Rows, top to bottom: Card deck, Table color, Card order, Card response, Game speed.
 - With no active profile (only in development demo screens), the panel shows the defaults with
   the note "Not saved: no player is selected", and changes are not kept.
 
 | Setting | Choices (stored value) | Default |
 |---------|------------------------|---------|
 | Card deck | Classic (`classic`) · Rounded (`rounded`) | `classic` |
+| Table color | Green (`green`) · Blue (`blue`) · Burgundy (`burgundy`) · Gold (`gold`) · Amber (`amber`) | `green` |
 | Card order | Low cards on the left (`low-left`) · Low cards on the right (`low-right`) | `low-left` |
 | Card response | Standard (`standard`) · Quick (`quick`) · Instant (`instant`) | `standard` |
 | Game speed | Relaxed (`relaxed`) · Normal (`normal`) · Fast (`fast`) | `normal` |
@@ -101,3 +103,12 @@ Under the row, a preview shows the deck's back and six of its cards (A♠ K♥ Q
 same size and overlap as the Card order preview, with the description to the right. Choosing a
 deck also redraws the Card order preview in that deck.
 
+
+## 6. Table color (D-086)
+The color of the felt on every screen: the tables, the menus, and the setup screens. The felts and
+their exact colors are defined by the theme (`07-themes.md` §Classic Casino table felt). A player's
+felt follows them: it changes when another player is picked.
+
+| | Green | Blue | Burgundy | Gold | Amber |
+|---|---|---|---|---|---|
+| Description shown | "The classic card-room green." | "A deep, calm blue." | "A dark wine red." | "A soft, antique gold." | "A warm, burnt orange." |

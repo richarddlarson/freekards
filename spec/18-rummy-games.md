@@ -253,7 +253,8 @@ In every view the **Ace sorts low** (next to the 2), and the player's **Card ord
   upcard also takes it). The computer's pass shows a toast ("Reggie passes").
 - **Draw:** "Draw from the stock or the discard pile" (or "Draw a card from the stock" after both
   passed the upcard). Tap the stock or the top discard.
-- **Discard:** "Choose a card to discard · Best deadwood: N". Tapping a hand card selects it (one at a
+- **Discard:** "Choose a card to discard · Lowest deadwood after discard: N", where N is the least
+  deadwood any legal discard would leave (D-085). Tapping a hand card selects it (one at a
   time; tap again to deselect) and the prompt becomes "Discard the K♠? Deadwood after: N". Buttons:
   **Discard K♠**, and, whenever any discard would allow a knock, **Knock** (or **Gin!** when it would
   leave no deadwood), enabled only for a selected card that allows it. A selected card can also be

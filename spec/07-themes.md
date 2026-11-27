@@ -1,7 +1,8 @@
 # 07 — Themes (core spec, engine-neutral)
 
 Status: architecture **[Confirmed]** (D-009). Manifest **[Proposed]**, not implemented yet: the renderer
-currently uses the Classic Casino paths directly. Card decks are implemented (D-027, D-035, D-062).
+currently uses the Classic Casino paths directly. Card decks are implemented (D-027, D-035, D-062), and
+so are table felts (D-086).
 
 ## Concept
 A **theme** is a self-contained bundle of visual (and optionally audio) assets plus a JSON manifest.
@@ -11,7 +12,8 @@ chooses a theme in Settings, and the change takes effect immediately.
 ## What a theme provides
 - **Card decks:** one or more. Each deck is 52 faces (plus optional jokers for future games) and a
   back. The player picks a deck in Settings (spec 16 §5).
-- Table surface (felt or background) and the border or trim around it.
+- Table surface (felt or background) and the border or trim around it. A theme may offer several
+  felt colors for the player to choose from (D-086).
 - Interface look: buttons, panels, dialogs, score sheet, and speech-bubble style.
 - Fonts and a color palette. Fonts are bundled with the app, never taken from the system, so every
   platform looks the same. Classic Casino uses **Fira Sans** (Medium and Bold, OFL-1.1) for all
@@ -31,7 +33,7 @@ chooses a theme in Settings, and the change takes effect immediately.
     { "id": "rounded", "name": "Rounded", "faces": "decks/rounded/faces/{rank}{suit}.svg", "back": "decks/rounded/back.svg" }
   ],
   "cardAspect": 0.714,
-  "table": { "surface": "table/felt.png", "trim": "table/trim.png" },
+  "table": { "felts": [{ "id": "green", "name": "Green", "center": "#0d6a31", "middle": "#0a5527", "edge": "#063d1b" }], "texture": "generated", "trim": "table/trim.png" },
   "palette": { "primary": "#…", "accent": "#…", "text": "#…", "bubble": "#…" },
   "fonts": { "ui": "fonts/…", "score": "fonts/…" },
   "portraits": "portraits/{characterId}/{expression}.png",
@@ -45,6 +47,38 @@ chooses a theme in Settings, and the change takes effect immediately.
 2. **Bright Illustrated** (after basic gameplay works): cheerful, flat, cartoon style.
    Kenney's "Playing Cards Pack" (CC0, https://kenney.nl/assets/playing-cards-pack) is a possible
    source for it. Its file formats have not been checked yet.
+
+## Classic Casino table felt (D-086)
+Every screen, table or menu, is drawn on the felt. The player picks its color in Settings (spec 16 §6).
+- **Color:** a radial gradient, an ellipse centered at 50% across and 45% down, from the felt's
+  **center** color, through its **middle** color at 55%, to its **edge** color at 100%.
+- **Texture (D-087):** over the color lie two layers of gray fractal noise, each a seamless 256 × 256
+  tile (logical units), blended with **overlay**, so they shade the felt a little lighter and darker
+  without changing its hue. Each noise is desaturated, then its contrast is stretched (value × slope
+  + 0.5 − 0.5 × slope), then shown at an opacity:
+  - **Grain:** base frequency 0.5 (features a few units across), 4 octaves, seed 7, slope 2.5,
+    opacity 40%.
+  - **Fibers:** base frequency 0.3 across and 1.2 down (short sideways streaks, like the nap of
+    felt), 4 octaves, seed 7, slope 2, opacity 30%.
+  - The grain must be several logical units across, not one pixel: a one-pixel grain disappears when
+    the table is scaled up on a high-resolution screen. Each tile image is drawn at 4× (1024 pixels,
+    frequencies ÷ 4) so it stays sharp at any scale.
+  - It is generated (code, no image file), so it is original MIT work.
+- **Trim:** around the edge, a 14-unit wood band (`#6b4423`), a 3-unit brass line (`#d9a82b`) inside
+  it, and an inner shadow (120 units, black at 55%) that darkens the felt toward the trim.
+- **Tints:** panels (such as the score sheet), dialogs, and drop-down lists drawn over the
+  felt use a dark tint of the felt's own color, so they never look green on a blue table.
+
+| Felt (id) | Center | Middle | Edge | Panel | Dialog | List |
+|-----------|--------|--------|------|-------|--------|------|
+| Green (`green`, default) | `#0d6a31` | `#0a5527` | `#063d1b` | rgba(10, 30, 18, 0.82) | rgba(8, 28, 16, 0.96) | `#0b2414` |
+| Blue (`blue`) | `#18507c` | `#123f63` | `#08233a` | rgba(8, 20, 34, 0.82) | rgba(6, 18, 30, 0.96) | `#0a1a2a` |
+| Burgundy (`burgundy`) | `#6e1f2b` | `#571823` | `#320c13` | rgba(32, 8, 13, 0.82) | rgba(28, 7, 11, 0.96) | `#250a10` |
+| Gold (`gold`) | `#86602a` | `#6d4c20` | `#3e2a10` | rgba(30, 22, 8, 0.82) | rgba(26, 19, 7, 0.96) | `#221a09` |
+| Amber (`amber`) | `#80481f` | `#683a18` | `#3c200c` | rgba(32, 16, 6, 0.82) | rgba(28, 14, 5, 0.96) | `#24130a` |
+
+Felt ids are stable, because profiles store them. The window's own background, shown for a moment
+before the first screen draws, stays green.
 
 ## App icon (D-067)
 The app icon is the same for every theme. It is drawn on a 1024×1024 canvas, origin top-left:

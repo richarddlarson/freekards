@@ -10,7 +10,14 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 **In progress** · **Done**.
 
 ## Where we left off (updated at the end of each working session)
-**2026-11-25 (fourth session):** Spades is merged (PR #4); the owner asked to hold v0.2.0 for now.
+**2026-11-27 (fifth session):** On branch `session/2026-11-27-felt` (not pushed yet). The Gin Rummy
+discard prompt now says "Lowest deadwood after discard: N" (D-085). The table felt has a subtle
+generated texture, and a new **Table color** setting offers Green, Blue, Burgundy, Gold, and Amber
+(R-009, D-086, marked Proposed). The owner liked the colors, but on his 4K monitor the texture
+vanished, so it was redone with a coarser grain plus faint fibers that hold up at any resolution
+(D-087, Proposed). Waiting on the owner: check the new texture on the 4K monitor and the tablet.
+
+**Earlier, 2026-11-25 (fourth session):** Spades is merged (PR #4); the owner asked to hold v0.2.0 for now.
 PR #5 (merged) added **Gin Rummy** and **Rummy 500** for two players (spec 18,
 D-076 to D-081): a shared melds module, both rules engines, computer players tuned by simulation, 204
 new voiced lines, stats and KardCoins, setup screens, and a new 2-player table, on a table base class
@@ -22,13 +29,13 @@ approved every decision (D-076 to D-082), and the merged session branches were d
 asked to cut **v0.2.0** (Spades, Gin Rummy, Rummy 500, the Rules screens, and the 8s and icon fixes):
 the version is bumped on `session/2026-11-25-release-0.2.0`, then the merge is tagged `v0.2.0` and CI
 builds a draft pre-release. The first tag build timed out on a slow test, so the unpublished tag was
-moved after a fix (D-084). The draft now starts with a "What's new in v0.2.0" section, and the README
-describes the current release (both are now release steps). Waiting on the owner:
-1. Review the v0.2.0 draft release (notes, files, a test install), then click **Publish release**.
-2. Still open from before: confirm that profiles and coins persist in the **installed** app across
+moved after a fix (D-084). The release notes start with a "What's new in v0.2.0" section, and the
+README describes the current release (both are now release steps). **v0.2.0 was published as a
+pre-release on 2026-11-27.** Waiting on the owner:
+1. Still open from before: confirm that profiles and coins persist in the **installed** app across
    restarts, and the play-tester's feedback on Settings (R-005), bigger cards (R-006), and the
    Rounded deck (R-007).
-3. Next options: code signing (Q3, D-068), the next game (R-002: Blackjack, Poker, or Solitaire), or
+2. Next options: code signing (Q3, D-068), the next game (R-002: Blackjack, Poker, or Solitaire), or
    KardCoin spending (R-001 part 4).
 
 ---
@@ -121,6 +128,16 @@ describes the current release (both are now release steps). Waiting on the owner
   screen in order to understand the rules of that game, then on that screen we display the basic
   rules, order of play, and any special rules such as those decisions you made above.  Can we add
   that?  We will need this for all the games, not just gin and rummy 500."
+
+## R-009 — Felt texture and more table colors
+- **Status:** In progress 2026-11-27 (D-086, D-087, spec 16 §6, `07-themes.md` §Classic Casino table
+  felt). The owner likes the colors; the texture was redone for 4K screens and awaits his review.
+- **Requested:** 2026-11-27, by the owner
+- **Request (original wording):** "The next thing we need to work on it that the card table top is a
+  uniform shaded green table. Most other card games out there give is a very light, subtle texture
+  like it is felt.  We need to experiment with that. Also we need to allow the user more choices of
+  card table top cover color. Let's allow blue and maybe some subtle shades of dark red and/or gold or
+  orangish, but nothing too garish."
 
 ## R-002 — Remaining games
 - **Status:** In progress. **Spades** built 2026-11-25 (spec 17, D-070 to D-074). **Gin Rummy** and
