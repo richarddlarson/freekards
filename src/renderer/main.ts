@@ -12,6 +12,7 @@
  *   #spades&seed=7&autoplay&speed=3[&target=500]  a Spades game (same options as #hearts)
  *   #gin-setup / #rummy500-setup   the Gin Rummy / Rummy 500 setup screen
  *   #gin&seed=7&autoplay&speed=3 / #rummy500&seed=7&autoplay&speed=3  a game (same options as #hearts)
+ *   &felt=blue                     with any of the above: show that table felt instead of the player's
  */
 import type { dialogue } from '../logic/index.js';
 import { Rng } from '../logic/index.js';
@@ -25,7 +26,7 @@ import { SpadesTable, type SpadesGameResult } from './table/spades-table.js';
 import { GinTable, type GinGameResult } from './table/gin-table.js';
 import { Rummy500Table, type Rummy500GameResult } from './table/rummy500-table.js';
 import { profile } from '../logic/index.js';
-import { activeProfile, activeSettings, allProfiles, loadProfiles, replaceProfile } from './profiles.js';
+import { activeProfile, activeSettings, allProfiles, loadProfiles, onProfilesChanged, replaceProfile } from './profiles.js';
 import { showNameEntry, showProfilePage, showWhoIsPlaying } from './profile-screens.js';
 import { showAbout } from './credits.js';
 
@@ -242,8 +243,17 @@ function play(settings: Settings, demo: { seed?: number; autoplay?: boolean; spe
 
 const hash = new URLSearchParams(location.hash.slice(1));
 
+/** Show the active player's table felt (spec 16 §6), and follow changes to it. */
+function followTableFelt(): void {
+  const override = hash.get('felt');
+  const show = () => (document.documentElement.dataset['felt'] = override ?? activeSettings().tableFelt);
+  show();
+  onProfilesChanged(show);
+}
+
 async function start(): Promise<void> {
   await loadProfiles();
+  followTableFelt();
   if (hash.has('setup')) return setup();
   if (hash.has('spades-setup')) return spadesSetup();
   if (hash.has('spades')) {

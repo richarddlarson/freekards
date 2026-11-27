@@ -11,6 +11,7 @@ type CardOrder = settings.CardOrder;
 type CardResponse = settings.CardResponse;
 type GameSpeed = settings.GameSpeed;
 type CardDeck = settings.CardDeck;
+type TableFelt = settings.TableFelt;
 
 const PREVIEW_HAND: Card[] = ['2C', '9C', 'KC', '4D', 'JD', '5S', 'QS', 'AS', '3H', 'TH'];
 const DECK_PREVIEW: Card[] = ['AS', 'KH', 'QC', 'TD', '7S', '2H'];
@@ -18,6 +19,14 @@ const DECK_PREVIEW: Card[] = ['AS', 'KH', 'QC', 'TD', '7S', '2H'];
 const DECK_TEXT: Record<CardDeck, string> = {
   classic: 'Crisp, narrow letters. Red backs.',
   rounded: 'Soft, rounded letters. Blue backs.',
+};
+
+const FELT_TEXT: Record<TableFelt, string> = {
+  green: 'The classic card-room green.',
+  blue: 'A deep, calm blue.',
+  burgundy: 'A dark wine red.',
+  gold: 'A soft, antique gold.',
+  amber: 'A warm, burnt orange.',
 };
 
 const RESPONSE_TEXT: Record<CardResponse, string> = {
@@ -118,8 +127,23 @@ export function settingsPanel(onDone: () => void): HTMLElement {
     },
   );
 
+  const felt = settingRow<TableFelt>(
+    'Table color',
+    [
+      ['green', 'Green'],
+      ['blue', 'Blue'],
+      ['burgundy', 'Burgundy'],
+      ['gold', 'Gold'],
+      ['amber', 'Amber'],
+    ],
+    s.tableFelt,
+    (v) => FELT_TEXT[v],
+    (v) => updateActiveSettings({ tableFelt: v }), // the table behind the panel changes at once
+  );
+
   panel.append(
     deck.block,
+    felt.block,
     order.block,
     settingRow<CardResponse>(
       'Card response',

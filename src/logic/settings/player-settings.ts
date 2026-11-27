@@ -1,5 +1,5 @@
 /**
- * Per-player settings (spec 16, D-053 to D-056, D-062). Engine-neutral and pure. Each profile carries one
+ * Per-player settings (spec 16, D-053 to D-056, D-062, D-086). Engine-neutral and pure. Each profile carries one
  * PlayerSettings object; anything missing or unknown on load falls back to the default.
  */
 import type { CardOrder } from '../core/cards.js';
@@ -11,24 +11,29 @@ export type CardResponse = 'standard' | 'quick' | 'instant';
 export type GameSpeed = 'relaxed' | 'normal' | 'fast';
 /** Which card deck the table draws (D-062). Each id is a folder of the theme's decks. */
 export type CardDeck = 'classic' | 'rounded';
+/** The color of the felt on the table (D-086). Each id is a felt of the theme. */
+export type TableFelt = 'green' | 'blue' | 'burgundy' | 'gold' | 'amber';
 
 export interface PlayerSettings {
   cardOrder: CardOrder;
   cardResponse: CardResponse;
   gameSpeed: GameSpeed;
   cardDeck: CardDeck;
+  tableFelt: TableFelt;
 }
 
 export const CARD_ORDERS: readonly CardOrder[] = ['low-left', 'low-right'];
 export const CARD_RESPONSES: readonly CardResponse[] = ['standard', 'quick', 'instant'];
 export const GAME_SPEEDS: readonly GameSpeed[] = ['relaxed', 'normal', 'fast'];
 export const CARD_DECKS: readonly CardDeck[] = ['classic', 'rounded'];
+export const TABLE_FELTS: readonly TableFelt[] = ['green', 'blue', 'burgundy', 'gold', 'amber'];
 
 export const DEFAULT_PLAYER_SETTINGS: Readonly<PlayerSettings> = {
   cardOrder: 'low-left',
   cardResponse: 'standard',
   gameSpeed: 'normal',
   cardDeck: 'classic',
+  tableFelt: 'green',
 };
 
 function pick<T extends string>(v: unknown, allowed: readonly T[], fallback: T): T {
@@ -44,5 +49,6 @@ export function normalizePlayerSettings(raw: unknown): PlayerSettings {
     cardResponse: pick(r.cardResponse, CARD_RESPONSES, d.cardResponse),
     gameSpeed: pick(r.gameSpeed, GAME_SPEEDS, d.gameSpeed),
     cardDeck: pick(r.cardDeck, CARD_DECKS, d.cardDeck),
+    tableFelt: pick(r.tableFelt, TABLE_FELTS, d.tableFelt),
   };
 }

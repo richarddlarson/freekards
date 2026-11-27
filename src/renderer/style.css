@@ -19,13 +19,61 @@
   font-style: normal;
 }
 
+/* Table felt colors (spec 16 §6, D-086): the felt's center, middle, and edge, and the dark tints of
+   panels, dialogs, and drop-down lists drawn over it. Green is the default; the others override it
+   through the data-felt attribute on <html>. */
 :root {
   --felt: #0d6a31;
+  --felt-mid: #0a5527;
   --felt-dark: #063d1b;
+  --panel: rgba(10, 30, 18, 0.82);
+  --dialog: rgba(8, 28, 16, 0.96);
+  --list: #0b2414;
+}
+
+:root[data-felt='blue'] {
+  --felt: #18507c;
+  --felt-mid: #123f63;
+  --felt-dark: #08233a;
+  --panel: rgba(8, 20, 34, 0.82);
+  --dialog: rgba(6, 18, 30, 0.96);
+  --list: #0a1a2a;
+}
+
+:root[data-felt='burgundy'] {
+  --felt: #6e1f2b;
+  --felt-mid: #571823;
+  --felt-dark: #320c13;
+  --panel: rgba(32, 8, 13, 0.82);
+  --dialog: rgba(28, 7, 11, 0.96);
+  --list: #250a10;
+}
+
+:root[data-felt='gold'] {
+  --felt: #86602a;
+  --felt-mid: #6d4c20;
+  --felt-dark: #3e2a10;
+  --panel: rgba(30, 22, 8, 0.82);
+  --dialog: rgba(26, 19, 7, 0.96);
+  --list: #221a09;
+}
+
+:root[data-felt='amber'] {
+  --felt: #80481f;
+  --felt-mid: #683a18;
+  --felt-dark: #3c200c;
+  --panel: rgba(32, 16, 6, 0.82);
+  --dialog: rgba(28, 14, 5, 0.96);
+  --list: #24130a;
+}
+
+:root {
+  /* Felt texture (D-086): gray fractal noise, a 256-unit seamless tile, blended over the felt color
+     with "overlay" so it shades the color lighter and darker without changing its hue. */
+  --felt-texture: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='256' height='256'><filter id='n' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' seed='7' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='256' height='256' filter='url(%23n)' opacity='0.6'/></svg>");
   --trim: #6b4423;
   --brass: #d9a82b;
   --text: #f7f2e3;
-  --panel: rgba(10, 30, 18, 0.82);
   --panel-border: rgba(217, 168, 43, 0.65);
   --button: #d9a82b;
   --button-text: #2a1a05;
@@ -64,7 +112,9 @@ body {
   transform-origin: 0 0;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 45%, var(--felt) 0%, #0a5527 55%, var(--felt-dark) 100%);
+    var(--felt-texture),
+    radial-gradient(ellipse at 50% 45%, var(--felt) 0%, var(--felt-mid) 55%, var(--felt-dark) 100%);
+  background-blend-mode: overlay, normal;
   box-shadow: inset 0 0 0 14px var(--trim), inset 0 0 0 17px var(--brass), inset 0 0 120px rgba(0, 0, 0, 0.55);
   font-size: 30px;
 }
@@ -588,7 +638,7 @@ button:disabled {
   min-width: 720px;
   padding: 40px 60px;
   border-radius: 28px;
-  background: rgba(8, 28, 16, 0.96);
+  background: var(--dialog);
   border: 2px solid var(--panel-border);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
   text-align: center;
@@ -803,7 +853,7 @@ button:disabled {
   scrollbar-color: var(--brass) rgba(255, 255, 255, 0.08);
   border-radius: 18px;
   border: 2px solid var(--panel-border);
-  background: #0b2414;
+  background: var(--list);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
   touch-action: pan-y;
 }
