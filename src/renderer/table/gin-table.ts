@@ -260,7 +260,7 @@ export class GinTable extends RummyTable {
     const legal = gin.legalDiscards(s, 0);
     const now = Math.min(...legal.map((c) => gin.deadwoodValue(hand.filter((x) => x !== c))));
     const after = card ? gin.deadwoodValue(hand.filter((x) => x !== card)) : null;
-    const prompt = card ? `Discard the ${cardName(card)}? Deadwood after: ${after}` : `Choose a card to discard · Best deadwood: ${now}`;
+    const prompt = card ? `Discard the ${cardName(card)}? Deadwood after: ${after}` : `Choose a card to discard · Lowest deadwood after discard: ${now}`;
     const buttons = [{ label: card ? `Discard ${cardName(card)}` : 'Discard', enabled: card !== null, onTap: () => card && this.pick({ type: 'discard', card }) }];
     if (now <= gin.KNOCK_LIMIT) {
       const can = card !== null && gin.canKnockWith(s, 0, card);

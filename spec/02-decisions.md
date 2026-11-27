@@ -1003,3 +1003,12 @@ Template:
   The simulations are meant to be long; a real hang still fails, just later. No release had been
   created, so moving the tag was safe, and it keeps the version number the owner asked for.
 
+
+## D-085 — Gin Rummy discard prompt says "Lowest deadwood after discard"
+- Date: 2026-11-27
+- Status: Accepted (owner request)
+- Decision: In Gin Rummy, the discard prompt with no card selected reads "Choose a card to discard ·
+  Lowest deadwood after discard: N" (it was "Best deadwood: N"). N is unchanged: the least deadwood any
+  legal discard would leave (spec 18 §4.4).
+- Why: While play-testing, the owner asked what the number meant. "Best deadwood" did not say that it
+  counts the hand after a discard, or that it is the lowest of the possible discards.
