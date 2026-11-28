@@ -24,8 +24,8 @@ const PL = pokerLayout.POKER_LAYOUT;
 
 /** Presentation timing (spec 19 §4.4), milliseconds. */
 export const POKER_TIMING = {
-  chipFlight: 320,
-  collect: 380,
+  chipFlight: 420,
+  collect: 450,
   potToWinner: 650,
   dealStagger: 70,
   foldFlight: 360,

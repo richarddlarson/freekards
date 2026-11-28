@@ -1175,3 +1175,15 @@ Template:
   so it follows the big bet. The engine tests keep the old values as fixed test stakes. Rows keep any
   pile within the space the table leaves beside each player; the first try (more columns) ran into
   the cards and portraits, and tall stacks reached the nameplates.
+
+## D-097 — Chips visibly fly when players ante, bet, and win
+- Date: 2026-11-27
+- Status: Accepted (owner request, and a bug fix)
+- Decision: Flying chips carry the amount as a pile that arcs slightly and lifts mid-flight, with a
+  shadow, like a hand pushing chips across; chip flights take 420 ms (450 ms when the round's bets go
+  to the pot) instead of 320 and 380 (spec 19 §4.3–4.4).
+- Why: The owner asked for "an animation of their chips going from their stack into the middle,
+  similar to how the cards currently animate". The table already moved chips (stack to bet spot, bets
+  to the pot, pot to the winner), but a bug drew every flying pile empty, so the chips seemed to jump.
+  A check in the running app counted 19 flights in 12 seconds with no chips in any of them; after the
+  fix, all 19 carry chips. The arc, lift, and slightly longer time make each flight easy to follow.

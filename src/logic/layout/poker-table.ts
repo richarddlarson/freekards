@@ -35,6 +35,9 @@ export const POKER_LAYOUT = {
   chipStep: 8.4,
   stackGap: 9,
   maxPerStack: 8,
+  /** Flying chips arc up to this high at the middle of the flight and grow to this scale (D-097). */
+  flightArc: 40,
+  flightLift: 1.1,
   /** A pile is at most this many stacks wide; more stacks go in rows, each further row this much lower (in front). */
   maxColumns: 3,
   rowStep: 36,

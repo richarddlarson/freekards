@@ -103,20 +103,31 @@ export class ChipPile {
   }
 }
 
-/** Chips sliding from one place to another; resolves when they arrive (and are removed). */
+/**
+ * Chips sliding from one place to another (spec 19 §4.3): the amount as a pile, lifted slightly and
+ * arcing up a little on the way, like a hand pushing them across. Resolves when they arrive (and are
+ * removed); the caller then adds them to the destination pile.
+ */
 export async function flyChips(parent: HTMLElement, amount: number, from: layout.Point, to: layout.Point, duration: number): Promise<void> {
   if (amount <= 0) return;
   const pile = new ChipPile(parent, false, 'flying');
+  pile.set(amount);
   pile.placeAt(from);
   if (duration <= 0) {
     pile.remove();
     return;
   }
-  const anim = pile.el.animate([{ transform: 'translate(0, 0)' }, { transform: `translate(${to.x - from.x}px, ${to.y - from.y}px)` }], {
-    duration,
-    easing: 'cubic-bezier(0.33, 0, 0.2, 1)',
-    fill: 'forwards',
-  });
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const arc = Math.min(P.flightArc, Math.hypot(dx, dy) * 0.12);
+  const anim = pile.el.animate(
+    [
+      { transform: 'translate(0, 0) scale(1)', offset: 0 },
+      { transform: `translate(${dx * 0.5}px, ${dy * 0.5 - arc}px) scale(${P.flightLift})`, offset: 0.5 },
+      { transform: `translate(${dx}px, ${dy}px) scale(1)`, offset: 1 },
+    ],
+    { duration, easing: 'cubic-bezier(0.33, 0, 0.2, 1)', fill: 'forwards' },
+  );
   await anim.finished.catch(() => undefined);
   pile.remove();
 }

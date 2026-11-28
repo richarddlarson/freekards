@@ -1703,6 +1703,7 @@ button:disabled {
 .chip-pile.flying {
   z-index: 600;
   will-change: transform;
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.35));
 }
 
 .chip-pile.pot-pile .chip-stacks {

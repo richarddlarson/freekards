@@ -198,21 +198,23 @@ least the minimum. Leaving returns everyone's chips. Chips are saved after every
   above, fading in, over 260 ms (ease-in), with a 5-unit bounce, and a `chips.stack` click as it lands.
   The amount appears when the last chip lands. A regular who sits down or buys more chips, and the
   player buying more chips, build their own stack the same way. All these times × Game speed.
-- **Flying chips:** a pile for the amount slides from one place to another (ease-out), then the
-  destination pile is redrawn.
+- **Flying chips** (D-097): a pile for the amount (fewest chips) leaves the source pile at once and
+  slides to the destination (cubic-bezier 0.33, 0, 0.2, 1), arcing up by 12% of the distance (at most
+  40) and growing to 1.1× at the middle of the flight, with a soft drop shadow; when it lands the
+  destination pile is redrawn with the chips added.
 
 ### 4.4 Timing and sounds
 | Moment | Animation | Sound |
 |--------|-----------|-------|
 | Sitting down, buying chips | stacks build chip by chip (§4.3), about 2 s for four seats | `chips.stack` |
-| Antes | stacks → pot, 320 ms, all together | `chips.bet` |
+| Antes | stacks → pot, 420 ms, all together | `chips.bet` |
 | Deal | shuffle (900 ms), then cards from the pot one at a time, 70 ms apart, 260 ms flights | `card.shuffle`, `card.deal` |
-| Bet, call | stack → bet spot, 320 ms | `chips.bet` |
-| Raise | stack → bet spot, 320 ms | `chips.raise` |
+| Bet, call | stack → bet spot, 420 ms | `chips.bet` |
+| Raise | stack → bet spot, 420 ms | `chips.raise` |
 | Check | (tag only), 150 ms pause | — |
 | Fold | cards → center, fading, 360 ms | — |
-| Round ends | every bet → pot, 380 ms | `chips.collect` |
-| Unmatched bet | bet spot → stack, 320 ms | — |
+| Round ends | every bet → pot, 450 ms | `chips.collect` |
+| Unmatched bet | bet spot → stack, 420 ms | — |
 | Draw | discards → center, fading, 300 ms; new cards from the center, 300 ms | `card.deal` |
 | Showdown | hands move and turn face up, 420 ms, then a 1,000 ms pause (× Game speed) | `card.place` |
 | Pot paid | pot → each winner's stack, 650 ms, then a 900 ms pause (× Game speed) | `chips.win` |
