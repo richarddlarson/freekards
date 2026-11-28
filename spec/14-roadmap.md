@@ -10,7 +10,7 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 **In progress** · **Done**.
 
 ## Where we left off (updated at the end of each working session)
-**2026-11-27 (sixth session):** On branch `session/2026-11-27-poker` (not pushed yet). The owner
+**2026-11-27/28 (sixth session):** Branch `session/2026-11-27-poker`, pushed for review as a PR. The owner
 asked for Five-Card Draw poker played for KardCoins, with chips, chip sounds and animations, and the
 computer characters as casino "regulars" with their own coins (R-010), and asked the assistant to
 make every choice and list them. Built: shared poker logic (hand ranking, pots, fixed-limit betting)
@@ -18,8 +18,13 @@ and the Five-Card Draw engine and computer players (spec 19, D-088, D-089); the 
 background rounds, and poker buy-ins and cash-outs (spec 15 §6, D-090); generated chips and Kenney chip
 sounds (D-091); the setup screen, table, Poker stats tab, and Casino regulars leaderboard (D-092);
 222 voiced poker lines (D-093). All marked Proposed. After play-testing, the owner asked for bigger
-chips (D-094), stacks that build up when players sit down (D-095), and much lower stakes (D-096). Waiting on the owner: play-test poker and review
-the decision list; also still open: the felt texture on 4K and the tablet (D-086, D-087).
+chips (D-094), stacks that build up when players sit down (D-095), much lower stakes (D-096),
+visible chip flights (D-097, which also fixed flying piles drawn empty), and a large chip meter with a
+low-chips warning (D-098). He also asked to center the pause menu (D-099, bubbles silenced while
+paused) and reported a Hearts game that went on past 100; it was a tie for lowest, so the results
+dialog now explains it (D-100). The owner play-tested poker and called it
+"excellent". Waiting on the owner: merge the PR, and confirm the Proposed decisions (D-086 to D-093,
+D-095, D-098) after more play; the felt texture on the tablet is still to check.
 
 **2026-11-27 (fifth session):** Merged as PR #10. The Gin Rummy
 discard prompt now says "Lowest deadwood after discard: N" (D-085). The table felt has a subtle
