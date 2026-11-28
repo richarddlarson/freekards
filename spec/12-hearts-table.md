@@ -118,7 +118,10 @@ defaults are used: Standard, Medium, Random.
 
 ## 6. Dialogs
 Dialogs dim the table (45% black) and sit 150 below the center, so speech bubbles, which stay on top,
-don't cover them.
+don't cover them. The exceptions are the **pause menu** and a Rules panel opened during play: the game
+is paused, so nobody can speak (D-099). Pausing closes any bubble (and stops its voice clip), drops
+any queued comment, and holds every comment, including idle ones, until play resumes, so these sit
+in the true center.
 - **Hand results:** "Hand N results", an optional "X shot the moon!" note, a table of
   player / this hand (+points) / total, and a **Next hand** button (or **Final results** if the game
   is over).

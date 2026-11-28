@@ -316,6 +316,7 @@ export abstract class TableBase {
   // ------------------------------------------------------------------ dialogue
 
   protected say(candidates: readonly dialogue.DialogueCandidate[]): void {
+    if (this.paused) return; // nobody talks while the game is paused (spec 12 §6)
     const u = this.director.react(candidates, performance.now());
     if (u) this.showBubble(u);
   }
@@ -331,12 +332,20 @@ export abstract class TableBase {
     this.bubbleTimer = window.setTimeout(() => this.endBubble(), dialogue.bubbleDurationMs(u.line.text, clipMs));
   }
 
+  /** Close any speech bubble and forget queued comments: the game is pausing (spec 12 §6, D-099). */
+  private silence(): void {
+    clearTimeout(this.bubbleTimer);
+    audio.stopSpeaking();
+    for (const b of this.bubbles) b?.classList.remove('show');
+    this.director.reset();
+  }
+
   private endBubble(): void {
     clearTimeout(this.bubbleTimer);
     audio.stopSpeaking();
     for (const b of this.bubbles) b?.classList.remove('show');
     const next = this.director.bubbleEnded(performance.now());
-    if (next) this.showBubble(next);
+    if (next && !this.paused) this.showBubble(next);
   }
 
   // ------------------------------------------------------------------ waiting for the player
@@ -462,6 +471,7 @@ export abstract class TableBase {
       return;
     }
     this.paused = true;
+    this.silence();
     const o = this.showOverlay(
       rulesPanel(this.rulesGame, () => {
         this.root.classList.remove('rules-open');
@@ -483,6 +493,7 @@ export abstract class TableBase {
   private openMenu(): void {
     if (this.overlay) return;
     this.paused = true;
+    this.silence();
     const panel = h('div', 'dialog');
     panel.append(h('h2', '', 'Paused'));
     const col = h('div', 'dialog-buttons column');
@@ -516,6 +527,7 @@ export abstract class TableBase {
     });
     col.append(resume, rulesBtn, sound, prefs, ...exits);
     panel.append(col);
-    this.showOverlay(panel);
+    // No bubble can appear while paused, so the pause menu can sit in the true center (D-099).
+    this.showOverlay(panel).classList.add('centered');
   }
 }

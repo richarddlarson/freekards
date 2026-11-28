@@ -1199,3 +1199,16 @@ Template:
   you are going way down close to nothing". The warning catches the moment that matters (about one
   more hand's worth of betting left), the floating changes connect each bet and win to the total,
   and the balance away from the table tells her whether she could buy more chips.
+
+## D-099 — The pause menu is centered, and nobody talks while the game is paused
+- Date: 2026-11-27
+- Status: Accepted (owner request)
+- Decision: The pause menu (☰ or Esc) is centered vertically on the table. Pausing (the pause menu,
+  or Rules opened during play) closes any speech bubble, stops its voice clip, and drops queued
+  comments; no comment, including the idle reminder, is shown until play resumes (spec 12 §6).
+- Why: The owner noticed the pause menu sat low. Dialogs are deliberately 150 below center so speech
+  bubbles don't cover them, and the pause menu, the tallest dialog, inherited that and nearly touched
+  the bottom edge. While paused no game events happen, but a bubble already showing, or the idle
+  comment after 20 s on the player's turn, could still appear; silencing the table while paused
+  removes that case, so the menu can be centered safely. Checked: centered exactly, and no bubble after
+  25 s paused on the player's turn.
