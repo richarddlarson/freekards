@@ -4,7 +4,8 @@
  * the bridge (e.g. a plain browser preview) it falls back to localStorage. All logic is in the
  * engine-neutral `profile` module.
  */
-import { profile, settings } from '../logic/index.js';
+import { casino, profile, settings } from '../logic/index.js';
+import { CHARACTERS } from './content.js';
 
 type Profile = profile.Profile;
 const DOC = 'profiles';
@@ -68,6 +69,22 @@ export async function loadProfiles(): Promise<void> {
     parsed = null;
   }
   file = profile.normalizeProfilesFile(parsed);
+  // Chips left at a poker table go back to everyone, and every regular gets a balance (spec 15 §6).
+  const now = new Date().toISOString();
+  const fixed = file.profiles.map((p) => casino.syncRegulars(casino.recoverTable(p, now), REGULARS));
+  if (fixed.some((p, i) => p !== file.profiles[i])) {
+    file = { ...file, profiles: fixed };
+    void persist();
+  }
+}
+
+/** The computer characters as casino regulars (spec 15 §6). */
+export const REGULARS: readonly casino.Regular[] = CHARACTERS.map((c) => ({ id: c.id, skillAdjust: c.traits.skillAdjust, risk: c.traits.risk }));
+
+/** After the player finishes a game: pay the regulars who played and run a background round (spec 15 §6.2). */
+export function settleRegulars(credits: readonly casino.Credit[]): void {
+  const p = activeProfile();
+  if (p) replaceProfile(casino.afterGame(p, REGULARS, credits));
 }
 
 export function onProfilesChanged(fn: () => void): () => void {

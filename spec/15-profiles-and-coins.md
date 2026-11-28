@@ -1,14 +1,15 @@
 # 15 — Player Profiles, Statistics, and KardCoins (core spec, engine-neutral)
 
 Status: **[Confirmed]** first version (D-049 to D-052; Spades D-073; Gin Rummy and Rummy 500 D-079), covering roadmap R-001 parts 1–3. Avatars
-and spending are later parts of R-001.
+and spending are later parts of R-001. Poker and the casino regulars (§6) are **[Proposed]** (D-090, R-010).
 
 ## 1. Profiles (D-049)
 - A device can hold several **local** profiles. There are no accounts, servers, or passwords.
 - A profile has: a stable id (random UUID), a name (1–20 characters after trimming and collapsing
   spaces), a creation time, a KardCoin balance, a coin history (the 50 most recent entries), Hearts
   statistics, the player's Hearts preferences (rule set, difficulty, opponents), and the player's
-  settings (spec 16).
+  settings (spec 16). Since D-090 it also holds the **casino** block (§6): every regular's balance,
+  the background-round counter, and any chips at a poker table.
 - **Launch flow:**
   - No profiles yet → **Welcome** screen: "Welcome to FreeKards!", "What's your name?", a name field,
     the note "New players start with 500 KardCoins.", and a **Let's play!** button (disabled until
@@ -40,6 +41,11 @@ Statistics per profile and game; only **finished** games count (abandoned games 
   (with bonuses), and KardCoins earned in Gin.
 - **Rummy 500** (D-079): games played, games won, current and best win streak, hands played, hands
   the player went out, best hand score, best final score, and KardCoins earned in Rummy 500.
+- **Five-Card Draw** (D-090): sessions (visits to the table), hands played, hands won (any share of a
+  pot), biggest pot won (the player's share), best hand shown down (its name), net KardCoins over all
+  sessions (chips taken away minus chips brought), and best session. A profile also stores the
+  **poker preferences**: stakes (Low), difficulty (Medium), and opponents for West, North, East
+  (Random).
 - A profile also stores the **Gin Rummy and Rummy 500 preferences** (each: difficulty and the
   opponent's character id, or Random). Profiles saved before these games get empty statistics and
   the defaults (Medium, Random) when loaded.
@@ -71,7 +77,9 @@ Statistics per profile and game; only **finished** games count (abandoned games 
   counting up from 0 over 1.2 s (ease-out cubic) with the `coins.award` sound (chip stack). Under it is
   the breakdown, e.g. "2nd place: 40 × 1.5 (Medium) · Moon bonus +25", and the new balance.
 - **Play money only:** KardCoins can never be bought, sold, exchanged, or cashed out (R-001).
-- Betting games (Poker, Blackjack) will spend coins; avatars and outfits come later (R-001).
+- **Betting games** (Poker now, Blackjack later) are played with the player's own coins as chips, so
+  they pay no award: what the player takes from the table is the result (§6.3). Avatars and outfits
+  come later (R-001).
 - **Name:** "KardCoins" (singular "KardCoin"). A web and trademark-database search on 2026-11-24
   found no existing use (D-052).
 - **The coin mark** is drawn, not an emoji, so it looks the same on every platform: a gold circle
@@ -95,3 +103,52 @@ Deleting the last profile returns to the Welcome screen.
   are fixed, and the active id falls back to the first profile.
 - Device-wide settings (sound levels, music choice) stay outside profiles (spec 13).
 - Where and how the document is stored is runtime-specific (see the runtime spec).
+
+## 6. The casino regulars (D-090)
+The computer characters are **regulars** at a small casino: each has their own KardCoins, which
+earn and lose in the background as the player plays. Their balances matter in poker, where they bet
+their own coins, and they are shown on the stats page (§4) and the poker setup screen (spec 19 §4.1).
+
+### 6.1 Balances
+- Kept **per player profile** (in the profile's casino block), so each person on a shared tablet has
+  their own casino. Every regular on the roster starts with **500**, like a new player; a character
+  added to the roster later also starts with 500 when first seen.
+- A profile saved before the regulars existed **catches up**: one background round (§6.2) per game it
+  has finished (all games and poker sessions), at most 300, run when it is first loaded, so the
+  balances already look lived-in.
+
+### 6.2 After every game the player finishes
+1. **Regulars who played with her** are paid like the player for their own result, at the same
+   difficulty, without the special bonuses (moons, Nils, gins), which are not tracked for them:
+   Hearts by their place; Spades by their team's result (the partner shares the player's); Gin Rummy and
+   Rummy 500 by the other result from the player's. Poker players settle at the table (§6.3).
+2. **Everyone else plays one background game**, in roster order, with a generator seeded from the
+   profile id (FNV-1a, 32-bit) XOR (round number + 1) × 0x9E3779B1 (32-bit):
+   - A regular with **200 or more** plays a **betting game** with chance 0.35: the stake is
+     balance × (0.1 + 0.3 × risk), rounded, at most 1,000. With chance 0.47 + skill adjustment they
+     win stake × (0.2 + 0.8 × random); otherwise they lose stake × (0.3 + 0.7 × random) (rounded).
+   - Otherwise they play a **coin-earning game**: a Hearts-style finish with place weights
+     0.25 + a, 0.25 + a/3, 0.25 − a/3, 0.25 − a (a = skill adjustment), paid 150, 60, 23, or 8 (the
+     Medium Hearts payouts).
+   - A balance never goes below 0. The round counter goes up by one.
+3. Measured over 100 rounds from 500 (three profiles): balances reach about 600–1,400 after 10
+   rounds and 2,000–14,000 after 100. Betting swings spread them out, so a regular is sometimes short of
+   a poker buy-in for a while.
+
+### 6.3 Chips at the poker table
+- **Sitting down:** the player and each regular at the table move their **buy-in** from their balance
+  to the table: the stakes' buy-in, or the whole balance if less but at least the minimum (spec 19
+  §3.1). Someone below the minimum can't sit down. History entry: "Five-Card Draw: sat down (Low
+  stakes)", with the negative amount.
+- **More chips:** a player who runs out may buy in again from the balance ("Five-Card Draw: more
+  chips").
+- **During the session** everyone's chips are saved after every hand. A regular who leaves (out of
+  chips) takes their chips (none) back to their balance, and a regular who takes an empty seat buys in.
+- **Leaving:** the player's chips go back to her balance ("Five-Card Draw: cashed out", +amount; no
+  entry if 0), every regular still at the table takes their chips back, the statistics are updated,
+  and the regulars who weren't at the table play a background round (§6.2).
+- **Unfinished game:** if the app closes during a session, the next time profiles load every
+  player's chips as saved after the last finished hand go back to their balances ("Five-Card Draw:
+  chips returned from an unfinished game"). A hand in progress is void.
+- Coins are never created or lost at the table: the player's balance, the regulars' balances, and the
+  chips at the table always add up to the same total, except for the background rounds (tested).

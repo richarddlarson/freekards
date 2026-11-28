@@ -3,6 +3,7 @@
  * every function returns new data and never mutates its input. Time and ids are passed in.
  */
 import type { Difficulty } from '../core/skill.js';
+import type { StakesId } from '../poker/betting.js';
 import { DEFAULT_PLAYER_SETTINGS, normalizePlayerSettings, type PlayerSettings } from '../settings/player-settings.js';
 
 export const PROFILE_SCHEMA = 1;
@@ -94,6 +95,50 @@ export interface Rummy500Stats {
   coinsEarned: number;
 }
 
+/** Five-Card Draw statistics (spec 15 §2, D-090). A session is one visit to the table. */
+export interface PokerStats {
+  sessions: number;
+  handsPlayed: number;
+  /** Hands where the player won at least part of a pot. */
+  handsWon: number;
+  /** Largest single pot the player won (their share), or null. */
+  biggestPot: number | null;
+  /** The best hand the player showed down (and its name), or null. */
+  bestHand: { score: number; name: string } | null;
+  /** Chips taken from the table minus chips brought to it, over every session. */
+  netCoins: number;
+  /** Best single-session result, or null. */
+  bestSession: number | null;
+}
+
+/** Poker preferences: game, stakes, difficulty, and opponents for West, North, East (or null for Random). */
+export interface PokerPrefs {
+  difficulty: Difficulty;
+  stakes: StakesId;
+  opponents: string[] | null;
+}
+
+/** Chips at the poker table, saved after every hand (spec 15 §6.3). */
+export interface PokerTableSave {
+  stakes: StakesId;
+  /** The player's chips. */
+  you: number;
+  /** Each computer player's chips, by character id. */
+  regulars: Record<string, number>;
+}
+
+/** The casino regulars (spec 15 §6, D-090): the computer characters' own KardCoins. */
+export interface CasinoState {
+  /** Balance by character id. */
+  regulars: Record<string, number>;
+  /** Background rounds played so far (seeds the next one). */
+  rounds: number;
+  /** Background rounds still owed to catch up a profile made before the regulars existed. */
+  catchUp: number;
+  /** Chips at a poker table, or null when the player isn't sitting at one. */
+  pokerTable: PokerTableSave | null;
+}
+
 /** Preferences for a 2-player game: difficulty and the opponent's character id (or null for Random). */
 export interface TwoPlayerPrefs {
   difficulty: Difficulty;
@@ -121,8 +166,9 @@ export interface Profile {
   createdAt: string;
   coins: number;
   ledger: CoinEntry[];
-  stats: { hearts: HeartsStats; spades: SpadesStats; gin: GinStats; rummy500: Rummy500Stats };
-  prefs: { hearts: HeartsPrefs; spades: SpadesPrefs; gin: TwoPlayerPrefs; rummy500: TwoPlayerPrefs };
+  stats: { hearts: HeartsStats; spades: SpadesStats; gin: GinStats; rummy500: Rummy500Stats; fiveCardDraw: PokerStats };
+  prefs: { hearts: HeartsPrefs; spades: SpadesPrefs; gin: TwoPlayerPrefs; rummy500: TwoPlayerPrefs; poker: PokerPrefs };
+  casino: CasinoState;
   /** The player's settings (spec 16). */
   settings: PlayerSettings;
 }
@@ -179,6 +225,56 @@ export function emptyRummy500Stats(): Rummy500Stats {
 
 export const DEFAULT_TWO_PLAYER_PREFS: TwoPlayerPrefs = { difficulty: 'medium', opponent: null };
 
+export function emptyPokerStats(): PokerStats {
+  return { sessions: 0, handsPlayed: 0, handsWon: 0, biggestPot: null, bestHand: null, netCoins: 0, bestSession: null };
+}
+
+export const DEFAULT_POKER_PREFS: PokerPrefs = { difficulty: 'medium', stakes: 'low', opponents: null };
+
+export function emptyCasino(): CasinoState {
+  return { regulars: {}, rounds: 0, catchUp: 0, pokerTable: null };
+}
+
+function normalizePokerPrefs(raw: unknown): PokerPrefs {
+  const r = (raw && typeof raw === 'object' ? raw : {}) as Partial<PokerPrefs>;
+  const difficulty = r.difficulty === 'easy' || r.difficulty === 'medium' || r.difficulty === 'hard' ? r.difficulty : 'medium';
+  const stakes = r.stakes === 'medium' || r.stakes === 'high' ? r.stakes : 'low';
+  const opponents = Array.isArray(r.opponents) && r.opponents.length === 3 && r.opponents.every((x) => typeof x === 'string') ? [...r.opponents] : null;
+  return { difficulty, stakes, opponents };
+}
+
+const wholeCoins = (v: unknown): number | null => (typeof v === 'number' && Number.isFinite(v) ? Math.max(0, Math.floor(v)) : null);
+
+function normalizeCoinMap(raw: unknown): Record<string, number> {
+  const out: Record<string, number> = {};
+  if (raw && typeof raw === 'object') for (const [k, v] of Object.entries(raw)) if (wholeCoins(v) !== null) out[k] = wholeCoins(v)!;
+  return out;
+}
+
+/**
+ * Repair the casino block. A profile saved before it existed starts with no regulars and owes one
+ * background round per game it has finished (at most CATCH_UP_MAX), so the regulars' balances look
+ * lived-in (spec 15 §6.1).
+ */
+function normalizeCasino(raw: unknown, gamesFinished: number): CasinoState {
+  if (!raw || typeof raw !== 'object') return { ...emptyCasino(), catchUp: Math.min(CATCH_UP_MAX, gamesFinished) };
+  const r = raw as Partial<CasinoState>;
+  const t = r.pokerTable as Partial<PokerTableSave> | null | undefined;
+  const pokerTable =
+    t && typeof t === 'object' && wholeCoins(t.you) !== null
+      ? { stakes: t.stakes === 'medium' || t.stakes === 'high' ? t.stakes : ('low' as StakesId), you: wholeCoins(t.you)!, regulars: normalizeCoinMap(t.regulars) }
+      : null;
+  return {
+    regulars: normalizeCoinMap(r.regulars),
+    rounds: wholeCoins(r.rounds) ?? 0,
+    catchUp: Math.min(CATCH_UP_MAX, wholeCoins(r.catchUp) ?? 0),
+    pokerTable,
+  };
+}
+
+/** At most this many catch-up rounds for an older profile. */
+export const CATCH_UP_MAX = 300;
+
 function normalizeTwoPlayerPrefs(raw: unknown): TwoPlayerPrefs {
   const r = (raw && typeof raw === 'object' ? raw : {}) as Partial<TwoPlayerPrefs>;
   const difficulty = r.difficulty === 'easy' || r.difficulty === 'medium' || r.difficulty === 'hard' ? r.difficulty : 'medium';
@@ -199,7 +295,7 @@ export function cleanName(raw: string): string | null {
   return name.length > 0 ? name : null;
 }
 
-function addCoins(p: Profile, amount: number, reason: string, now: string): Profile {
+export function addCoins(p: Profile, amount: number, reason: string, now: string): Profile {
   const ledger = [{ at: now, amount, reason }, ...p.ledger].slice(0, LEDGER_MAX);
   return { ...p, coins: p.coins + amount, ledger };
 }
@@ -214,14 +310,16 @@ export function createProfile(name: string, id: string, now: string, prefs: Hear
     createdAt: now,
     coins: 0,
     ledger: [],
-    stats: { hearts: emptyHeartsStats(), spades: emptySpadesStats(), gin: emptyGinStats(), rummy500: emptyRummy500Stats() },
+    stats: { hearts: emptyHeartsStats(), spades: emptySpadesStats(), gin: emptyGinStats(), rummy500: emptyRummy500Stats(), fiveCardDraw: emptyPokerStats() },
     prefs: {
       hearts: { ...prefs, opponents: prefs.opponents ? [...prefs.opponents] : null },
       spades: { ...DEFAULT_SPADES_PREFS },
       gin: { ...DEFAULT_TWO_PLAYER_PREFS },
       rummy500: { ...DEFAULT_TWO_PLAYER_PREFS },
+      poker: { ...DEFAULT_POKER_PREFS },
     },
     settings: { ...DEFAULT_PLAYER_SETTINGS },
+    casino: emptyCasino(),
   };
   return addCoins(base, WELCOME_COINS, 'Welcome bonus', now);
 }
@@ -258,7 +356,7 @@ export interface HeartsGameSummary {
 }
 
 const PLACE_NAMES = ['1st', '2nd', '3rd', '4th'];
-const DIFFICULTY_NAMES: Record<Difficulty, string> = { easy: 'Easy', medium: 'Medium', hard: 'Hard' };
+export const DIFFICULTY_NAMES: Record<Difficulty, string> = { easy: 'Easy', medium: 'Medium', hard: 'Hard' };
 
 /** Record a finished Hearts game for the player in seat 0. Abandoned games are never recorded. */
 export function recordHeartsGame(p: Profile, g: HeartsGameSummary, now: string): { profile: Profile; payout: HeartsPayout } {
@@ -443,6 +541,8 @@ export function normalizeProfilesFile(raw: unknown): ProfilesFile {
     const sp = normalizeSpadesPrefs(p.prefs?.spades);
     const gs = { ...emptyGinStats(), ...(p.stats?.gin ?? {}) };
     const rs = { ...emptyRummy500Stats(), ...(p.stats?.rummy500 ?? {}) };
+    const ps = { ...emptyPokerStats(), ...(p.stats?.fiveCardDraw ?? {}) };
+    const finished = hs.gamesPlayed + ss.gamesPlayed + gs.gamesPlayed + rs.gamesPlayed + ps.sessions;
     profiles.push({
       schemaVersion: 1,
       id: p.id,
@@ -450,9 +550,16 @@ export function normalizeProfilesFile(raw: unknown): ProfilesFile {
       createdAt: typeof p.createdAt === 'string' ? p.createdAt : new Date(0).toISOString(),
       coins: Number.isFinite(p.coins) ? Math.max(0, Math.floor(p.coins as number)) : 0,
       ledger: Array.isArray(p.ledger) ? p.ledger.slice(0, LEDGER_MAX) : [],
-      stats: { hearts: hs, spades: ss, gin: gs, rummy500: rs },
-      prefs: { hearts: hp, spades: sp, gin: normalizeTwoPlayerPrefs(p.prefs?.gin), rummy500: normalizeTwoPlayerPrefs(p.prefs?.rummy500) },
+      stats: { hearts: hs, spades: ss, gin: gs, rummy500: rs, fiveCardDraw: ps },
+      prefs: {
+        hearts: hp,
+        spades: sp,
+        gin: normalizeTwoPlayerPrefs(p.prefs?.gin),
+        rummy500: normalizeTwoPlayerPrefs(p.prefs?.rummy500),
+        poker: normalizePokerPrefs(p.prefs?.poker),
+      },
       settings: normalizePlayerSettings(p.settings),
+      casino: normalizeCasino(p.casino, finished),
     });
   }
   const active = profiles.some((p) => p.id === r.activeProfileId) ? (r.activeProfileId as string) : (profiles[0]?.id ?? null);

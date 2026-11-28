@@ -1069,3 +1069,24 @@ Template:
   rule instead of a hand-strength table per case, and the "read" maps skill onto something a person
   would recognize as better play. With a single bar for betting and raising they checked 657 of 896
   first-round decisions and 90% of hands reached a showdown, so betting and raising got separate bars.
+
+## D-090 — The casino regulars: computer players with their own KardCoins
+- Date: 2026-11-27
+- Status: Proposed (chosen by the assistant at the owner's request; listed for his review)
+- Decision: Every computer character keeps a KardCoin balance, **per player profile**, starting at
+  500. After each game the player finishes, the regulars who played are paid like her for their own
+  result (no special bonuses), and everyone else plays one simulated background game: a coin-earning
+  game (a Hearts-style finish weighted by skill) or, with 200+ coins and chance 0.35, a betting game
+  that can win or lose a share of their balance (weighted by skill and sized by risk). Older profiles
+  catch up one background round per finished game. Poker chips come out of the player's and the
+  regulars' balances at the buy-in and go back when the player leaves; chips are saved after every
+  hand and returned if the app closes mid-session (spec 15 §6).
+- Why: Owner request (R-010): the regulars should start at 500 "like you", be "given amounts
+  requisite to the totals you would earn" when they play with the player, and "earn or lose" in the
+  background otherwise, "a lightweight simulation of a casino". Per-profile balances keep two people
+  on one tablet from changing each other's casino, and fit the existing per-profile coins. Background
+  games use the same payouts as the player's games so the regulars keep pace with her; the betting
+  games add the losses the owner asked for, and skill makes the good players richer over time.
+  Bonuses (moons, Nils, gins) aren't tracked for the computer players, so they are left out. Moving
+  chips in and out of balances, rather than settling hand by hand, means a session can never lose or
+  create coins, and saving after each hand means a crash never does either.

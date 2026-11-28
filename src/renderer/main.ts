@@ -25,8 +25,8 @@ import { HeartsTable, type HeartsGameResult } from './table/hearts-table.js';
 import { SpadesTable, type SpadesGameResult } from './table/spades-table.js';
 import { GinTable, type GinGameResult } from './table/gin-table.js';
 import { Rummy500Table, type Rummy500GameResult } from './table/rummy500-table.js';
-import { profile } from '../logic/index.js';
-import { activeProfile, activeSettings, allProfiles, loadProfiles, onProfilesChanged, replaceProfile } from './profiles.js';
+import { casino, profile } from '../logic/index.js';
+import { activeProfile, activeSettings, allProfiles, loadProfiles, onProfilesChanged, replaceProfile, settleRegulars } from './profiles.js';
 import { showNameEntry, showProfilePage, showWhoIsPlaying } from './profile-screens.js';
 import { showAbout } from './credits.js';
 
@@ -128,27 +128,30 @@ function pickSpadesPlayers(prefs: profile.SpadesPrefs, seed: number): dialogue.C
   return [west!, north!, east!];
 }
 
-function recordSpades(prefs: profile.SpadesPrefs, g: SpadesGameResult): ReturnType<typeof profile.recordSpadesGame> | null {
+function recordSpades(prefs: profile.SpadesPrefs, players: readonly dialogue.CharacterDef[], g: SpadesGameResult): ReturnType<typeof profile.recordSpadesGame> | null {
   const p = activeProfile();
   if (!p) return null;
   const r = profile.recordSpadesGame(p, { ...g, difficulty: prefs.difficulty }, new Date().toISOString());
   replaceProfile(r.profile);
-  return r;
+  // Players are West, North (partner), East.
+  settleRegulars(casino.spadesCredits(g.won, players[1]!.id, [players[0]!.id, players[2]!.id], prefs.difficulty));
+  return { ...r, profile: activeProfile()! };
 }
 
 function playSpades(prefs: profile.SpadesPrefs, demo: { seed?: number; autoplay?: boolean; speed?: number; record?: boolean } = {}): void {
   table?.destroy();
   stage.clear();
   const seed = demo.seed ?? (Date.now() >>> 0);
+  const players = pickSpadesPlayers(prefs, seed);
   const t = new SpadesTable(stage, {
     targetScore: prefs.targetScore,
     difficulty: prefs.difficulty,
-    opponents: pickSpadesPlayers(prefs, seed),
+    opponents: players,
     seed,
     autoplay: demo.autoplay,
     speed: demo.speed,
     getSettings: activeSettings,
-    onGameFinished: (g) => (demo.autoplay && !demo.record ? null : recordSpades(prefs, g)),
+    onGameFinished: (g) => (demo.autoplay && !demo.record ? null : recordSpades(prefs, players, g)),
     onExit: (next) => (next === 'again' ? playSpades(prefs) : menu()),
   });
   table = t;
@@ -176,29 +179,32 @@ function pickOpponent(prefs: profile.TwoPlayerPrefs, seed: number): dialogue.Cha
   return (prefs.opponent ? characterById(prefs.opponent) : undefined) ?? new Rng(seed ^ 0x2a2a).pick(CHARACTERS);
 }
 
-function recordGin(prefs: profile.TwoPlayerPrefs, g: GinGameResult): ReturnType<typeof profile.recordGinGame> | null {
+function recordGin(prefs: profile.TwoPlayerPrefs, opponent: string, g: GinGameResult): ReturnType<typeof profile.recordGinGame> | null {
   const p = activeProfile();
   if (!p) return null;
   const r = profile.recordGinGame(p, { ...g, difficulty: prefs.difficulty }, new Date().toISOString());
   replaceProfile(r.profile);
-  return r;
+  settleRegulars(casino.twoPlayerCredits(g.won, opponent, prefs.difficulty));
+  return { ...r, profile: activeProfile()! };
 }
 
-function recordRummy500(prefs: profile.TwoPlayerPrefs, g: Rummy500GameResult): ReturnType<typeof profile.recordRummy500Game> | null {
+function recordRummy500(prefs: profile.TwoPlayerPrefs, opponent: string, g: Rummy500GameResult): ReturnType<typeof profile.recordRummy500Game> | null {
   const p = activeProfile();
   if (!p) return null;
   const r = profile.recordRummy500Game(p, { ...g, difficulty: prefs.difficulty }, new Date().toISOString());
   replaceProfile(r.profile);
-  return r;
+  settleRegulars(casino.twoPlayerCredits(g.won, opponent, prefs.difficulty));
+  return { ...r, profile: activeProfile()! };
 }
 
 function playTwoPlayer(game: TwoPlayerGame, prefs: profile.TwoPlayerPrefs, demo: Demo = {}): void {
   table?.destroy();
   stage.clear();
   const seed = demo.seed ?? (Date.now() >>> 0);
+  const opponent = pickOpponent(prefs, seed);
   const common = {
     difficulty: prefs.difficulty,
-    opponents: [pickOpponent(prefs, seed)],
+    opponents: [opponent],
     seed,
     autoplay: demo.autoplay,
     speed: demo.speed,
@@ -207,35 +213,37 @@ function playTwoPlayer(game: TwoPlayerGame, prefs: profile.TwoPlayerPrefs, demo:
   };
   const t =
     game === 'gin'
-      ? new GinTable(stage, { ...common, onGameFinished: (g) => (demo.autoplay && !demo.record ? null : recordGin(prefs, g)) })
-      : new Rummy500Table(stage, { ...common, onGameFinished: (g) => (demo.autoplay && !demo.record ? null : recordRummy500(prefs, g)) });
+      ? new GinTable(stage, { ...common, onGameFinished: (g) => (demo.autoplay && !demo.record ? null : recordGin(prefs, opponent.id, g)) })
+      : new Rummy500Table(stage, { ...common, onGameFinished: (g) => (demo.autoplay && !demo.record ? null : recordRummy500(prefs, opponent.id, g)) });
   table = t;
   void t.run();
 }
 
 /** Record a finished game for the active player and return the award to show (D-050). */
-function recordResult(settings: Settings, g: HeartsGameResult): ReturnType<typeof profile.recordHeartsGame> | null {
+function recordResult(settings: Settings, opponents: readonly dialogue.CharacterDef[], g: HeartsGameResult): ReturnType<typeof profile.recordHeartsGame> | null {
   const p = activeProfile();
   if (!p) return null;
   const r = profile.recordHeartsGame(p, { ...g, difficulty: settings.difficulty }, new Date().toISOString());
   replaceProfile(r.profile);
-  return r;
+  settleRegulars(casino.heartsCredits(g.finalScores, opponents.map((c) => c.id), settings.difficulty));
+  return { ...r, profile: activeProfile()! };
 }
 
 function play(settings: Settings, demo: { seed?: number; autoplay?: boolean; speed?: number; record?: boolean } = {}): void {
   table?.destroy();
   stage.clear();
   const seed = demo.seed ?? (Date.now() >>> 0);
+  const opponents = pickOpponents(settings, seed);
   table = new HeartsTable(stage, {
     ruleSet: settings.ruleSet,
     difficulty: settings.difficulty,
-    opponents: pickOpponents(settings, seed),
+    opponents,
     seed,
     autoplay: demo.autoplay,
     speed: demo.speed,
     getSettings: activeSettings,
     // A computer-played demo game never counts for the player, unless explicitly asked (screenshots).
-    onGameFinished: (g) => (demo.autoplay && !demo.record ? null : recordResult(settings, g)),
+    onGameFinished: (g) => (demo.autoplay && !demo.record ? null : recordResult(settings, opponents, g)),
     onExit: (next) => (next === 'again' ? play(settings) : menu()),
   });
   void table.run();
