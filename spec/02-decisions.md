@@ -1041,3 +1041,186 @@ Template:
   about 1.6× for 4K it was smoothed away. Measured fine-detail contrast at 4K was 1.6 (out of 255) with
   the old texture and 3.2 with the new one; at 1920 × 1280 it went from 2.4 to 4.2. Six variants were
   compared at both scales: a coarser grain looked like sandpaper, and a large mottle looked cloudy.
+
+## D-088 — Poker: Five-Card Draw, fixed limit, for KardCoins
+- Date: 2026-11-27
+- Status: Proposed (chosen by the assistant at the owner's request; listed for his review)
+- Decision (stakes superseded by D-096): The first poker game is **Five-Card Draw** for the player and three computer players
+  (spec 19 §2): antes, no opening requirement, **fixed-limit** betting (small bet before the draw, big
+  bet after, a bet and three raises per round), one draw of **0 to 5 cards**, standard hand ranks with
+  the A-2-3-4-5 straight, no wild cards, split pots with side pots. Three stakes, Low 5/10/20, Medium
+  10/20/40, High 25/50/100 (ante/small/big), with buy-ins of 200, 500, and 1,000 (spec 19 §3). Hand
+  ranking, pots, and betting are separate modules so later variants reuse them.
+- Why: Owner request (R-010): "basic 5 card draw poker", the first game that uses KardCoins, with more
+  poker variants and Blackjack to follow. Fixed limit keeps the choices to a few big buttons (no bet
+  sizing) on a tablet and keeps the computer players simple and predictable; no-limit can come with
+  Hold'em. No openers ("Jacks or better") and a free choice of discards make the game easier to learn;
+  the computer players' strategy still behaves like a Jacks-or-better table (§5.3). Four seats reuse
+  the Hearts and Spades table positions. Settles open question Q6.
+
+## D-089 — Five-Card Draw computer players
+- Date: 2026-11-27
+- Status: Proposed (tuned by simulation)
+- Decision: Computer players estimate their chance of winning by dealing out random hands for the
+  other players (and, before the draw, playing out everyone's draw), filtered by what each player has
+  shown when the skill roll succeeds, then compare it with fair-share and pot-odds thresholds; risk
+  adds bluffs and loose calls (spec 19 §5).
+- Why: Simulated equity handles every situation (draws, number of opponents, after the draw) with one
+  rule instead of a hand-strength table per case, and the "read" maps skill onto something a person
+  would recognize as better play. With a single bar for betting and raising they checked 657 of 896
+  first-round decisions and 90% of hands reached a showdown, so betting and raising got separate bars.
+
+## D-090 — The casino regulars: computer players with their own KardCoins
+- Date: 2026-11-27
+- Status: Proposed (chosen by the assistant at the owner's request; listed for his review)
+- Decision: Every computer character keeps a KardCoin balance, **per player profile**, starting at
+  500. After each game the player finishes, the regulars who played are paid like her for their own
+  result (no special bonuses), and everyone else plays one simulated background game: a coin-earning
+  game (a Hearts-style finish weighted by skill) or, with 200+ coins and chance 0.35, a betting game
+  that can win or lose a share of their balance (weighted by skill and sized by risk). Older profiles
+  catch up one background round per finished game. Poker chips come out of the player's and the
+  regulars' balances at the buy-in and go back when the player leaves; chips are saved after every
+  hand and returned if the app closes mid-session (spec 15 §6).
+- Why: Owner request (R-010): the regulars should start at 500 "like you", be "given amounts
+  requisite to the totals you would earn" when they play with the player, and "earn or lose" in the
+  background otherwise, "a lightweight simulation of a casino". Per-profile balances keep two people
+  on one tablet from changing each other's casino, and fit the existing per-profile coins. Background
+  games use the same payouts as the player's games so the regulars keep pace with her; the betting
+  games add the losses the owner asked for, and skill makes the good players richer over time.
+  Bonuses (moons, Nils, gins) aren't tracked for the computer players, so they are left out. Moving
+  chips in and out of balances, rather than settling hand by hand, means a session can never lose or
+  create coins, and saving after each hand means a crash never does either.
+
+## D-091 — Poker chips and chip sounds
+- Date: 2026-11-27
+- Status: Proposed (chosen by the assistant; the owner picks sounds by ear and can swap them)
+- Decision: Six chip values (1, 5, 25, 100, 500, 1,000) in the usual casino colors, drawn by our own
+  generator seen at an angle so they stack (spec 07 §Poker chips), and amounts drawn as the fewest
+  chips in stacks of up to 12 (spec 19 §4.3). Four new sound cues use the chip sounds of the Kenney
+  Casino Audio pack already in the app (CC0): `chips.bet` (chip-lay), `chips.raise` (chips-stack),
+  `chips.collect` (chips-collide), `chips.win` (chips-handle) (spec 13 §2).
+- Why: Owner request (R-010) for chip and chip-stack graphics, with sounds and animations for antes and
+  bets. Generated SVGs are original MIT work like the cards, need no font at run time, and stay sharp
+  at any scale. The usual colors (red 5, green 25, black 100) read as chips at a glance. Kenney's pack
+  is the same source and license as the card sounds (the zip matches the hash in the asset register);
+  16 more of its files were copied unmodified.
+
+## D-092 — Poker screens and the regulars at the table
+- Date: 2026-11-27
+- Status: Proposed (chosen by the assistant; listed for the owner's review)
+- Decision: A Poker setup screen (game, stakes, difficulty, 1 to 3 opponents or Random, with each
+  regular's KardCoins and "Short on coins" for those who can't afford the stakes). The table reuses
+  the Hearts seats, with chip stacks, bets, a pot, a dealer button, action tags, an action bar for
+  betting and drawing, and a showdown that brings the regulars' hands to the middle. Leaving is in the
+  pause menu (mid-hand: fold the rest, then leave) and between hands; a summary shows the result. A
+  regular who runs out buys more (chance = risk) or leaves, and another regular may take the seat. The
+  player can buy more chips. The stats page gets a Poker tab and a Casino regulars leaderboard (spec
+  19 §3.3, §4; spec 15 §4).
+- Why: The owner asked for poker with chip animations and for the regulars' coins to matter. Picking
+  1 to 3 opponents allows a quiet heads-up game; showing coins on the setup screen explains why
+  someone can't play. Folding out the current hand when leaving keeps the chips honest without asking
+  the player to wait, and the regulars coming and going is the "casino with regulars" the owner
+  described. Poker has no final score, so sessions end when the player leaves, and "Play again" goes
+  back to the setup to choose stakes again.
+
+## D-093 — Poker dialogue
+- Date: 2026-11-27
+- Status: Proposed (lines written with Claude, voiced with each character's voice; owner to review)
+- Decision: Ten poker triggers (spec 08 §Poker triggers) and 222 new lines across the six
+  characters, in their established voices and running jokes, voiced with the existing Piper voices.
+- Why: Every other game has its own reactions; poker's big moments (bluffs, standing pat, bad beats,
+  going broke, a new regular sitting down) are natural places for the regulars to talk. One line was
+  rewritten before voicing because it leaned on a body-type joke (spec 08 tone rules).
+
+## D-094 — Poker chips 1.5 times bigger
+- Date: 2026-11-27
+- Status: Accepted (owner request)
+- Decision: Chips on the poker table are drawn 84 units wide instead of 56 (1.5×), with the stacking
+  step and the gap between stacks scaled to match (8.4 and 9), at most 10 chips per stack (was 12), and
+  slightly larger amounts. West's and East's stacks move 60 toward the center and North's 45 further
+  left so the bigger stacks clear the cards and portraits (spec 19 §4.2–4.3). Amends D-091 and D-092.
+- Why: After seeing screenshots of the table, the owner said the chips were "just too small" and
+  asked for "at least 1.5X their current size". Ten per stack keeps a tall stack under 150 units.
+
+## D-095 — Chip stacks build up when players sit down
+- Date: 2026-11-27
+- Status: Proposed (owner request; the timing was chosen by the assistant)
+- Decision: When the player sits down at the poker table, each seat's stack is built chip by chip,
+  each chip dropping in with a small bounce and a soft click, the player's first and then the
+  regulars', overlapping (spec 19 §4.3). Regulars who sit down or buy more chips, and the player buying
+  more, build their stacks the same way. A player's stack (not bets or pots) keeps some 5s and 25s,
+  like a cashier's buy-in, instead of the fewest chips. New sound cue `chips.stack`.
+- Why: The owner asked for "a stacking animation to make the stacks showing up at the beginning of the
+  game more interesting". With the fewest chips a 200 buy-in was only two black chips, which makes for
+  a dull build and a flat-looking stack; a cashier's mix gives three colorful columns. Overlapping the
+  seats keeps the whole intro to about two seconds, and it follows Game speed.
+
+## D-096 — Lower poker stakes
+- Date: 2026-11-27
+- Status: Accepted (owner request; Medium and High chosen by the assistant)
+- Decision: Low stakes are ante 1, bets of 5 and 10, buy-in 100 (minimum 25). Medium is ante 2, bets
+  of 10 and 20, buy-in 200 (minimum 50). High is ante 5, bets of 20 and 40, buy-in 400 (minimum 100).
+  At every level the big bet is twice the small bet, the buy-in 20 small bets, and the minimum 5
+  (spec 19 §3.1). Supersedes D-088's stakes. A "big pot" for dialogue is now 5 big bets instead of
+  20 antes. Small amounts mean many 1s and 5s, so a player's stack keeps 4 chips each of 1, 5, and 25
+  (instead of D-095's 5 of 5 and 4 of 25), a stack holds at most 8 chips, a pile is at most 3 stacks
+  wide with any more in a row in front (big values in front), and the side stacks sit a little lower
+  (spec 19 §4.2–4.3).
+- Why: The owner: "many players want to just be really casual, so let's make the low stakes option be
+  really low stakes, with 1 ante and bets of 5 or 10. Adjust the other stakes settings downward
+  accordingly. That also helps fix the high-stakes game being a bit too high as well." Each level now
+  doubles the bets of the one below, and a regular's 500 starting coins cover even the High buy-in
+  with room to buy more. Simulations show the same kind of play at every level (about 72% of hands
+  reach a showdown). With antes of 1 or 2, a threshold based on antes would call almost every pot big,
+  so it follows the big bet. The engine tests keep the old values as fixed test stakes. Rows keep any
+  pile within the space the table leaves beside each player; the first try (more columns) ran into
+  the cards and portraits, and tall stacks reached the nameplates.
+
+## D-097 — Chips visibly fly when players ante, bet, and win
+- Date: 2026-11-27
+- Status: Accepted (owner request, and a bug fix)
+- Decision: Flying chips carry the amount as a pile that arcs slightly and lifts mid-flight, with a
+  shadow, like a hand pushing chips across; chip flights take 420 ms (450 ms when the round's bets go
+  to the pot) instead of 320 and 380 (spec 19 §4.3–4.4).
+- Why: The owner asked for "an animation of their chips going from their stack into the middle,
+  similar to how the cards currently animate". The table already moved chips (stack to bet spot, bets
+  to the pot, pot to the winner), but a bug drew every flying pile empty, so the chips seemed to jump.
+  A check in the running app counted 19 flights in 12 seconds with no chips in any of them; after the
+  fix, all 19 carry chips. The arc, lift, and slightly longer time make each flight easy to follow.
+
+## D-098 — A chip meter for the player's own chips
+- Date: 2026-11-27
+- Status: Proposed (owner request; the design was chosen by the assistant)
+- Decision: The player's chips are shown in a large meter above her stack ("Your chips", 50 px gold
+  number, and the KardCoins she has away from the table). It turns red and pulses with "Running low!"
+  at 3 big bets or fewer, and every gain or loss floats up from it as "+N" or "−N". The small amount
+  under her own stack is dropped, and her stack moves 58 lower to make room (spec 19 §4.2).
+- Why: The owner: the total "is kind of small and unobtrusive right now and it is easy to overlook that
+  you are going way down close to nothing". The warning catches the moment that matters (about one
+  more hand's worth of betting left), the floating changes connect each bet and win to the total,
+  and the balance away from the table tells her whether she could buy more chips.
+
+## D-099 — The pause menu is centered, and nobody talks while the game is paused
+- Date: 2026-11-27
+- Status: Accepted (owner request)
+- Decision: The pause menu (☰ or Esc) is centered vertically on the table. Pausing (the pause menu,
+  or Rules opened during play) closes any speech bubble, stops its voice clip, and drops queued
+  comments; no comment, including the idle reminder, is shown until play resumes (spec 12 §6).
+- Why: The owner noticed the pause menu sat low. Dialogs are deliberately 150 below center so speech
+  bubbles don't cover them, and the pause menu, the tallest dialog, inherited that and nearly touched
+  the bottom edge. While paused no game events happen, but a bubble already showing, or the idle
+  comment after 20 s on the player's turn, could still appear; silencing the table while paused
+  removes that case, so the menu can be centered safely. Checked: centered exactly, and no bubble after
+  25 s paused on the player's turn.
+
+## D-100 — Say why play continues after a tie at the end of a game
+- Date: 2026-11-28
+- Status: Accepted (owner report)
+- Decision: When a Hearts hand leaves someone at 100 or more but two or more players tied for the
+  lowest score, the Hand results dialog adds a note naming who passed 100 and who is tied, e.g. "The
+  Professor has 106, but Coach and Grumbles are tied for lowest (60), so play continues." Spades does
+  the same when the teams are tied at the end ("The scores are tied at 310, so play continues."). The
+  rules themselves don't change (spec 06 §2, spec 17 §5).
+- Why: The owner saw the Professor at 106 with the game still going and reported it as a bug. The
+  engine was right (Coach and Grumbles were tied at 60, and the tie rule is in the Rules screen), but
+  nothing at the table explained it.

@@ -341,6 +341,17 @@ export function gameWinner(scores: readonly number[], targetScore: number): Seat
   return lows.length === 1 ? lows[0]! : null;
 }
 
+/**
+ * When someone has reached the target but two or more players share the lowest score, the game goes
+ * on (spec 06 §2). Returns the tied seats in that case, else null. For the "play continues" note (D-100).
+ */
+export function tieBreakerSeats(scores: readonly number[], targetScore: number): Seat[] | null {
+  if (!scores.some((v) => v >= targetScore)) return null;
+  const low = Math.min(...scores);
+  const lows = SEATS.filter((seat) => scores[seat] === low);
+  return lows.length > 1 ? lows : null;
+}
+
 function doContinue(s: HeartsState, emit: Emit): void {
   if (s.phase !== 'score') throw new HeartsRuleError(`Cannot continue during ${s.phase}`);
   const winner = gameWinner(s.scores, s.targetScore);

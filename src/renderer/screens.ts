@@ -1,5 +1,5 @@
 /** Main menu and game setup screens (spec 12 §1). */
-import type { Difficulty, dialogue, hearts, rules } from '../logic/index.js';
+import { poker, type Difficulty, type dialogue, type hearts, type rules } from '../logic/index.js';
 import { CHARACTERS, portraitColors } from './content.js';
 import type { Settings } from './settings.js';
 import { soundSettingsPanel } from './sound-settings.js';
@@ -13,7 +13,7 @@ type CharacterDef = dialogue.CharacterDef;
 
 export function showMainMenu(
   stage: Stage,
-  actions: { playHearts(): void; playSpades(): void; playRummy500(): void; playGin(): void; quit(): void; stats(): void; switchPlayer(): void; about(): void },
+  actions: { playHearts(): void; playSpades(): void; playRummy500(): void; playGin(): void; playPoker(): void; quit(): void; stats(): void; switchPlayer(): void; about(): void },
   player: profile.Profile | null,
 ): void {
   stage.clear();
@@ -40,8 +40,10 @@ export function showMainMenu(
   onTap(rummy500Btn, actions.playRummy500);
   const ginBtn = h('button', 'big-button play', 'Play Gin Rummy');
   onTap(ginBtn, actions.playGin);
-  list.append(hearts, spadesBtn, rummy500Btn, ginBtn);
-  for (const name of ['Blackjack', 'Poker', 'Solitaire']) {
+  const pokerBtn = h('button', 'big-button play', 'Play Poker');
+  onTap(pokerBtn, actions.playPoker);
+  list.append(hearts, spadesBtn, rummy500Btn, ginBtn, pokerBtn);
+  for (const name of ['Blackjack', 'Solitaire']) {
     const b = h('button', 'big-button secondary soon');
     b.append(h('span', 'soon-name', name), h('span', 'soon-note', 'coming soon'));
     b.disabled = true;
@@ -290,6 +292,111 @@ export function showTwoPlayerSetup(
       tile.querySelector('.seat-badge')!.textContent = id === s.opponent ? 'Opponent' : '';
     }
     hint.textContent = s.opponent === null ? 'A random opponent' : 'Ready!';
+  }
+  refresh();
+  screen.append(panel);
+  stage.el.append(screen);
+}
+
+const STAKES_LABELS: Record<poker.StakesId, string> = { low: 'Low', medium: 'Medium', high: 'High' };
+const POKER_SEAT_LABELS = ['West', 'North', 'East'];
+
+/**
+ * Poker setup (spec 19 §4.1): game, stakes, difficulty, and 1 to 3 opponents (or Random). Each
+ * regular's KardCoins are shown; one who can't afford the stakes can't be picked.
+ */
+export function showPokerSetup(
+  stage: Stage,
+  initial: profile.PokerPrefs,
+  coins: { balance: number; regularCoins(id: string): number },
+  actions: { start(s: profile.PokerPrefs): void; back(): void },
+): void {
+  stage.clear();
+  const s: profile.PokerPrefs = { ...initial, opponents: initial.opponents ? [...initial.opponents] : null };
+  const screen = h('div', 'screen setup-screen');
+  const panel = h('div', 'setup-panel poker-setup');
+  panel.append(h('h2', 'setup-title', 'Poker'));
+  const game = choiceRow<'draw'>('Game', [['draw', 'Five-Card Draw']], 'draw', () => undefined);
+  game.append(h('span', 'setup-hint', 'More poker games are coming'));
+  const stakesNote = h('div', 'setup-note');
+  panel.append(
+    game,
+    choiceRow<poker.StakesId>('Stakes', poker.STAKES_IDS.map((id) => [id, STAKES_LABELS[id]] as [poker.StakesId, string]), s.stakes, (v) => {
+      s.stakes = v;
+      refresh();
+    }),
+    stakesNote,
+    choiceRow<Difficulty>('Difficulty', [['easy', 'Easy'], ['medium', 'Medium'], ['hard', 'Hard']], s.difficulty, (v) => (s.difficulty = v)),
+  );
+
+  const row = h('div', 'setup-row');
+  const random = h('button', 'choice', 'Random');
+  const hint = h('span', 'setup-hint', '');
+  const head = h('div', 'opponents-head');
+  head.append(h('div', 'setup-label', 'Opponents'), random, hint);
+  const grid = h('div', 'opponent-grid');
+  const tiles = new Map<string, HTMLButtonElement>();
+  for (const c of CHARACTERS) {
+    const tile = h('button', 'opponent-tile');
+    const text = h('div', 'opponent-text');
+    const money = h('div', 'opponent-coins');
+    money.append(coinBadge(coins.regularCoins(c.id), false));
+    text.append(h('div', 'opponent-name', c.nickname), h('div', 'opponent-full', c.name), money);
+    tile.append(portraitBadge(c, 'portrait-face small'), text, h('div', 'seat-badge'));
+    onTap(tile, () => {
+      if (tile.disabled) return;
+      const chosen = s.opponents ?? [];
+      if (chosen.includes(c.id)) s.opponents = chosen.filter((x) => x !== c.id);
+      else if (chosen.length < 3) s.opponents = [...chosen, c.id];
+      else return;
+      if (s.opponents.length === 0) s.opponents = null;
+      refresh();
+    });
+    tiles.set(c.id, tile);
+    grid.append(tile);
+  }
+  onTap(random, () => {
+    s.opponents = null;
+    refresh();
+  });
+  row.append(head, grid);
+  panel.append(row);
+
+  const buttons = h('div', 'dialog-buttons');
+  const back = h('button', 'big-button secondary', 'Back');
+  const start = h('button', 'big-button', 'Sit down');
+  onTap(back, actions.back);
+  onTap(start, () => {
+    if (!start.disabled) actions.start(s);
+  });
+  buttons.append(back, rulesButton(screen, 'five-card-draw'), start);
+  panel.append(buttons);
+
+  function refresh(): void {
+    const st = poker.STAKES[s.stakes];
+    const can = (id: string) => coins.regularCoins(id) >= st.minBuyIn;
+    // Drop picks who can't afford the new stakes.
+    if (s.opponents) {
+      s.opponents = s.opponents.filter(can);
+      if (s.opponents.length === 0) s.opponents = null;
+    }
+    const you = Math.min(coins.balance, st.buyIn);
+    const short = coins.balance < st.minBuyIn;
+    stakesNote.textContent = short
+      ? `Ante ${st.ante} · Bets ${st.smallBet} and ${st.bigBet} · You need at least ${st.minBuyIn} KardCoins to sit down (you have ${coins.balance.toLocaleString('en-US')})`
+      : `Ante ${st.ante} · Bets ${st.smallBet} and ${st.bigBet} · You sit down with ${you.toLocaleString('en-US')} of your ${coins.balance.toLocaleString('en-US')} KardCoins`;
+    stakesNote.classList.toggle('warning', short);
+    random.classList.toggle('selected', s.opponents === null);
+    const chosen = s.opponents ?? [];
+    for (const [id, tile] of tiles) {
+      const i = chosen.indexOf(id);
+      tile.disabled = !can(id);
+      tile.classList.toggle('selected', i >= 0);
+      tile.querySelector('.seat-badge')!.textContent = i >= 0 ? POKER_SEAT_LABELS[i]! : tile.disabled ? 'Short on coins' : '';
+    }
+    const able = CHARACTERS.filter((c) => can(c.id)).length;
+    hint.textContent = able === 0 ? 'Nobody can afford these stakes' : s.opponents === null ? `${Math.min(3, able)} random regulars` : chosen.length === 3 ? 'Ready!' : `${chosen.length} chosen · pick up to ${3 - chosen.length} more`;
+    start.disabled = short || able === 0;
   }
   refresh();
   screen.append(panel);

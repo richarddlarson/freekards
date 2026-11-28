@@ -102,6 +102,26 @@ and `hand.bad.human` when the computer won the hand (Gin) or scored more (Rummy 
 `hand.good.human` and `hand.bad.self` the other way round. A dead Gin hand or an even Rummy 500 hand
 uses neither.
 
+### Poker triggers [Proposed] (implemented, D-093)
+Perspectives as in Hearts: `self`, `human` (the player did it), `other` (another regular did it).
+Only regulars sitting at the table speak, including one who just sat down.
+
+| Trigger | Fires when | Weight |
+|---------|-----------|--------|
+| `poker.won_pot.self` / `.human` / `.other` | `pot_won` for the main pot (its first winner) | 0.4 |
+| `poker.big_pot.self` / `.human` | That pot, with all pots this hand totaling at least 5 big bets (D-096) | 1.0 |
+| `poker.bluff.self` | The speaker won without a showdown, and its last bet was a bluff (spec 19 §5.1) | 0.8 |
+| `poker.stood_pat.self` / `.human` | `drew` with 0 cards | 0.6 |
+| `poker.raise.self` / `.human` | `bet_action` raise | 0.3 |
+| `poker.fold.self` | `bet_action` fold | 0.2 |
+| `poker.bad_beat.self` / `.human` | Lost a showdown holding three of a kind or better | 0.9 |
+| `poker.big_hand.self` / `.human` | Won the main pot at a showdown with a full house or better | 0.8 |
+| `poker.busted.self` / `.human` | `busted` | 1.0 |
+| `poker.sit_down.self` | A regular takes an empty seat (`sat`) | 0.8 |
+
+Every character has 2 lines per poker trigger (3 for `poker.won_pot.self`): 222 lines, voiced like the
+others. At the start of a session the shared `game.start` lines are used.
+
 ### Who speaks [Confirmed] (implemented, D-036)
 1. When a logic event happens, collect every computer character with lines for the matching
    trigger. A character with a `self` trigger is preferred over the others.

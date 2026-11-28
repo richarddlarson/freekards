@@ -14,9 +14,10 @@ Main menu ──Play <game>──▶ <game> setup ──Deal!──▶ <game> ta
     └────────────────────────┴───────────────────────┴── Main menu ───────────────┘
 ```
 - **Main menu:** the "FreeKards" title, tagline "Classic card games with friendly faces", the large
-  gold play buttons in two rows of two, **Play Hearts** | **Play Spades** and **Play Rummy 500** |
-  **Play Gin Rummy** (D-072, D-081), a 2-column grid of the other three games marked *coming soon*
-  (disabled; the odd last one centered),
+  gold play buttons in rows of two, **Play Hearts** | **Play Spades**, **Play Rummy 500** |
+  **Play Gin Rummy** (D-072, D-081), and **Play Poker** (D-092, spec 19), then the games still to come
+  (Blackjack, Solitaire) marked *coming soon* (disabled), in the same 2-column grid with the odd last
+  button centered,
   and, along the bottom, **Sound** (opens the Sound panel, spec 13), **Settings** (the player's
   Settings panel, spec 16), **About** (the About & Credits screen, below), and **Quit** (closes the app).
 - **About & Credits** (D-066, spec 09 §5), one panel that fills most of the screen:
@@ -117,7 +118,10 @@ defaults are used: Standard, Medium, Random.
 
 ## 6. Dialogs
 Dialogs dim the table (45% black) and sit 150 below the center, so speech bubbles, which stay on top,
-don't cover them.
+don't cover them. The exceptions are the **pause menu** and a Rules panel opened during play: the game
+is paused, so nobody can speak (D-099). Pausing closes any bubble (and stops its voice clip), drops
+any queued comment, and holds every comment, including idle ones, until play resumes, so these sit
+in the true center.
 - **Hand results:** "Hand N results", an optional "X shot the moon!" note, a table of
   player / this hand (+points) / total, and a **Next hand** button (or **Final results** if the game
   is over).

@@ -3,11 +3,11 @@
 Free, open-source classic card games with friendly computer opponents, for Windows and Linux on
 both x64 and ARM64.
 
-Games: **Hearts**, **Spades**, **Rummy 500**, and **Gin Rummy** are playable. Coming later:
-Blackjack, Poker, and Solitaire.
+Games: **Hearts**, **Spades**, **Rummy 500**, **Gin Rummy**, and **Five-Card Draw poker** are
+playable. Coming later: more poker games, Blackjack, and Solitaire.
 
-> **Status:** early pre-release; the current release is **v0.2.0**. Hearts, Spades, Rummy 500, and
-> Gin Rummy are fully playable. The other games are coming.
+> **Status:** early pre-release; the current release is **v0.3.0**. Hearts, Spades, Rummy 500, Gin
+> Rummy, and Five-Card Draw are fully playable. The other games are coming.
 
 ## Download and install
 Get the installer for your computer from the
@@ -20,24 +20,30 @@ file to download.
   `.AppImage` (mark it executable, then run it).
 
 ## Features
-- **Four games:**
+- **Five games:**
   - **Hearts**, with an optional Jack of Diamonds rule.
   - **Spades**, played with a partner, to 300 or 500 points.
   - **Rummy 500** and **Gin Rummy**, for two players.
+  - **Five-Card Draw poker**, played with your KardCoins as chips, at three stakes from very casual
+    (1-coin antes) up. Chips stack, slide, and pay out on the table.
+- **A small casino of regulars:** the six computer characters have their own KardCoins, which they
+  win and lose as you play, whether or not they're at your table. See who's richest on your stats
+  page.
 - **Made for touch screens** such as the Surface Pro: tap or drag cards, with animated dealing and
   play. A mouse works too.
 - **Six computer opponents with personalities.** They comment on the game in speech bubbles and out
   loud, and play at Easy, Medium, or Hard.
 - **A rules screen for every game**, one tap away on the table (the **?** button).
-- **Player profiles:** each player has their own statistics and KardCoins, earned by playing.
-- **Personal settings for each player:** two card decks (Classic and Rounded), card order, how
-  quickly a touch plays a card, and game speed.
+- **Player profiles:** each player has their own statistics and KardCoins, earned by playing and
+  won or lost at the poker table.
+- **Personal settings for each player:** two card decks (Classic and Rounded), five felt table
+  colors, card order, how quickly a touch plays a card, and game speed.
 - **Sound:** card sounds, a playlist of background music, and separate volume controls for music,
   sound effects, and voices.
 - **100% offline.** No accounts, no ads, no tracking.
 
 ### Planned
-- Blackjack, Poker, and Solitaire.
+- More poker games (Five- and Seven-Card Stud, Texas Hold'em), Blackjack, and Solitaire.
 - Ways to spend KardCoins, and player avatars.
 - More visual themes and card decks.
 

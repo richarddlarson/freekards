@@ -519,6 +519,190 @@
         "id": "marguerite.rummy.big_meld.human.2",
         "text": "Marvelous. Truly a significant result."
       }
+    ],
+    "poker.won_pot.self": [
+      {
+        "id": "marguerite.poker.won_pot.self.1",
+        "text": "Ah. The expected value finally arrived."
+      },
+      {
+        "id": "marguerite.poker.won_pot.self.2",
+        "text": "A win! I'd celebrate, but I can't find my glasses."
+      },
+      {
+        "id": "marguerite.poker.won_pot.self.3",
+        "text": "Statistically, I was due."
+      }
+    ],
+    "poker.won_pot.human": [
+      {
+        "id": "marguerite.poker.won_pot.human.1",
+        "text": "Well played. Your odds were excellent."
+      },
+      {
+        "id": "marguerite.poker.won_pot.human.2",
+        "text": "Splendid. I shall update my estimates of you."
+      }
+    ],
+    "poker.won_pot.other": [
+      {
+        "id": "marguerite.poker.won_pot.other.1",
+        "text": "Hm. Variance. Nothing more."
+      },
+      {
+        "id": "marguerite.poker.won_pot.other.2",
+        "text": "A perfectly reasonable outcome, sadly."
+      }
+    ],
+    "poker.big_pot.self": [
+      {
+        "id": "marguerite.poker.big_pot.self.1",
+        "text": "A sizable pot! Wait, are my glasses in it?"
+      },
+      {
+        "id": "marguerite.poker.big_pot.self.2",
+        "text": "Fascinating. The law of large numbers, in my favor."
+      }
+    ],
+    "poker.big_pot.human": [
+      {
+        "id": "marguerite.poker.big_pot.human.1",
+        "text": "What a pot! You'd make a fine statistician."
+      },
+      {
+        "id": "marguerite.poker.big_pot.human.2",
+        "text": "Remarkable. The math was clearly on your side."
+      }
+    ],
+    "poker.bluff.self": [
+      {
+        "id": "marguerite.poker.bluff.self.1",
+        "text": "I had nothing. A calculated risk, you see."
+      },
+      {
+        "id": "marguerite.poker.bluff.self.2",
+        "text": "A bluff! Game theory says I should do that sometimes."
+      }
+    ],
+    "poker.stood_pat.self": [
+      {
+        "id": "marguerite.poker.stood_pat.self.1",
+        "text": "I shall keep all five. The probabilities are agreeable."
+      },
+      {
+        "id": "marguerite.poker.stood_pat.self.2",
+        "text": "No cards, thank you. I've done the arithmetic."
+      }
+    ],
+    "poker.stood_pat.human": [
+      {
+        "id": "marguerite.poker.stood_pat.human.1",
+        "text": "Standing pat? That narrows your range considerably."
+      },
+      {
+        "id": "marguerite.poker.stood_pat.human.2",
+        "text": "No cards. How very informative of you."
+      }
+    ],
+    "poker.raise.self": [
+      {
+        "id": "marguerite.poker.raise.self.1",
+        "text": "I raise. The numbers insist."
+      },
+      {
+        "id": "marguerite.poker.raise.self.2",
+        "text": "A raise, by my calculations."
+      }
+    ],
+    "poker.raise.human": [
+      {
+        "id": "marguerite.poker.raise.human.1",
+        "text": "A raise. Let me reconsider my priors."
+      },
+      {
+        "id": "marguerite.poker.raise.human.2",
+        "text": "Interesting. That changes the math."
+      }
+    ],
+    "poker.fold.self": [
+      {
+        "id": "marguerite.poker.fold.self.1",
+        "text": "I fold. The odds were simply dreadful."
+      },
+      {
+        "id": "marguerite.poker.fold.self.2",
+        "text": "Not worth it. I've checked twice."
+      }
+    ],
+    "poker.bad_beat.self": [
+      {
+        "id": "marguerite.poker.bad_beat.self.1",
+        "text": "That was a one in twenty outcome. How rude."
+      },
+      {
+        "id": "marguerite.poker.bad_beat.self.2",
+        "text": "Three of a kind, beaten. I need to lie down."
+      }
+    ],
+    "poker.bad_beat.human": [
+      {
+        "id": "marguerite.poker.bad_beat.human.1",
+        "text": "Oh, that was improbable. I'm so sorry."
+      },
+      {
+        "id": "marguerite.poker.bad_beat.human.2",
+        "text": "A terrible beat. The math was with you, at least."
+      }
+    ],
+    "poker.big_hand.self": [
+      {
+        "id": "marguerite.poker.big_hand.self.1",
+        "text": "A full house! Roughly one in seven hundred!"
+      },
+      {
+        "id": "marguerite.poker.big_hand.self.2",
+        "text": "Look at that. Combinatorics at its finest."
+      }
+    ],
+    "poker.big_hand.human": [
+      {
+        "id": "marguerite.poker.big_hand.human.1",
+        "text": "My word! Do you know the odds of that?"
+      },
+      {
+        "id": "marguerite.poker.big_hand.human.2",
+        "text": "Extraordinary! I must write that down. Where's my pen?"
+      }
+    ],
+    "poker.busted.self": [
+      {
+        "id": "marguerite.poker.busted.self.1",
+        "text": "Out of chips. My model needs revision."
+      },
+      {
+        "id": "marguerite.poker.busted.self.2",
+        "text": "Busted. I'll be in my office, recalculating."
+      }
+    ],
+    "poker.busted.human": [
+      {
+        "id": "marguerite.poker.busted.human.1",
+        "text": "Out? Variance is cruel. You'll recover."
+      },
+      {
+        "id": "marguerite.poker.busted.human.2",
+        "text": "That happens, dear. Even with perfect math."
+      }
+    ],
+    "poker.sit_down.self": [
+      {
+        "id": "marguerite.poker.sit_down.self.1",
+        "text": "May I join? I've brought my calculator. And my glasses. Somewhere."
+      },
+      {
+        "id": "marguerite.poker.sit_down.self.2",
+        "text": "Hello! Has anyone seen my glasses? Oh. Head. Thank you."
+      }
     ]
   }
 }

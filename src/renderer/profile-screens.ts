@@ -1,11 +1,13 @@
 /** Profile screens (spec 15 §4): welcome / add player, "Who's playing?", and the player's stats page. */
-import { profile } from '../logic/index.js';
+import { casino, profile, type dialogue } from '../logic/index.js';
+import { CHARACTERS, portraitColors } from './content.js';
 import {
   activeProfile,
   addProfile,
   allProfiles,
   coinText,
   deleteProfile,
+  REGULARS,
   renameProfile,
   selectProfile,
 } from './profiles.js';
@@ -105,6 +107,14 @@ export function showWhoIsPlaying(stage: Stage, opts: { onPicked(): void; onAdd()
   stage.el.append(screen);
 }
 
+/** A regular's colored initial (as on the table, spec 12 §4). */
+function characterFace(c: dialogue.CharacterDef): HTMLElement {
+  const face = h('div', 'portrait-face tiny', c.nickname.replace(/^The /, '').charAt(0));
+  const [light, dark] = portraitColors(c.id);
+  face.style.background = `radial-gradient(circle at 35% 30%, ${light}, ${dark})`;
+  return face;
+}
+
 function pct(n: number | null): string {
   return n === null ? '—' : `${Math.round(n * 100)}%`;
 }
@@ -128,9 +138,11 @@ function confirmDialog(parent: HTMLElement, title: string, text: string, yes: st
 }
 
 /** The player's page: name, balance, Hearts statistics, recent coin history (spec 15 §4). */
-type StatsTab = 'hearts' | 'spades' | 'rummy500' | 'gin';
+type StatsTab = 'hearts' | 'spades' | 'rummy500' | 'gin' | 'poker';
 /** The game tab last shown on My stats (for this run of the app). */
 let lastStatsTab: StatsTab = 'hearts';
+/** The right-hand list last shown: Recent KardCoins or the regulars' leaderboard. */
+let lastSideTab = 'ledger';
 
 export function showProfilePage(stage: Stage, opts: { onBack(): void; onDeletedLast(): void }): void {
   const p = activeProfile();
@@ -171,6 +183,8 @@ export function showProfilePage(stage: Stage, opts: { onBack(): void; onDeletedL
   const sp = p.stats.spades;
   const g = p.stats.gin;
   const r = p.stats.rummy500;
+  const pk = p.stats.fiveCardDraw;
+  const signed = (n: number) => `${n >= 0 ? '+' : '−'}${coinText(Math.abs(n))}`;
   const games: [StatsTab, string, [string, string][]][] = [
     ['hearts', 'Hearts', [
       ['Games played', String(s.gamesPlayed)],
@@ -213,6 +227,14 @@ export function showProfilePage(stage: Stage, opts: { onBack(): void; onDeletedL
       ['Undercuts', String(g.undercuts)],
       ['KardCoins earned in Gin Rummy', coinText(g.coinsEarned)],
     ]],
+    ['poker', 'Poker', [
+      ['Sessions', String(pk.sessions)],
+      ['Hands won', ratio(pk.handsWon, pk.handsPlayed)],
+      ['Biggest pot won', pk.biggestPot === null ? '—' : coinText(pk.biggestPot)],
+      ['Best hand', pk.bestHand?.name ?? '—'],
+      ['Best session', pk.bestSession === null ? '—' : signed(pk.bestSession)],
+      ['KardCoins won or lost', pk.sessions === 0 ? '—' : signed(pk.netCoins)],
+    ]],
   ];
   const stats = h('div', 'stats-section');
   const tabs = h('div', 'stats-tabs');
@@ -234,18 +256,49 @@ export function showProfilePage(stage: Stage, opts: { onBack(): void; onDeletedL
   stats.append(tabs, body);
   show(lastStatsTab);
 
+  // Right column (spec 15 §4): Recent KardCoins, or the casino regulars' leaderboard (spec 15 §6).
   const history = h('div', 'stats-section');
-  history.append(h('h3', 'stats-title', 'Recent KardCoins'));
-  const list = h('div', 'ledger');
-  for (const e of p.ledger.slice(0, 6)) {
-    const when = new Date(e.at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-    list.append(
-      h('span', 'ledger-when', when),
-      h('span', 'ledger-reason', e.reason),
-      h('span', `ledger-amount ${e.amount >= 0 ? 'plus' : 'minus'}`, `${e.amount >= 0 ? '+' : ''}${coinText(e.amount)}`),
-    );
+  const sideTabs = h('div', 'stats-tabs');
+  const sideBody = h('div', 'stats-body');
+  const ledger = () => {
+    const list = h('div', 'ledger');
+    for (const e of p.ledger.slice(0, 6)) {
+      const when = new Date(e.at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+      list.append(
+        h('span', 'ledger-when', when),
+        h('span', 'ledger-reason', e.reason),
+        h('span', `ledger-amount ${e.amount >= 0 ? 'plus' : 'minus'}`, `${e.amount >= 0 ? '+' : '−'}${coinText(Math.abs(e.amount))}`),
+      );
+    }
+    return list;
+  };
+  const board = () => {
+    const list = h('div', 'leaderboard');
+    casino.leaderboard(p, REGULARS).forEach((row, i) => {
+      const c = row.id ? CHARACTERS.find((x) => x.id === row.id) : undefined;
+      const who = h('span', `board-name${row.id === null ? ' you' : ''}`, row.id === null ? `${p.name} (you)` : (c?.nickname ?? row.id));
+      const face = c ? characterFace(c) : playerBadge(p, 'player-face tiny');
+      list.append(h('span', 'board-place', String(i + 1)), face, who, h('span', 'board-coins', coinText(row.coins)));
+    });
+    return list;
+  };
+  const sides: [string, string, () => HTMLElement][] = [
+    ['ledger', 'Recent KardCoins', ledger],
+    ['board', 'Casino regulars', board],
+  ];
+  const showSide = (id: string) => {
+    lastSideTab = id;
+    sideBody.replaceChildren(sides.find((x) => x[0] === id)![2]());
+    for (const b of sideTabs.children) b.classList.toggle('selected', (b as HTMLElement).dataset['tab'] === id);
+  };
+  for (const [id, title] of sides) {
+    const b = h('button', 'choice', title);
+    b.dataset['tab'] = id;
+    onTap(b, () => showSide(id));
+    sideTabs.append(b);
   }
-  history.append(list);
+  history.append(sideTabs, sideBody);
+  showSide(lastSideTab);
   const cols = h('div', 'profile-columns');
   cols.append(stats, history);
   panel.append(cols);

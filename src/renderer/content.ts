@@ -93,3 +93,27 @@ export async function preloadCardImages(deck?: CardDeck): Promise<void> {
     }),
   );
 }
+
+// Poker chips (spec 19 §4.3): assets/themes/<theme>/chips/<value>.svg.
+const chips = import.meta.glob<string>('../../assets/themes/classic-casino/chips/*.svg', { eager: true, query: '?url', import: 'default' });
+
+export function chipUrl(value: number): string {
+  const url = chips[`../../assets/themes/classic-casino/chips/${value}.svg`];
+  if (!url) throw new Error(`missing chip ${value}`);
+  return url;
+}
+
+/** Decode the chip images up front so the first bet doesn't flash empty. */
+export async function preloadChipImages(): Promise<void> {
+  await Promise.all(
+    Object.values(chips).map(async (url) => {
+      const img = new Image();
+      img.src = url;
+      try {
+        await img.decode();
+      } catch {
+        /* a missing chip shows as blank */
+      }
+    }),
+  );
+}

@@ -10,7 +10,25 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 **In progress** · **Done**.
 
 ## Where we left off (updated at the end of each working session)
-**2026-11-27 (fifth session):** On branch `session/2026-11-27-felt` (not pushed yet). The Gin Rummy
+**2026-11-27/28 (sixth session):** Branch `session/2026-11-27-poker`, pushed for review as a PR. The owner
+asked for Five-Card Draw poker played for KardCoins, with chips, chip sounds and animations, and the
+computer characters as casino "regulars" with their own coins (R-010), and asked the assistant to
+make every choice and list them. Built: shared poker logic (hand ranking, pots, fixed-limit betting)
+and the Five-Card Draw engine and computer players (spec 19, D-088, D-089); the regulars' balances,
+background rounds, and poker buy-ins and cash-outs (spec 15 §6, D-090); generated chips and Kenney chip
+sounds (D-091); the setup screen, table, Poker stats tab, and Casino regulars leaderboard (D-092);
+222 voiced poker lines (D-093). All marked Proposed. After play-testing, the owner asked for bigger
+chips (D-094), stacks that build up when players sit down (D-095), much lower stakes (D-096),
+visible chip flights (D-097, which also fixed flying piles drawn empty), and a large chip meter with a
+low-chips warning (D-098). He also asked to center the pause menu (D-099, bubbles silenced while
+paused) and reported a Hearts game that went on past 100; it was a tie for lowest, so the results
+dialog now explains it (D-100). The owner play-tested poker and called it
+"excellent", then asked to prepare the next release: the version is bumped to **0.3.0** and the README
+updated on this branch (PR #11). After the merge, the merge commit is tagged `v0.3.0`, CI builds the
+draft pre-release, and its notes get a "What's new in v0.3.0" section. Waiting on the owner: merge the PR, and confirm the Proposed decisions (D-086 to D-093,
+D-095, D-098) after more play; the felt texture on the tablet is still to check.
+
+**2026-11-27 (fifth session):** Merged as PR #10. The Gin Rummy
 discard prompt now says "Lowest deadwood after discard: N" (D-085). The table felt has a subtle
 generated texture, and a new **Table color** setting offers Green, Blue, Burgundy, Gold, and Amber
 (R-009, D-086, marked Proposed). The owner liked the colors, but on his 4K monitor the texture
@@ -139,11 +157,32 @@ pre-release on 2026-11-27.** Waiting on the owner:
   card table top cover color. Let's allow blue and maybe some subtle shades of dark red and/or gold or
   orangish, but nothing too garish."
 
+## R-010 — Poker for KardCoins, and the casino regulars' coins
+- **Status:** In progress 2026-11-27: Five-Card Draw (spec 19, D-088 to D-093) and the regulars'
+  balances (spec 15 §6, D-090). Later: Five- and Seven-Card Stud, Texas Hold'em, Blackjack (R-002).
+- **Requested:** 2026-11-27, by the owner
+- **Request (original wording):** "ok, so next let's look at adding some games that require using
+  your kardcoins.  Let's try adding basic 5 card draw poker.  We'll most likely need to add some poker
+  chip graphics and chip stack graphics as well as sounds and animations for the chips as well when you
+  ante, bet, etc.  Also, I've been thinking we may need to include kardcoin amounts that the other
+  virtual players have as well.  we should make their amounts start at 500 like you when the game
+  starts, and then they should be given amounts requisite to the totals you would earn after every game
+  you play with them. players that you don't play with should also be "earning or losing" amounts with
+  every game as well becuase it's assumed they are "playing" elsewhere and we need them to have stacked
+  coin amounts if you choose them to play against in the poker game, even if you've never played them
+  in other card games.  It's sort of a lightweight simulation of a casino with these guys all being
+  regulars that earn and lose money in the background while you play as well, regardless if you are
+  playing against any of them specifically in any given game or turn.  my goal is to eventually add
+  other poker variants (5 card and 7 card stud, texas hold 'em, etc.) so if you need to make anything
+  reusable for this, go ahead and do so.  I'll eventually be adding blackjack too.  You did a great job
+  on the rules for all the other games without having to ask. Feel free to just do that same process
+  this time, and just list your decisions at the end."
+
 ## R-002 — Remaining games
 - **Status:** In progress. **Spades** built 2026-11-25 (spec 17, D-070 to D-074). **Gin Rummy** and
   **Rummy 500** built 2026-11-25 (spec 18, D-076 to D-081), approved by the owner.
-- **Games:** ~~Spades~~, ~~Rummy 500~~, ~~Gin Rummy~~, Blackjack, Poker, Solitaire. Open questions Q6–Q8
-  cover rules and variants.
+- **Games:** ~~Spades~~, ~~Rummy 500~~, ~~Gin Rummy~~, Blackjack, Poker (Five-Card Draw started,
+  R-010; Stud and Hold'em later), Solitaire. Open questions Q7–Q8 cover rules and variants.
 - **Request for the rummy games (original wording, 2026-11-25):** "Let's try adding something
   different. I want to add 500 Rummy and Gin (both 2 player only) to the list of available games.
   They are very similar games, so it may make sense to try and add them in a single session. You did a

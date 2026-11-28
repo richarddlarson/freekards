@@ -571,6 +571,190 @@
         "id": "gus.rummy.big_meld.human.2",
         "text": "That's a lot of cards. I'm impressed. Don't tell anyone."
       }
+    ],
+    "poker.won_pot.self": [
+      {
+        "id": "gus.poker.won_pot.self.1",
+        "text": "Delivered. Signed, sealed, and in my pile."
+      },
+      {
+        "id": "gus.poker.won_pot.self.2",
+        "text": "Huh. The rigged deck slipped up and helped me."
+      },
+      {
+        "id": "gus.poker.won_pot.self.3",
+        "text": "Don't look so shocked. Even I win sometimes."
+      }
+    ],
+    "poker.won_pot.human": [
+      {
+        "id": "gus.poker.won_pot.human.1",
+        "text": "Fine. Take it. Don't spend it all on one goose."
+      },
+      {
+        "id": "gus.poker.won_pot.human.2",
+        "text": "Hmph. Your mail always arrives on time, doesn't it?"
+      }
+    ],
+    "poker.won_pot.other": [
+      {
+        "id": "gus.poker.won_pot.other.1",
+        "text": "Of course. The deck picks favorites."
+      },
+      {
+        "id": "gus.poker.won_pot.other.2",
+        "text": "Congratulations. I'll be over here, being robbed."
+      }
+    ],
+    "poker.big_pot.self": [
+      {
+        "id": "gus.poker.big_pot.self.1",
+        "text": "Now THAT'S a pension supplement."
+      },
+      {
+        "id": "gus.poker.big_pot.self.2",
+        "text": "Thirty years of junk mail, and finally a real package."
+      }
+    ],
+    "poker.big_pot.human": [
+      {
+        "id": "gus.poker.big_pot.human.1",
+        "text": "That's a whole lot of my coins going home with you."
+      },
+      {
+        "id": "gus.poker.big_pot.human.2",
+        "text": "Take it easy. That pot had my goose's birdseed money in it."
+      }
+    ],
+    "poker.bluff.self": [
+      {
+        "id": "gus.poker.bluff.self.1",
+        "text": "Had nothing. Don't tell anyone. Especially the goose."
+      },
+      {
+        "id": "gus.poker.bluff.self.2",
+        "text": "Return to sender. Contents: absolutely nothing."
+      }
+    ],
+    "poker.stood_pat.self": [
+      {
+        "id": "gus.poker.stood_pat.self.1",
+        "text": "I'll keep these. Don't ask."
+      },
+      {
+        "id": "gus.poker.stood_pat.self.2",
+        "text": "No cards for me. Package is complete."
+      }
+    ],
+    "poker.stood_pat.human": [
+      {
+        "id": "gus.poker.stood_pat.human.1",
+        "text": "No cards? Now I'm nervous. And I'm never nervous."
+      },
+      {
+        "id": "gus.poker.stood_pat.human.2",
+        "text": "Standing pat. Either you've got it, or you've got nerve."
+      }
+    ],
+    "poker.raise.self": [
+      {
+        "id": "gus.poker.raise.self.1",
+        "text": "Raise. Grumble grumble."
+      },
+      {
+        "id": "gus.poker.raise.self.2",
+        "text": "I'll raise. Somebody has to keep you honest."
+      }
+    ],
+    "poker.raise.human": [
+      {
+        "id": "gus.poker.raise.human.1",
+        "text": "A raise? Bold. Suspicious, but bold."
+      },
+      {
+        "id": "gus.poker.raise.human.2",
+        "text": "Raising on me? I've been bitten by smaller dogs."
+      }
+    ],
+    "poker.fold.self": [
+      {
+        "id": "gus.poker.fold.self.1",
+        "text": "Fold. This hand belongs in the dead letter office."
+      },
+      {
+        "id": "gus.poker.fold.self.2",
+        "text": "I'm out. Rigged, I tell you."
+      }
+    ],
+    "poker.bad_beat.self": [
+      {
+        "id": "gus.poker.bad_beat.self.1",
+        "text": "Three of a kind, and it loses. This deck is RIGGED."
+      },
+      {
+        "id": "gus.poker.bad_beat.self.2",
+        "text": "I'm writing a strongly worded letter about that."
+      }
+    ],
+    "poker.bad_beat.human": [
+      {
+        "id": "gus.poker.bad_beat.human.1",
+        "text": "Ooh. That's a rough one. Even I feel bad."
+      },
+      {
+        "id": "gus.poker.bad_beat.human.2",
+        "text": "That's the deck for you. Crooked as a country road."
+      }
+    ],
+    "poker.big_hand.self": [
+      {
+        "id": "gus.poker.big_hand.self.1",
+        "text": "Full house. Finally, a delivery worth making."
+      },
+      {
+        "id": "gus.poker.big_hand.self.2",
+        "text": "Now that's what I call first class mail."
+      }
+    ],
+    "poker.big_hand.human": [
+      {
+        "id": "gus.poker.big_hand.human.1",
+        "text": "Where were you hiding that? Under the doormat?"
+      },
+      {
+        "id": "gus.poker.big_hand.human.2",
+        "text": "Well, that's a hand. Don't rub it in."
+      }
+    ],
+    "poker.busted.self": [
+      {
+        "id": "gus.poker.busted.self.1",
+        "text": "That's it. I'm broke. The goose eats bread crusts tonight."
+      },
+      {
+        "id": "gus.poker.busted.self.2",
+        "text": "Out of chips. Rigged, every last card."
+      }
+    ],
+    "poker.busted.human": [
+      {
+        "id": "gus.poker.busted.human.1",
+        "text": "Out already? Happens to the best of us. Mostly me."
+      },
+      {
+        "id": "gus.poker.busted.human.2",
+        "text": "Rough night. Go win some coins at Hearts and come back."
+      }
+    ],
+    "poker.sit_down.self": [
+      {
+        "id": "gus.poker.sit_down.self.1",
+        "text": "Move over. Grumbles is here, and he's not happy about it."
+      },
+      {
+        "id": "gus.poker.sit_down.self.2",
+        "text": "I'm sitting in. Don't get any ideas."
+      }
     ]
   }
 }

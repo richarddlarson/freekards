@@ -663,6 +663,15 @@ button:disabled {
   color: #ffe98a;
 }
 
+/* "Play continues" after a tie at the end of a game (D-100): wraps instead of widening the dialog. */
+.dialog-note.tie-note {
+  max-width: 720px;
+  margin: 16px auto 18px;
+  font-size: 26px;
+  line-height: 1.35;
+  text-align: center;
+}
+
 .results-grid {
   display: grid;
   grid-template-columns: 1fr auto auto;
@@ -1682,4 +1691,273 @@ button:disabled {
 .rules-panel .dialog-buttons {
   margin-top: 20px;
   justify-content: center;
+}
+
+/* ------------------------------------------------------------ poker (spec 19 §4) */
+
+.chip-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* A pile's anchor is the bottom center of its stacks; the amount sits under it. */
+.chip-pile {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 5;
+}
+
+.chip-pile.flying {
+  z-index: 600;
+  will-change: transform;
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.35));
+}
+
+.chip-pile.pot-pile .chip-stacks {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+}
+
+.chip {
+  position: absolute;
+  /* pokerLayout.POKER_LAYOUT.chipWidth, at the chip art's 120 × 84 proportions (D-094) */
+  width: 84px;
+  height: 58.8px;
+}
+
+.chip-label {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  transform: translateX(-50%);
+  padding: 2px 14px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.55);
+  font-size: 26px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.pot-pile .chip-label {
+  font-size: 30px;
+  color: #ffe98a;
+}
+
+.dealer-button {
+  position: absolute;
+  z-index: 6;
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #ffffff, #e8e2d0 70%, #bdb59c);
+  border: 3px solid #8f866b;
+  color: #222;
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+  transition: left 500ms ease, top 500ms ease;
+}
+
+.action-tag {
+  position: absolute;
+  z-index: 420;
+  transform: translate(-50%, -50%);
+  padding: 6px 18px;
+  border-radius: 18px;
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  font-size: 24px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.action-tag.aggressive {
+  color: #ffe98a;
+}
+
+.action-tag.fold,
+.action-tag.out {
+  opacity: 0.75;
+}
+
+.action-tag.allin,
+.action-tag.pat {
+  border-color: #ffe98a;
+}
+
+.show-label {
+  position: absolute;
+  z-index: 420;
+  transform: translate(-50%, -50%);
+  padding: 6px 20px;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.6);
+  font-size: 26px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.show-label.winner {
+  background: var(--brass);
+  color: var(--button-text);
+  font-weight: bold;
+  box-shadow: 0 0 24px rgba(255, 220, 100, 0.7);
+}
+
+.score-sub {
+  margin: -4px 0 10px;
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.poker-grid {
+  grid-template-columns: 1fr auto;
+}
+
+.score-name.folded {
+  opacity: 0.5;
+}
+
+.opponent-coins {
+  margin-top: 6px;
+  font-size: 24px;
+}
+
+.opponent-tile:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.setup-note {
+  margin: -6px 0 18px 290px;
+  font-size: 24px;
+  opacity: 0.85;
+}
+
+.setup-note.warning {
+  color: #ffb3a8;
+  opacity: 1;
+}
+
+.award-amount.minus {
+  color: #ffb3a8;
+}
+
+.portrait-face.tiny,
+.player-face.tiny {
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  border-width: 2px;
+  box-shadow: none;
+}
+
+.leaderboard {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  gap: 10px 18px;
+  font-size: 24px;
+}
+
+.board-place {
+  opacity: 0.7;
+  text-align: right;
+}
+
+.board-name.you {
+  color: #ffe98a;
+  font-weight: bold;
+}
+
+.board-coins {
+  text-align: right;
+  font-weight: bold;
+}
+
+/* The player's chip meter (spec 19 §4.2, D-098) */
+.chip-meter {
+  position: absolute;
+  z-index: 430;
+  transform: translate(-50%, -50%);
+  min-width: 250px;
+  padding: 8px 22px 10px;
+  border-radius: 20px;
+  background: var(--panel);
+  border: 3px solid var(--brass);
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.meter-label {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.meter-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.meter-amount {
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 1.1;
+  color: #ffe98a;
+}
+
+.meter-bank {
+  font-size: 17px;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+
+.chip-meter.low {
+  border-color: #ff8a7a;
+  animation: meter-pulse 1.4s ease-in-out infinite;
+}
+
+.chip-meter.low .meter-amount,
+.chip-meter.low .meter-label {
+  color: #ffb3a8;
+  opacity: 1;
+}
+
+@keyframes meter-pulse {
+  0%,
+  100% {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(255, 120, 100, 0);
+  }
+  50% {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4), 0 0 26px 6px rgba(255, 120, 100, 0.55);
+  }
+}
+
+.meter-delta {
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  font-size: 40px;
+  font-weight: bold;
+  white-space: nowrap;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+}
+
+.meter-delta.plus {
+  color: #9be59b;
+}
+
+.meter-delta.minus {
+  color: #ffb3a8;
 }

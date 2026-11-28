@@ -169,3 +169,14 @@ describe('scoring', () => {
     expect(gameWinner([300, 120], 300)).toBe(0);
   });
 });
+
+describe('ties at the end of a game (spec 17, D-100)', () => {
+  it('plays on when the scores are tied at the end', async () => {
+    const { tiedAtEnd, gameWinner } = await import('../../src/logic/spades/engine.js');
+    expect(tiedAtEnd([310, 310], 300)).toBe(true);
+    expect(gameWinner([310, 310], 300)).toBeNull();
+    expect(tiedAtEnd([310, 300], 300)).toBe(false);
+    expect(tiedAtEnd([250, 250], 300)).toBe(false);
+    expect(tiedAtEnd([-210, -210], 300)).toBe(true);
+  });
+});

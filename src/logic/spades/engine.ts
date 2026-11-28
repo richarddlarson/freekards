@@ -293,6 +293,13 @@ export function gameWinner(scores: readonly number[], targetScore: number): Team
   return a > b ? 0 : 1;
 }
 
+/** A team reached the target (or fell to the mercy score) but the scores are tied, so play goes on (D-100). */
+export function tiedAtEnd(scores: readonly number[], targetScore: number): boolean {
+  const [a, b] = scores as Two<number>;
+  const over = a >= targetScore || b >= targetScore || a <= MERCY_SCORE || b <= MERCY_SCORE;
+  return over && a === b;
+}
+
 function doContinue(s: SpadesState, emit: Emit): void {
   if (s.phase !== 'score') throw new SpadesRuleError(`Cannot continue during ${s.phase}`);
   const winner = gameWinner(s.scores, s.targetScore);

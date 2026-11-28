@@ -212,8 +212,20 @@ export class HeartsTable extends TrickTable<hearts.HeartsEvent> {
     panel.append(h('h2', '', `Hand ${this.state.handNumber} results`));
     if (moon) panel.append(h('p', 'dialog-note', `${this.nameOf(moon.seat as Seat)} shot the moon!`));
     panel.append(this.standingsTable(scored?.type === 'hand_scored' ? scored.handPoints : [0, 0, 0, 0]));
+    const tied = hearts.tieBreakerSeats(this.state.scores, this.state.targetScore);
+    if (tied) panel.append(h('p', 'dialog-note tie-note', this.tieNote(tied)));
     const over = hearts.gameWinner(this.state.scores, this.state.targetScore) !== null;
     await this.dialogWithButton(panel, over ? 'Final results' : 'Next hand');
+  }
+
+  /** "The Professor has 106, but Coach and Grumbles are tied for lowest (60), so play continues." (D-100) */
+  private tieNote(tied: readonly Seat[]): string {
+    const s = this.state.scores;
+    const list = (names: string[]) => (names.length <= 2 ? names.join(' and ') : `${names.slice(0, -1).join(', ')}, and ${names.at(-1)}`);
+    const over = SEATS.filter((seat) => s[seat] >= this.state.targetScore);
+    const has = list(over.map((seat) => `${this.nameOf(seat)} ${seat === 0 ? 'have' : 'has'} ${s[seat]}`));
+    const tiedNames = list(tied.map((seat) => this.nameOf(seat)));
+    return `${has}, but ${tiedNames} are tied for lowest (${s[tied[0]!]}), so play continues.`;
   }
 
   private gameOver(): void {

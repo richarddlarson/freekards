@@ -20,6 +20,9 @@ Shared conventions (card ids, seats, random numbers, state-machine shape) are in
 Settings shared by both rule sets:
 - **Game end:** after a hand in which any player reaches **100 or more**. The lowest score wins.
   If two or more players tie for lowest, play further hands until there is a single lowest score.
+  The Hand results dialog then says so (D-100), e.g. "The Professor has 106, but Coach and Grumbles
+  are tied for lowest (60), so play continues." (players at or over the target with their scores, then
+  the tied players and the tied score; the player is "You have …").
   The target score is a game option, 100 by default.
 - **Passing cycle:** hand 1 left, hand 2 right, hand 3 across, hand 4 no pass, then repeat.
   Left = the next seat clockwise, right = the previous seat, across = two seats away.

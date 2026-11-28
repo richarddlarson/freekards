@@ -35,6 +35,11 @@ Every play varies slightly: pitch (playback rate) × random 0.96–1.04 and volu
 | `table.moon` | Someone shoots the moon (optional) |
 | `game.win` / `game.lose` | Game-over dialog, depending on whether the human won (optional) |
 | `coins.award` | KardCoins award count-up starts (Kenney `chips-stack-1/3/5`) |
+| `chips.bet` | Poker: antes, a bet or call lands (Kenney `chip-lay-1…3`; repeats closer than 90 ms are dropped) |
+| `chips.raise` | Poker: a raise (Kenney `chips-stack-1…6`) |
+| `chips.stack` | Poker: each chip landing as a stack is built (Kenney `chip-lay-1…3`, gain 0.55; repeats closer than 40 ms are dropped) |
+| `chips.collect` | Poker: the round's bets slide into the pot (Kenney `chips-collide-1…4`) |
+| `chips.win` | Poker: the pot slides to the winner; leaving the table with a result (Kenney `chips-handle-1…6`) |
 
 A cue with no file mapped is silent. Missing or broken files never stop the game.
 
@@ -96,8 +101,8 @@ place → `card-place-1…4`; collect → `card-shove-1…4`; pass → `card-fan
 
 ## 5. Sources (D-039)
 - Effects: Kenney "Casino Audio" 1.1 (CC0), https://kenney.nl/assets/casino-audio. Its bundled
-  `License.txt` (CC0) ships beside the sounds in `assets/audio/sfx/kenney-casino-audio/`. Only the 19
-  card sounds used are copied, unmodified. The owner downloads the pack manually, because the site's download page asks visitors whether they'd like to donate, and that
+  `License.txt` (CC0) ships beside the sounds in `assets/audio/sfx/kenney-casino-audio/`. Only the
+  sounds used are copied, unmodified: 19 card sounds and 19 chip sounds (D-091). The owner downloads the pack manually, because the site's download page asks visitors whether they'd like to donate, and that
   is not scripted around.
 - Music: tracks from **FreePD** (all CC0 1.0, by FreePD's own statement, archived 2024-06-01 at
   https://web.archive.org/web/20240601000000/https://freepd.com/). freepd.com closed in 2025, so each

@@ -54,6 +54,19 @@
       "tool": "scripts/generate-cards.mjs (in-repo, original geometry; D-027, D-062)"
     },
     {
+      "path": "assets/themes/classic-casino/chips/*.svg",
+      "title": "Classic Casino poker chips: 1, 5, 25, 100, 500, 1,000",
+      "kind": "image",
+      "origin": "generated",
+      "author": "The FreeKards Contributors",
+      "source": "https://github.com/richarddlarson/freekards/blob/main/scripts/generate-chips.mjs",
+      "license": "MIT",
+      "licenseUrl": "https://opensource.org/license/mit",
+      "attribution": null,
+      "modified": null,
+      "tool": "scripts/generate-chips.mjs (in-repo, original geometry; D-091). The values are outlined from Fira Sans Condensed Bold, registered under assets/fonts"
+    },
+    {
       "path": "spec/content/audio.json",
       "title": "Audio cue map and music playlist",
       "kind": "other",
@@ -68,7 +81,7 @@
     },
     {
       "path": "assets/audio/sfx/kenney-casino-audio/*",
-      "title": "Kenney Casino Audio 1.1 (19 card sounds and 3 chip sounds used, plus License.txt)",
+      "title": "Kenney Casino Audio 1.1 (19 card sounds and 19 chip sounds used, plus License.txt)",
       "kind": "sfx",
       "origin": "third-party",
       "author": "Kenney Vleugels (Kenney.nl)",
@@ -324,7 +337,7 @@
       "licenseUrl": "https://openfontlicense.org/open-font-license-official-text/",
       "attribution": "Fira Sans Condensed, Copyright (c) 2012-2015, The Mozilla Foundation and Telefonica S.A. Licensed under the SIL Open Font License 1.1 (OFL.txt, shipped beside the font).",
       "modified": null,
-      "tool": "Downloaded 2026-11-24 from the Google Fonts repository; file copied unmodified (sha256 b9371052e58ec5b709153dd0fffc60b5205b4d3435cf957c2522705b31b0dbcc). Build input only: scripts/generate-cards.mjs converts its glyphs to vector outlines in the card faces; the font file itself is not shipped"
+      "tool": "Downloaded 2026-11-24 from the Google Fonts repository; file copied unmodified (sha256 b9371052e58ec5b709153dd0fffc60b5205b4d3435cf957c2522705b31b0dbcc). Build input only: scripts/generate-cards.mjs and scripts/generate-chips.mjs convert its glyphs to vector outlines in the card faces and chips; the font file itself is not shipped"
     },
     {
       "path": "assets/fonts/nunito/*",
