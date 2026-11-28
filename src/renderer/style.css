@@ -1711,8 +1711,9 @@ button:disabled {
 
 .chip {
   position: absolute;
-  width: 56px;
-  height: 39.2px;
+  /* pokerLayout.POKER_LAYOUT.chipWidth, at the chip art's 120 × 84 proportions (D-094) */
+  width: 84px;
+  height: 58.8px;
 }
 
 .chip-label {
@@ -1723,13 +1724,13 @@ button:disabled {
   padding: 2px 14px;
   border-radius: 14px;
   background: rgba(0, 0, 0, 0.55);
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   white-space: nowrap;
 }
 
 .pot-pile .chip-label {
-  font-size: 28px;
+  font-size: 30px;
   color: #ffe98a;
 }
 

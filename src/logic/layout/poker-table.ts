@@ -12,7 +12,9 @@ export const POKER_LAYOUT = {
   discardLift: 44,
   /** Chip stacks beside each player, relative to the portrait (computer seats). */
   stackBelowPortrait: 185,
-  northStackLeft: 190,
+  /** West's and East's stacks also move this far toward the center, clear of their cards. */
+  sideStackInset: 60,
+  northStackLeft: 235,
   /** The player's stack, right of the hand center. */
   youStackRight: 600,
   /** Bets: in front of each player, toward the center. */
@@ -27,10 +29,10 @@ export const POKER_LAYOUT = {
   showSide: 450,
   showNorth: 255,
   /** Chips: drawn width, stacking step, gap between stacks, and the most chips in one stack. */
-  chipWidth: 56,
-  chipStep: 5.6,
-  stackGap: 6,
-  maxPerStack: 12,
+  chipWidth: 84,
+  chipStep: 8.4,
+  stackGap: 9,
+  maxPerStack: 10,
   /** The action bar sits this far above the top of a lifted card. */
   actionAbove: 52,
 };
@@ -63,9 +65,9 @@ export function pokerLayout(vp: Viewport): PokerLayout {
   const portrait = (s: 1 | 2 | 3) => base.seats[s].portrait;
   const stacks: Point[] = [
     { x: c.x + P.youStackRight, y: handY + 30 },
-    { x: portrait(1).x, y: portrait(1).y + P.stackBelowPortrait },
+    { x: portrait(1).x + P.sideStackInset, y: portrait(1).y + P.stackBelowPortrait },
     { x: portrait(2).x - P.northStackLeft, y: portrait(2).y + 20 },
-    { x: portrait(3).x, y: portrait(3).y + P.stackBelowPortrait },
+    { x: portrait(3).x - P.sideStackInset, y: portrait(3).y + P.stackBelowPortrait },
   ];
   const bets: Point[] = [
     { x: c.x, y: c.y + P.betSouth },

@@ -137,8 +137,8 @@ least the minimum. Leaving returns everyone's chips. Chips are saved after every
 - **The player's cards:** five face-up cards along the bottom, centers **150** apart, sorted by rank
   (the Card order setting decides the direction), then suit. A card chosen to throw away lifts **44**.
 - **Chip stacks** (each player's chips) with the amount under them: the player's **600** right of the
-  center, at the hand's height + 30; West's and East's **185** below their portrait; North's **190**
-  left of the portrait.
+  center, at the hand's height + 30; West's and East's **185** below their portrait and **60** toward the
+  center (clear of their cards); North's **235** left of the portrait (D-094).
 - **Bets** for the current round sit in front of each player: **205** below the center (the
   player), **430** left and right (West, East), **215** above (North). The **pot** is at the center.
 - The **dealer button**, a white "D" disc 54 across, sits beside the dealer's bet spot and slides to
@@ -175,9 +175,10 @@ least the minimum. Leaving returns everyone's chips. Chips are saved after every
 ### 4.3 Chips (D-091)
 - **Values and colors:** 1 white (blue spots), 5 red, 25 green, 100 black, 500 purple, 1,000 gold
   (brown spots, marked "1K"). Each chip is drawn seen at an angle (spec 07 §Poker chips).
-- **Piles:** an amount is drawn with the fewest chips, largest value first, in stacks of at most 12
-  of one value, side by side (stack 56 wide, 6 apart), each chip 5.6 above the one below with a small
-  fixed sideways jitter, and the amount in a dark pill under the stacks (the pot's in gold, larger).
+- **Piles:** an amount is drawn with the fewest chips, largest value first, in stacks of at most 10
+  of one value, side by side (each chip **84** wide and 58.8 tall, stacks 9 apart; D-094), each chip
+  8.4 above the one below with a small fixed sideways jitter, and the amount in a dark pill under the
+  stacks (26 px; the pot's 30 px, in gold).
 - **Flying chips:** a pile for the amount slides from one place to another (ease-out), then the
   destination pile is redrawn.
 

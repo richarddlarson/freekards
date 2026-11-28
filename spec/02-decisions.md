@@ -1131,3 +1131,13 @@ Template:
 - Why: Every other game has its own reactions; poker's big moments (bluffs, standing pat, bad beats,
   going broke, a new regular sitting down) are natural places for the regulars to talk. One line was
   rewritten before voicing because it leaned on a body-type joke (spec 08 tone rules).
+
+## D-094 — Poker chips 1.5 times bigger
+- Date: 2026-11-27
+- Status: Accepted (owner request)
+- Decision: Chips on the poker table are drawn 84 units wide instead of 56 (1.5×), with the stacking
+  step and the gap between stacks scaled to match (8.4 and 9), at most 10 chips per stack (was 12), and
+  slightly larger amounts. West's and East's stacks move 60 toward the center and North's 45 further
+  left so the bigger stacks clear the cards and portraits (spec 19 §4.2–4.3). Amends D-091 and D-092.
+- Why: After seeing screenshots of the table, the owner said the chips were "just too small" and
+  asked for "at least 1.5X their current size". Ten per stack keeps a tall stack under 150 units.

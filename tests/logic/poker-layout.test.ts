@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CARD_H, CARD_W, fitViewport } from '../../src/logic/layout/hearts-table.js';
+import { CARD_H, CARD_W, fitViewport, LAYOUT, tableLayout } from '../../src/logic/layout/hearts-table.js';
 import { chipStacks, playerCardPlacement, pokerLayout, POKER_LAYOUT, shownCardPlacement } from '../../src/logic/layout/poker-table.js';
 
 describe('poker table layout (spec 19 §4.2)', () => {
@@ -17,6 +17,15 @@ describe('poker table layout (spec 19 §4.2)', () => {
       }
     });
 
+    it(`keeps three chip stacks clear of the cards and portraits (${w}×${h})`, () => {
+      const half = (3 * POKER_LAYOUT.chipWidth + 2 * POKER_LAYOUT.stackGap) / 2;
+      const fanEdge = LAYOUT.margin + CARD_H * LAYOUT.opponentCardScale;
+      expect(L.stacks[1]!.x - half).toBeGreaterThan(fanEdge);
+      expect(L.stacks[3]!.x + half).toBeLessThan(L.base.width - fanEdge);
+      const north = tableLayout(fitViewport(w, h)).seats[2].portrait;
+      expect(L.stacks[2]!.x + half).toBeLessThan(north.x - LAYOUT.portraitSize / 2);
+    });
+
     it(`spreads the player's five cards with every corner showing, clear of her stack (${w}×${h})`, () => {
       const xs = [0, 1, 2, 3, 4].map((i) => playerCardPlacement(L, i, 5, false).x);
       for (let i = 1; i < 5; i++) expect(xs[i]! - xs[i - 1]!).toBeGreaterThanOrEqual(POKER_LAYOUT.handSpacing);
@@ -30,7 +39,7 @@ describe('poker table layout (spec 19 §4.2)', () => {
 });
 
 describe('chip stacks (spec 19 §4.3)', () => {
-  it('uses the fewest chips, largest first, in stacks of at most 12', () => {
+  it('uses the fewest chips, largest first, in stacks of at most 10', () => {
     expect(chipStacks(0)).toEqual([]);
     expect(chipStacks(195)).toEqual([
       { value: 100, count: 1 },
@@ -45,13 +54,13 @@ describe('chip stacks (spec 19 §4.3)', () => {
       { value: 5, count: 1 },
       { value: 1, count: 1 },
     ]);
-    expect(chipStacks(65, 12)).toEqual([
+    expect(chipStacks(65)).toEqual([
       { value: 25, count: 2 },
       { value: 5, count: 3 },
     ]);
     expect(chipStacks(14000)).toEqual([
-      { value: 1000, count: 12 },
-      { value: 1000, count: 2 },
+      { value: 1000, count: 10 },
+      { value: 1000, count: 4 },
     ]);
   });
 });
