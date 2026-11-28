@@ -23,7 +23,9 @@ visible chip flights (D-097, which also fixed flying piles drawn empty), and a l
 low-chips warning (D-098). He also asked to center the pause menu (D-099, bubbles silenced while
 paused) and reported a Hearts game that went on past 100; it was a tie for lowest, so the results
 dialog now explains it (D-100). The owner play-tested poker and called it
-"excellent". Waiting on the owner: merge the PR, and confirm the Proposed decisions (D-086 to D-093,
+"excellent", then asked to prepare the next release: the version is bumped to **0.3.0** and the README
+updated on this branch (PR #11). After the merge, the merge commit is tagged `v0.3.0`, CI builds the
+draft pre-release, and its notes get a "What's new in v0.3.0" section. Waiting on the owner: merge the PR, and confirm the Proposed decisions (D-086 to D-093,
 D-095, D-098) after more play; the felt texture on the tablet is still to check.
 
 **2026-11-27 (fifth session):** Merged as PR #10. The Gin Rummy

@@ -1,7 +1,7 @@
 {
   "name": "cardtable",
   "productName": "FreeKards",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A free, open-source collection of classic card games with friendly computer opponents.",
   "license": "MIT",
   "private": true,
