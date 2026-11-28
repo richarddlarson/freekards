@@ -85,6 +85,8 @@ export class PokerTable extends TableBase {
   private readonly selected = new Set<Card>();
   private drawing = false;
   private choose: ((c: Choice) => void) | null = null;
+  /** The stacks are built at the start (D-095); until then they stay empty. */
+  private stacksBuilt = false;
   /** The player asked to leave; she folds the rest of this hand and cashes out after it. */
   private leaving = false;
   private betweenWait: ((go: boolean) => void) | null = null;
@@ -122,7 +124,7 @@ export class PokerTable extends TableBase {
     this.root.classList.add('poker-table');
     this.root.insertBefore(this.chipLayer, this.cardLayer);
     for (const s of SEATS) {
-      this.stacks[s] = new ChipPile(this.chipLayer, true, 'seat-stack');
+      this.stacks[s] = new ChipPile(this.chipLayer, true, 'seat-stack', 'stack');
       this.bets[s] = new ChipPile(this.chipLayer, true, 'bet-pile');
       const tag = h('div', 'action-tag');
       tag.hidden = true;
@@ -218,6 +220,7 @@ export class PokerTable extends TableBase {
   async run(): Promise<void> {
     try {
       await Promise.all([this.start(), preloadChipImages()]);
+      await this.buildStacks([0, 1, 2, 3]);
       for (;;) {
         await this.playHand();
         if (!(await this.betweenHands())) break;
@@ -421,12 +424,35 @@ export class PokerTable extends TableBase {
     return committed - bets;
   }
 
+  /** Build seats' stacks chip by chip, one seat after another (D-095). */
+  private async buildStacks(seats: readonly number[]): Promise<void> {
+    const s = this.state;
+    const stagger = this.ms(this.paced(PL.buildStagger));
+    const drop = this.ms(this.paced(PL.buildDrop));
+    const builds = seats
+      .filter((seat) => s.present[seat] && (seat === 0 || this.seatsDef[seat]) && s.chips[seat]! > 0)
+      .map((seat, i) => {
+        const pile = this.stacks[seat]!;
+        pile.el.hidden = false;
+        pile.set(0);
+        return new Promise<void>((resolve) => {
+          this.later(this.paced(PL.buildSeatGap) * i, () => {
+            void pile.buildUp(s.chips[seat]!, stagger, drop, (at) => this.later(at * this.speed, () => audio.play('chips.stack'))).then(resolve);
+          });
+        });
+      });
+    this.stacksBuilt = true;
+    await Promise.all(builds);
+    this.guard();
+  }
+
   /** Draw every chip pile from the engine state. */
   private syncChips(): void {
     const s = this.state;
     for (const seat of SEATS) {
       const here = s.present[seat]! && (seat === 0 || !!this.seatsDef[seat]);
       this.stacks[seat]!.el.hidden = !here;
+      if (!this.stacksBuilt) continue;
       this.stacks[seat]!.set(here ? s.chips[seat]! : 0);
       this.bets[seat]!.set(s.round ? s.round.bets[seat]! : 0);
     }
@@ -646,6 +672,7 @@ export class PokerTable extends TableBase {
         this.state = poker.applyDrawAction(this.state, { type: 'sit', seat, chips: more }).state;
         this.setTag(seat, null);
         this.showToast(`${c.nickname} buys more chips`, 1600);
+        await this.buildStacks([seat]);
         continue;
       }
       this.bank.regularLeaves(c.id);
@@ -665,9 +692,10 @@ export class PokerTable extends TableBase {
         if (!this.session.regularIds.includes(next.character.id)) this.session.regularIds = [...this.session.regularIds, next.character.id];
         void audio.preloadVoices([next.character.id]);
         this.showToast(`${next.character.nickname} sits down`, 1600);
-        this.syncChips();
         this.talk(step.events);
-        await this.sleep(900);
+        await this.buildStacks([seat]);
+        this.syncChips();
+        await this.sleep(400);
       }
     }
     this.syncChips();
@@ -713,7 +741,7 @@ export class PokerTable extends TableBase {
     this.session.broughtIn += chips;
     this.state = poker.applyDrawAction(this.state, { type: 'sit', seat: 0, chips }).state;
     this.setTag(0, null);
-    audio.play('chips.raise');
+    await this.buildStacks([0]);
     this.syncChips();
     this.saveTable();
     return true;

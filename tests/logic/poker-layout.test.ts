@@ -39,6 +39,17 @@ describe('poker table layout (spec 19 §4.2)', () => {
 });
 
 describe('chip stacks (spec 19 §4.3)', () => {
+  it("breaks a player's stack down like a cashier's buy-in, keeping some small chips", () => {
+    const flat = (st: { value: number; count: number }[]) => st.map((x) => `${x.count}×${x.value}`).join(' ');
+    expect(flat(chipStacks(200, 10, 'stack'))).toBe('1×100 3×25 5×5');
+    expect(flat(chipStacks(500, 10, 'stack'))).toBe('3×100 7×25 5×5');
+    expect(flat(chipStacks(1000, 10, 'stack'))).toBe('1×500 3×100 7×25 5×5');
+    expect(flat(chipStacks(45, 10, 'stack'))).toBe('1×25 4×5');
+    for (const n of [0, 7, 49, 50, 185, 249, 250, 1234, 9999]) {
+      expect(chipStacks(n, 10, 'stack').reduce((sum, x) => sum + x.value * x.count, 0)).toBe(n);
+    }
+  });
+
   it('uses the fewest chips, largest first, in stacks of at most 10', () => {
     expect(chipStacks(0)).toEqual([]);
     expect(chipStacks(195)).toEqual([

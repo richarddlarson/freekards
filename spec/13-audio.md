@@ -36,7 +36,8 @@ Every play varies slightly: pitch (playback rate) × random 0.96–1.04 and volu
 | `game.win` / `game.lose` | Game-over dialog, depending on whether the human won (optional) |
 | `coins.award` | KardCoins award count-up starts (Kenney `chips-stack-1/3/5`) |
 | `chips.bet` | Poker: antes, a bet or call lands (Kenney `chip-lay-1…3`; repeats closer than 90 ms are dropped) |
-| `chips.raise` | Poker: a raise, or buying more chips (Kenney `chips-stack-1…6`) |
+| `chips.raise` | Poker: a raise (Kenney `chips-stack-1…6`) |
+| `chips.stack` | Poker: each chip landing as a stack is built (Kenney `chip-lay-1…3`, gain 0.55; repeats closer than 40 ms are dropped) |
 | `chips.collect` | Poker: the round's bets slide into the pot (Kenney `chips-collide-1…4`) |
 | `chips.win` | Poker: the pot slides to the winner; leaving the table with a result (Kenney `chips-handle-1…6`) |
 

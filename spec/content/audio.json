@@ -76,6 +76,11 @@
       "assets/audio/sfx/kenney-casino-audio/chips-handle-4.ogg",
       "assets/audio/sfx/kenney-casino-audio/chips-handle-5.ogg",
       "assets/audio/sfx/kenney-casino-audio/chips-handle-6.ogg"
+    ],
+    "chips.stack": [
+      "assets/audio/sfx/kenney-casino-audio/chip-lay-1.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chip-lay-2.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chip-lay-3.ogg"
     ]
   },
   "music": [
@@ -173,6 +178,10 @@
     },
     "chips.bet": {
       "minGapMs": 90
+    },
+    "chips.stack": {
+      "gain": 0.55,
+      "minGapMs": 40
     }
   },
   "musicEncoding": {

@@ -179,12 +179,22 @@ least the minimum. Leaving returns everyone's chips. Chips are saved after every
   of one value, side by side (each chip **84** wide and 58.8 tall, stacks 9 apart; D-094), each chip
   8.4 above the one below with a small fixed sideways jitter, and the amount in a dark pill under the
   stacks (26 px; the pot's 30 px, in gold).
+- **A player's stack** (not bets or the pot) keeps some small chips, like a cashier's buy-in
+  (D-095): from 50 up it holds 5 chips of 5, and from 250 up also 4 chips of 25; the rest uses the
+  fewest chips. So 200 is 1 × 100, 3 × 25, 5 × 5, and 500 is 3 × 100, 7 × 25, 5 × 5.
+- **Building a stack** (D-095): when the player sits down, every seat's stack is built chip by chip,
+  the player's first, then West, North, East, each seat starting 380 ms after the last. Within a pile,
+  stacks go left to right and each from the bottom up, a chip every 55 ms; each chip drops from 70
+  above, fading in, over 260 ms (ease-in), with a 5-unit bounce, and a `chips.stack` click as it lands.
+  The amount appears when the last chip lands. A regular who sits down or buys more chips, and the
+  player buying more chips, build their own stack the same way. All these times × Game speed.
 - **Flying chips:** a pile for the amount slides from one place to another (ease-out), then the
   destination pile is redrawn.
 
 ### 4.4 Timing and sounds
 | Moment | Animation | Sound |
 |--------|-----------|-------|
+| Sitting down, buying chips | stacks build chip by chip (§4.3), about 2 s for four seats | `chips.stack` |
 | Antes | stacks → pot, 320 ms, all together | `chips.bet` |
 | Deal | shuffle (900 ms), then cards from the pot one at a time, 70 ms apart, 260 ms flights | `card.shuffle`, `card.deal` |
 | Bet, call | stack → bet spot, 320 ms | `chips.bet` |

@@ -33,6 +33,12 @@ export const POKER_LAYOUT = {
   chipStep: 8.4,
   stackGap: 9,
   maxPerStack: 10,
+  /** Building a stack (D-095): each chip drops from this high, over `buildDrop` ms, `buildStagger` ms apart. */
+  buildHeight: 70,
+  buildDrop: 260,
+  buildStagger: 55,
+  /** Seats start building this far apart (the player first, then West, North, East). */
+  buildSeatGap: 380,
   /** The action bar sits this far above the top of a lifted card. */
   actionAbove: 52,
 };
@@ -123,12 +129,27 @@ export function shownCardPlacement(l: PokerLayout, seat: number, i: number, coun
  */
 export const CHIP_VALUES: readonly number[] = [1000, 500, 100, 25, 5, 1];
 
-export function chipStacks(amount: number, maxPerStack = POKER_LAYOUT.maxPerStack): { value: number; count: number }[] {
-  const out: { value: number; count: number }[] = [];
-  let left = Math.max(0, Math.floor(amount));
+export function chipStacks(amount: number, maxPerStack = POKER_LAYOUT.maxPerStack, style: ChipStyle = 'fewest'): { value: number; count: number }[] {
+  const total = Math.max(0, Math.floor(amount));
+  const counts = new Map<number, number>();
+  let left = total;
+  // A player's stack keeps some small chips, like a cashier's buy-in (spec 19 §4.3, D-095).
+  if (style === 'stack') {
+    for (const r of STACK_RESERVES) {
+      if (total >= r.from) {
+        counts.set(r.value, r.count);
+        left -= r.value * r.count;
+      }
+    }
+  }
   for (const value of CHIP_VALUES) {
-    let n = Math.floor(left / value);
+    const n = Math.floor(left / value);
     left -= n * value;
+    if (n > 0) counts.set(value, (counts.get(value) ?? 0) + n);
+  }
+  const out: { value: number; count: number }[] = [];
+  for (const value of CHIP_VALUES) {
+    let n = counts.get(value) ?? 0;
     while (n > 0) {
       const count = Math.min(n, maxPerStack);
       out.push({ value, count });
@@ -137,3 +158,12 @@ export function chipStacks(amount: number, maxPerStack = POKER_LAYOUT.maxPerStac
   }
   return out;
 }
+
+/** `fewest`: bets and pots. `stack`: the chips in front of a player, with some small chips kept. */
+export type ChipStyle = 'fewest' | 'stack';
+
+/** For a player's stack of at least `from`, keep `count` chips of `value` (spec 19 §4.3). */
+export const STACK_RESERVES: readonly { value: number; count: number; from: number }[] = [
+  { value: 5, count: 5, from: 50 },
+  { value: 25, count: 4, from: 250 },
+];

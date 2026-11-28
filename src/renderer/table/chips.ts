@@ -13,10 +13,10 @@ const CHIP_H = (P.chipWidth * 84) / 120;
 /** Small fixed offsets so a stack doesn't look machine-perfect (the same every time). */
 const JITTER = [0, 1.2, -0.8, 0.6, -1.4, 0.9, -0.3, 1.5, -1.1, 0.4, -0.6, 1.0];
 
-/** Fill `el` with stacks of chips for `amount`, centered, bottoms on y = 0. */
-function drawStacks(el: HTMLElement, amount: number): void {
+/** Fill `el` with stacks of chips for `amount`, centered, bottoms on y = 0 (stack by stack, bottom chip first). */
+function drawStacks(el: HTMLElement, amount: number, style: pokerLayout.ChipStyle): void {
   el.replaceChildren();
-  const stacks = pokerLayout.chipStacks(amount);
+  const stacks = pokerLayout.chipStacks(amount, P.maxPerStack, style);
   const total = stacks.length * P.chipWidth + Math.max(0, stacks.length - 1) * P.stackGap;
   stacks.forEach((s, i) => {
     const x = -total / 2 + i * (P.chipWidth + P.stackGap);
@@ -38,7 +38,12 @@ export class ChipPile {
   private readonly label = h('div', 'chip-label');
   private amount = -1;
 
-  constructor(parent: HTMLElement, private readonly showLabel = true, className = '') {
+  constructor(
+    parent: HTMLElement,
+    private readonly showLabel = true,
+    className = '',
+    private readonly style: pokerLayout.ChipStyle = 'fewest',
+  ) {
     if (className) this.el.classList.add(className);
     this.el.append(this.chipsEl, this.label);
     parent.append(this.el);
@@ -52,8 +57,35 @@ export class ChipPile {
   set(amount: number): void {
     if (amount === this.amount) return;
     this.amount = amount;
-    drawStacks(this.chipsEl, amount);
+    drawStacks(this.chipsEl, amount, this.style);
     this.label.textContent = amount.toLocaleString('en-US');
+    this.label.hidden = !this.showLabel || amount <= 0;
+  }
+
+  /**
+   * Build the pile chip by chip (D-095): stacks left to right, each from the bottom up, every chip
+   * dropping in with a small bounce. `landed(ms)` is told when each chip lands (for a click sound).
+   * Times are already scaled by the caller. The amount shows once the last chip lands.
+   */
+  async buildUp(amount: number, stagger: number, drop: number, landed?: (atMs: number) => void): Promise<void> {
+    this.amount = amount;
+    drawStacks(this.chipsEl, amount, this.style);
+    this.label.textContent = amount.toLocaleString('en-US');
+    this.label.hidden = true;
+    const h = P.buildHeight;
+    const anims = [...this.chipsEl.children].map((img, k) => {
+      landed?.(k * stagger + drop * 0.7);
+      return (img as HTMLElement).animate(
+        [
+          { transform: `translateY(${-h}px)`, opacity: 0 },
+          { transform: 'translateY(0)', opacity: 1, offset: 0.7 },
+          { transform: 'translateY(-5px)', offset: 0.85 },
+          { transform: 'translateY(0)', opacity: 1 },
+        ],
+        { duration: drop, delay: k * stagger, easing: 'ease-in', fill: 'backwards' },
+      );
+    });
+    await Promise.all(anims.map((a) => a.finished.catch(() => undefined)));
     this.label.hidden = !this.showLabel || amount <= 0;
   }
 

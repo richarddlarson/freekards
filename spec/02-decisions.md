@@ -1141,3 +1141,16 @@ Template:
   left so the bigger stacks clear the cards and portraits (spec 19 §4.2–4.3). Amends D-091 and D-092.
 - Why: After seeing screenshots of the table, the owner said the chips were "just too small" and
   asked for "at least 1.5X their current size". Ten per stack keeps a tall stack under 150 units.
+
+## D-095 — Chip stacks build up when players sit down
+- Date: 2026-11-27
+- Status: Proposed (owner request; the timing was chosen by the assistant)
+- Decision: When the player sits down at the poker table, each seat's stack is built chip by chip,
+  each chip dropping in with a small bounce and a soft click, the player's first and then the
+  regulars', overlapping (spec 19 §4.3). Regulars who sit down or buy more chips, and the player buying
+  more, build their stacks the same way. A player's stack (not bets or pots) keeps some 5s and 25s,
+  like a cashier's buy-in, instead of the fewest chips. New sound cue `chips.stack`.
+- Why: The owner asked for "a stacking animation to make the stacks showing up at the beginning of the
+  game more interesting". With the fewest chips a 200 buy-in was only two black chips, which makes for
+  a dull build and a flat-looking stack; a cashier's mix gives three colorful columns. Overlapping the
+  seats keeps the whole intro to about two seconds, and it follows Game speed.
