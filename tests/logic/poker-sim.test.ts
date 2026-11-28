@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { STAKES } from '../../src/logic/poker/index.js';
-import { simulateDraw } from './poker-helpers.js';
+import { simulateDraw, TEST_STAKES } from './poker-helpers.js';
 
 describe('Five-Card Draw simulation (spec 19 §5.3)', () => {
   it('plays hundreds of hands with legal moves, conserving chips', () => {
@@ -22,7 +22,7 @@ describe('Five-Card Draw simulation (spec 19 §5.3)', () => {
     let strongNet = 0;
     const weak = { skill: 0.15, risk: 0.4 };
     for (let seed = 1; seed <= 3; seed++) {
-      const sim = simulateDraw(seed * 7, [{ skill: 0.9, risk: 0.4 }, weak, weak, weak], 50, STAKES.low, 3000);
+      const sim = simulateDraw(seed * 7, [{ skill: 0.9, risk: 0.4 }, weak, weak, weak], 50, TEST_STAKES, 3000);
       strongNet += sim.state.chips[0]! - 3000;
     }
     expect(strongNet).toBeGreaterThan(0);

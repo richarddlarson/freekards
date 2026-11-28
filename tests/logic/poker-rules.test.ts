@@ -15,6 +15,7 @@ import {
   type DrawState,
 } from '../../src/logic/poker/index.js';
 import { pokerCandidates } from '../../src/logic/dialogue/poker-triggers.js';
+import { TEST_STAKES } from './poker-helpers.js';
 
 const hand = (s: string) => s.split(' ') as Card[];
 const name = (s: string) => handName(evaluate5(hand(s)));
@@ -66,7 +67,7 @@ describe('pots (spec 19 §2.5)', () => {
 });
 
 describe('Five-Card Draw engine (spec 19 §2)', () => {
-  const start = (chips: (number | null)[] = [200, 200, 200, 200], seed = 3) => applyDrawAction(createDrawGame({ seed, stakes: STAKES.low, chips }), { type: 'deal' });
+  const start = (chips: (number | null)[] = [200, 200, 200, 200], seed = 3) => applyDrawAction(createDrawGame({ seed, stakes: TEST_STAKES, chips }), { type: 'deal' });
   const total = (s: DrawState) => s.chips.reduce((a, b) => a + b, 0) + s.committed.reduce((a, b) => a + b, 0);
 
   it('antes, deals five each, and opens betting left of the button', () => {
@@ -156,11 +157,11 @@ describe('Five-Card Draw engine (spec 19 §2)', () => {
   });
 
   it('seats and unseats players between hands, and skips empty seats', () => {
-    let state = createDrawGame({ seed: 1, stakes: STAKES.low, chips: [200, null, 200, 0] });
+    let state = createDrawGame({ seed: 1, stakes: TEST_STAKES, chips: [200, null, 200, 0] });
     state = applyDrawAction(state, { type: 'deal' }).state;
     expect(state.inHand).toEqual([true, false, true, false]);
-    expect(() => applyDrawAction(createDrawGame({ seed: 1, stakes: STAKES.low, chips: [200, null, null, null] }), { type: 'deal' })).toThrow();
-    let idle = createDrawGame({ seed: 1, stakes: STAKES.low, chips: [200, null, 200, 0] });
+    expect(() => applyDrawAction(createDrawGame({ seed: 1, stakes: TEST_STAKES, chips: [200, null, null, null] }), { type: 'deal' })).toThrow();
+    let idle = createDrawGame({ seed: 1, stakes: TEST_STAKES, chips: [200, null, 200, 0] });
     idle = applyDrawAction(idle, { type: 'sit', seat: 1, chips: 150 }).state;
     idle = applyDrawAction(idle, { type: 'leave', seat: 3 }).state;
     expect(idle.present).toEqual([true, true, true, false]);
@@ -182,7 +183,7 @@ describe('draw strategy (spec 19 §5.2)', () => {
 });
 
 describe('poker dialogue triggers (spec 08 §Poker triggers)', () => {
-  const ctx = { computerSeats: [1, 2, 3], ante: 5 };
+  const ctx = { computerSeats: [1, 2, 3], bigBet: 20 };
   const triggers = (events: Parameters<typeof pokerCandidates>[0], c: Parameters<typeof pokerCandidates>[1] = ctx) =>
     pokerCandidates(events, c).map((x) => `${x.seat}:${x.trigger}`);
 
@@ -212,7 +213,7 @@ describe('poker dialogue triggers (spec 08 §Poker triggers)', () => {
   });
 
   it('only seated regulars speak', () => {
-    expect(triggers([{ type: 'busted', seat: 0 }], { computerSeats: [1], ante: 5 })).toEqual(['1:poker.busted.human']);
-    expect(triggers([{ type: 'sat', seat: 3, chips: 200 }], { computerSeats: [1, 3], ante: 5 })).toEqual(['3:poker.sit_down.self']);
+    expect(triggers([{ type: 'busted', seat: 0 }], { computerSeats: [1], bigBet: 20 })).toEqual(['1:poker.busted.human']);
+    expect(triggers([{ type: 'sat', seat: 3, chips: 200 }], { computerSeats: [1, 3], bigBet: 20 })).toEqual(['3:poker.sit_down.self']);
   });
 });

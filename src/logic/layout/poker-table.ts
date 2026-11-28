@@ -11,10 +11,12 @@ export const POKER_LAYOUT = {
   /** A card chosen to discard lifts this far. */
   discardLift: 44,
   /** Chip stacks beside each player, relative to the portrait (computer seats). */
-  stackBelowPortrait: 185,
+  stackBelowPortrait: 230,
   /** West's and East's stacks also move this far toward the center, clear of their cards. */
   sideStackInset: 60,
   northStackLeft: 235,
+  /** North's stack sits this far below the portrait's center. */
+  northStackDown: 50,
   /** The player's stack, right of the hand center. */
   youStackRight: 600,
   /** Bets: in front of each player, toward the center. */
@@ -32,7 +34,10 @@ export const POKER_LAYOUT = {
   chipWidth: 84,
   chipStep: 8.4,
   stackGap: 9,
-  maxPerStack: 10,
+  maxPerStack: 8,
+  /** A pile is at most this many stacks wide; more stacks go in rows, each further row this much lower (in front). */
+  maxColumns: 3,
+  rowStep: 36,
   /** Building a stack (D-095): each chip drops from this high, over `buildDrop` ms, `buildStagger` ms apart. */
   buildHeight: 70,
   buildDrop: 260,
@@ -72,7 +77,7 @@ export function pokerLayout(vp: Viewport): PokerLayout {
   const stacks: Point[] = [
     { x: c.x + P.youStackRight, y: handY + 30 },
     { x: portrait(1).x + P.sideStackInset, y: portrait(1).y + P.stackBelowPortrait },
-    { x: portrait(2).x - P.northStackLeft, y: portrait(2).y + 20 },
+    { x: portrait(2).x - P.northStackLeft, y: portrait(2).y + P.northStackDown },
     { x: portrait(3).x - P.sideStackInset, y: portrait(3).y + P.stackBelowPortrait },
   ];
   const bets: Point[] = [
@@ -159,11 +164,32 @@ export function chipStacks(amount: number, maxPerStack = POKER_LAYOUT.maxPerStac
   return out;
 }
 
+/**
+ * Where each stack of a pile goes: rows of at most `maxColumns`, balanced, each row centered. The
+ * first stacks (the largest values, the shortest stacks) go in the front row, lowest on screen, so the
+ * taller stacks of small chips behind them still show.
+ */
+export function stackPositions(count: number): { x: number; y: number }[] {
+  const P = POKER_LAYOUT;
+  const rows = Math.ceil(count / P.maxColumns);
+  const perRow = Math.ceil(count / Math.max(1, rows));
+  const out: { x: number; y: number }[] = [];
+  for (let i = 0; i < count; i++) {
+    const row = Math.floor(i / perRow);
+    const inRow = Math.min(perRow, count - row * perRow);
+    const col = i - row * perRow;
+    const width = inRow * P.chipWidth + (inRow - 1) * P.stackGap;
+    out.push({ x: -width / 2 + col * (P.chipWidth + P.stackGap) + P.chipWidth / 2, y: (rows - 1 - row) * P.rowStep });
+  }
+  return out;
+}
+
 /** `fewest`: bets and pots. `stack`: the chips in front of a player, with some small chips kept. */
 export type ChipStyle = 'fewest' | 'stack';
 
 /** For a player's stack of at least `from`, keep `count` chips of `value` (spec 19 §4.3). */
 export const STACK_RESERVES: readonly { value: number; count: number; from: number }[] = [
-  { value: 5, count: 5, from: 50 },
+  { value: 1, count: 4, from: 20 },
+  { value: 5, count: 4, from: 50 },
   { value: 25, count: 4, from: 250 },
 ];

@@ -19,9 +19,9 @@ When two hands are the same kind, the higher cards win: a pair of Kings beats a 
 ## Sitting down
 
 - Choose the **stakes**. Your chips come out of your KardCoins: the buy-in, or everything you have if that's less (but at least the minimum).
-  - **Low:** ante 5, bets of 10 and 20. Buy-in 200 (at least 50).
-  - **Medium:** ante 10, bets of 20 and 40. Buy-in 500 (at least 100).
-  - **High:** ante 25, bets of 50 and 100. Buy-in 1,000 (at least 250).
+  - **Low:** ante 1, bets of 5 and 10. Buy-in 100 (at least 25).
+  - **Medium:** ante 2, bets of 10 and 20. Buy-in 200 (at least 50).
+  - **High:** ante 5, bets of 20 and 40. Buy-in 400 (at least 100).
 - The regulars bring their own KardCoins too. Someone without enough can't sit down.
 
 ## Order of play

@@ -170,9 +170,9 @@ export class PokerTable extends TableBase {
 
   private tagSpot(seat: number): layout.Point {
     if (seat === 0) return { x: this.pl.you.x, y: this.pl.you.y - 70 };
-    // Under the seat's chip stack and its amount.
+    // Under the seat's chips and their amount, with room for a second row of stacks.
     const st = this.pl.stacks[seat]!;
-    return { x: st.x, y: st.y + 78 };
+    return { x: st.x, y: st.y + 78 + PL.rowStep };
   }
 
   protected override settingsChanged(): void {
@@ -242,7 +242,7 @@ export class PokerTable extends TableBase {
     const bluffing = new Set<number>();
     for (const s of SEATS) if (s !== 0 && this.ais[s]?.bluffing) bluffing.add(s);
     const computerSeats = SEATS.filter((s) => s !== 0 && this.seatsDef[s] && this.state.present[s]);
-    this.say(dialogue.pokerCandidates(events, { computerSeats, ante: this.opts.stakes.ante, bluffing }));
+    this.say(dialogue.pokerCandidates(events, { computerSeats, bigBet: this.opts.stakes.bigBet, bluffing }));
   }
 
   private async playHand(): Promise<void> {

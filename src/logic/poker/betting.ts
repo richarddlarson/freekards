@@ -20,9 +20,9 @@ export interface Stakes {
 }
 
 export const STAKES: Readonly<Record<StakesId, Stakes>> = {
-  low: { id: 'low', ante: 5, smallBet: 10, bigBet: 20, buyIn: 200, minBuyIn: 50 },
-  medium: { id: 'medium', ante: 10, smallBet: 20, bigBet: 40, buyIn: 500, minBuyIn: 100 },
-  high: { id: 'high', ante: 25, smallBet: 50, bigBet: 100, buyIn: 1000, minBuyIn: 250 },
+  low: { id: 'low', ante: 1, smallBet: 5, bigBet: 10, buyIn: 100, minBuyIn: 25 },
+  medium: { id: 'medium', ante: 2, smallBet: 10, bigBet: 20, buyIn: 200, minBuyIn: 50 },
+  high: { id: 'high', ante: 5, smallBet: 20, bigBet: 40, buyIn: 400, minBuyIn: 100 },
 };
 export const STAKES_IDS: readonly StakesId[] = ['low', 'medium', 'high'];
 

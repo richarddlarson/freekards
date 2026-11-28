@@ -4,11 +4,13 @@ import {
   createDrawAi,
   createDrawGame,
   dealableSeats,
-  STAKES,
   type DrawEvent,
   type DrawState,
   type Stakes,
 } from '../../src/logic/poker/index.js';
+
+/** The stakes the engine tests and the measurements in spec 19 §5.3 use (fixed, whatever the tables offer). */
+export const TEST_STAKES: Stakes = { id: 'low', ante: 5, smallBet: 10, bigBet: 20, buyIn: 200, minBuyIn: 50 };
 
 export interface PokerSim {
   state: DrawState;
@@ -17,7 +19,7 @@ export interface PokerSim {
 }
 
 /** Play `hands` hands among computer players; busted players stay out. */
-export function simulateDraw(seed: number, profiles: { skill: number; risk: number }[], hands: number, stakes: Stakes = STAKES.low, chips = stakes.buyIn): PokerSim {
+export function simulateDraw(seed: number, profiles: { skill: number; risk: number }[], hands: number, stakes: Stakes = TEST_STAKES, chips = stakes.buyIn): PokerSim {
   let state = createDrawGame({ seed, stakes, chips: profiles.map(() => chips) });
   const ais = profiles.map((p, i) => createDrawAi(p, seed * 31 + i + 1));
   const events: DrawEvent[] = [];

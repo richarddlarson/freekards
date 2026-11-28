@@ -93,13 +93,15 @@ the hand. Chips are conserved: the chips in front of the players plus everything
 never change during a hand. An action out of turn, in the wrong phase, or against the rules is
 rejected and changes nothing.
 
-## 3. Stakes, buy-in, and cashing out (D-088, D-090)
+## 3. Stakes, buy-in, and cashing out (D-088, D-090, D-096)
 ### 3.1 Stakes
 | Stakes | Ante | Small bet | Big bet | Buy-in | Minimum buy-in |
 |--------|------|-----------|---------|--------|----------------|
-| Low (`low`) | 5 | 10 | 20 | 200 | 50 |
-| Medium (`medium`) | 10 | 20 | 40 | 500 | 100 |
-| High (`high`) | 25 | 50 | 100 | 1,000 | 250 |
+| Low (`low`) | 1 | 5 | 10 | 100 | 25 |
+| Medium (`medium`) | 2 | 10 | 20 | 200 | 50 |
+| High (`high`) | 5 | 20 | 40 | 400 | 100 |
+
+At every level the big bet is twice the small bet, the buy-in is 20 small bets, and the minimum is 5.
 
 ### 3.2 Buying in and cashing out
 Chips are KardCoins moved from each player's balance to the table and back (spec 15 §6.3): the
@@ -121,9 +123,9 @@ least the minimum. Leaving returns everyone's chips. Chips are saved after every
 ### 4.1 Setup
 - Reached from **Play Poker** on the main menu (spec 12 §1). Title "Poker". Rows:
   - **Game:** Five-Card Draw (the only choice for now), with "More poker games are coming".
-  - **Stakes:** Low · Medium · High. Under it: "Ante 5 · Bets 10 and 20 · You sit down with 200 of
-    your 500 KardCoins", or, below the minimum, "… You need at least 50 KardCoins to sit down (you
-    have 30)" in red, and **Sit down** is disabled.
+  - **Stakes:** Low · Medium · High. Under it: "Ante 1 · Bets 5 and 10 · You sit down with 100 of
+    your 500 KardCoins", or, below the minimum, "… You need at least 25 KardCoins to sit down (you
+    have 20)" in red, and **Sit down** is disabled.
   - **Difficulty:** Easy · Medium · Hard.
   - **Opponents:** **Random** (up to three regulars who can afford the stakes) or **1 to 3 chosen**
     regulars, seated West, North, East in the order picked. Each tile shows the regular's KardCoins;
@@ -137,16 +139,18 @@ least the minimum. Leaving returns everyone's chips. Chips are saved after every
 - **The player's cards:** five face-up cards along the bottom, centers **150** apart, sorted by rank
   (the Card order setting decides the direction), then suit. A card chosen to throw away lifts **44**.
 - **Chip stacks** (each player's chips) with the amount under them: the player's **600** right of the
-  center, at the hand's height + 30; West's and East's **185** below their portrait and **60** toward the
-  center (clear of their cards); North's **235** left of the portrait (D-094).
+  center, at the hand's height + 30; West's and East's **230** below their portrait and **60** toward the
+  center (clear of their cards and nameplates); North's **235** left of the portrait and **50** below
+  its center (D-094, D-096).
 - **Bets** for the current round sit in front of each player: **205** below the center (the
   player), **430** left and right (West, East), **215** above (North). The **pot** is at the center.
 - The **dealer button**, a white "D" disc 54 across, sits beside the dealer's bet spot and slides to
   the next dealer (500 ms).
-- **Action tags** under each regular's chips (above the "You" plate for the player) show their last
+- **Action tags** under each regular's chips (114 below the stack's anchor, leaving room for a second
+  row of stacks; above the "You" plate for the player) show their last
   action: "Check", "Call 10", "Bet 10", "Raise to 20" (gold), "Fold" (dimmed), "Draws 3", "Stands pat",
   "All in", "Out of chips".
-- **Score panel:** "Five-Card Draw", "Ante 5 · Bets 10 / 20", then each seat's name and chips
+- **Score panel:** "Five-Card Draw", "Ante 1 · Bets 5 / 10", then each seat's name and chips
   ("Empty seat" and "—" for an empty one; a folded player's name dimmed), and "Hand N · Pot N".
 - **The action bar** sits above the player's cards (52 above a lifted card's top): a prompt and
   buttons, as in the rummy games.
@@ -168,20 +172,26 @@ least the minimum. Leaving returns everyone's chips. Chips are saved after every
   during a hand the player folds (or checks when she can, and stands pat) for the rest of it, then
   leaves.
 - **Leaving:** a dialog titled "Nice session!", "Breaking even", or "Better luck next time", with the
-  coin mark and the result counting from 0 to "+N" or "−N" (red) over 1.2 s, "Sat down with 200, left
-  with 285 · 12 hands, won 4 · best hand: Flush, Ace high", the balance, and **Play again** (back to
+  coin mark and the result counting from 0 to "+N" or "−N" (red) over 1.2 s, "Sat down with 100, left
+  with 145 · 12 hands, won 4 · best hand: Flush, Ace high", the balance, and **Play again** (back to
   the setup) and **Main menu**. Sounds: `game.win` (or `game.lose` for a loss) and `chips.win`.
 
 ### 4.3 Chips (D-091)
 - **Values and colors:** 1 white (blue spots), 5 red, 25 green, 100 black, 500 purple, 1,000 gold
   (brown spots, marked "1K"). Each chip is drawn seen at an angle (spec 07 §Poker chips).
-- **Piles:** an amount is drawn with the fewest chips, largest value first, in stacks of at most 10
-  of one value, side by side (each chip **84** wide and 58.8 tall, stacks 9 apart; D-094), each chip
-  8.4 above the one below with a small fixed sideways jitter, and the amount in a dark pill under the
+- **Piles:** an amount is drawn with the fewest chips, largest value first, in stacks of at most 8
+  of one value (each chip **84** wide and 58.8 tall, stacks 9 apart; D-094, D-096), each chip 8.4
+  above the one below with a small fixed sideways jitter, and the amount in a dark pill under the
   stacks (26 px; the pot's 30 px, in gold).
+- **Rows** (D-096): a pile is at most 3 stacks wide. With more stacks they go in balanced rows (4 as
+  2 + 2, 5 as 3 + 2), each row centered, each further back row 36 higher. The first stacks (the
+  largest values, which are the shortest) go in the front row, so the taller stacks of small chips
+  behind them still show; back rows are drawn (and built) first. The amount sits under the front row.
 - **A player's stack** (not bets or the pot) keeps some small chips, like a cashier's buy-in
-  (D-095): from 50 up it holds 5 chips of 5, and from 250 up also 4 chips of 25; the rest uses the
-  fewest chips. So 200 is 1 × 100, 3 × 25, 5 × 5, and 500 is 3 × 100, 7 × 25, 5 × 5.
+  (D-095, D-096): from 20 up it holds 4 chips of 1, from 50 up also 4 chips of 5, and from 250 up
+  also 4 chips of 25; the rest uses the fewest chips. So no value under 100 ever needs more than one
+  stack of 8: 100 is 3 × 25, 4 × 5, 5 × 1; 200 is 1 × 100, 3 × 25, 4 × 5, 5 × 1; and 400 is 2 × 100,
+  7 × 25, 4 × 5, 5 × 1.
 - **Building a stack** (D-095): when the player sits down, every seat's stack is built chip by chip,
   the player's first, then West, North, East, each seat starting 380 ms after the last. Within a pile,
   stacks go left to right and each from the bottom up, a chip every 55 ms; each chip drops from 70
@@ -256,10 +266,13 @@ to a four-card flush; one with risk ≥ 0.6 keeps an Ace kicker with a pair half
 With a pair and a failed skill roll, it also keeps its highest other card (draws 2).
 
 ### 5.3 Measured
-AI-only games at Low stakes, 4 players (skill 0.3, 0.55, 0.8, 0.55; risk 0.3, 0.6, 0.9, 0.2), 100
-hands: 80% of hands reach a showdown. Before the draw, of 485 decisions: 53% check, 11% bet, 3%
+AI-only games at test stakes of ante 5, bets 10 and 20 (the tests keep these fixed), 4 players
+(skill 0.3, 0.55, 0.8, 0.55; risk 0.3, 0.6, 0.9, 0.2), 100 hands: 80% of hands reach a showdown. Before the draw, of 485 decisions: 53% check, 11% bet, 3%
 raise, 17% call, 16% fold. Discards per draw: 0 (1%), 1 (11%), 2 (25%), 3 (26%), 4 (34%), 5 (3%). About
 6 ms per decision on a desktop. One player against three weaker ones (150 hands, risk 0.4 all):
 skill 0.9 vs 0.15 wins 13.3 chips a hand; 0.8 vs 0.55 wins 3.7; 0.8 vs 0.3 wins 7.7.
+With the table stakes of D-096 (stacks of 5 buy-ins, 100 hands each): about 72% of hands reach a
+showdown at every level, and the average pot is 40 at Low, 79 at Medium, and 186 at High; before the
+draw, about half of all decisions are checks and a fifth folds.
 The simulation test checks that hands finish with legal moves and that chips are conserved after
 every action, and that a strong player wins chips from weak ones.

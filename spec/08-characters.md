@@ -109,7 +109,7 @@ Only regulars sitting at the table speak, including one who just sat down.
 | Trigger | Fires when | Weight |
 |---------|-----------|--------|
 | `poker.won_pot.self` / `.human` / `.other` | `pot_won` for the main pot (its first winner) | 0.4 |
-| `poker.big_pot.self` / `.human` | That pot, with all pots this hand totaling at least 20 antes | 1.0 |
+| `poker.big_pot.self` / `.human` | That pot, with all pots this hand totaling at least 5 big bets (D-096) | 1.0 |
 | `poker.bluff.self` | The speaker won without a showdown, and its last bet was a bluff (spec 19 §5.1) | 0.8 |
 | `poker.stood_pat.self` / `.human` | `drew` with 0 cards | 0.6 |
 | `poker.raise.self` / `.human` | `bet_action` raise | 0.3 |

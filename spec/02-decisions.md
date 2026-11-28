@@ -1045,7 +1045,7 @@ Template:
 ## D-088 — Poker: Five-Card Draw, fixed limit, for KardCoins
 - Date: 2026-11-27
 - Status: Proposed (chosen by the assistant at the owner's request; listed for his review)
-- Decision: The first poker game is **Five-Card Draw** for the player and three computer players
+- Decision (stakes superseded by D-096): The first poker game is **Five-Card Draw** for the player and three computer players
   (spec 19 §2): antes, no opening requirement, **fixed-limit** betting (small bet before the draw, big
   bet after, a bet and three raises per round), one draw of **0 to 5 cards**, standard hand ranks with
   the A-2-3-4-5 straight, no wild cards, split pots with side pots. Three stakes, Low 5/10/20, Medium
@@ -1154,3 +1154,24 @@ Template:
   game more interesting". With the fewest chips a 200 buy-in was only two black chips, which makes for
   a dull build and a flat-looking stack; a cashier's mix gives three colorful columns. Overlapping the
   seats keeps the whole intro to about two seconds, and it follows Game speed.
+
+## D-096 — Lower poker stakes
+- Date: 2026-11-27
+- Status: Accepted (owner request; Medium and High chosen by the assistant)
+- Decision: Low stakes are ante 1, bets of 5 and 10, buy-in 100 (minimum 25). Medium is ante 2, bets
+  of 10 and 20, buy-in 200 (minimum 50). High is ante 5, bets of 20 and 40, buy-in 400 (minimum 100).
+  At every level the big bet is twice the small bet, the buy-in 20 small bets, and the minimum 5
+  (spec 19 §3.1). Supersedes D-088's stakes. A "big pot" for dialogue is now 5 big bets instead of
+  20 antes. Small amounts mean many 1s and 5s, so a player's stack keeps 4 chips each of 1, 5, and 25
+  (instead of D-095's 5 of 5 and 4 of 25), a stack holds at most 8 chips, a pile is at most 3 stacks
+  wide with any more in a row in front (big values in front), and the side stacks sit a little lower
+  (spec 19 §4.2–4.3).
+- Why: The owner: "many players want to just be really casual, so let's make the low stakes option be
+  really low stakes, with 1 ante and bets of 5 or 10. Adjust the other stakes settings downward
+  accordingly. That also helps fix the high-stakes game being a bit too high as well." Each level now
+  doubles the bets of the one below, and a regular's 500 starting coins cover even the High buy-in
+  with room to buy more. Simulations show the same kind of play at every level (about 72% of hands
+  reach a showdown). With antes of 1 or 2, a threshold based on antes would call almost every pot big,
+  so it follows the big bet. The engine tests keep the old values as fixed test stakes. Rows keep any
+  pile within the space the table leaves beside each player; the first try (more columns) ran into
+  the cards and portraits, and tall stacks reached the nameplates.

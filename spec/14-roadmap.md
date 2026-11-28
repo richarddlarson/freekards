@@ -17,7 +17,8 @@ make every choice and list them. Built: shared poker logic (hand ranking, pots, 
 and the Five-Card Draw engine and computer players (spec 19, D-088, D-089); the regulars' balances,
 background rounds, and poker buy-ins and cash-outs (spec 15 §6, D-090); generated chips and Kenney chip
 sounds (D-091); the setup screen, table, Poker stats tab, and Casino regulars leaderboard (D-092);
-222 voiced poker lines (D-093). All marked Proposed. Waiting on the owner: play-test poker and review
+222 voiced poker lines (D-093). All marked Proposed. After play-testing, the owner asked for bigger
+chips (D-094), stacks that build up when players sit down (D-095), and much lower stakes (D-096). Waiting on the owner: play-test poker and review
 the decision list; also still open: the felt texture on 4K and the tablet (D-086, D-087).
 
 **2026-11-27 (fifth session):** Merged as PR #10. The Gin Rummy

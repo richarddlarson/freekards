@@ -14,22 +14,26 @@ const CHIP_H = (P.chipWidth * 84) / 120;
 const JITTER = [0, 1.2, -0.8, 0.6, -1.4, 0.9, -0.3, 1.5, -1.1, 0.4, -0.6, 1.0];
 
 /** Fill `el` with stacks of chips for `amount`, centered, bottoms on y = 0 (stack by stack, bottom chip first). */
-function drawStacks(el: HTMLElement, amount: number, style: pokerLayout.ChipStyle): void {
+function drawStacks(el: HTMLElement, amount: number, style: pokerLayout.ChipStyle): number {
   el.replaceChildren();
   const stacks = pokerLayout.chipStacks(amount, P.maxPerStack, style);
-  const total = stacks.length * P.chipWidth + Math.max(0, stacks.length - 1) * P.stackGap;
-  stacks.forEach((s, i) => {
-    const x = -total / 2 + i * (P.chipWidth + P.stackGap);
+  const spots = pokerLayout.stackPositions(stacks.length);
+  // Back rows first, so front stacks are drawn on top (and stacks build from the back).
+  const order = stacks.map((_, i) => i).sort((a, b) => spots[a]!.y - spots[b]!.y);
+  order.forEach((i) => {
+    const s = stacks[i]!;
+    const x = spots[i]!.x - P.chipWidth / 2;
     for (let k = 0; k < s.count; k++) {
       const img = h('img', 'chip');
       img.src = chipUrl(s.value);
       img.alt = '';
       img.draggable = false;
       img.style.left = `${x + JITTER[(k + i * 5) % JITTER.length]!}px`;
-      img.style.top = `${-CHIP_H - k * P.chipStep}px`;
+      img.style.top = `${spots[i]!.y - CHIP_H - k * P.chipStep}px`;
       el.append(img);
     }
   });
+  return Math.max(0, ...spots.map((p) => p.y));
 }
 
 export class ChipPile {
@@ -57,7 +61,7 @@ export class ChipPile {
   set(amount: number): void {
     if (amount === this.amount) return;
     this.amount = amount;
-    drawStacks(this.chipsEl, amount, this.style);
+    this.label.style.top = `${8 + drawStacks(this.chipsEl, amount, this.style)}px`;
     this.label.textContent = amount.toLocaleString('en-US');
     this.label.hidden = !this.showLabel || amount <= 0;
   }
@@ -69,7 +73,7 @@ export class ChipPile {
    */
   async buildUp(amount: number, stagger: number, drop: number, landed?: (atMs: number) => void): Promise<void> {
     this.amount = amount;
-    drawStacks(this.chipsEl, amount, this.style);
+    this.label.style.top = `${8 + drawStacks(this.chipsEl, amount, this.style)}px`;
     this.label.textContent = amount.toLocaleString('en-US');
     this.label.hidden = true;
     const h = P.buildHeight;

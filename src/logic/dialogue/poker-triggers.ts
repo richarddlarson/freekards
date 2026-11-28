@@ -32,8 +32,8 @@ export const POKER_TRIGGERS: readonly string[] = [
   'poker.sit_down.self',
 ];
 
-/** A pot of at least this many antes is a big pot. */
-export const BIG_POT_ANTES = 20;
+/** A pot of at least this many big bets is a big pot (D-096). */
+export const BIG_POT_BIG_BETS = 5;
 /** Losing a showdown with this category or better (three of a kind) is a bad beat. */
 export const BAD_BEAT_CATEGORY = 3;
 /** Winning a showdown with this category or better (a full house) is a big hand. */
@@ -42,7 +42,8 @@ export const BIG_HAND_CATEGORY = 6;
 export interface PokerTalkContext {
   /** Seats with a computer player sitting in them. */
   computerSeats: readonly number[];
-  ante: number;
+  /** The stakes' big bet (the bet size after the draw). */
+  bigBet: number;
   /** Seats whose last bet was a bluff (from the computer players). */
   bluffing?: ReadonlySet<number>;
 }
@@ -81,7 +82,7 @@ export function pokerCandidates(events: readonly DrawEvent[], ctx: PokerTalkCont
       case 'pot_won': {
         if (e.potIndex !== 0) break; // talk about the main pot only
         const winner = e.winners[0]!;
-        if (potTotal >= BIG_POT_ANTES * ctx.ante) out.push(...forSubject('poker.big_pot', winner, ctx, false));
+        if (potTotal >= BIG_POT_BIG_BETS * ctx.bigBet) out.push(...forSubject('poker.big_pot', winner, ctx, false));
         if (e.handName === null && ctx.bluffing?.has(winner)) out.push(...selfOnly('poker.bluff', winner, ctx));
         out.push(...forSubject('poker.won_pot', winner, ctx, true));
         if (showdown) {

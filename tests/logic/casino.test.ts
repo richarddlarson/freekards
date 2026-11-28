@@ -67,7 +67,7 @@ describe('casino regulars (spec 15 §6)', () => {
   });
 
   it('lists the leaderboard richest first, counting chips at the table', () => {
-    const p = sitDown(fresh(), 'low', ['gus'], NOW);
+    const p = sitDown(fresh(), 'medium', ['gus'], NOW);
     const board = leaderboard(p, ROSTER);
     expect(board).toHaveLength(7);
     expect(board.find((r) => r.id === null)!.coins).toBe(500);
@@ -79,9 +79,9 @@ describe('poker chips and KardCoins (spec 15 §6.3)', () => {
   it('moves coins to the table and back without creating or losing any', () => {
     let p = fresh();
     const total = allCoins(p);
-    p = sitDown(p, 'low', ['gus', 'dot', 'chad'], NOW);
+    p = sitDown(p, 'medium', ['gus', 'dot', 'chad'], NOW);
     expect(p.coins).toBe(300);
-    expect(p.casino.pokerTable).toEqual({ stakes: 'low', you: 200, regulars: { gus: 200, dot: 200, chad: 200 } });
+    expect(p.casino.pokerTable).toEqual({ stakes: 'medium', you: 200, regulars: { gus: 200, dot: 200, chad: 200 } });
     expect(allCoins(p)).toBe(total);
     // The player wins 150 from Gus and Chad over some hands.
     p = saveTable(p, 350, { gus: 100, dot: 200, chad: 150 });
@@ -100,15 +100,15 @@ describe('poker chips and KardCoins (spec 15 §6.3)', () => {
   });
 
   it('buys in with the whole balance if it is below the buy-in, and refuses below the minimum', () => {
-    const p = { ...fresh(), coins: 120 };
-    expect(sitDown(p, 'low', [], NOW).casino.pokerTable!.you).toBe(120);
-    expect(() => sitDown({ ...p, coins: 40 }, 'low', [], NOW)).toThrow();
+    const p = { ...fresh(), coins: 80 };
+    expect(sitDown(p, 'low', [], NOW).casino.pokerTable!.you).toBe(80);
+    expect(() => sitDown({ ...p, coins: 20 }, 'low', [], NOW)).toThrow();
     expect(() => sitDown(p, 'medium', [], NOW)).not.toThrow();
     expect(() => sitDown(p, 'high', [], NOW)).toThrow();
   });
 
   it('sells more chips from the balance', () => {
-    let p = sitDown(fresh(), 'low', ['gus'], NOW);
+    let p = sitDown(fresh(), 'medium', ['gus'], NOW);
     p = saveTable(p, 0, { gus: 400 });
     const r = rebuy(p, NOW)!;
     expect(r.chips).toBe(200);
@@ -117,7 +117,7 @@ describe('poker chips and KardCoins (spec 15 §6.3)', () => {
   });
 
   it('returns chips from a game the app closed in the middle of', () => {
-    let p = sitDown(fresh(), 'low', ['gus', 'dot'], NOW);
+    let p = sitDown(fresh(), 'medium', ['gus', 'dot'], NOW);
     const total = allCoins(p);
     p = saveTable(p, 260, { gus: 140, dot: 200 });
     const q = recoverTable(p, NOW);
