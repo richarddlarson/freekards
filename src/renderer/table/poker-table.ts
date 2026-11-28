@@ -81,6 +81,12 @@ export class PokerTable extends TableBase {
   private readonly tags: HTMLElement[] = [];
   private readonly showLabels: HTMLElement[] = [];
   private readonly actionBar = h('div', 'rummy-actions poker-actions');
+  /** The player's chip meter (D-098): her chips in large type, warning when they run low. */
+  private readonly meter = h('div', 'chip-meter');
+  private readonly meterLabel = h('div', 'meter-label', 'Your chips');
+  private readonly meterAmount = h('span', 'meter-amount', '0');
+  private readonly meterBank = h('div', 'meter-bank');
+  private meterShown: number | null = null;
   /** Cards the player chose to throw away. */
   private readonly selected = new Set<Card>();
   private drawing = false;
@@ -135,6 +141,15 @@ export class PokerTable extends TableBase {
       this.root.append(tag, label);
     }
     this.pot = new ChipPile(this.chipLayer, true, 'pot-pile');
+    // The player's own stack has no amount pill: the chip meter shows it (D-098).
+    this.stacks[0]!.remove();
+    this.stacks[0] = new ChipPile(this.chipLayer, false, 'seat-stack', 'stack');
+    this.stacks[0].onChange = (n) => this.updateMeter(n);
+    const amountRow = h('div', 'meter-row');
+    amountRow.append(h('span', 'coin-icon large', 'K'), this.meterAmount);
+    this.meter.append(this.meterLabel, amountRow, this.meterBank);
+    this.meter.hidden = true;
+    this.root.append(this.meter);
     this.dealerButton.hidden = true;
     this.chipLayer.append(this.dealerButton);
     this.actionBar.hidden = true;
@@ -155,6 +170,7 @@ export class PokerTable extends TableBase {
     const L = this.pl;
     this.place(this.youPlate, L.you);
     this.place(this.actionBar, L.actionBar);
+    this.place(this.meter, L.meter);
     for (const s of SEATS) {
       this.stacks[s]!.placeAt(L.stacks[s]!);
       this.bets[s]!.placeAt(L.bets[s]!);
@@ -458,6 +474,32 @@ export class PokerTable extends TableBase {
     }
     this.pot.set(this.potShown());
     this.updateScores();
+  }
+
+  /** Show the player's chips in the meter, warn when low, and float the change (D-098). */
+  private updateMeter(chips: number): void {
+    if (!this.stacksBuilt && chips === 0) return;
+    this.meter.hidden = false;
+    const prev = this.meterShown;
+    this.meterShown = chips;
+    this.meterAmount.textContent = chips.toLocaleString('en-US');
+    const low = chips <= PL.lowBigBets * this.opts.stakes.bigBet;
+    this.meter.classList.toggle('low', low);
+    this.meterLabel.textContent = chips === 0 ? 'Out of chips' : low ? 'Running low!' : 'Your chips';
+    this.meterBank.textContent = `${this.bank.balance().toLocaleString('en-US')} more KardCoins away from the table`;
+    if (prev !== null && prev !== chips) {
+      const d = chips - prev;
+      const float = h('div', `meter-delta ${d > 0 ? 'plus' : 'minus'}`, `${d > 0 ? '+' : '−'}${Math.abs(d).toLocaleString('en-US')}`);
+      this.meter.append(float);
+      float.animate(
+        [
+          { transform: 'translate(-50%, 0)', opacity: 0 },
+          { transform: 'translate(-50%, -24px)', opacity: 1, offset: 0.2 },
+          { transform: 'translate(-50%, -70px)', opacity: 0 },
+        ],
+        { duration: this.ms(1400), easing: 'ease-out', fill: 'forwards' },
+      ).finished.then(() => float.remove(), () => float.remove());
+    }
   }
 
   private setTag(seat: number, text: string | null, kind = ''): void {

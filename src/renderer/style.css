@@ -1870,3 +1870,85 @@ button:disabled {
   text-align: right;
   font-weight: bold;
 }
+
+/* The player's chip meter (spec 19 §4.2, D-098) */
+.chip-meter {
+  position: absolute;
+  z-index: 430;
+  transform: translate(-50%, -50%);
+  min-width: 250px;
+  padding: 8px 22px 10px;
+  border-radius: 20px;
+  background: var(--panel);
+  border: 3px solid var(--brass);
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.meter-label {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.meter-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.meter-amount {
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 1.1;
+  color: #ffe98a;
+}
+
+.meter-bank {
+  font-size: 17px;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+
+.chip-meter.low {
+  border-color: #ff8a7a;
+  animation: meter-pulse 1.4s ease-in-out infinite;
+}
+
+.chip-meter.low .meter-amount,
+.chip-meter.low .meter-label {
+  color: #ffb3a8;
+  opacity: 1;
+}
+
+@keyframes meter-pulse {
+  0%,
+  100% {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(255, 120, 100, 0);
+  }
+  50% {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4), 0 0 26px 6px rgba(255, 120, 100, 0.55);
+  }
+}
+
+.meter-delta {
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  font-size: 40px;
+  font-weight: bold;
+  white-space: nowrap;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+}
+
+.meter-delta.plus {
+  color: #9be59b;
+}
+
+.meter-delta.minus {
+  color: #ffb3a8;
+}

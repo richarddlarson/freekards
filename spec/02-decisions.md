@@ -1187,3 +1187,15 @@ Template:
   to the pot, pot to the winner), but a bug drew every flying pile empty, so the chips seemed to jump.
   A check in the running app counted 19 flights in 12 seconds with no chips in any of them; after the
   fix, all 19 carry chips. The arc, lift, and slightly longer time make each flight easy to follow.
+
+## D-098 — A chip meter for the player's own chips
+- Date: 2026-11-27
+- Status: Proposed (owner request; the design was chosen by the assistant)
+- Decision: The player's chips are shown in a large meter above her stack ("Your chips", 50 px gold
+  number, and the KardCoins she has away from the table). It turns red and pulses with "Running low!"
+  at 3 big bets or fewer, and every gain or loss floats up from it as "+N" or "−N". The small amount
+  under her own stack is dropped, and her stack moves 58 lower to make room (spec 19 §4.2).
+- Why: The owner: the total "is kind of small and unobtrusive right now and it is easy to overlook that
+  you are going way down close to nothing". The warning catches the moment that matters (about one
+  more hand's worth of betting left), the floating changes connect each bet and win to the total,
+  and the balance away from the table tells her whether she could buy more chips.

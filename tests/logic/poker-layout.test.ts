@@ -31,6 +31,14 @@ describe('poker table layout (spec 19 §4.2)', () => {
       expect(L.stacks[2]!.x + half).toBeLessThan(north.x - LAYOUT.portraitSize / 2);
     });
 
+    it(`fits the player's chip meter between the action bar and her tallest stacks (${w}×${h})`, () => {
+      const meterHalf = 50;
+      const tallest = 58.8 + (POKER_LAYOUT.maxPerStack - 1) * POKER_LAYOUT.chipStep + POKER_LAYOUT.rowStep;
+      expect(L.meter.y - meterHalf).toBeGreaterThan(L.actionBar.y + 38);
+      expect(L.stacks[0]!.y - tallest).toBeGreaterThan(L.meter.y + meterHalf);
+      expect(L.stacks[0]!.y + POKER_LAYOUT.rowStep).toBeLessThan(L.base.height - 40);
+    });
+
     it(`spreads the player's five cards with every corner showing, clear of her stack (${w}×${h})`, () => {
       const xs = [0, 1, 2, 3, 4].map((i) => playerCardPlacement(L, i, 5, false).x);
       for (let i = 1; i < 5; i++) expect(xs[i]! - xs[i - 1]!).toBeGreaterThanOrEqual(POKER_LAYOUT.handSpacing);

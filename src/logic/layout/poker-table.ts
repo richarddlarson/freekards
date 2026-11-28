@@ -17,8 +17,9 @@ export const POKER_LAYOUT = {
   northStackLeft: 235,
   /** North's stack sits this far below the portrait's center. */
   northStackDown: 50,
-  /** The player's stack, right of the hand center. */
+  /** The player's stack, right of the hand center, and below the hand's center line (D-098). */
   youStackRight: 600,
+  youStackDown: 88,
   /** Bets: in front of each player, toward the center. */
   betSouth: 205,
   betSide: 430,
@@ -35,6 +36,10 @@ export const POKER_LAYOUT = {
   chipStep: 8.4,
   stackGap: 9,
   maxPerStack: 8,
+  /** The player's chip meter sits this far above her stack's anchor (D-098). */
+  meterAbove: 214,
+  /** The meter warns at this many big bets or fewer. */
+  lowBigBets: 3,
   /** Flying chips arc up to this high at the middle of the flight and grow to this scale (D-097). */
   flightArc: 40,
   flightLift: 1.1,
@@ -67,6 +72,8 @@ export interface PokerLayout {
   deck: Point;
   actionBar: Point;
   you: Point;
+  /** The player's chip meter (D-098). */
+  meter: Point;
   handY: number;
 }
 
@@ -78,7 +85,7 @@ export function pokerLayout(vp: Viewport): PokerLayout {
   const handY = height - LAYOUT.margin - CARD_H / 2;
   const portrait = (s: 1 | 2 | 3) => base.seats[s].portrait;
   const stacks: Point[] = [
-    { x: c.x + P.youStackRight, y: handY + 30 },
+    { x: c.x + P.youStackRight, y: handY + P.youStackDown },
     { x: portrait(1).x + P.sideStackInset, y: portrait(1).y + P.stackBelowPortrait },
     { x: portrait(2).x - P.northStackLeft, y: portrait(2).y + P.northStackDown },
     { x: portrait(3).x - P.sideStackInset, y: portrait(3).y + P.stackBelowPortrait },
@@ -113,6 +120,7 @@ export function pokerLayout(vp: Viewport): PokerLayout {
     deck: { x: c.x, y: c.y - 40 },
     actionBar: { x: c.x, y: handY - CARD_H / 2 - P.discardLift - P.actionAbove },
     you: { x: c.x - 2 * P.handSpacing - CARD_W / 2 - 110, y: handY },
+    meter: { x: stacks[0]!.x, y: stacks[0]!.y - P.meterAbove },
     handY,
   };
 }

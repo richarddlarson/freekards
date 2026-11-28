@@ -41,6 +41,8 @@ export class ChipPile {
   private readonly chipsEl = h('div', 'chip-stacks');
   private readonly label = h('div', 'chip-label');
   private amount = -1;
+  /** Told whenever the pile's amount changes (the player's chip meter follows her stack). */
+  onChange: ((amount: number) => void) | null = null;
 
   constructor(
     parent: HTMLElement,
@@ -61,6 +63,7 @@ export class ChipPile {
   set(amount: number): void {
     if (amount === this.amount) return;
     this.amount = amount;
+    this.onChange?.(amount);
     this.label.style.top = `${8 + drawStacks(this.chipsEl, amount, this.style)}px`;
     this.label.textContent = amount.toLocaleString('en-US');
     this.label.hidden = !this.showLabel || amount <= 0;
@@ -91,6 +94,7 @@ export class ChipPile {
     });
     await Promise.all(anims.map((a) => a.finished.catch(() => undefined)));
     this.label.hidden = !this.showLabel || amount <= 0;
+    this.onChange?.(amount);
   }
 
   placeAt(p: layout.Point): void {

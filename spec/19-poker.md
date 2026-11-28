@@ -139,13 +139,19 @@ least the minimum. Leaving returns everyone's chips. Chips are saved after every
 - **The player's cards:** five face-up cards along the bottom, centers **150** apart, sorted by rank
   (the Card order setting decides the direction), then suit. A card chosen to throw away lifts **44**.
 - **Chip stacks** (each player's chips) with the amount under them: the player's **600** right of the
-  center, at the hand's height + 30; West's and East's **230** below their portrait and **60** toward the
+  center and **88** below the hand's center line, with no amount under it (the chip meter shows it); West's and East's **230** below their portrait and **60** toward the
   center (clear of their cards and nameplates); North's **235** left of the portrait and **50** below
   its center (D-094, D-096).
 - **Bets** for the current round sit in front of each player: **205** below the center (the
   player), **430** left and right (West, East), **215** above (North). The **pot** is at the center.
 - The **dealer button**, a white "D" disc 54 across, sits beside the dealer's bet spot and slides to
   the next dealer (500 ms).
+- **The chip meter** (D-098), **214** above the player's stack anchor, between the action bar and her
+  tallest stacks: a panel (brass border, at least 250 wide) with "YOUR CHIPS" (22 px, capitals), the
+  coin mark and her chips in 50 px gold, and "N more KardCoins away from the table" (17 px). It
+  follows her stack as chips move. At **3 big bets or fewer** it turns red (border and text `#ffb3a8`),
+  glows in and out every 1.4 s, and the label reads "RUNNING LOW!" ("OUT OF CHIPS" at 0). Each change
+  floats up from the meter as "+N" (green) or "−N" (red), 40 px, rising 70 and fading over 1.4 s.
 - **Action tags** under each regular's chips (114 below the stack's anchor, leaving room for a second
   row of stacks; above the "You" plate for the player) show their last
   action: "Check", "Call 10", "Bet 10", "Raise to 20" (gold), "Fold" (dimmed), "Draws 3", "Stands pat",
