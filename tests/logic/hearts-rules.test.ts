@@ -299,3 +299,13 @@ describe('immutability', () => {
     expect(JSON.stringify(s0)).toBe(snapshot);
   });
 });
+
+describe('ties at the end of a game (spec 06 §2, D-100)', () => {
+  it('names the players tied for lowest when someone has passed the target', async () => {
+    const { tieBreakerSeats, gameWinner } = await import('../../src/logic/hearts/engine.js');
+    expect(tieBreakerSeats([86, 60, 106, 60], 100)).toEqual([1, 3]);
+    expect(gameWinner([86, 60, 106, 60], 100)).toBeNull();
+    expect(tieBreakerSeats([86, 59, 106, 60], 100)).toBeNull();
+    expect(tieBreakerSeats([60, 60, 90, 70], 100)).toBeNull(); // nobody at 100 yet
+  });
+});

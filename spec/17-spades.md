@@ -70,7 +70,8 @@ Example: you bid 4 and your partner bids 3 (contract 7). You win 5 tricks and yo
 ## 5. Game end
 After each hand, the game is over if either team has **reached the target** (≥ 300 or 500) or has
 **fallen to −200 or below**, **and** the two team scores differ. The team with the higher score
-wins. If the scores are tied, play another hand.
+wins. If the scores are tied, play another hand; the Hand results dialog then says "The scores are
+tied at 310, so play continues." (D-100).
 
 ## 6. Logic events (consumed by presentation and dialogue)
 Every event carries `type`, `seat` (acting player, or none), `cards`, and `scores` (a snapshot of

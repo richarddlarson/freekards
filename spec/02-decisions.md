@@ -1212,3 +1212,15 @@ Template:
   comment after 20 s on the player's turn, could still appear; silencing the table while paused
   removes that case, so the menu can be centered safely. Checked: centered exactly, and no bubble after
   25 s paused on the player's turn.
+
+## D-100 — Say why play continues after a tie at the end of a game
+- Date: 2026-11-28
+- Status: Accepted (owner report)
+- Decision: When a Hearts hand leaves someone at 100 or more but two or more players tied for the
+  lowest score, the Hand results dialog adds a note naming who passed 100 and who is tied, e.g. "The
+  Professor has 106, but Coach and Grumbles are tied for lowest (60), so play continues." Spades does
+  the same when the teams are tied at the end ("The scores are tied at 310, so play continues."). The
+  rules themselves don't change (spec 06 §2, spec 17 §5).
+- Why: The owner saw the Professor at 106 with the game still going and reported it as a bug. The
+  engine was right (Coach and Grumbles were tied at 60, and the tie rule is in the Rules screen), but
+  nothing at the table explained it.

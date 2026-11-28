@@ -663,6 +663,15 @@ button:disabled {
   color: #ffe98a;
 }
 
+/* "Play continues" after a tie at the end of a game (D-100): wraps instead of widening the dialog. */
+.dialog-note.tie-note {
+  max-width: 720px;
+  margin: 16px auto 18px;
+  font-size: 26px;
+  line-height: 1.35;
+  text-align: center;
+}
+
 .results-grid {
   display: grid;
   grid-template-columns: 1fr auto auto;

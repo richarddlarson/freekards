@@ -311,6 +311,9 @@ export class SpadesTable extends TrickTable<spades.SpadesEvent> {
     const panel = h('div', 'dialog');
     panel.append(h('h2', '', `Hand ${this.state.handNumber} results`));
     if (scored?.type === 'hand_scored') panel.append(this.resultsTable(scored.results));
+    if (spades.tiedAtEnd(this.state.scores, this.state.targetScore)) {
+      panel.append(h('p', 'dialog-note tie-note', `The scores are tied at ${this.state.scores[0]}, so play continues.`));
+    }
     const over = spades.gameWinner(this.state.scores, this.state.targetScore) !== null;
     await this.dialogWithButton(panel, over ? 'Final results' : 'Next hand');
   }
