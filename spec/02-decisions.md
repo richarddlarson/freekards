@@ -1041,3 +1041,31 @@ Template:
   about 1.6× for 4K it was smoothed away. Measured fine-detail contrast at 4K was 1.6 (out of 255) with
   the old texture and 3.2 with the new one; at 1920 × 1280 it went from 2.4 to 4.2. Six variants were
   compared at both scales: a coarser grain looked like sandpaper, and a large mottle looked cloudy.
+
+## D-088 — Poker: Five-Card Draw, fixed limit, for KardCoins
+- Date: 2026-11-27
+- Status: Proposed (chosen by the assistant at the owner's request; listed for his review)
+- Decision: The first poker game is **Five-Card Draw** for the player and three computer players
+  (spec 19 §2): antes, no opening requirement, **fixed-limit** betting (small bet before the draw, big
+  bet after, a bet and three raises per round), one draw of **0 to 5 cards**, standard hand ranks with
+  the A-2-3-4-5 straight, no wild cards, split pots with side pots. Three stakes, Low 5/10/20, Medium
+  10/20/40, High 25/50/100 (ante/small/big), with buy-ins of 200, 500, and 1,000 (spec 19 §3). Hand
+  ranking, pots, and betting are separate modules so later variants reuse them.
+- Why: Owner request (R-010): "basic 5 card draw poker", the first game that uses KardCoins, with more
+  poker variants and Blackjack to follow. Fixed limit keeps the choices to a few big buttons (no bet
+  sizing) on a tablet and keeps the computer players simple and predictable; no-limit can come with
+  Hold'em. No openers ("Jacks or better") and a free choice of discards make the game easier to learn;
+  the computer players' strategy still behaves like a Jacks-or-better table (§5.3). Four seats reuse
+  the Hearts and Spades table positions. Settles open question Q6.
+
+## D-089 — Five-Card Draw computer players
+- Date: 2026-11-27
+- Status: Proposed (tuned by simulation)
+- Decision: Computer players estimate their chance of winning by dealing out random hands for the
+  other players (and, before the draw, playing out everyone's draw), filtered by what each player has
+  shown when the skill roll succeeds, then compare it with fair-share and pot-odds thresholds; risk
+  adds bluffs and loose calls (spec 19 §5).
+- Why: Simulated equity handles every situation (draws, number of opponents, after the draw) with one
+  rule instead of a hand-strength table per case, and the "read" maps skill onto something a person
+  would recognize as better play. With a single bar for betting and raising they checked 657 of 896
+  first-round decisions and 90% of hands reached a showdown, so betting and raising got separate bars.

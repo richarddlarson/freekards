@@ -139,11 +139,32 @@ pre-release on 2026-11-27.** Waiting on the owner:
   card table top cover color. Let's allow blue and maybe some subtle shades of dark red and/or gold or
   orangish, but nothing too garish."
 
+## R-010 — Poker for KardCoins, and the casino regulars' coins
+- **Status:** In progress 2026-11-27: Five-Card Draw (spec 19, D-088 to D-093) and the regulars'
+  balances (spec 15 §6, D-090). Later: Five- and Seven-Card Stud, Texas Hold'em, Blackjack (R-002).
+- **Requested:** 2026-11-27, by the owner
+- **Request (original wording):** "ok, so next let's look at adding some games that require using
+  your kardcoins.  Let's try adding basic 5 card draw poker.  We'll most likely need to add some poker
+  chip graphics and chip stack graphics as well as sounds and animations for the chips as well when you
+  ante, bet, etc.  Also, I've been thinking we may need to include kardcoin amounts that the other
+  virtual players have as well.  we should make their amounts start at 500 like you when the game
+  starts, and then they should be given amounts requisite to the totals you would earn after every game
+  you play with them. players that you don't play with should also be "earning or losing" amounts with
+  every game as well becuase it's assumed they are "playing" elsewhere and we need them to have stacked
+  coin amounts if you choose them to play against in the poker game, even if you've never played them
+  in other card games.  It's sort of a lightweight simulation of a casino with these guys all being
+  regulars that earn and lose money in the background while you play as well, regardless if you are
+  playing against any of them specifically in any given game or turn.  my goal is to eventually add
+  other poker variants (5 card and 7 card stud, texas hold 'em, etc.) so if you need to make anything
+  reusable for this, go ahead and do so.  I'll eventually be adding blackjack too.  You did a great job
+  on the rules for all the other games without having to ask. Feel free to just do that same process
+  this time, and just list your decisions at the end."
+
 ## R-002 — Remaining games
 - **Status:** In progress. **Spades** built 2026-11-25 (spec 17, D-070 to D-074). **Gin Rummy** and
   **Rummy 500** built 2026-11-25 (spec 18, D-076 to D-081), approved by the owner.
-- **Games:** ~~Spades~~, ~~Rummy 500~~, ~~Gin Rummy~~, Blackjack, Poker, Solitaire. Open questions Q6–Q8
-  cover rules and variants.
+- **Games:** ~~Spades~~, ~~Rummy 500~~, ~~Gin Rummy~~, Blackjack, Poker (Five-Card Draw started,
+  R-010; Stud and Hold'em later), Solitaire. Open questions Q7–Q8 cover rules and variants.
 - **Request for the rummy games (original wording, 2026-11-25):** "Let's try adding something
   different. I want to add 500 Rummy and Gin (both 2 player only) to the list of available games.
   They are very similar games, so it may make sense to try and add them in a single session. You did a

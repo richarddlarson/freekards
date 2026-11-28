@@ -7,6 +7,7 @@ export * as hearts from './hearts/index.js';
 export * as spades from './spades/index.js';
 export * as gin from './gin/index.js';
 export * as rummy500 from './rummy500/index.js';
+export * as poker from './poker/index.js';
 export * as rummy from './rummy/melds.js';
 export * as dialogue from './dialogue/index.js';
 export * as layout from './layout/hearts-table.js';

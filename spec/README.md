@@ -31,6 +31,7 @@ look, feel, behavior, build, packaging, install, runtime, or development process
 | [16-settings.md](16-settings.md) | Per-player Settings panel: card order, card response (drag to play), game speed. |
 | [17-spades.md](17-spades.md) | Spades rules, phases, events, AI, and screens. |
 | [18-rummy-games.md](18-rummy-games.md) | Gin Rummy and Rummy 500: melds, rules, phases, events, AI, and screens. |
+| [19-poker.md](19-poker.md) | Poker: hand ranking, Five-Card Draw rules, betting and pots, stakes and buy-ins, AI, chips, and screens. |
 | [runtimes/electron.md](runtimes/electron.md) | Electron-specific stack, versions, source tree, scripts, packaging, installers, SBOM tooling, and CI. |
 
 Every document except those in `runtimes/` is **engine-neutral** (see 05). Later documents get the
