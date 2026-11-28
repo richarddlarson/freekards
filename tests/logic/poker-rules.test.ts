@@ -14,6 +14,7 @@ import {
   type DrawAction,
   type DrawState,
 } from '../../src/logic/poker/index.js';
+import { pokerCandidates } from '../../src/logic/dialogue/poker-triggers.js';
 
 const hand = (s: string) => s.split(' ') as Card[];
 const name = (s: string) => handName(evaluate5(hand(s)));
@@ -177,5 +178,41 @@ describe('draw strategy (spec 19 §5.2)', () => {
     expect(discards('9C 8D 7H 6S 2C')).toBe(1);
     expect(discards('KC 9D 7H 4S 2C')).toBe(4);
     expect(discards('9C 7D 5H 4S 2C')).toBe(5);
+  });
+});
+
+describe('poker dialogue triggers (spec 08 §Poker triggers)', () => {
+  const ctx = { computerSeats: [1, 2, 3], ante: 5 };
+  const triggers = (events: Parameters<typeof pokerCandidates>[0], c: Parameters<typeof pokerCandidates>[1] = ctx) =>
+    pokerCandidates(events, c).map((x) => `${x.seat}:${x.trigger}`);
+
+  it('maps raises, folds, and standing pat to the right perspectives', () => {
+    expect(triggers([{ type: 'bet_action', seat: 0, kind: 'raise', amount: 20, allIn: false, round: 0 }])).toEqual(['1:poker.raise.human', '2:poker.raise.human', '3:poker.raise.human']);
+    expect(triggers([{ type: 'bet_action', seat: 2, kind: 'fold', amount: 0, allIn: false, round: 0 }])).toEqual(['2:poker.fold.self']);
+    expect(triggers([{ type: 'drew', seat: 3, count: 0 }])).toEqual(['3:poker.stood_pat.self']);
+  });
+
+  it('talks about the main pot: winner, big pot, bluff, big hand, and bad beats', () => {
+    const full = evaluate5(hand('KC KD KH 4S 4C'));
+    const trips = evaluate5(hand('7C 7D 7H QS 2C'));
+    const out = triggers(
+      [
+        { type: 'showdown', hands: [{ seat: 1, cards: full.cards, value: full }, { seat: 0, cards: trips.cards, value: trips }] },
+        { type: 'pot_won', potIndex: 0, amount: 140, winners: [1], shares: [[1, 140]], handName: 'Full house, Kings full of 4s' },
+      ],
+      ctx,
+    );
+    expect(out).toContain('1:poker.big_pot.self');
+    expect(out).toContain('2:poker.won_pot.other');
+    expect(out).toContain('1:poker.big_hand.self');
+    expect(out).toContain('2:poker.bad_beat.human');
+    const bluff = triggers([{ type: 'pot_won', potIndex: 0, amount: 30, winners: [2], shares: [[2, 30]], handName: null }], { ...ctx, bluffing: new Set([2]) });
+    expect(bluff).toContain('2:poker.bluff.self');
+    expect(bluff).not.toContain('2:poker.big_pot.self');
+  });
+
+  it('only seated regulars speak', () => {
+    expect(triggers([{ type: 'busted', seat: 0 }], { computerSeats: [1], ante: 5 })).toEqual(['1:poker.busted.human']);
+    expect(triggers([{ type: 'sat', seat: 3, chips: 200 }], { computerSeats: [1, 3], ante: 5 })).toEqual(['3:poker.sit_down.self']);
   });
 });

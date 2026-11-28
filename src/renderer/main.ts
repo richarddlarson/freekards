@@ -4,7 +4,7 @@
  *   #setup                         the Hearts setup screen
  *   #sound[&tracks]                the main menu with the Sound panel open (and its track list)
  *   #settings                      the main menu with the Settings panel open
- *   #welcome / #who / #stats       first-run name entry, the player picker, the stats page
+ *   #welcome / #who / #stats[&regulars]  first-run name entry, the player picker, the stats page (on the regulars' leaderboard)
  *   #about[&licenses]              the About & Credits screen (on its Licenses tab)
  *   (add &record to a #hearts autoplay demo to record its result for the active player)
  *   #hearts&seed=7&autoplay&speed=3  a Hearts game with fixed seed, optionally self-playing
@@ -12,12 +12,13 @@
  *   #spades&seed=7&autoplay&speed=3[&target=500]  a Spades game (same options as #hearts)
  *   #gin-setup / #rummy500-setup   the Gin Rummy / Rummy 500 setup screen
  *   #gin&seed=7&autoplay&speed=3 / #rummy500&seed=7&autoplay&speed=3  a game (same options as #hearts)
+ *   #poker-setup / #poker&seed=7&autoplay&speed=3[&stakes=medium]  Five-Card Draw setup / a self-playing table
  *   &felt=blue                     with any of the above: show that table felt instead of the player's
  */
 import type { dialogue } from '../logic/index.js';
 import { Rng } from '../logic/index.js';
 import { CHARACTERS, characterById } from './content.js';
-import { showHeartsSetup, showMainMenu, showSpadesSetup, showTwoPlayerSetup } from './screens.js';
+import { showHeartsSetup, showMainMenu, showPokerSetup, showSpadesSetup, showTwoPlayerSetup } from './screens.js';
 import { loadSettings, saveSettings, type Settings } from './settings.js';
 import { Stage } from './stage.js';
 import { audio } from './audio.js';
@@ -25,8 +26,9 @@ import { HeartsTable, type HeartsGameResult } from './table/hearts-table.js';
 import { SpadesTable, type SpadesGameResult } from './table/spades-table.js';
 import { GinTable, type GinGameResult } from './table/gin-table.js';
 import { Rummy500Table, type Rummy500GameResult } from './table/rummy500-table.js';
-import { casino, profile } from '../logic/index.js';
-import { activeProfile, activeSettings, allProfiles, loadProfiles, onProfilesChanged, replaceProfile, settleRegulars } from './profiles.js';
+import { PokerTable, type PokerBank } from './table/poker-table.js';
+import { casino, poker, profile } from '../logic/index.js';
+import { activeProfile, activeSettings, allProfiles, loadProfiles, onProfilesChanged, REGULARS, replaceProfile, settleRegulars } from './profiles.js';
 import { showNameEntry, showProfilePage, showWhoIsPlaying } from './profile-screens.js';
 import { showAbout } from './credits.js';
 
@@ -39,7 +41,7 @@ audio.setVolumes(loadSettings().volumes);
 audio.setMusicChoice(loadSettings().musicTrack);
 void audio.preloadCues();
 audio.startMusic();
-let table: HeartsTable | SpadesTable | GinTable | Rummy500Table | null = null;
+let table: HeartsTable | SpadesTable | GinTable | Rummy500Table | PokerTable | null = null;
 /** Spades choices when no profile is active (browser preview); profiles keep their own (spec 15 §2). */
 let guestSpadesPrefs: profile.SpadesPrefs = { ...profile.DEFAULT_SPADES_PREFS };
 const guestTwoPlayerPrefs: Record<TwoPlayerGame, profile.TwoPlayerPrefs> = {
@@ -60,7 +62,7 @@ function menu(): void {
   table = null;
   showMainMenu(
     stage,
-    { playHearts: setup, playSpades: spadesSetup, playRummy500: () => twoPlayerSetup('rummy500'), playGin: () => twoPlayerSetup('gin'), quit: () => window.close(), stats: statsPage, switchPlayer: whoIsPlaying, about: aboutPage },
+    { playHearts: setup, playSpades: spadesSetup, playRummy500: () => twoPlayerSetup('rummy500'), playGin: () => twoPlayerSetup('gin'), playPoker: pokerSetup, quit: () => window.close(), stats: statsPage, switchPlayer: whoIsPlaying, about: aboutPage },
     activeProfile(),
   );
 }
@@ -219,6 +221,105 @@ function playTwoPlayer(game: TwoPlayerGame, prefs: profile.TwoPlayerPrefs, demo:
   void t.run();
 }
 
+// ------------------------------------------------------------------ poker (spec 19)
+
+let guestPokerPrefs: profile.PokerPrefs = { ...profile.DEFAULT_POKER_PREFS };
+/** Without a profile (browser preview, demos), poker uses a throwaway guest with the usual 500. */
+function guestProfile(): profile.Profile {
+  return casino.syncRegulars(profile.createProfile('Guest', 'guest', new Date().toISOString()), REGULARS);
+}
+
+function pokerPrefs(): profile.PokerPrefs {
+  return activeProfile()?.prefs.poker ?? guestPokerPrefs;
+}
+
+function pokerSetup(): void {
+  const p = activeProfile() ?? guestProfile();
+  showPokerSetup(stage, pokerPrefs(), { balance: p.coins, regularCoins: (id) => casino.regularBalance(p, id) }, {
+    back: menu,
+    start: (s) => {
+      const cur = activeProfile();
+      if (cur) replaceProfile({ ...cur, prefs: { ...cur.prefs, poker: s } });
+      else guestPokerPrefs = s;
+      playPoker(s);
+    },
+  });
+}
+
+/** The KardCoins behind the table: the active profile, or a guest kept in memory (spec 15 §6.3). */
+function pokerBank(useProfile: boolean, stakes: poker.Stakes, start: profile.Profile): { bank: PokerBank; get(): profile.Profile } {
+  let guest = start;
+  const get = () => (useProfile ? (activeProfile() ?? guest) : guest);
+  const put = (p: profile.Profile) => (useProfile && activeProfile() ? replaceProfile(p) : (guest = p));
+  const now = () => new Date().toISOString();
+  const bank: PokerBank = {
+    balance: () => get().coins,
+    rebuy: () => {
+      const r = casino.rebuy(get(), now());
+      if (!r) return null;
+      put(r.profile);
+      return r.chips;
+    },
+    regularRebuy: (id) => {
+      const r = casino.seatRegular(get(), id);
+      if (!r) return null;
+      put(r.profile);
+      return r.chips;
+    },
+    regularLeaves: (id) => put(casino.regularLeaves(get(), id)),
+    seatRegular: (exclude) => {
+      const p = get();
+      const free = CHARACTERS.filter((c) => !exclude.includes(c.id) && casino.buyInAmount(casino.regularBalance(p, c.id), stakes) !== null);
+      if (free.length === 0) return null;
+      const c = free[Math.floor(Math.random() * free.length)]!;
+      const r = casino.seatRegular(p, c.id);
+      if (!r) return null;
+      put(r.profile);
+      return { character: c, chips: r.chips };
+    },
+    saveTable: (you, regulars) => put(casino.saveTable(get(), you, regulars)),
+    cashOut: (session) => {
+      const r = casino.cashOut(get(), session, REGULARS, now());
+      put(r.profile);
+      return { net: r.net, cashed: r.cashed, balance: r.profile.coins };
+    },
+  };
+  return { bank, get };
+}
+
+function playPoker(prefs: profile.PokerPrefs, demo: Demo = {}): void {
+  table?.destroy();
+  stage.clear();
+  const seed = demo.seed ?? (Date.now() >>> 0);
+  const stakes = poker.STAKES[prefs.stakes];
+  // A computer-played demo never touches the player's coins.
+  const useProfile = !!activeProfile() && (!demo.autoplay || !!demo.record);
+  const start = useProfile ? activeProfile()! : guestProfile();
+  if (casino.buyInAmount(start.coins, stakes) === null) return pokerSetup();
+  const affordable = (id: string) => casino.buyInAmount(casino.regularBalance(start, id), stakes) !== null;
+  const chosen = prefs.opponents?.filter(affordable) ?? [];
+  const ids = chosen.length > 0 ? chosen : new Rng(seed ^ 0x9e1).shuffle(CHARACTERS.map((c) => c.id).filter(affordable)).slice(0, 3);
+  const seated = casino.sitDown(start, prefs.stakes, ids, new Date().toISOString());
+  const t0 = seated.casino.pokerTable!;
+  const opponents = ids.filter((id) => t0.regulars[id] !== undefined).map((id) => characterById(id)!);
+  const { bank } = pokerBank(useProfile, stakes, seated);
+  if (useProfile) replaceProfile(seated);
+  const t = new PokerTable(stage, {
+    stakes,
+    chips: [t0.you, ...opponents.map((c) => t0.regulars[c.id]!)],
+    bank,
+    difficulty: prefs.difficulty,
+    opponents,
+    seed,
+    autoplay: demo.autoplay,
+    speed: demo.speed,
+    getSettings: activeSettings,
+    onExit: (next) => (next === 'again' ? pokerSetup() : menu()),
+  });
+  table = t;
+  void t.run();
+}
+
 /** Record a finished game for the active player and return the award to show (D-050). */
 function recordResult(settings: Settings, opponents: readonly dialogue.CharacterDef[], g: HeartsGameResult): ReturnType<typeof profile.recordHeartsGame> | null {
   const p = activeProfile();
@@ -282,9 +383,21 @@ async function start(): Promise<void> {
       });
     }
   }
+  if (hash.has('poker-setup')) return pokerSetup();
+  if (hash.has('poker')) {
+    const stakes = hash.get('stakes');
+    return playPoker(
+      { ...pokerPrefs(), stakes: stakes === 'medium' || stakes === 'high' ? stakes : 'low' },
+      { seed: Number(hash.get('seed') ?? 1), autoplay: hash.has('autoplay'), speed: Number(hash.get('speed') ?? 1), record: hash.has('record') },
+    );
+  }
   if (hash.has('welcome')) return welcome();
   if (hash.has('who')) return whoIsPlaying();
-  if (hash.has('stats')) return statsPage();
+  if (hash.has('stats')) {
+    statsPage();
+    if (hash.has('regulars')) document.querySelectorAll<HTMLElement>('.stats-section:last-child .stats-tabs button')[1]?.dispatchEvent(new PointerEvent('pointerup', { button: 0 }));
+    return;
+  }
   if (hash.has('about')) {
     aboutPage();
     if (hash.has('licenses')) document.querySelectorAll('.about-tabs button')[1]?.dispatchEvent(new PointerEvent('pointerup', { button: 0 }));

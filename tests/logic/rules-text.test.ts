@@ -6,6 +6,7 @@ import * as hearts from '../../src/logic/hearts/index.js';
 import * as rummy500 from '../../src/logic/rummy500/index.js';
 import * as spades from '../../src/logic/spades/index.js';
 import { twoPlayerPayout } from '../../src/logic/profile/profile.js';
+import * as poker from '../../src/logic/poker/index.js';
 
 function load(game: RulesGame): { src: string; doc: RulesDoc } {
   const src = readFileSync(new URL(`../../spec/content/rules/${game}.md`, import.meta.url), 'utf8');
@@ -61,6 +62,15 @@ describe('rules content (spec/content/rules)', () => {
     expect(headings.some((h) => h === 'Special rules' || h === 'FreeKards choices')).toBe(true);
     // Every section has text, and the order of play is a numbered list.
     expect(doc.sections.find((s) => s.heading === 'Order of play')!.blocks.some((b) => b.kind === 'steps')).toBe(true);
+  });
+
+  it('match the numbers Five-Card Draw uses', () => {
+    const p = plain(load('five-card-draw').src);
+    for (const st of Object.values(poker.STAKES)) {
+      expect(p).toContain(`ante ${st.ante}, bets of ${st.smallBet} and ${st.bigBet}. Buy-in ${st.buyIn.toLocaleString('en-US')} (at least ${st.minBuyIn})`);
+    }
+    expect(p).toContain(`a bet and ${poker.RAISE_CAP} raises`);
+    expect(p).toContain(`${poker.DRAW_HAND_SIZE} cards`);
   });
 
   it('match the numbers the game engines use', () => {

@@ -524,6 +524,190 @@
         "id": "reginald.rummy.big_meld.human.2",
         "text": "Hmph. Impressive. Don't let it go to your head."
       }
+    ],
+    "poker.won_pot.self": [
+      {
+        "id": "reginald.poker.won_pot.self.1",
+        "text": "Naturally. The pot recognizes its rightful owner."
+      },
+      {
+        "id": "reginald.poker.won_pot.self.2",
+        "text": "As my ancestors would have wanted."
+      },
+      {
+        "id": "reginald.poker.won_pot.self.3",
+        "text": "Breeding will tell, my friends."
+      }
+    ],
+    "poker.won_pot.human": [
+      {
+        "id": "reginald.poker.won_pot.human.1",
+        "text": "Hmph. Beginner's fortune."
+      },
+      {
+        "id": "reginald.poker.won_pot.human.2",
+        "text": "Most irregular. I demand a recount. Politely."
+      }
+    ],
+    "poker.won_pot.other": [
+      {
+        "id": "reginald.poker.won_pot.other.1",
+        "text": "An outrage. A small outrage, but an outrage."
+      },
+      {
+        "id": "reginald.poker.won_pot.other.2",
+        "text": "Enjoy it. Fortune is a fickle duchess."
+      }
+    ],
+    "poker.big_pot.self": [
+      {
+        "id": "reginald.poker.big_pot.self.1",
+        "text": "A pot worthy of the Fairweather name!"
+      },
+      {
+        "id": "reginald.poker.big_pot.self.2",
+        "text": "Splendid! This will restore the family silver."
+      }
+    ],
+    "poker.big_pot.human": [
+      {
+        "id": "reginald.poker.big_pot.human.1",
+        "text": "That pot contained part of my inheritance!"
+      },
+      {
+        "id": "reginald.poker.big_pot.human.2",
+        "text": "Good heavens. You've plundered the estate."
+      }
+    ],
+    "poker.bluff.self": [
+      {
+        "id": "reginald.poker.bluff.self.1",
+        "text": "I held nothing. A gentleman never shows."
+      },
+      {
+        "id": "reginald.poker.bluff.self.2",
+        "text": "A bluff, old sport. My grandfather did it with a straight face too."
+      }
+    ],
+    "poker.stood_pat.self": [
+      {
+        "id": "reginald.poker.stood_pat.self.1",
+        "text": "I shall keep my hand. It is, after all, distinguished."
+      },
+      {
+        "id": "reginald.poker.stood_pat.self.2",
+        "text": "No cards. Perfection needs no improvement."
+      }
+    ],
+    "poker.stood_pat.human": [
+      {
+        "id": "reginald.poker.stood_pat.human.1",
+        "text": "Standing pat? How presumptuous."
+      },
+      {
+        "id": "reginald.poker.stood_pat.human.2",
+        "text": "No cards? I see. Most unsettling."
+      }
+    ],
+    "poker.raise.self": [
+      {
+        "id": "reginald.poker.raise.self.1",
+        "text": "I raise. As is my birthright."
+      },
+      {
+        "id": "reginald.poker.raise.self.2",
+        "text": "A raise, I think. Do keep up."
+      }
+    ],
+    "poker.raise.human": [
+      {
+        "id": "reginald.poker.raise.human.1",
+        "text": "You dare raise a Fairweather?"
+      },
+      {
+        "id": "reginald.poker.raise.human.2",
+        "text": "A raise! How very bold. And vulgar."
+      }
+    ],
+    "poker.fold.self": [
+      {
+        "id": "reginald.poker.fold.self.1",
+        "text": "I fold. Strategically. With dignity."
+      },
+      {
+        "id": "reginald.poker.fold.self.2",
+        "text": "This hand is beneath me."
+      }
+    ],
+    "poker.bad_beat.self": [
+      {
+        "id": "reginald.poker.bad_beat.self.1",
+        "text": "Three of a kind, defeated! This is an OUTRAGE!"
+      },
+      {
+        "id": "reginald.poker.bad_beat.self.2",
+        "text": "My ancestors are spinning in their moderately priced graves."
+      }
+    ],
+    "poker.bad_beat.human": [
+      {
+        "id": "reginald.poker.bad_beat.human.1",
+        "text": "Rotten luck, old sport. Truly."
+      },
+      {
+        "id": "reginald.poker.bad_beat.human.2",
+        "text": "A noble hand, cruelly undone. I sympathize."
+      }
+    ],
+    "poker.big_hand.self": [
+      {
+        "id": "reginald.poker.big_hand.self.1",
+        "text": "A full house! Fit for a manor!"
+      },
+      {
+        "id": "reginald.poker.big_hand.self.2",
+        "text": "Behold, a hand of distinction."
+      }
+    ],
+    "poker.big_hand.human": [
+      {
+        "id": "reginald.poker.big_hand.human.1",
+        "text": "Good heavens. That is a hand of some quality."
+      },
+      {
+        "id": "reginald.poker.big_hand.human.2",
+        "text": "Hmph. Impressive. For a commoner."
+      }
+    ],
+    "poker.busted.self": [
+      {
+        "id": "reginald.poker.busted.self.1",
+        "text": "Penniless! I must sell a portrait of an ancestor."
+      },
+      {
+        "id": "reginald.poker.busted.self.2",
+        "text": "Ruined! Fetch my monocle, I'm leaving."
+      }
+    ],
+    "poker.busted.human": [
+      {
+        "id": "reginald.poker.busted.human.1",
+        "text": "Chin up. Even the Fairweathers were broke once. Twice."
+      },
+      {
+        "id": "reginald.poker.busted.human.2",
+        "text": "Out of chips? Most unfortunate. Do come again."
+      }
+    ],
+    "poker.sit_down.self": [
+      {
+        "id": "reginald.poker.sit_down.self.1",
+        "text": "Make way. A Fairweather has arrived."
+      },
+      {
+        "id": "reginald.poker.sit_down.self.2",
+        "text": "I shall grace this table with my presence."
+      }
     ]
   }
 }

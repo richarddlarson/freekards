@@ -543,6 +543,190 @@
         "id": "dot.rummy.big_meld.human.2",
         "text": "My goodness, look at all those. Very nice."
       }
+    ],
+    "poker.won_pot.self": [
+      {
+        "id": "dot.poker.won_pot.self.1",
+        "text": "Oh, how lovely. I'll just tuck these away."
+      },
+      {
+        "id": "dot.poker.won_pot.self.2",
+        "text": "Thank you, dears. Grandma's knitting fund thanks you."
+      },
+      {
+        "id": "dot.poker.won_pot.self.3",
+        "text": "Oh my, was that mine? How nice."
+      }
+    ],
+    "poker.won_pot.human": [
+      {
+        "id": "dot.poker.won_pot.human.1",
+        "text": "Well done, sweetheart. Enjoy it while it lasts."
+      },
+      {
+        "id": "dot.poker.won_pot.human.2",
+        "text": "Good for you, dear. I'm keeping an eye on you."
+      }
+    ],
+    "poker.won_pot.other": [
+      {
+        "id": "dot.poker.won_pot.other.1",
+        "text": "Oh, good for you. I'll get it back, of course."
+      },
+      {
+        "id": "dot.poker.won_pot.other.2",
+        "text": "Lovely. Do enjoy those chips while you have them."
+      }
+    ],
+    "poker.big_pot.self": [
+      {
+        "id": "dot.poker.big_pot.self.1",
+        "text": "Oh my, that's a lot of yarn money."
+      },
+      {
+        "id": "dot.poker.big_pot.self.2",
+        "text": "My, my. Grandma's having a very good day."
+      }
+    ],
+    "poker.big_pot.human": [
+      {
+        "id": "dot.poker.big_pot.human.1",
+        "text": "Goodness! Look at all those chips, dear."
+      },
+      {
+        "id": "dot.poker.big_pot.human.2",
+        "text": "That's a big pile, sweetheart. Don't lose it to me."
+      }
+    ],
+    "poker.bluff.self": [
+      {
+        "id": "dot.poker.bluff.self.1",
+        "text": "Oh, I had nothing at all. Isn't that funny?"
+      },
+      {
+        "id": "dot.poker.bluff.self.2",
+        "text": "Don't tell anyone, dear. Grandma was fibbing."
+      }
+    ],
+    "poker.stood_pat.self": [
+      {
+        "id": "dot.poker.stood_pat.self.1",
+        "text": "I'm quite happy with these, thank you."
+      },
+      {
+        "id": "dot.poker.stood_pat.self.2",
+        "text": "No cards for me, dear. I'm all set."
+      }
+    ],
+    "poker.stood_pat.human": [
+      {
+        "id": "dot.poker.stood_pat.human.1",
+        "text": "None at all? Aren't you confident, dear."
+      },
+      {
+        "id": "dot.poker.stood_pat.human.2",
+        "text": "Oh, standing pat? How brave. Or is it?"
+      }
+    ],
+    "poker.raise.self": [
+      {
+        "id": "dot.poker.raise.self.1",
+        "text": "I believe I'll raise, dear. Just a little."
+      },
+      {
+        "id": "dot.poker.raise.self.2",
+        "text": "Let's make it interesting, shall we?"
+      }
+    ],
+    "poker.raise.human": [
+      {
+        "id": "dot.poker.raise.human.1",
+        "text": "A raise! Oh, you naughty thing."
+      },
+      {
+        "id": "dot.poker.raise.human.2",
+        "text": "Raising your sweet old grandma? Well, all right."
+      }
+    ],
+    "poker.fold.self": [
+      {
+        "id": "dot.poker.fold.self.1",
+        "text": "I'll sit this one out and knit a row."
+      },
+      {
+        "id": "dot.poker.fold.self.2",
+        "text": "Not this time, dear. I'm patient."
+      }
+    ],
+    "poker.bad_beat.self": [
+      {
+        "id": "dot.poker.bad_beat.self.1",
+        "text": "Oh dear. That was a very good hand, too."
+      },
+      {
+        "id": "dot.poker.bad_beat.self.2",
+        "text": "Well. I'll remember that, dear. I always do."
+      }
+    ],
+    "poker.bad_beat.human": [
+      {
+        "id": "dot.poker.bad_beat.human.1",
+        "text": "Oh, sweetheart, that was so unlucky."
+      },
+      {
+        "id": "dot.poker.bad_beat.human.2",
+        "text": "Poor dear. Have a lemon bar. It helps."
+      }
+    ],
+    "poker.big_hand.self": [
+      {
+        "id": "dot.poker.big_hand.self.1",
+        "text": "A full house! Just like Thanksgiving."
+      },
+      {
+        "id": "dot.poker.big_hand.self.2",
+        "text": "Oh look, dear. Isn't that a pretty hand?"
+      }
+    ],
+    "poker.big_hand.human": [
+      {
+        "id": "dot.poker.big_hand.human.1",
+        "text": "My goodness, what a hand! I'm impressed."
+      },
+      {
+        "id": "dot.poker.big_hand.human.2",
+        "text": "Oh, you've been practicing. I can tell."
+      }
+    ],
+    "poker.busted.self": [
+      {
+        "id": "dot.poker.busted.self.1",
+        "text": "Oh dear, I'm all out. Back to my knitting."
+      },
+      {
+        "id": "dot.poker.busted.self.2",
+        "text": "Well, that's my chips gone. I'll be back, dear."
+      }
+    ],
+    "poker.busted.human": [
+      {
+        "id": "dot.poker.busted.human.1",
+        "text": "Oh, sweetheart. Don't worry, you'll win it back."
+      },
+      {
+        "id": "dot.poker.busted.human.2",
+        "text": "All out? Come have a lemon bar and try again later."
+      }
+    ],
+    "poker.sit_down.self": [
+      {
+        "id": "dot.poker.sit_down.self.1",
+        "text": "Mind if Grandma joins you, dears?"
+      },
+      {
+        "id": "dot.poker.sit_down.self.2",
+        "text": "Hello, dears. I brought my lucky cardigan."
+      }
     ]
   }
 }

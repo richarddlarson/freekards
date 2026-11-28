@@ -28,7 +28,7 @@ export interface RulesDoc {
 }
 
 /** The games that have a rules screen, and the file each one reads (spec/content/rules/<id>.md). */
-export const RULES_GAMES = ['hearts', 'spades', 'rummy500', 'gin'] as const;
+export const RULES_GAMES = ['hearts', 'spades', 'rummy500', 'gin', 'five-card-draw'] as const;
 export type RulesGame = (typeof RULES_GAMES)[number];
 
 /** Split `**bold**` runs. An unpaired `**` is an error, so a typo can't turn the rest of a line bold. */

@@ -14,9 +14,10 @@ Main menu ──Play <game>──▶ <game> setup ──Deal!──▶ <game> ta
     └────────────────────────┴───────────────────────┴── Main menu ───────────────┘
 ```
 - **Main menu:** the "FreeKards" title, tagline "Classic card games with friendly faces", the large
-  gold play buttons in two rows of two, **Play Hearts** | **Play Spades** and **Play Rummy 500** |
-  **Play Gin Rummy** (D-072, D-081), a 2-column grid of the other three games marked *coming soon*
-  (disabled; the odd last one centered),
+  gold play buttons in rows of two, **Play Hearts** | **Play Spades**, **Play Rummy 500** |
+  **Play Gin Rummy** (D-072, D-081), and **Play Poker** (D-092, spec 19), then the games still to come
+  (Blackjack, Solitaire) marked *coming soon* (disabled), in the same 2-column grid with the odd last
+  button centered,
   and, along the bottom, **Sound** (opens the Sound panel, spec 13), **Settings** (the player's
   Settings panel, spec 16), **About** (the About & Credits screen, below), and **Quit** (closes the app).
 - **About & Credits** (D-066, spec 09 §5), one panel that fills most of the screen:

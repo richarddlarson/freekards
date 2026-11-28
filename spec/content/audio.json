@@ -49,6 +49,33 @@
       "assets/audio/sfx/kenney-casino-audio/chips-stack-1.ogg",
       "assets/audio/sfx/kenney-casino-audio/chips-stack-3.ogg",
       "assets/audio/sfx/kenney-casino-audio/chips-stack-5.ogg"
+    ],
+    "chips.bet": [
+      "assets/audio/sfx/kenney-casino-audio/chip-lay-1.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chip-lay-2.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chip-lay-3.ogg"
+    ],
+    "chips.raise": [
+      "assets/audio/sfx/kenney-casino-audio/chips-stack-1.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-stack-2.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-stack-3.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-stack-4.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-stack-5.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-stack-6.ogg"
+    ],
+    "chips.collect": [
+      "assets/audio/sfx/kenney-casino-audio/chips-collide-1.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-collide-2.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-collide-3.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-collide-4.ogg"
+    ],
+    "chips.win": [
+      "assets/audio/sfx/kenney-casino-audio/chips-handle-1.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-handle-2.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-handle-3.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-handle-4.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-handle-5.ogg",
+      "assets/audio/sfx/kenney-casino-audio/chips-handle-6.ogg"
     ]
   },
   "music": [
@@ -143,6 +170,9 @@
     },
     "card.select": {
       "gain": 0.7
+    },
+    "chips.bet": {
+      "minGapMs": 90
     }
   },
   "musicEncoding": {

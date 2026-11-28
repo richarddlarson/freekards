@@ -1090,3 +1090,44 @@ Template:
   Bonuses (moons, Nils, gins) aren't tracked for the computer players, so they are left out. Moving
   chips in and out of balances, rather than settling hand by hand, means a session can never lose or
   create coins, and saving after each hand means a crash never does either.
+
+## D-091 — Poker chips and chip sounds
+- Date: 2026-11-27
+- Status: Proposed (chosen by the assistant; the owner picks sounds by ear and can swap them)
+- Decision: Six chip values (1, 5, 25, 100, 500, 1,000) in the usual casino colors, drawn by our own
+  generator seen at an angle so they stack (spec 07 §Poker chips), and amounts drawn as the fewest
+  chips in stacks of up to 12 (spec 19 §4.3). Four new sound cues use the chip sounds of the Kenney
+  Casino Audio pack already in the app (CC0): `chips.bet` (chip-lay), `chips.raise` (chips-stack),
+  `chips.collect` (chips-collide), `chips.win` (chips-handle) (spec 13 §2).
+- Why: Owner request (R-010) for chip and chip-stack graphics, with sounds and animations for antes and
+  bets. Generated SVGs are original MIT work like the cards, need no font at run time, and stay sharp
+  at any scale. The usual colors (red 5, green 25, black 100) read as chips at a glance. Kenney's pack
+  is the same source and license as the card sounds (the zip matches the hash in the asset register);
+  16 more of its files were copied unmodified.
+
+## D-092 — Poker screens and the regulars at the table
+- Date: 2026-11-27
+- Status: Proposed (chosen by the assistant; listed for the owner's review)
+- Decision: A Poker setup screen (game, stakes, difficulty, 1 to 3 opponents or Random, with each
+  regular's KardCoins and "Short on coins" for those who can't afford the stakes). The table reuses
+  the Hearts seats, with chip stacks, bets, a pot, a dealer button, action tags, an action bar for
+  betting and drawing, and a showdown that brings the regulars' hands to the middle. Leaving is in the
+  pause menu (mid-hand: fold the rest, then leave) and between hands; a summary shows the result. A
+  regular who runs out buys more (chance = risk) or leaves, and another regular may take the seat. The
+  player can buy more chips. The stats page gets a Poker tab and a Casino regulars leaderboard (spec
+  19 §3.3, §4; spec 15 §4).
+- Why: The owner asked for poker with chip animations and for the regulars' coins to matter. Picking
+  1 to 3 opponents allows a quiet heads-up game; showing coins on the setup screen explains why
+  someone can't play. Folding out the current hand when leaving keeps the chips honest without asking
+  the player to wait, and the regulars coming and going is the "casino with regulars" the owner
+  described. Poker has no final score, so sessions end when the player leaves, and "Play again" goes
+  back to the setup to choose stakes again.
+
+## D-093 — Poker dialogue
+- Date: 2026-11-27
+- Status: Proposed (lines written with Claude, voiced with each character's voice; owner to review)
+- Decision: Ten poker triggers (spec 08 §Poker triggers) and 222 new lines across the six
+  characters, in their established voices and running jokes, voiced with the existing Piper voices.
+- Why: Every other game has its own reactions; poker's big moments (bluffs, standing pat, bad beats,
+  going broke, a new regular sitting down) are natural places for the regulars to talk. One line was
+  rewritten before voicing because it leaned on a body-type joke (spec 08 tone rules).

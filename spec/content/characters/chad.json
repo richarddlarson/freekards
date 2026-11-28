@@ -536,6 +536,190 @@
         "id": "chad.rummy.big_meld.human.2",
         "text": "Whoa! That's a highlight right there!"
       }
+    ],
+    "poker.won_pot.self": [
+      {
+        "id": "chad.poker.won_pot.self.1",
+        "text": "And Chad takes the pot! What a play!"
+      },
+      {
+        "id": "chad.poker.won_pot.self.2",
+        "text": "That's called a winning mindset, people!"
+      },
+      {
+        "id": "chad.poker.won_pot.self.3",
+        "text": "Boom! Chips! Momentum!"
+      }
+    ],
+    "poker.won_pot.human": [
+      {
+        "id": "chad.poker.won_pot.human.1",
+        "text": "Great execution! I see you. I SEE you."
+      },
+      {
+        "id": "chad.poker.won_pot.human.2",
+        "text": "You took it down! Respect. Huge respect."
+      }
+    ],
+    "poker.won_pot.other": [
+      {
+        "id": "chad.poker.won_pot.other.1",
+        "text": "Okay, okay. Learning opportunity. Noted."
+      },
+      {
+        "id": "chad.poker.won_pot.other.2",
+        "text": "Nice hand. I'm just warming up."
+      }
+    ],
+    "poker.big_pot.self": [
+      {
+        "id": "chad.poker.big_pot.self.1",
+        "text": "Monster pot! This is what peak performance looks like!"
+      },
+      {
+        "id": "chad.poker.big_pot.self.2",
+        "text": "Chad with the BIG win! The crowd is on its feet!"
+      }
+    ],
+    "poker.big_pot.human": [
+      {
+        "id": "chad.poker.big_pot.human.1",
+        "text": "That's a championship pot! Incredible!"
+      },
+      {
+        "id": "chad.poker.big_pot.human.2",
+        "text": "Huge pot! You're in the zone right now!"
+      }
+    ],
+    "poker.bluff.self": [
+      {
+        "id": "chad.poker.bluff.self.1",
+        "text": "Had nothing! That's confidence, baby!"
+      },
+      {
+        "id": "chad.poker.bluff.self.2",
+        "text": "Total bluff. Believe in yourself and nobody calls."
+      }
+    ],
+    "poker.stood_pat.self": [
+      {
+        "id": "chad.poker.stood_pat.self.1",
+        "text": "No cards needed. I'm already elite."
+      },
+      {
+        "id": "chad.poker.stood_pat.self.2",
+        "text": "Standing pat. Trust the process."
+      }
+    ],
+    "poker.stood_pat.human": [
+      {
+        "id": "chad.poker.stood_pat.human.1",
+        "text": "No draw? Bold strategy! Love the energy!"
+      },
+      {
+        "id": "chad.poker.stood_pat.human.2",
+        "text": "Standing pat? Okay, I respect the confidence."
+      }
+    ],
+    "poker.raise.self": [
+      {
+        "id": "chad.poker.raise.self.1",
+        "text": "Raise! Go big or go home!"
+      },
+      {
+        "id": "chad.poker.raise.self.2",
+        "text": "I'm raising! Fortune favors the bold!"
+      }
+    ],
+    "poker.raise.human": [
+      {
+        "id": "chad.poker.raise.human.1",
+        "text": "Ooh, a raise! Bring it!"
+      },
+      {
+        "id": "chad.poker.raise.human.2",
+        "text": "You're raising? Love it! Let's go!"
+      }
+    ],
+    "poker.fold.self": [
+      {
+        "id": "chad.poker.fold.self.1",
+        "text": "Strategic retreat. Very advanced."
+      },
+      {
+        "id": "chad.poker.fold.self.2",
+        "text": "Folding. Even champions take a knee."
+      }
+    ],
+    "poker.bad_beat.self": [
+      {
+        "id": "chad.poker.bad_beat.self.1",
+        "text": "That's fine. Adversity builds champions."
+      },
+      {
+        "id": "chad.poker.bad_beat.self.2",
+        "text": "Three of a kind and I lose? I'm putting this in my book."
+      }
+    ],
+    "poker.bad_beat.human": [
+      {
+        "id": "chad.poker.bad_beat.human.1",
+        "text": "Brutal! But you'll bounce back, I know it!"
+      },
+      {
+        "id": "chad.poker.bad_beat.human.2",
+        "text": "Ouch! Shake it off. Next hand is yours."
+      }
+    ],
+    "poker.big_hand.self": [
+      {
+        "id": "chad.poker.big_hand.self.1",
+        "text": "Full house! Chad delivers in the clutch!"
+      },
+      {
+        "id": "chad.poker.big_hand.self.2",
+        "text": "Look at this hand! Frame it! Put it in a museum!"
+      }
+    ],
+    "poker.big_hand.human": [
+      {
+        "id": "chad.poker.big_hand.human.1",
+        "text": "Whoa! That's a highlight reel hand!"
+      },
+      {
+        "id": "chad.poker.big_hand.human.2",
+        "text": "Incredible hand! You're a natural!"
+      }
+    ],
+    "poker.busted.self": [
+      {
+        "id": "chad.poker.busted.self.1",
+        "text": "I'm out! But champions always rebuy. Eventually."
+      },
+      {
+        "id": "chad.poker.busted.self.2",
+        "text": "Zero chips. Maximum lessons. Thanks, everyone!"
+      }
+    ],
+    "poker.busted.human": [
+      {
+        "id": "chad.poker.busted.human.1",
+        "text": "Hey, every great comeback starts at zero!"
+      },
+      {
+        "id": "chad.poker.busted.human.2",
+        "text": "Out of chips? This is your origin story!"
+      }
+    ],
+    "poker.sit_down.self": [
+      {
+        "id": "chad.poker.sit_down.self.1",
+        "text": "Coach is in the house! Let's get it!"
+      },
+      {
+        "id": "chad.poker.sit_down.self.2",
+        "text": "Chad here! Ready to crush it! Respectfully!"
+      }
     ]
   }
 }

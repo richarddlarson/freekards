@@ -101,6 +101,106 @@ rejected and changes nothing.
 | Medium (`medium`) | 10 | 20 | 40 | 500 | 100 |
 | High (`high`) | 25 | 50 | 100 | 1,000 | 250 |
 
+### 3.2 Buying in and cashing out
+Chips are KardCoins moved from each player's balance to the table and back (spec 15 §6.3): the
+player and every regular sit down with the buy-in, or their whole balance if it is less but at
+least the minimum. Leaving returns everyone's chips. Chips are saved after every hand.
+
+### 3.3 Players running out of chips (D-092)
+- **A regular** left with no chips after a hand buys more (another buy-in from their balance) with
+  chance equal to their risk trait, if they can afford the minimum ("<Name> buys more chips").
+  Otherwise they **leave** ("<Name> leaves the table"), and a regular who isn't at the table and can
+  afford the minimum, chosen at random, **takes the seat** ("<Name> sits down"). If nobody can, the
+  seat stays empty. A busted regular who left can come back later in the same session.
+- **The player** left with no chips sees "You're out of chips" with **Buy N chips** (from her
+  balance; disabled, with an explanation, if it is below the minimum) and **Leave table**.
+- If everyone else has left and nobody can sit down, the player sees "Everyone else has left the
+  table" and leaves.
+
+## 4. Screens (D-092)
+### 4.1 Setup
+- Reached from **Play Poker** on the main menu (spec 12 §1). Title "Poker". Rows:
+  - **Game:** Five-Card Draw (the only choice for now), with "More poker games are coming".
+  - **Stakes:** Low · Medium · High. Under it: "Ante 5 · Bets 10 and 20 · You sit down with 200 of
+    your 500 KardCoins", or, below the minimum, "… You need at least 50 KardCoins to sit down (you
+    have 30)" in red, and **Sit down** is disabled.
+  - **Difficulty:** Easy · Medium · Hard.
+  - **Opponents:** **Random** (up to three regulars who can afford the stakes) or **1 to 3 chosen**
+    regulars, seated West, North, East in the order picked. Each tile shows the regular's KardCoins;
+    a regular below the stakes' minimum is dimmed, can't be picked, and is marked "Short on coins".
+    Changing the stakes drops picks who can't afford them.
+- Buttons: **Back**, **Rules**, **Sit down**. The choices are saved in the profile (spec 15 §2).
+
+### 4.2 The table
+- Seats, portraits, the score panel, and the ☰ and ? buttons are where Hearts has them (spec 12 §2).
+  Opponents' cards are face-down fans at their edge, as in Hearts.
+- **The player's cards:** five face-up cards along the bottom, centers **150** apart, sorted by rank
+  (the Card order setting decides the direction), then suit. A card chosen to throw away lifts **44**.
+- **Chip stacks** (each player's chips) with the amount under them: the player's **600** right of the
+  center, at the hand's height + 30; West's and East's **185** below their portrait; North's **190**
+  left of the portrait.
+- **Bets** for the current round sit in front of each player: **205** below the center (the
+  player), **430** left and right (West, East), **215** above (North). The **pot** is at the center.
+- The **dealer button**, a white "D" disc 54 across, sits beside the dealer's bet spot and slides to
+  the next dealer (500 ms).
+- **Action tags** under each regular's chips (above the "You" plate for the player) show their last
+  action: "Check", "Call 10", "Bet 10", "Raise to 20" (gold), "Fold" (dimmed), "Draws 3", "Stands pat",
+  "All in", "Out of chips".
+- **Score panel:** "Five-Card Draw", "Ante 5 · Bets 10 / 20", then each seat's name and chips
+  ("Empty seat" and "—" for an empty one; a folded player's name dimmed), and "Hand N · Pot N".
+- **The action bar** sits above the player's cards (52 above a lifted card's top): a prompt and
+  buttons, as in the rummy games.
+  - Betting: the prompt is the player's hand name and "Your bet" or "N to call", e.g. "Pair of Jacks ·
+    10 to call". Buttons, as allowed: **Fold** (secondary), **Check**, **Call N**, **Bet N**,
+    **Raise to N** (the round total she would have in), with " (all in)" when it takes all her chips.
+  - Drawing: "Pair of Jacks · Tap the cards to throw away" (then "Throw away 2 cards"); **Draw N**
+    (disabled with none chosen) and **Stand pat** (secondary). Tapping a card lifts or lowers it
+    (on press with Card response: Instant, otherwise on release).
+  - Between hands: "Ready for the next hand?" with **Next hand** and **Leave table** (secondary).
+- **Showdown:** each regular's hand moves face up, upright at scale **0.55** with cards **62** apart,
+  to a spot **450** left or right of the center (West, East) or **255** above it (North), with the hand
+  name under it. The player's hand name shows above her cards. The winners' labels turn gold, and a
+  center message reads "Dot wins 120 with Two pair, Kings and 5s" ("You win …", "Dot and Gus split
+  …", "… the side pot of …"; without a showdown just "Dot wins 40").
+- **Toasts** (below the pot): "<Name> folds", "<Name> stands pat", seat changes, and "You'll leave
+  after this hand".
+- **Pause menu:** Resume, Rules, Sound, Settings, **Leave table**. Between hands it leaves at once;
+  during a hand the player folds (or checks when she can, and stands pat) for the rest of it, then
+  leaves.
+- **Leaving:** a dialog titled "Nice session!", "Breaking even", or "Better luck next time", with the
+  coin mark and the result counting from 0 to "+N" or "−N" (red) over 1.2 s, "Sat down with 200, left
+  with 285 · 12 hands, won 4 · best hand: Flush, Ace high", the balance, and **Play again** (back to
+  the setup) and **Main menu**. Sounds: `game.win` (or `game.lose` for a loss) and `chips.win`.
+
+### 4.3 Chips (D-091)
+- **Values and colors:** 1 white (blue spots), 5 red, 25 green, 100 black, 500 purple, 1,000 gold
+  (brown spots, marked "1K"). Each chip is drawn seen at an angle (spec 07 §Poker chips).
+- **Piles:** an amount is drawn with the fewest chips, largest value first, in stacks of at most 12
+  of one value, side by side (stack 56 wide, 6 apart), each chip 5.6 above the one below with a small
+  fixed sideways jitter, and the amount in a dark pill under the stacks (the pot's in gold, larger).
+- **Flying chips:** a pile for the amount slides from one place to another (ease-out), then the
+  destination pile is redrawn.
+
+### 4.4 Timing and sounds
+| Moment | Animation | Sound |
+|--------|-----------|-------|
+| Antes | stacks → pot, 320 ms, all together | `chips.bet` |
+| Deal | shuffle (900 ms), then cards from the pot one at a time, 70 ms apart, 260 ms flights | `card.shuffle`, `card.deal` |
+| Bet, call | stack → bet spot, 320 ms | `chips.bet` |
+| Raise | stack → bet spot, 320 ms | `chips.raise` |
+| Check | (tag only), 150 ms pause | — |
+| Fold | cards → center, fading, 360 ms | — |
+| Round ends | every bet → pot, 380 ms | `chips.collect` |
+| Unmatched bet | bet spot → stack, 320 ms | — |
+| Draw | discards → center, fading, 300 ms; new cards from the center, 300 ms | `card.deal` |
+| Showdown | hands move and turn face up, 420 ms, then a 1,000 ms pause (× Game speed) | `card.place` |
+| Pot paid | pot → each winner's stack, 650 ms, then a 900 ms pause (× Game speed) | `chips.win` |
+
+Computer players "think" for the usual time before each action (spec 12 §3, × Game speed).
+
+### 4.5 Dialogue
+The regulars talk through the poker triggers (spec 08 §Poker triggers).
+
 ## 5. Computer player (D-089)
 Sees only its own cards and public information (the betting log, how many cards each player drew, the
 pot). Each player has its own seeded generator. Skill and risk come from the character model (spec 08).

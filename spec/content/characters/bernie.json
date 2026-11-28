@@ -528,6 +528,190 @@
         "id": "bernie.rummy.big_meld.human.2",
         "text": "Now that's a full order, hon!"
       }
+    ],
+    "poker.won_pot.self": [
+      {
+        "id": "bernie.poker.won_pot.self.1",
+        "text": "Ooh, that's my tip jar filling up, hon!"
+      },
+      {
+        "id": "bernie.poker.won_pot.self.2",
+        "text": "Order up! One pot for Bernie!"
+      },
+      {
+        "id": "bernie.poker.won_pot.self.3",
+        "text": "Well, would you look at that! Mine, sugar!"
+      }
+    ],
+    "poker.won_pot.human": [
+      {
+        "id": "bernie.poker.won_pot.human.1",
+        "text": "Nice one, hon! You earned that!"
+      },
+      {
+        "id": "bernie.poker.won_pot.human.2",
+        "text": "Look at you, sugar! Raking it in!"
+      }
+    ],
+    "poker.won_pot.other": [
+      {
+        "id": "bernie.poker.won_pot.other.1",
+        "text": "Well, good for you, hon."
+      },
+      {
+        "id": "bernie.poker.won_pot.other.2",
+        "text": "Enjoy it, sugar. I'll get the next one."
+      }
+    ],
+    "poker.big_pot.self": [
+      {
+        "id": "bernie.poker.big_pot.self.1",
+        "text": "Ooh! That's more than a week of tips!"
+      },
+      {
+        "id": "bernie.poker.big_pot.self.2",
+        "text": "Big pot for Bernie! Darlene's gonna be so jealous!"
+      }
+    ],
+    "poker.big_pot.human": [
+      {
+        "id": "bernie.poker.big_pot.human.1",
+        "text": "Hon, that's a big pot! Treat yourself to pie!"
+      },
+      {
+        "id": "bernie.poker.big_pot.human.2",
+        "text": "Whoa, sugar! That's a lot of chips!"
+      }
+    ],
+    "poker.bluff.self": [
+      {
+        "id": "bernie.poker.bluff.self.1",
+        "text": "I had nothing, hon! Not even a pair of salt shakers."
+      },
+      {
+        "id": "bernie.poker.bluff.self.2",
+        "text": "Bluffed! Darlene taught me that one. Don't tell her."
+      }
+    ],
+    "poker.stood_pat.self": [
+      {
+        "id": "bernie.poker.stood_pat.self.1",
+        "text": "I'll keep these, hon. They're cozy."
+      },
+      {
+        "id": "bernie.poker.stood_pat.self.2",
+        "text": "No cards for me, sugar. I'm good."
+      }
+    ],
+    "poker.stood_pat.human": [
+      {
+        "id": "bernie.poker.stood_pat.human.1",
+        "text": "None? Ooh, somebody's confident!"
+      },
+      {
+        "id": "bernie.poker.stood_pat.human.2",
+        "text": "Standing pat, hon? You're making me nervous."
+      }
+    ],
+    "poker.raise.self": [
+      {
+        "id": "bernie.poker.raise.self.1",
+        "text": "I'll raise, hon. Live a little!"
+      },
+      {
+        "id": "bernie.poker.raise.self.2",
+        "text": "Raise! Like the price of coffee."
+      }
+    ],
+    "poker.raise.human": [
+      {
+        "id": "bernie.poker.raise.human.1",
+        "text": "Ooh, raising! Somebody's feeling lucky!"
+      },
+      {
+        "id": "bernie.poker.raise.human.2",
+        "text": "A raise, sugar? Well, bring it on!"
+      }
+    ],
+    "poker.fold.self": [
+      {
+        "id": "bernie.poker.fold.self.1",
+        "text": "I'm out, hon. This hand's colder than the walk-in."
+      },
+      {
+        "id": "bernie.poker.fold.self.2",
+        "text": "Fold. I'll go refill everybody's coffee."
+      }
+    ],
+    "poker.bad_beat.self": [
+      {
+        "id": "bernie.poker.bad_beat.self.1",
+        "text": "Oh, come ON! That was a good hand, hon!"
+      },
+      {
+        "id": "bernie.poker.bad_beat.self.2",
+        "text": "That's like dropping a whole tray of pies."
+      }
+    ],
+    "poker.bad_beat.human": [
+      {
+        "id": "bernie.poker.bad_beat.human.1",
+        "text": "Aw, hon, that's just rotten luck."
+      },
+      {
+        "id": "bernie.poker.bad_beat.human.2",
+        "text": "Oh, sugar. That hurts. Want some coffee?"
+      }
+    ],
+    "poker.big_hand.self": [
+      {
+        "id": "bernie.poker.big_hand.self.1",
+        "text": "Full house, hon! Like the diner on a Sunday!"
+      },
+      {
+        "id": "bernie.poker.big_hand.self.2",
+        "text": "Look at this beauty! I'm framing it by the register!"
+      }
+    ],
+    "poker.big_hand.human": [
+      {
+        "id": "bernie.poker.big_hand.human.1",
+        "text": "Whoa, hon! What a hand!"
+      },
+      {
+        "id": "bernie.poker.big_hand.human.2",
+        "text": "Sugar, that's a hand to tell Darlene about!"
+      }
+    ],
+    "poker.busted.self": [
+      {
+        "id": "bernie.poker.busted.self.1",
+        "text": "Well, I'm tapped out, hon. Back to the diner."
+      },
+      {
+        "id": "bernie.poker.busted.self.2",
+        "text": "No more chips. Guess I'm working a double."
+      }
+    ],
+    "poker.busted.human": [
+      {
+        "id": "bernie.poker.busted.human.1",
+        "text": "Aw, hon. Go win some at Rummy and come back."
+      },
+      {
+        "id": "bernie.poker.busted.human.2",
+        "text": "Out of chips, sugar? Pie's on me."
+      }
+    ],
+    "poker.sit_down.self": [
+      {
+        "id": "bernie.poker.sit_down.self.1",
+        "text": "Mind if I sit, hon? I'm on my break."
+      },
+      {
+        "id": "bernie.poker.sit_down.self.2",
+        "text": "Scoot over, sugar! Bernie's in!"
+      }
     ]
   }
 }

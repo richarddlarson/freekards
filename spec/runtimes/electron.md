@@ -64,9 +64,13 @@ src/logic/                  ENGINE-NEUTRAL game logic (spec 05, 10). No DOM/Node
   rummy/melds.ts            Sets, runs, lay-offs, best arrangement, Gin defender's lay-offs (spec 18 §1)
   gin/                      Gin Rummy types, engine, computer player (spec 18 §2)
   rummy500/                 Rummy 500 types, engine, computer player (spec 18 §3)
+  poker/                    Hand ranking, pots, fixed-limit betting, draw strategy, Five-Card Draw engine and
+                            computer player (spec 19)
+  casino/                   The regulars' KardCoins: background rounds, credits, poker buy-ins and cash-outs (spec 15 §6)
   dialogue/                 Character types, dialogue director, event→trigger mappings for every game (spec 08, D-036, D-074, D-080)
   layout/hearts-table.ts    Viewport fitting, table positions, timing, Card response / Game speed tables (spec 11, 12, 16)
   layout/rummy-table.ts     2-player table: stock, discard pile (stacked or spread), meld rows, grouped hand (spec 18 §4.2)
+  layout/poker-table.ts     Poker table: stacks, bets, pot, dealer button, shown hands, chip stacks (spec 19 §4.2–4.3)
   settings/                 Per-player settings: types, defaults, repair (spec 16)
   rules/rules-text.ts       Parses the rules Markdown subset into plain blocks (spec 12 §10)
   index.ts                  Public entry point
@@ -75,7 +79,8 @@ src/main/preload.cts        Preload bridge (window.freekards)
 src/renderer/               Presentation (DOM + CSS):
   main.ts                   Screen flow and demo hashes (#setup, #settings, #about[&licenses], #hearts&seed=N&autoplay&speed=N,
                             #spades-setup, #spades&seed=N&autoplay&speed=N[&target=500], #gin-setup, #rummy500-setup,
-                            #gin&seed=N&autoplay&speed=N, #rummy500&seed=N&autoplay&speed=N)
+                            #gin&seed=N&autoplay&speed=N, #rummy500&seed=N&autoplay&speed=N, #poker-setup,
+                            #poker&seed=N&autoplay&speed=N[&stakes=medium|high], #stats&regulars; &felt=<id> with any)
   stage.ts                  Stage scaled to the window (spec 11 §2), DOM helpers, tap handling, choice rows
   content.ts                Loads spec/content characters and assets/themes images via import.meta.glob
   settings.ts               Device-wide preferences in localStorage (sound levels, music choice)
@@ -100,6 +105,10 @@ src/renderer/               Presentation (DOM + CSS):
   table/rummy500-table.ts   Rummy 500 table: spread pile with deep pick-up, meld / lay off / discard, results, game over
   table/hearts-table.ts     Hearts table (spec 12): extends TrickTable with passing, score panel, dialogs
   table/spades-table.ts     Spades table (spec 17 §8, spec 12 §8): bidding panel, bid badges, team score panel, dialogs
+  table/poker-table.ts      Poker table (spec 19 §4), extends TableBase: betting and draw action bar, chip piles and
+                            flights, showdown, regulars coming and going (PokerBank, implemented in main.ts over
+                            the profile, or a guest profile in memory for demos), out of chips, leaving
+  table/chips.ts            Chip piles (stacks of chip images with an amount) and flying chips
   style.css                 Classic Casino styles, in logical px
 tests/logic/                Vitest suites + helpers (simulateGame, playState)
 scripts/check-licenses.mjs  SBOM generator + license gate (also scans assets/ and spec/content/)
@@ -114,6 +123,8 @@ scripts/generate-cards.mjs  Classic Casino deck generator → assets/themes/clas
                             outlines each deck's index font from assets/fonts with opentype.js (D-060); near-zero
                             coordinates are snapped to 0 because opentype.js 2.0.0 writes values like 3.5e-15 as "NaN" (D-075).
                             --font <ttf> --out <dir> writes a trial deck for font auditions
+scripts/generate-chips.mjs  Classic Casino poker chips → assets/themes/classic-casino/chips/<value>.svg (spec 07 §Poker
+                            chips, D-091); values outlined from Fira Sans Condensed Bold with opentype.js
 scripts/capture.cjs         Offscreen screenshot tool (D-037)
 scripts/run-local.sh        Build and run this checkout without installing (Linux, D-063)
 scripts/install-local-launcher.sh  Adds the "FreeKards (local build)" desktop menu entry (D-063)
@@ -142,6 +153,7 @@ preload), `release/` (installers), `coverage/`.
 | `npm run voices` | Generate or refresh character voice clips (Python 3 + ffmpeg; sets up Piper in `.cache/`). `--force` regenerates all. |
 | `npm run music` | Rebuild `assets/audio/music/*.opus` from the verified originals (needs ffmpeg with libopus). |
 | `npm run cards` | Regenerate the Classic Casino card SVGs (deterministic; commit the result). |
+| `npm run chips` | Regenerate the Classic Casino poker chip SVGs (deterministic; commit the result). |
 | `npm run icon` | Regenerate `build/icon.svg` and render `build/icon.png` plus `build/icons/` (commit all). electron-builder makes the Windows `.ico` from `icon.png`. |
 | `npm run capture -- <page> <out.png> [w] [h] [ms,ms…]` | Offscreen screenshots (D-037). Build first. Env `CAPTURE_INIT_JS` runs JS in the page and reloads (e.g. to seed demo profiles into localStorage). |
 | `npm run dist` / `dist:win` / `dist:linux` | Build, check licenses, then build installers with electron-builder. |

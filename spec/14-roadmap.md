@@ -10,7 +10,17 @@ Status values: **Idea** (captured, not designed) · **Planned** (designed, sched
 **In progress** · **Done**.
 
 ## Where we left off (updated at the end of each working session)
-**2026-11-27 (fifth session):** On branch `session/2026-11-27-felt` (not pushed yet). The Gin Rummy
+**2026-11-27 (sixth session):** On branch `session/2026-11-27-poker` (not pushed yet). The owner
+asked for Five-Card Draw poker played for KardCoins, with chips, chip sounds and animations, and the
+computer characters as casino "regulars" with their own coins (R-010), and asked the assistant to
+make every choice and list them. Built: shared poker logic (hand ranking, pots, fixed-limit betting)
+and the Five-Card Draw engine and computer players (spec 19, D-088, D-089); the regulars' balances,
+background rounds, and poker buy-ins and cash-outs (spec 15 §6, D-090); generated chips and Kenney chip
+sounds (D-091); the setup screen, table, Poker stats tab, and Casino regulars leaderboard (D-092);
+222 voiced poker lines (D-093). All marked Proposed. Waiting on the owner: play-test poker and review
+the decision list; also still open: the felt texture on 4K and the tablet (D-086, D-087).
+
+**2026-11-27 (fifth session):** Merged as PR #10. The Gin Rummy
 discard prompt now says "Lowest deadwood after discard: N" (D-085). The table felt has a subtle
 generated texture, and a new **Table color** setting offers Green, Blue, Burgundy, Gold, and Amber
 (R-009, D-086, marked Proposed). The owner liked the colors, but on his 4K monitor the texture

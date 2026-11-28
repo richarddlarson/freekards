@@ -215,6 +215,154 @@
   "key": "dc0b53418b827a8e853884400cc342ab8fd86968450231eeef1a1b8c31130c12",
   "text": "No rush, sugar. Want me to top off your coffee?"
  },
+ "bernie.poker.bad_beat.human.1": {
+  "key": "5fd1dd7c8510ce0742089ad9e9e5b512703cdb8f9a06a22cabcea9d608e17fe2",
+  "text": "Aw, hon, that's just rotten luck."
+ },
+ "bernie.poker.bad_beat.human.2": {
+  "key": "360aa4ff730ba89b0c29dffad7b7e629551f0cb08d8002230cb410e7420c9b0a",
+  "text": "Oh, sugar. That hurts. Want some coffee?"
+ },
+ "bernie.poker.bad_beat.self.1": {
+  "key": "607f3a8f0e736d56458bb008077d24478855de477ad838355f6a9f52ec878b4b",
+  "text": "Oh, come ON! That was a good hand, hon!"
+ },
+ "bernie.poker.bad_beat.self.2": {
+  "key": "5100a70dabf069eef1c8395071080c9e79ff6f43b5cece64dead6567636b35bd",
+  "text": "That's like dropping a whole tray of pies."
+ },
+ "bernie.poker.big_hand.human.1": {
+  "key": "d53d6cde67170d9da2227e45ea35406d4f6cba6d3982abb16ad9cd5966f3c17c",
+  "text": "Whoa, hon! What a hand!"
+ },
+ "bernie.poker.big_hand.human.2": {
+  "key": "4fc304060d2b3c2671686569f8cd18f05ff656a06533e5ba962644bd027bc89a",
+  "text": "Sugar, that's a hand to tell Darlene about!"
+ },
+ "bernie.poker.big_hand.self.1": {
+  "key": "ca260ddf5c2efc8311bf687d5b36e2a9f3dc0bd1d50bbc021b9285b99466f62e",
+  "text": "Full house, hon! Like the diner on a Sunday!"
+ },
+ "bernie.poker.big_hand.self.2": {
+  "key": "6a4693fedb75acfe31e512d373940a1205b70f78437ddaa2848cffc9e2485aca",
+  "text": "Look at this beauty! I'm framing it by the register!"
+ },
+ "bernie.poker.big_pot.human.1": {
+  "key": "21f66bc02093a97ae72d13d69a54221ecd242862a6e31cef854a26b4258c066c",
+  "text": "Hon, that's a big pot! Treat yourself to pie!"
+ },
+ "bernie.poker.big_pot.human.2": {
+  "key": "dd4f67abc9e89ecf3913e046878e18adc4abaa650509ddde73114ff64633a7b3",
+  "text": "Whoa, sugar! That's a lot of chips!"
+ },
+ "bernie.poker.big_pot.self.1": {
+  "key": "bc964a07ff0a3206317b6f4681f60ace1c78922ad4d9e9c5f98e3a84c4f62567",
+  "text": "Ooh! That's more than a week of tips!"
+ },
+ "bernie.poker.big_pot.self.2": {
+  "key": "1d4d4d66716d5adc4128c3dc6ea63daf4af8bb815ea50744e34ae3f3fa3391bb",
+  "text": "Big pot for Bernie! Darlene's gonna be so jealous!"
+ },
+ "bernie.poker.bluff.self.1": {
+  "key": "9bd52e8530be5075d0f659d74b3218bbb8fe49b5088272fdfe5dd8b1b987e4fc",
+  "text": "I had nothing, hon! Not even a pair of salt shakers."
+ },
+ "bernie.poker.bluff.self.2": {
+  "key": "cbc26bb23fecedc142b580b3def6f4e4a3a8309368622adcddc0256aaf552e07",
+  "text": "Bluffed! Darlene taught me that one. Don't tell her."
+ },
+ "bernie.poker.busted.human.1": {
+  "key": "b2a872e89329e28e769c68076bdaec9be4ee9d560fa6ed38e2f49764597d4dc7",
+  "text": "Aw, hon. Go win some at Rummy and come back."
+ },
+ "bernie.poker.busted.human.2": {
+  "key": "57cd1f81abb3e50ab7297a6a263fccc01cf67df03ec963861ca6edb6d9843a04",
+  "text": "Out of chips, sugar? Pie's on me."
+ },
+ "bernie.poker.busted.self.1": {
+  "key": "2e35e49bffefedb10f2ac8ad0a54e661715da1703bcb6cb0b94bb14f0c2ccd25",
+  "text": "Well, I'm tapped out, hon. Back to the diner."
+ },
+ "bernie.poker.busted.self.2": {
+  "key": "e14c79e122c7d53feed19e68f915ba326e5e098a9464b334ef9b221818221cc6",
+  "text": "No more chips. Guess I'm working a double."
+ },
+ "bernie.poker.fold.self.1": {
+  "key": "8a01b363b19c11b53cdf834cd17d689f1faf8f26366dba2023ccca6787b9013b",
+  "text": "I'm out, hon. This hand's colder than the walk-in."
+ },
+ "bernie.poker.fold.self.2": {
+  "key": "59325b46b0993b8703b7957d554bace6d37b4c431f5cb5ca13dcf2ff5b8a2a77",
+  "text": "Fold. I'll go refill everybody's coffee."
+ },
+ "bernie.poker.raise.human.1": {
+  "key": "a7a27823eee5b488d5526ec1a87a2f2a2ff886edb22f8be9106e93f2209b8ece",
+  "text": "Ooh, raising! Somebody's feeling lucky!"
+ },
+ "bernie.poker.raise.human.2": {
+  "key": "f9485e0ad3b2a91d5a87001cd3b82b5cab5f16d7706b2274d29159b83e0aba53",
+  "text": "A raise, sugar? Well, bring it on!"
+ },
+ "bernie.poker.raise.self.1": {
+  "key": "ff1b733c998020520870979e9220a4c441677c75dc2e394d66eba411f87bea38",
+  "text": "I'll raise, hon. Live a little!"
+ },
+ "bernie.poker.raise.self.2": {
+  "key": "a52c1bb80fe04b877b152196f52a92577b053c14872eb2d62358bb3d1ec94875",
+  "text": "Raise! Like the price of coffee."
+ },
+ "bernie.poker.sit_down.self.1": {
+  "key": "35283329af54928a36e2d059a5373a128cc3dc4d8dd0fbe89cacbcadb7191e60",
+  "text": "Mind if I sit, hon? I'm on my break."
+ },
+ "bernie.poker.sit_down.self.2": {
+  "key": "8ff56de54d6733fabcaa287cf7a06bc5225a926c8615df40e8acd0a2233aa618",
+  "text": "Scoot over, sugar! Bernie's in!"
+ },
+ "bernie.poker.stood_pat.human.1": {
+  "key": "9a079787e0b9700b0b0c9829060bc9760c64a65e1b6bbae9031e19932dea08b9",
+  "text": "None? Ooh, somebody's confident!"
+ },
+ "bernie.poker.stood_pat.human.2": {
+  "key": "66e4a83b3d6b964d0b1736d4d64ccff0498852bc11da7349ae7d111dbca607a5",
+  "text": "Standing pat, hon? You're making me nervous."
+ },
+ "bernie.poker.stood_pat.self.1": {
+  "key": "feeba1ad952776eec63500dabffcedc715798b9dc7998f249d1a4c1983f33606",
+  "text": "I'll keep these, hon. They're cozy."
+ },
+ "bernie.poker.stood_pat.self.2": {
+  "key": "31f81f3e6f78c64434ab02a14d1cdee4f1a85d3d48a2dbd0b5ad46e6d5894c11",
+  "text": "No cards for me, sugar. I'm good."
+ },
+ "bernie.poker.won_pot.human.1": {
+  "key": "8655b09dfcf01f69f2aaa97ef16cbb2f726dd4c6359654263fffe2a680f2aa5b",
+  "text": "Nice one, hon! You earned that!"
+ },
+ "bernie.poker.won_pot.human.2": {
+  "key": "d711544c00e9f360e9f7e2eff333144de401ee4a86089517c71aea54d4a0972d",
+  "text": "Look at you, sugar! Raking it in!"
+ },
+ "bernie.poker.won_pot.other.1": {
+  "key": "a8b5b3455e027eb99b9d5da763ea5c05e0f246cc7803c2bdcc318a82c50003e4",
+  "text": "Well, good for you, hon."
+ },
+ "bernie.poker.won_pot.other.2": {
+  "key": "f54a368be88977ba39e7b0d8033348037fb2d383cc32f5d5f4b7134b4c7b3e1f",
+  "text": "Enjoy it, sugar. I'll get the next one."
+ },
+ "bernie.poker.won_pot.self.1": {
+  "key": "9c5609dd897eb1f0f19defbe54a9ef5cb60ae3be718b960be27c835bb5f25f3f",
+  "text": "Ooh, that's my tip jar filling up, hon!"
+ },
+ "bernie.poker.won_pot.self.2": {
+  "key": "e29de4cb85c0843778573f3eb87c6012cec6dfd3362d19198f1fed8f1affabd2",
+  "text": "Order up! One pot for Bernie!"
+ },
+ "bernie.poker.won_pot.self.3": {
+  "key": "313f5c52e6935fc4dc2de0685345d5ce79480fe24b90d3231a60adbf69f457a3",
+  "text": "Well, would you look at that! Mine, sugar!"
+ },
  "bernie.rummy.big_meld.human.1": {
   "key": "d28f281423e58806291336b8c07b45a954aed00ceb93142d04b0985fa1bd7fca",
   "text": "Ooh, look at that meld, sugar!"
@@ -614,6 +762,154 @@
  "chad.idle.human.2": {
   "key": "dda009c60573aab3cdf60ec66307d04b1d76992f6c085254a14daf2475a3fd96",
   "text": "Deep breaths. Visualize the card. Become the card."
+ },
+ "chad.poker.bad_beat.human.1": {
+  "key": "93616664e17543df6647920e6e1f08a62db98abf4f7fa42bc4622b75d77410c7",
+  "text": "Brutal! But you'll bounce back, I know it!"
+ },
+ "chad.poker.bad_beat.human.2": {
+  "key": "dbce6f59207470524da916aa94d06179c51993c7480283b70861e8c2e7e775a1",
+  "text": "Ouch! Shake it off. Next hand is yours."
+ },
+ "chad.poker.bad_beat.self.1": {
+  "key": "ff2615f01b72f78ce8a417e6f11ac86ab1c83a46d427a5144a77ad45ddfd3a50",
+  "text": "That's fine. Adversity builds champions."
+ },
+ "chad.poker.bad_beat.self.2": {
+  "key": "0da8f066e3d478fbdd0a6ded727068062f8351f701d020b01b4513859a0b04d6",
+  "text": "Three of a kind and I lose? I'm putting this in my book."
+ },
+ "chad.poker.big_hand.human.1": {
+  "key": "2f56c9fd205e7c3f017b298457facde8cca10e555561cba6d7d099ab47220e2d",
+  "text": "Whoa! That's a highlight reel hand!"
+ },
+ "chad.poker.big_hand.human.2": {
+  "key": "09f23137e3ccd1e4ee93529a9adb9a0b9f7d486a619a254492b99e43b5e18e31",
+  "text": "Incredible hand! You're a natural!"
+ },
+ "chad.poker.big_hand.self.1": {
+  "key": "6de701137f9e1dc9510f647fc392675f304dbed9e6bd665763fff779bda43269",
+  "text": "Full house! Chad delivers in the clutch!"
+ },
+ "chad.poker.big_hand.self.2": {
+  "key": "9b1283167e99f508d1be5d6f999ead96acd711e2df0c2bddddbcba03b5ec2416",
+  "text": "Look at this hand! Frame it! Put it in a museum!"
+ },
+ "chad.poker.big_pot.human.1": {
+  "key": "827ae7768562febd593438824e359eec3a9a174384a3b6c68cb164f482b03a49",
+  "text": "That's a championship pot! Incredible!"
+ },
+ "chad.poker.big_pot.human.2": {
+  "key": "547bf0f631833f76f4d2c0649e22051d56480b32cc896a31d5fa8a988d92c0e7",
+  "text": "Huge pot! You're in the zone right now!"
+ },
+ "chad.poker.big_pot.self.1": {
+  "key": "ff9040cd78b5d2734a265f45b084f6540fdc919cc11802f2a9e1fa573cc8093a",
+  "text": "Monster pot! This is what peak performance looks like!"
+ },
+ "chad.poker.big_pot.self.2": {
+  "key": "bc95d9cf5d468746478c48ba940f656ef74428669278636d8153b640c9015536",
+  "text": "Chad with the BIG win! The crowd is on its feet!"
+ },
+ "chad.poker.bluff.self.1": {
+  "key": "b01b0a108ebdff037c5fb18a0fc55c59d29e288be3c52314966c3bd25f80d009",
+  "text": "Had nothing! That's confidence, baby!"
+ },
+ "chad.poker.bluff.self.2": {
+  "key": "1108e2bdea5b1b9598892fee8454ff7d959de0935badaa5fec4297071168686a",
+  "text": "Total bluff. Believe in yourself and nobody calls."
+ },
+ "chad.poker.busted.human.1": {
+  "key": "81d5ed2fe8d25f1b56455deeb47a4f070dca9b3d923a779196bb6b2e622ca4d0",
+  "text": "Hey, every great comeback starts at zero!"
+ },
+ "chad.poker.busted.human.2": {
+  "key": "3ffe9ba4a452a5fb8666a0b79090f3b3e601c4c311ef64258154b0945f7a01c5",
+  "text": "Out of chips? This is your origin story!"
+ },
+ "chad.poker.busted.self.1": {
+  "key": "6132f0523670f88dc25291eecb9555ce47c2f62d70bcf77984e885911f5938dc",
+  "text": "I'm out! But champions always rebuy. Eventually."
+ },
+ "chad.poker.busted.self.2": {
+  "key": "ae8412286737460547a57bf37bc29def496a90a7980877d820fa1ee032f16094",
+  "text": "Zero chips. Maximum lessons. Thanks, everyone!"
+ },
+ "chad.poker.fold.self.1": {
+  "key": "adc87728c1ef05e154dc922d46f0449298de7e8f4c1d0c97be87e8800b78c7e1",
+  "text": "Strategic retreat. Very advanced."
+ },
+ "chad.poker.fold.self.2": {
+  "key": "6287f94113b7c87bdb7fe3521ca6048356aaf962db32b83a44d92bed6ff4860f",
+  "text": "Folding. Even champions take a knee."
+ },
+ "chad.poker.raise.human.1": {
+  "key": "43c32b36800f4b26e45ddfd9a90beea7297b8a95eb386b08c076dd35c9e32ce9",
+  "text": "Ooh, a raise! Bring it!"
+ },
+ "chad.poker.raise.human.2": {
+  "key": "48ee027c020269803ad16f50c4ad8044d96cfcbba5af5ab3c5e26bacb7638136",
+  "text": "You're raising? Love it! Let's go!"
+ },
+ "chad.poker.raise.self.1": {
+  "key": "06748173e33eb22bf7278a095ed234763607e90f747f946f6d5374d06f23dfcf",
+  "text": "Raise! Go big or go home!"
+ },
+ "chad.poker.raise.self.2": {
+  "key": "39ae4be7058f0c029b02c7c06eadca7aff30b47ca36d672b57ad815e8038d9d3",
+  "text": "I'm raising! Fortune favors the bold!"
+ },
+ "chad.poker.sit_down.self.1": {
+  "key": "3994736c0a9524bd972d7d9205a3b299b3b413713b077961a5286f120da1492e",
+  "text": "Coach is in the house! Let's get it!"
+ },
+ "chad.poker.sit_down.self.2": {
+  "key": "02e86fa52899dd8d71c358508ce0685519e399bda3d4b1fd517d8a86d21c1163",
+  "text": "Chad here! Ready to crush it! Respectfully!"
+ },
+ "chad.poker.stood_pat.human.1": {
+  "key": "99986861d11e2efe7c284bfc06cd65fd0a34366fb680d9365319529036c5d5bd",
+  "text": "No draw? Bold strategy! Love the energy!"
+ },
+ "chad.poker.stood_pat.human.2": {
+  "key": "59456796a0d1d6c3e8ceacb75216f4b1408601ea6eb947a84bb738aeaa663d8d",
+  "text": "Standing pat? Okay, I respect the confidence."
+ },
+ "chad.poker.stood_pat.self.1": {
+  "key": "a8c2f79f5a27dc58e9709df05943d42a0587bbb11ca6a3d20f350827af24a521",
+  "text": "No cards needed. I'm already elite."
+ },
+ "chad.poker.stood_pat.self.2": {
+  "key": "0b5e3fba19ae3b827bbb136450d435e52156646d663c47bf84290a59be9633f2",
+  "text": "Standing pat. Trust the process."
+ },
+ "chad.poker.won_pot.human.1": {
+  "key": "eecede350a3b522342b6d4b61cec6d273deb5d7b1aa2effd4268db372ead0be0",
+  "text": "Great execution! I see you. I SEE you."
+ },
+ "chad.poker.won_pot.human.2": {
+  "key": "0325cd1123e79ddd97b413a34aba8fed877ef72433333382693c060a14f4c08d",
+  "text": "You took it down! Respect. Huge respect."
+ },
+ "chad.poker.won_pot.other.1": {
+  "key": "d2f8fd80dd8ea534278fc2747fc462acc7cb1e1bd62ac81687bacd0f04ea464c",
+  "text": "Okay, okay. Learning opportunity. Noted."
+ },
+ "chad.poker.won_pot.other.2": {
+  "key": "a5ffb5a76f0a9bcd4168f67697f5e97d23446cdc9a044b0abbf1048c06b382a1",
+  "text": "Nice hand. I'm just warming up."
+ },
+ "chad.poker.won_pot.self.1": {
+  "key": "6dab07814be72801d7c6ba8d3d8a57dc51b48d3de741d480da5b7a16edeb2fd0",
+  "text": "And Chad takes the pot! What a play!"
+ },
+ "chad.poker.won_pot.self.2": {
+  "key": "3cb5008afe5b0fa699c76b99155557d3a1e8fffc8381a3966782093cafb91596",
+  "text": "That's called a winning mindset, people!"
+ },
+ "chad.poker.won_pot.self.3": {
+  "key": "4a2c52dc56c99c4b32ec3469e6a001ed254d704b04ff0a07011157aa28b8fa8f",
+  "text": "Boom! Chips! Momentum!"
  },
  "chad.rummy.big_meld.human.1": {
   "key": "ad2bb6ef1fcce80360372506e0816314f7f73b27355b7ec400dd2cc178f8a40e",
@@ -1022,6 +1318,154 @@
  "dot.idle.human.2": {
   "key": "3f88f10111474272c0cc4cbbb53fe6f28ccaf2f1daea8bf4de9e4faefea8c815",
   "text": "No rush, sweetheart. I've got a scarf to finish."
+ },
+ "dot.poker.bad_beat.human.1": {
+  "key": "97098f7dc07232797f227dfc464b2a678c369608ee8c662b0a1cd56256c05a03",
+  "text": "Oh, sweetheart, that was so unlucky."
+ },
+ "dot.poker.bad_beat.human.2": {
+  "key": "fd66db2f61e7142f615a22ff6aee09f3bb1daa9a7e5f9327f7889bcc542e01f3",
+  "text": "Poor dear. Have a lemon bar. It helps."
+ },
+ "dot.poker.bad_beat.self.1": {
+  "key": "3b960c98159c550aa7b07e4936d43b2e628888a557be538ca304e6d7af667e51",
+  "text": "Oh dear. That was a very good hand, too."
+ },
+ "dot.poker.bad_beat.self.2": {
+  "key": "0048a60a90093a34eb493e084336f010aedf46d0270d9b4b3c540871565bb7ea",
+  "text": "Well. I'll remember that, dear. I always do."
+ },
+ "dot.poker.big_hand.human.1": {
+  "key": "1d7f6e0ad0935c67b2d67ed146c06e5d1399f1970d25bc4b5875f1cb7d2864a3",
+  "text": "My goodness, what a hand! I'm impressed."
+ },
+ "dot.poker.big_hand.human.2": {
+  "key": "3e6257c8dc1c322abd54c50b52f571e0234c166f24087f2829708181d34682ec",
+  "text": "Oh, you've been practicing. I can tell."
+ },
+ "dot.poker.big_hand.self.1": {
+  "key": "f86fbe160ddad5343b44bb12a628ab7512c920a3a35f360109353b099798b616",
+  "text": "A full house! Just like Thanksgiving."
+ },
+ "dot.poker.big_hand.self.2": {
+  "key": "fa478acf9c2c2c71c23bec146ce4dbf3e743830152f8d92d130f86c47b642e20",
+  "text": "Oh look, dear. Isn't that a pretty hand?"
+ },
+ "dot.poker.big_pot.human.1": {
+  "key": "060adf1e33d15e7d68c4d457b45c02f6acdf32029425d89532e5f58924a9ce1e",
+  "text": "Goodness! Look at all those chips, dear."
+ },
+ "dot.poker.big_pot.human.2": {
+  "key": "e323b9c3659eac15cafe65ea08b221acf5e32166bfb05e0bbc5f6cc9455b2c81",
+  "text": "That's a big pile, sweetheart. Don't lose it to me."
+ },
+ "dot.poker.big_pot.self.1": {
+  "key": "c3dea6171bc3f5352a39d0b891a559deb91534b2601540ebd136149a2ad2e2c0",
+  "text": "Oh my, that's a lot of yarn money."
+ },
+ "dot.poker.big_pot.self.2": {
+  "key": "9ee8d7f15d7846cfc0332567652a668c952ba2fe18d2484bf8485d7b5a0c8051",
+  "text": "My, my. Grandma's having a very good day."
+ },
+ "dot.poker.bluff.self.1": {
+  "key": "eff0f4b2ce400888c93889e967717a4dd0647c26b04d4743bb03c76bc3a04640",
+  "text": "Oh, I had nothing at all. Isn't that funny?"
+ },
+ "dot.poker.bluff.self.2": {
+  "key": "08f27c74e23d7ad49c0ce13734a2d9cc5505a77444f8e0f8d365964907b51f00",
+  "text": "Don't tell anyone, dear. Grandma was fibbing."
+ },
+ "dot.poker.busted.human.1": {
+  "key": "963af7449a2387a01502a329ffd37f9ebb6a4ae0b80e187badfd15433705e37e",
+  "text": "Oh, sweetheart. Don't worry, you'll win it back."
+ },
+ "dot.poker.busted.human.2": {
+  "key": "28b29e9e22e3005272e83b8d59d9e5d78933a5fa8feda0c6e7330d2499d71b42",
+  "text": "All out? Come have a lemon bar and try again later."
+ },
+ "dot.poker.busted.self.1": {
+  "key": "62f7c82b6984b48916a7e9fb6a5331722b48429ff514121dd21074ad04b44550",
+  "text": "Oh dear, I'm all out. Back to my knitting."
+ },
+ "dot.poker.busted.self.2": {
+  "key": "700e408da1c5f755a850f4abf0f7014db36a4da11174f6e9de4f6f32825d7210",
+  "text": "Well, that's my chips gone. I'll be back, dear."
+ },
+ "dot.poker.fold.self.1": {
+  "key": "0c99914552b3bcc09e288dfb4fafe39437a4cddd6fc6f15ca971f976504d3ae5",
+  "text": "I'll sit this one out and knit a row."
+ },
+ "dot.poker.fold.self.2": {
+  "key": "4bd7c5a7aa75caa3e549708b44c7040337eed3c62c4235567b5ac67a15cc34db",
+  "text": "Not this time, dear. I'm patient."
+ },
+ "dot.poker.raise.human.1": {
+  "key": "124bcbdacfcebd7db31f3432793ad98b7642479222a524c724159e3330b11f04",
+  "text": "A raise! Oh, you naughty thing."
+ },
+ "dot.poker.raise.human.2": {
+  "key": "e5456e934bc17f7eae27c76878dbea8c7a2713ec134273ef54d716c4aa5041e9",
+  "text": "Raising your sweet old grandma? Well, all right."
+ },
+ "dot.poker.raise.self.1": {
+  "key": "06b4aeaf9351036fb5e1b0577b010ad24cc4b24c541a192954705c0034ea3175",
+  "text": "I believe I'll raise, dear. Just a little."
+ },
+ "dot.poker.raise.self.2": {
+  "key": "c3d0126ab4aebd4da3ce1dd3af0668264378611d2eb5ec29b1a90fce7daeff0f",
+  "text": "Let's make it interesting, shall we?"
+ },
+ "dot.poker.sit_down.self.1": {
+  "key": "e5c6366a6aae504f3f6f9a122870435bb1c65b6250bdcc3b34e56d327cb03a1c",
+  "text": "Mind if Grandma joins you, dears?"
+ },
+ "dot.poker.sit_down.self.2": {
+  "key": "141dfd73dba3fa674322c88822a84bba65be1e4e4959651402a690fe0c9b268f",
+  "text": "Hello, dears. I brought my lucky cardigan."
+ },
+ "dot.poker.stood_pat.human.1": {
+  "key": "170ddd65123819d937bf8a1d49d1f15c8b6a43a3cbb6acb4d593115bedfa1f6d",
+  "text": "None at all? Aren't you confident, dear."
+ },
+ "dot.poker.stood_pat.human.2": {
+  "key": "c5a32574df0481f78fb1fc3fb1cfc13fdd0d0e2b5758ad8b0ff5322264243dee",
+  "text": "Oh, standing pat? How brave. Or is it?"
+ },
+ "dot.poker.stood_pat.self.1": {
+  "key": "79d0d68a7690f6ed179e5b165fc6c9e161cbaacfcd7ea3f9088d35079b1696ec",
+  "text": "I'm quite happy with these, thank you."
+ },
+ "dot.poker.stood_pat.self.2": {
+  "key": "961da8463053cfdf409e8d2436a007129fdf8406aee2ee7b37f651d2e2cd8469",
+  "text": "No cards for me, dear. I'm all set."
+ },
+ "dot.poker.won_pot.human.1": {
+  "key": "49f753e47df2f3122556dba91514a949acad1c9cb6974bbda75891945818c527",
+  "text": "Well done, sweetheart. Enjoy it while it lasts."
+ },
+ "dot.poker.won_pot.human.2": {
+  "key": "bfac80ee9958e5fe65f6c48d79511f50a9b02f3dddf2b0c261476ce90523698e",
+  "text": "Good for you, dear. I'm keeping an eye on you."
+ },
+ "dot.poker.won_pot.other.1": {
+  "key": "a26b1c6fb6da9ef42ab8db2a5d5cec5373c36688e8b8c98633199405f165c8cd",
+  "text": "Oh, good for you. I'll get it back, of course."
+ },
+ "dot.poker.won_pot.other.2": {
+  "key": "0b24e997851f0dea479898efc52807f067c00523343da44add228f13b39f9a5d",
+  "text": "Lovely. Do enjoy those chips while you have them."
+ },
+ "dot.poker.won_pot.self.1": {
+  "key": "d9277c894efb60320f24debcc2250b759ed05832b907831d5d9004253970bea5",
+  "text": "Oh, how lovely. I'll just tuck these away."
+ },
+ "dot.poker.won_pot.self.2": {
+  "key": "3b2c28d360c668f678882a33e887ddeee92acf457ba4085cd99bf895614661de",
+  "text": "Thank you, dears. Grandma's knitting fund thanks you."
+ },
+ "dot.poker.won_pot.self.3": {
+  "key": "166e61ff44d488a65699dfa3c92a01c37f42926fbcddf0974cfbf5e8392087b0",
+  "text": "Oh my, was that mine? How nice."
  },
  "dot.rummy.big_meld.human.1": {
   "key": "9c09aaad5a98f556bf0c64ceb6cbc1dced321538ee23a623a96d8d3cf102513a",
@@ -1459,6 +1903,154 @@
   "key": "e2e1076f14cded5dc065241ab32680f61a54e8c9d687481ea781f50b62a710da",
   "text": "I delivered mail faster than this. Uphill. In the snow."
  },
+ "gus.poker.bad_beat.human.1": {
+  "key": "f921ea5201ac5584b0859312759f0f229063d36c636a6aafcd732c9b0de0edc1",
+  "text": "Ooh. That's a rough one. Even I feel bad."
+ },
+ "gus.poker.bad_beat.human.2": {
+  "key": "05e3b6e327f9e87ec895cb3fb00cf4346123e2c32d77294b532f97ce7b35a44f",
+  "text": "That's the deck for you. Crooked as a country road."
+ },
+ "gus.poker.bad_beat.self.1": {
+  "key": "122af49cefa55575f3aed2c89ca2d3af48b40e36ad1c428aaf7599c7938cfd2a",
+  "text": "Three of a kind, and it loses. This deck is RIGGED."
+ },
+ "gus.poker.bad_beat.self.2": {
+  "key": "b7705e16075acf849eafeef91fae3415f07a7e525366847c00a8940958ac425e",
+  "text": "I'm writing a strongly worded letter about that."
+ },
+ "gus.poker.big_hand.human.1": {
+  "key": "ffbce27ae8e8b9d8c5a26be6c29c47cd61019939633681a4cc2146e2c926dcc9",
+  "text": "Where were you hiding that? Under the doormat?"
+ },
+ "gus.poker.big_hand.human.2": {
+  "key": "048beb12647c7dfc9ff7ca38a06e1b90cc1038cb9f1c342a0c165d57d444d96b",
+  "text": "Well, that's a hand. Don't rub it in."
+ },
+ "gus.poker.big_hand.self.1": {
+  "key": "3b5c672c6de0810dc464b495401944074a665463aaff51ff17bfa837b6391b64",
+  "text": "Full house. Finally, a delivery worth making."
+ },
+ "gus.poker.big_hand.self.2": {
+  "key": "c1e003d8416e2930824e2a76c6becc3fe59f5bbdaac90f8ac989568dc09e3844",
+  "text": "Now that's what I call first class mail."
+ },
+ "gus.poker.big_pot.human.1": {
+  "key": "0b18f58ac4c7869a6311ec23b5687b9291c04c15cb618d662cd55f6a6433d8db",
+  "text": "That's a whole lot of my coins going home with you."
+ },
+ "gus.poker.big_pot.human.2": {
+  "key": "c87f15dfdf9f5b5f1ffe23a1d3d99887bedf1b35abc527dc4ef173f4d0db63bc",
+  "text": "Take it easy. That pot had my goose's birdseed money in it."
+ },
+ "gus.poker.big_pot.self.1": {
+  "key": "3806aee8bd8fc868defe09039de4dcc2dd844e64135a68d46e21c23ad0c43944",
+  "text": "Now THAT'S a pension supplement."
+ },
+ "gus.poker.big_pot.self.2": {
+  "key": "62f25f695234e4cc8ae2fd13f8fdf2469c27a3828fdefedbc9f947ba4fbc4ecc",
+  "text": "Thirty years of junk mail, and finally a real package."
+ },
+ "gus.poker.bluff.self.1": {
+  "key": "aa53356e3fb0b579e03fd0a6b3e5b190f8ea9af20c0c7b7b7958b51472a7e17b",
+  "text": "Had nothing. Don't tell anyone. Especially the goose."
+ },
+ "gus.poker.bluff.self.2": {
+  "key": "ef3516a393f2eb16b51356f8f9763c1fb53d39733367a5fd68c550c5fc11cb42",
+  "text": "Return to sender. Contents: absolutely nothing."
+ },
+ "gus.poker.busted.human.1": {
+  "key": "0f19a5a35f602848314191bb5cd581643e37bcebfd14e09bf0dcfc6bccace4ba",
+  "text": "Out already? Happens to the best of us. Mostly me."
+ },
+ "gus.poker.busted.human.2": {
+  "key": "72017389fb2170737ad233730b8d2022e3d61600315ddbb6c7ceb6c43bf07e4b",
+  "text": "Rough night. Go win some coins at Hearts and come back."
+ },
+ "gus.poker.busted.self.1": {
+  "key": "5bff5fd57060971029c267a9a781bfdd29c7c5768e048a95251cc94c13da1c01",
+  "text": "That's it. I'm broke. The goose eats bread crusts tonight."
+ },
+ "gus.poker.busted.self.2": {
+  "key": "3e01301d5df35e5b8a9769772f92b29281d22340d4d4730daf25354b3847b86b",
+  "text": "Out of chips. Rigged, every last card."
+ },
+ "gus.poker.fold.self.1": {
+  "key": "82764203717d75af6ce333cbed1a0e68ed3c5ffa7f5353ac6f263a868b7511aa",
+  "text": "Fold. This hand belongs in the dead letter office."
+ },
+ "gus.poker.fold.self.2": {
+  "key": "23704222292603d3769171428a795d37df6d03723721f026634e3b76a2ffcb54",
+  "text": "I'm out. Rigged, I tell you."
+ },
+ "gus.poker.raise.human.1": {
+  "key": "3faabe940cc8a692e9a6cbcae7defe763d5bee4f4423784545d83161bc2dc164",
+  "text": "A raise? Bold. Suspicious, but bold."
+ },
+ "gus.poker.raise.human.2": {
+  "key": "024fa0fb873e421792af2db68f512f9ecd12ce92a6e36005c9a9476e9f473978",
+  "text": "Raising on me? I've been bitten by smaller dogs."
+ },
+ "gus.poker.raise.self.1": {
+  "key": "653275a526e2d4188be87112a21969c6e9af244e7cdd5e1a8e01cc0e2e91edc4",
+  "text": "Raise. Grumble grumble."
+ },
+ "gus.poker.raise.self.2": {
+  "key": "1561e03f08501bd484b0857b84664ab9b37a35fd62917249d61031133e1c7bf3",
+  "text": "I'll raise. Somebody has to keep you honest."
+ },
+ "gus.poker.sit_down.self.1": {
+  "key": "e15d79003db44c00c2d3e20a6fe05bee315a6127082ef8fd2e11a1b5be7c6824",
+  "text": "Move over. Grumbles is here, and he's not happy about it."
+ },
+ "gus.poker.sit_down.self.2": {
+  "key": "ac533d1ef48b198cbb48eceeec75f1ec3f881aff26710292f9d1ad003233b265",
+  "text": "I'm sitting in. Don't get any ideas."
+ },
+ "gus.poker.stood_pat.human.1": {
+  "key": "85457b398ee87cedc22439cfd5767c040741cea262ba432ee551f8247896db16",
+  "text": "No cards? Now I'm nervous. And I'm never nervous."
+ },
+ "gus.poker.stood_pat.human.2": {
+  "key": "d7fd2d2716f43c9e28aa64e7dffec7553cb8246ef6d927eb698c6291dc3a0fd1",
+  "text": "Standing pat. Either you've got it, or you've got nerve."
+ },
+ "gus.poker.stood_pat.self.1": {
+  "key": "668503ac9538a25481d6502a5430fd651a3c4102a619b50d4ee80290f060c017",
+  "text": "I'll keep these. Don't ask."
+ },
+ "gus.poker.stood_pat.self.2": {
+  "key": "4c9b5a8e7ace280f96e8d056a409e52985479d5dbc26252cb168303cf52f8bfd",
+  "text": "No cards for me. Package is complete."
+ },
+ "gus.poker.won_pot.human.1": {
+  "key": "3a567988b4275554145d5bcadcdce9ed171fd04065964f0c74b96c1cab094975",
+  "text": "Fine. Take it. Don't spend it all on one goose."
+ },
+ "gus.poker.won_pot.human.2": {
+  "key": "b56672ad3914ec065461fbb0a99be319ca88b026cc52f64a8466753568d6515c",
+  "text": "Hmph. Your mail always arrives on time, doesn't it?"
+ },
+ "gus.poker.won_pot.other.1": {
+  "key": "52e4211664356fc5001bf847549cef9f161b7df553de483fde6c1cc6b4beebf3",
+  "text": "Of course. The deck picks favorites."
+ },
+ "gus.poker.won_pot.other.2": {
+  "key": "ca8cbf8f2eec4710c2141ee2a1b689a820858876e6e922edaa58d9181b5cf7cf",
+  "text": "Congratulations. I'll be over here, being robbed."
+ },
+ "gus.poker.won_pot.self.1": {
+  "key": "592505c6563455839f0d6b5bedd3bfa6d3acb734963fca6ca1b55a265b7432d7",
+  "text": "Delivered. Signed, sealed, and in my pile."
+ },
+ "gus.poker.won_pot.self.2": {
+  "key": "cda9e6d282eb920ad1714a9a8c3a43eb6e96bb3e64f4a9b1f4b5950c8389622b",
+  "text": "Huh. The rigged deck slipped up and helped me."
+ },
+ "gus.poker.won_pot.self.3": {
+  "key": "fb7d8cf74fe9da95fe0c069ec4bd1e44cc7b1ddcbd338c16670a2cd5590650f5",
+  "text": "Don't look so shocked. Even I win sometimes."
+ },
  "gus.rummy.big_meld.human.1": {
   "key": "059067bb7bbb9c09d2616e903071416cba1eb85c5d6dbca4ebd83cb2402ab1fc",
   "text": "Showing off now, are we?"
@@ -1842,6 +2434,154 @@
  "marguerite.idle.human.2": {
   "key": "52ab407d1ab0057505f3a95ec1f4ca57e05f8b125976cbe6f3444651ba405188",
   "text": "Thinking deeply, I see. I approve."
+ },
+ "marguerite.poker.bad_beat.human.1": {
+  "key": "bc8a5d0df2e27bcca42ae7935ff2933128e76bd991ccb1e823ef3c93455ec59a",
+  "text": "Oh, that was improbable. I'm so sorry."
+ },
+ "marguerite.poker.bad_beat.human.2": {
+  "key": "dd6e07931d00dbbec076645d6a3bae4e3c5a448be4bd0b2fea455c05c4b18f17",
+  "text": "A terrible beat. The math was with you, at least."
+ },
+ "marguerite.poker.bad_beat.self.1": {
+  "key": "67d73166c5bacc6d77ff8aab71dfbb74c5b58642e74d3e6a86e4090a7a35d824",
+  "text": "That was a one in twenty outcome. How rude."
+ },
+ "marguerite.poker.bad_beat.self.2": {
+  "key": "35d3c968649b51ef6889f1ff9c8e896e10d031266f9f814378d8618e6fc293d5",
+  "text": "Three of a kind, beaten. I need to lie down."
+ },
+ "marguerite.poker.big_hand.human.1": {
+  "key": "5c308bc4dc0c13ad9104fe9029967057b556ec2a08f339555f24891eef222702",
+  "text": "My word! Do you know the odds of that?"
+ },
+ "marguerite.poker.big_hand.human.2": {
+  "key": "044a1e3e406648acf55979fd6ec6f787d48c24e5398bf49b7cdec4b0330a7d74",
+  "text": "Extraordinary! I must write that down. Where's my pen?"
+ },
+ "marguerite.poker.big_hand.self.1": {
+  "key": "d2d5ee0939c1dd3ee1dec61912b78fe3cbe95b5ef10018e18b3fea606c0d85f7",
+  "text": "A full house! Roughly one in seven hundred!"
+ },
+ "marguerite.poker.big_hand.self.2": {
+  "key": "2d2007b3d375a20b1029930b109b24c41a50c128c5517e2c2fe2e2fd8afbf1b9",
+  "text": "Look at that. Combinatorics at its finest."
+ },
+ "marguerite.poker.big_pot.human.1": {
+  "key": "0d8a08e65b116c1c9bd07f90340917ce07aa115517be03c1ae72ce02c16cdf10",
+  "text": "What a pot! You'd make a fine statistician."
+ },
+ "marguerite.poker.big_pot.human.2": {
+  "key": "5b29f16c4221e57792fe15a0631c6b7ee0f5a485979c5efb4d51c30931fe1269",
+  "text": "Remarkable. The math was clearly on your side."
+ },
+ "marguerite.poker.big_pot.self.1": {
+  "key": "4cd1ba878e7c9a717db93efc6a4badcae13bebdc9d56479fb57f223d94e7b419",
+  "text": "A sizable pot! Wait, are my glasses in it?"
+ },
+ "marguerite.poker.big_pot.self.2": {
+  "key": "df6400d2ce78ee84ffe0f5bd5412e4f8eebb654ff1e8e11c64bde3973112f283",
+  "text": "Fascinating. The law of large numbers, in my favor."
+ },
+ "marguerite.poker.bluff.self.1": {
+  "key": "19d7e4fedd8048adee5128c7cc7a4627883a368ba5c9e112ab6df1ba7ad95e46",
+  "text": "I had nothing. A calculated risk, you see."
+ },
+ "marguerite.poker.bluff.self.2": {
+  "key": "581628daa50b7d4062b83c56f66fc82c2eaae8bef93592aec566afefd875368d",
+  "text": "A bluff! Game theory says I should do that sometimes."
+ },
+ "marguerite.poker.busted.human.1": {
+  "key": "7d69510e2689a8c64f096eaedf8e78311e2577aaa4ecc1898bba811ac21c64ba",
+  "text": "Out? Variance is cruel. You'll recover."
+ },
+ "marguerite.poker.busted.human.2": {
+  "key": "87450d83ead3728aa050f7f6d29221d9f3c2ceb3956bc20eebd7afcd2965b291",
+  "text": "That happens, dear. Even with perfect math."
+ },
+ "marguerite.poker.busted.self.1": {
+  "key": "da821c1aa7ab26523896514e694fc55c2e884ba297f3a5de3bdd3b645ad57d6f",
+  "text": "Out of chips. My model needs revision."
+ },
+ "marguerite.poker.busted.self.2": {
+  "key": "9167fec520575a5db84c6c0e7e2d2a11d66d875efe06074f56b6553ec91b558a",
+  "text": "Busted. I'll be in my office, recalculating."
+ },
+ "marguerite.poker.fold.self.1": {
+  "key": "4c3e974a77f3678e435e37456e25a8d205bca717f4524d4ddf639ebcf237daaf",
+  "text": "I fold. The odds were simply dreadful."
+ },
+ "marguerite.poker.fold.self.2": {
+  "key": "69ff8f35712e1deb859e4e2eb1a7d742d4b97e449110fadc5f636fb0ce4d1d33",
+  "text": "Not worth it. I've checked twice."
+ },
+ "marguerite.poker.raise.human.1": {
+  "key": "ab67b275d4e3574bf71dde86d2ebdf7333e324acfea557ac1ec768300d8e117e",
+  "text": "A raise. Let me reconsider my priors."
+ },
+ "marguerite.poker.raise.human.2": {
+  "key": "7a90ef3cf00944ca756fa71b7b67fdba9e5c5b0ea4d3561d2baa0baeb3b7f7a5",
+  "text": "Interesting. That changes the math."
+ },
+ "marguerite.poker.raise.self.1": {
+  "key": "766cf6db87f76c7f3d76dc31cf4e690c38f6d93fe3082fe30a9d7b7c6eef2b3e",
+  "text": "I raise. The numbers insist."
+ },
+ "marguerite.poker.raise.self.2": {
+  "key": "cccb04d6ddbbd1132a25737378ad48e8b575d0139ee34ccbdc5edc4beb4d3764",
+  "text": "A raise, by my calculations."
+ },
+ "marguerite.poker.sit_down.self.1": {
+  "key": "ed45cdbab479ab07de8a73fac82ca20c05a3c5f58b877b09254425288eb6bd11",
+  "text": "May I join? I've brought my calculator. And my glasses. Somewhere."
+ },
+ "marguerite.poker.sit_down.self.2": {
+  "key": "6a1225a9474964efa809d0c14f4d5e12b55bb3944b18def9fa893b745f55c930",
+  "text": "Hello! Has anyone seen my glasses? Oh. Head. Thank you."
+ },
+ "marguerite.poker.stood_pat.human.1": {
+  "key": "2d98b1ef4df4695261038f9efa463378ad25c4de4fda94619b9185387eedc73b",
+  "text": "Standing pat? That narrows your range considerably."
+ },
+ "marguerite.poker.stood_pat.human.2": {
+  "key": "8ef8909e4ae0bebd1a325520936b6597d3d3e46c38b567f31567962da84268b5",
+  "text": "No cards. How very informative of you."
+ },
+ "marguerite.poker.stood_pat.self.1": {
+  "key": "23db9292d56c01498229c3645d0d122c6f6fb6d163f36a57bd8148b889e648a2",
+  "text": "I shall keep all five. The probabilities are agreeable."
+ },
+ "marguerite.poker.stood_pat.self.2": {
+  "key": "e4a3c1a429b9b2482fa3b9b2027d0c2e40a2ac0dea76fc3919b19a4b59d01026",
+  "text": "No cards, thank you. I've done the arithmetic."
+ },
+ "marguerite.poker.won_pot.human.1": {
+  "key": "a6974faae21b4b4da3d84133731c5914c2938c3bebf9ad70453221ca04d824dd",
+  "text": "Well played. Your odds were excellent."
+ },
+ "marguerite.poker.won_pot.human.2": {
+  "key": "36755e049dbbeff5e1568ad70c14a7eca332e90880c01b5b067306c28fa8bdfc",
+  "text": "Splendid. I shall update my estimates of you."
+ },
+ "marguerite.poker.won_pot.other.1": {
+  "key": "0af757492a3cd0e2e18a0ee4440c25850173243ee9b627ae114a25816291b05c",
+  "text": "Hm. Variance. Nothing more."
+ },
+ "marguerite.poker.won_pot.other.2": {
+  "key": "71044645dff188e5fd1430acf7e33ba0570570cde2288de97bc97475d264f7ee",
+  "text": "A perfectly reasonable outcome, sadly."
+ },
+ "marguerite.poker.won_pot.self.1": {
+  "key": "7e6bbc391e91713d458bfb027b0ff7e99bceedfc8e7e8cdb3976a18ae6cd37c3",
+  "text": "Ah. The expected value finally arrived."
+ },
+ "marguerite.poker.won_pot.self.2": {
+  "key": "911485749168546a401218aa3aa02ece5481a5d3e4ede8b3c81fc1e165d12f0e",
+  "text": "A win! I'd celebrate, but I can't find my glasses."
+ },
+ "marguerite.poker.won_pot.self.3": {
+  "key": "ba7f8a14488ffd427ce89f468075f6f624336aebc573075af475a2a8910953d8",
+  "text": "Statistically, I was due."
  },
  "marguerite.rummy.big_meld.human.1": {
   "key": "7ebc0bb651a71279ba970fad183707f6d36f4b9533cc044ac2789a072e0369c3",
@@ -2230,6 +2970,154 @@
  "reginald.idle.human.2": {
   "key": "681d921850a81b77df4675895755bd395ab2c6e8087cfa838950ceeb3e79a69e",
   "text": "Ahem. The Fairweathers are a patient people. Until now."
+ },
+ "reginald.poker.bad_beat.human.1": {
+  "key": "7071dccfd2e10864a0406cf9ec9fb2d3b9185cfe5bdfbad7f64a68f54124b177",
+  "text": "Rotten luck, old sport. Truly."
+ },
+ "reginald.poker.bad_beat.human.2": {
+  "key": "856af7f48693239dd95bd0acadc76ff3876063ab72b7a605f3c4c00fb3fdda09",
+  "text": "A noble hand, cruelly undone. I sympathize."
+ },
+ "reginald.poker.bad_beat.self.1": {
+  "key": "08186de2e71172f5ea16c9d587c1811b099b278b0f0f1a545cb4867cafa08291",
+  "text": "Three of a kind, defeated! This is an OUTRAGE!"
+ },
+ "reginald.poker.bad_beat.self.2": {
+  "key": "817521a0678bdd7eb204b76e7f2e81f57aa4336cc8e68470444f41c246af0ece",
+  "text": "My ancestors are spinning in their moderately priced graves."
+ },
+ "reginald.poker.big_hand.human.1": {
+  "key": "28ada324502d15158999e973461ff0620f12249eac0d286ae3d3e6f6f293e440",
+  "text": "Good heavens. That is a hand of some quality."
+ },
+ "reginald.poker.big_hand.human.2": {
+  "key": "429c6fb8047d06498c7747f0fbab09f6ba2712d2ed0086a0f45b6121a7dee3b4",
+  "text": "Hmph. Impressive. For a commoner."
+ },
+ "reginald.poker.big_hand.self.1": {
+  "key": "4d3c5049f747fb2bf7b8069a9dd15fc40482f92d68acd708c60ccbaaa4a0ea7e",
+  "text": "A full house! Fit for a manor!"
+ },
+ "reginald.poker.big_hand.self.2": {
+  "key": "0f67a95af9cd8ac756d9eddf357e12771272193be3984de5963e2f3a1993bd9c",
+  "text": "Behold, a hand of distinction."
+ },
+ "reginald.poker.big_pot.human.1": {
+  "key": "d8a5d0fb90cb8c317737582d1696c9d93e930d7f25ea0f45ae06ec9cd6417c02",
+  "text": "That pot contained part of my inheritance!"
+ },
+ "reginald.poker.big_pot.human.2": {
+  "key": "762ca20748e47d9933e24414f3307a0ab4a3849097ac7a9438d93b64895964cf",
+  "text": "Good heavens. You've plundered the estate."
+ },
+ "reginald.poker.big_pot.self.1": {
+  "key": "0a0e9be5f3fbc61e313cfea5b99559c481f38ece7462fce670c5a5d04ad5978e",
+  "text": "A pot worthy of the Fairweather name!"
+ },
+ "reginald.poker.big_pot.self.2": {
+  "key": "f9e0c2d2911b9943a24993eca7aeb951bfb47bf3a5427459204a8f818494fd60",
+  "text": "Splendid! This will restore the family silver."
+ },
+ "reginald.poker.bluff.self.1": {
+  "key": "5236f05cd74d18c4124ff27ba0385d8a90265b5373d9f3d366ca3bb5c4697712",
+  "text": "I held nothing. A gentleman never shows."
+ },
+ "reginald.poker.bluff.self.2": {
+  "key": "8cef0798c065fe6a7f106dabca47117ab678a2644b9ff369eb5aa05d03e6fd9b",
+  "text": "A bluff, old sport. My grandfather did it with a straight face too."
+ },
+ "reginald.poker.busted.human.1": {
+  "key": "ca89c8b62ec2b049d61604c6060ceb9e6dbdf1ba3f150a894a47fbff0c0ae75b",
+  "text": "Chin up. Even the Fairweathers were broke once. Twice."
+ },
+ "reginald.poker.busted.human.2": {
+  "key": "27a746cd7047c0457f7d27d42a8d8f08c71861895894266cb05b10fbbf8ddb2e",
+  "text": "Out of chips? Most unfortunate. Do come again."
+ },
+ "reginald.poker.busted.self.1": {
+  "key": "4f8d73a584a96b3125991204d589be565ceb15217ba96b7f90f1d07dff195345",
+  "text": "Penniless! I must sell a portrait of an ancestor."
+ },
+ "reginald.poker.busted.self.2": {
+  "key": "0f5e8dd067147cd3793c11e5dd5404726df021e3669bbdcdcbe53ad8459443f3",
+  "text": "Ruined! Fetch my monocle, I'm leaving."
+ },
+ "reginald.poker.fold.self.1": {
+  "key": "5c95844301aec8522086ae4c048be3725c2d055f19ecf25bb0448c1a6a1fd0ee",
+  "text": "I fold. Strategically. With dignity."
+ },
+ "reginald.poker.fold.self.2": {
+  "key": "bc6e168fb09d5e99fc14af177a603b571b53d7d5700b03bedb758fcd89920c91",
+  "text": "This hand is beneath me."
+ },
+ "reginald.poker.raise.human.1": {
+  "key": "85805d11be6390cbf93753607a4b5d8fc284d1a2b9c3b65dc9643683b00dcf79",
+  "text": "You dare raise a Fairweather?"
+ },
+ "reginald.poker.raise.human.2": {
+  "key": "e49a830bdb5d2d584b0bfdd1aec487f5b60990a9127ef2bfc64bc125c5796cc3",
+  "text": "A raise! How very bold. And vulgar."
+ },
+ "reginald.poker.raise.self.1": {
+  "key": "f8b59fb4561e20b61ee3ba0972188f497c8eaec0822e87cbaa8d0accf21892ea",
+  "text": "I raise. As is my birthright."
+ },
+ "reginald.poker.raise.self.2": {
+  "key": "46e334eb980a269aaed497e0870efb1984688c4ce18bb5fd3dafedaa1c384532",
+  "text": "A raise, I think. Do keep up."
+ },
+ "reginald.poker.sit_down.self.1": {
+  "key": "221764cb8764d55d0096f80e90e6f85ba96c368c01848fb6823d3b69a02b99b2",
+  "text": "Make way. A Fairweather has arrived."
+ },
+ "reginald.poker.sit_down.self.2": {
+  "key": "6a5909afa5e4ef3aa84885fe2b658b72e971250879f05606db1218f24f36ecb3",
+  "text": "I shall grace this table with my presence."
+ },
+ "reginald.poker.stood_pat.human.1": {
+  "key": "df0a7d50beb491c9d435249fb8f35818c958c8b7d66a14a899da07cb0660078a",
+  "text": "Standing pat? How presumptuous."
+ },
+ "reginald.poker.stood_pat.human.2": {
+  "key": "9cb6d7d14fe8452021865505d881cdb18c053f7869ee824a03be7081650aefe1",
+  "text": "No cards? I see. Most unsettling."
+ },
+ "reginald.poker.stood_pat.self.1": {
+  "key": "24039295ef79d8217933af871bb0f6ac7c1486baa5b3f16c649a8f55762ea2c6",
+  "text": "I shall keep my hand. It is, after all, distinguished."
+ },
+ "reginald.poker.stood_pat.self.2": {
+  "key": "61848bf667086c967faa6e7be45181445deb6d80f0ee8e71ccf3c2d639e24ade",
+  "text": "No cards. Perfection needs no improvement."
+ },
+ "reginald.poker.won_pot.human.1": {
+  "key": "e014e93b676ec8bfef8265112fba74d01750a3420998ddb622a7a21f65ec4472",
+  "text": "Hmph. Beginner's fortune."
+ },
+ "reginald.poker.won_pot.human.2": {
+  "key": "61835de134c9d79c63d997605255c9842ce9cb41a34f345b822c35012149312a",
+  "text": "Most irregular. I demand a recount. Politely."
+ },
+ "reginald.poker.won_pot.other.1": {
+  "key": "eb4839888e360a6a028b37cf784165c84290831b8aefabd8720fc6e99865c666",
+  "text": "An outrage. A small outrage, but an outrage."
+ },
+ "reginald.poker.won_pot.other.2": {
+  "key": "36c943a6be08dbd87d52e30502c5e4e1228283471a867d652e6f6a7e7bcc460a",
+  "text": "Enjoy it. Fortune is a fickle duchess."
+ },
+ "reginald.poker.won_pot.self.1": {
+  "key": "83f25dfd37c1e56bcbad653da9a963d3516130da66a27bb81c205b8bac99cbee",
+  "text": "Naturally. The pot recognizes its rightful owner."
+ },
+ "reginald.poker.won_pot.self.2": {
+  "key": "89d7c566d46b374e3ee70e74a2a4c2527d4c83fe5099d8400d9e9667598202a0",
+  "text": "As my ancestors would have wanted."
+ },
+ "reginald.poker.won_pot.self.3": {
+  "key": "a3edd29fe93dd343a53fa5986c6ef9cb290bfb6ee80d2ca8e9335216d833883f",
+  "text": "Breeding will tell, my friends."
  },
  "reginald.rummy.big_meld.human.1": {
   "key": "f5bd89a4ccdfc741c6a2567dcf629f42dc7eb82804293b11f14a645111ef116e",

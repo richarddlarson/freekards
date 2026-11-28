@@ -205,20 +205,7 @@ export abstract class TableBase {
 
   private build(): void {
     this.root.append(this.cardLayer);
-    for (const seat of this.computerSeats) {
-      const c = this.seatsDef[seat]!;
-      const p = h('div', 'portrait');
-      const face = h('div', 'portrait-face', c.nickname.replace(/^The /, '').charAt(0));
-      const [light, dark] = portraitColors(c.id);
-      face.style.background = `radial-gradient(circle at 35% 30%, ${light}, ${dark})`;
-      p.append(face, h('div', 'nameplate', c.nickname));
-      p.title = `${c.name} — ${c.tagline}`;
-      this.portraits[seat] = p;
-      const b = h('div', `bubble ${this.portraitSpot(seat).bubbleSide}`);
-      onTap(b, () => this.endBubble());
-      this.bubbles[seat] = b;
-      this.root.append(p, b);
-    }
+    for (const seat of this.computerSeats) this.buildSeat(seat);
     this.buildScorePanel();
     onTap(this.menuBtn, () => this.openMenu());
     onTap(this.rulesBtn, () => this.openRules());
@@ -227,6 +214,55 @@ export abstract class TableBase {
     this.buildTable();
     this.root.append(this.youPlate, this.scorePanel, this.menuBtn, this.rulesBtn, this.message, this.toast);
     this.stage.el.append(this.root);
+  }
+
+  /** The portrait and speech bubble for a computer seat. */
+  private buildSeat(seat: number): void {
+    const c = this.seatsDef[seat]!;
+    const p = h('div', 'portrait');
+    const face = h('div', 'portrait-face', c.nickname.replace(/^The /, '').charAt(0));
+    const [light, dark] = portraitColors(c.id);
+    face.style.background = `radial-gradient(circle at 35% 30%, ${light}, ${dark})`;
+    p.append(face, h('div', 'nameplate', c.nickname));
+    p.title = `${c.name} — ${c.tagline}`;
+    this.portraits[seat] = p;
+    const b = h('div', `bubble ${this.portraitSpot(seat).bubbleSide}`);
+    onTap(b, () => this.endBubble());
+    this.bubbles[seat] = b;
+    // Behind the card layer's later siblings, like the portraits built with the table.
+    this.cardLayer.after(p, b);
+  }
+
+  /**
+   * Seat a different computer player (or nobody) mid-game: poker regulars come and go (spec 19 §4).
+   * The dialogue director reads the same seat list, so the new player speaks from then on.
+   */
+  protected setSeatCharacter(seat: number, c: CharacterDef | null): void {
+    this.portraits[seat]?.remove();
+    this.bubbles[seat]?.remove();
+    delete this.portraits[seat];
+    delete this.bubbles[seat];
+    this.seatsDef[seat] = c;
+    if (c) {
+      this.buildSeat(seat);
+      const { point, bubbleSide } = this.portraitSpot(seat);
+      this.place(this.portraits[seat]!, point);
+      const off = layout.LAYOUT.portraitSize / 2 + 18;
+      this.place(this.bubbles[seat]!, { x: point.x + (bubbleSide === 'right' ? off : -off), y: point.y - 10 });
+    }
+  }
+
+  /** The pause menu's last buttons. Default: New game and Main menu. */
+  protected menuExits(): { label: string; onTap(): void }[] {
+    return [
+      { label: 'New game', onTap: () => this.base.onExit('again') },
+      { label: 'Main menu', onTap: () => this.base.onExit('menu') },
+    ];
+  }
+
+  /** Close the pause menu and carry on (for menu exits that don't leave the table at once). */
+  protected resumeFromMenu(): void {
+    this.resume();
   }
 
   protected nameOf(seat: number): string {
@@ -242,6 +278,7 @@ export abstract class TableBase {
     this.lay = layout.tableLayout(this.stage.vp);
     const L = this.lay;
     for (const seat of this.computerSeats) {
+      if (!this.portraits[seat]) continue;
       const { point, bubbleSide } = this.portraitSpot(seat);
       this.place(this.portraits[seat]!, point);
       const off = layout.LAYOUT.portraitSize / 2 + 18;
@@ -471,12 +508,13 @@ export abstract class TableBase {
       );
       back?.append(o);
     });
-    const restart = h('button', 'big-button secondary', 'New game');
-    const menu = h('button', 'big-button secondary', 'Main menu');
     onTap(resume, () => this.resume());
-    onTap(restart, () => this.base.onExit('again'));
-    onTap(menu, () => this.base.onExit('menu'));
-    col.append(resume, rulesBtn, sound, prefs, restart, menu);
+    const exits = this.menuExits().map((x) => {
+      const b = h('button', 'big-button secondary', x.label);
+      onTap(b, x.onTap);
+      return b;
+    });
+    col.append(resume, rulesBtn, sound, prefs, ...exits);
     panel.append(col);
     this.showOverlay(panel);
   }

@@ -80,6 +80,23 @@ Every screen, table or menu, is drawn on the felt. The player picks its color in
 Felt ids are stable, because profiles store them. The window's own background, shown for a moment
 before the first screen draws, stays green.
 
+## Poker chips (D-091)
+A theme provides one image per chip value: `assets/themes/<theme>/chips/<value>.svg` for 1, 5, 25,
+100, 500, and 1000. Classic Casino's are written by `scripts/generate-chips.mjs` (original geometry,
+MIT), on a 120 × 84 canvas:
+- The chip is a circle of radius 56 seen at an angle: an ellipse 56 × 30 centered at (60, 34), with
+  an edge 12 deep below it (the lower half-ellipse moved down 12), outlined in black at 35%.
+- **Colors** (body, edge, spots, value): 1 `#eeeae0`/`#c9c3b2`/`#2b5aa8`/`#2b5aa8`; 5 `#c0262d`/
+  `#8a1a20`/`#f7f2e3`/`#c0262d`; 25 `#1f8a46`/`#155f30`/`#f7f2e3`/`#1f8a46`; 100 `#262626`/`#0f0f0f`/
+  `#f7f2e3`/`#262626`; 500 `#6b3fa0`/`#4a2a70`/`#f7f2e3`/`#6b3fa0`; 1000 `#e0a020`/`#a87410`/`#7a3e12`/`#7a3e12`.
+- **Edge spots:** on the visible front of the edge, four bands 18° wide centered at 22.5°, 67.5°,
+  112.5°, 157.5° (0° = right, 90° = nearest), in the spot color.
+- **Top face** (drawn in circle space, squashed by 30/56): eight rim spots 16° wide between radius
+  43 and 55, centered at 22.5° + k × 45°; a dashed ring (radius 39, 2 wide, dashes 5 and 4) in the spot
+  color; a cream center (`#f7f2e3`, radius 34) with the value ("1K" for 1,000) in Fira Sans Condensed
+  Bold, 22 tall, at most 56 wide, in the value color, outlined with opentype.js like the card indices.
+- A soft vertical sheen over the top face: white at 18% to black at 12%.
+
 ## App icon (D-067)
 The app icon is the same for every theme. It is drawn on a 1024×1024 canvas, origin top-left:
 - **Tile:** a rounded square at (64, 64), 896×896, corner radius 190, filled with a vertical gold

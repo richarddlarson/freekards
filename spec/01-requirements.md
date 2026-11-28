@@ -26,7 +26,7 @@ Status key: **[Confirmed]** = stated by the owner or settled in `02-decisions.md
 - **[Confirmed]** Hearts
 - **[Confirmed]** Spades
 - **[Confirmed]** Blackjack
-- **[Confirmed]** Poker (variant to be decided; see open questions)
+- **[Confirmed]** Poker: Five-Card Draw first (D-088, spec 19), played for KardCoins; Stud and Hold'em later
 - **[Confirmed]** Rummy 500
 - **[Confirmed]** Gin Rummy
 - **[Confirmed]** Solitaire (variants to be decided; see open questions)
